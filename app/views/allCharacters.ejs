@@ -1,0 +1,68 @@
+<%- include('./partials/header'); -%>
+<main class="main__index">
+  <h1 class="h1-admin-page">Tous les personnages</h1>
+
+  <div class="admin__container-list column">
+    <form class="form__search" action="/id/characters" method="GET">
+      <div class="form__search-container search-characters">
+        <input
+          type="text"
+          id="searchInput"
+          name="search"
+          placeholder="Recherche par nom"
+          required
+        />
+        <button type="submit">Rechercher</button>
+      </div>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Serveur</th>
+          <th>Personnage</th>
+          <th>Date reproduction</th>
+          <th>Date accouchement</th>
+          <th>Heure Accouchement</th>
+          <th>Male</th>
+          <th>Femelle</th>
+          <th>Specialité</th>
+          <th>Réaccoupler</th>
+          <th>Statut</th>
+          <th>Reproduction</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% characters.forEach(character => { %>
+        <tr>
+          <td><img class="img-all-characters" src="/images/<%= character.account.server.img %>" alt="logo du serveur <%= character.account.server.name %>" ></td>
+          <td><%= character.account.name %><%= character.name %></td>
+          <td><%= character.date %></td>
+          <td>calculer</td>
+          <td>calculer</td>
+          <td><img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.name %>" ></td>
+          <td><img src="<%= character.breedFemale.image %>" alt="dragodinde <%= character.breedFemale.name %>" ></td>
+          <td><%= character.speMale %><%= character.speFemale %></td>
+          <td><img src="/images/bouttonrepro.png" alt="deux chiens qui s'accouplent" ></td>
+          <td>a calculer</td>
+          <td><%= character.reproduction %></td>
+          <td>
+            <a href="/character/update/<%= character.id %>"
+              ><i class="fa-regular fa-pen-to-square" style="color: #000000"></i
+            ></a>
+          </td>
+          <td>
+            <a href="/character/delete/<%= character.id %>"
+              ><i class="fa-regular fa-trash-can" style="color: #000000"></i
+            ></a>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<%- include('./partials/footer'); -%>

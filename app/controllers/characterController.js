@@ -24,11 +24,9 @@ const characterController = {
           },
         ],
       });
-
-      console.log(characters);
-      const attributes = Object.keys(Character.tableAttributes);
+      const account = await Account.findOne({where: { id: accountId }})
       const breeds = await Breed.findAll();
-      response.render("characters", { characters, breeds, accountId, attributes });
+      response.render("characters", { characters, breeds, accountId, account });
     } catch (err) {
       console.log(err);
       return response.render("error", {
@@ -67,7 +65,7 @@ const characterController = {
         speFemale: spefemale,
         type: type,
       });
-      response.redirect("/accounts");
+      response.redirect(`/${accountId}/characters`);
     } catch (err) {
       console.log(err);
       return response.render("error", {
@@ -80,25 +78,31 @@ const characterController = {
     }
   },
 
-  getCharactersPage: async (request, response) => {
+  getAllCharactersPage: async (request, response) => {
     try {
       const characters = await Character.findAll({
         include: [
           {
             association: "account",
+            where: { user_id: request.session.user.id },
             include: [
               {
                 association: "user",
+                association:"server",
               },
             ],
           },
+          {
+            association: "breedFemale",
+          },
+          {
+            association: "breedMale",
+          },
         ],
       });
-
       const breeds = await Breed.findAll();
-
       console.log(characters);
-      response.render("characters", { characters, breeds });
+      response.render("allCharacters", { characters, breeds });
     } catch (err) {
       console.log(err);
       return response.render("error", {

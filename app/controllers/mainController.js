@@ -26,38 +26,6 @@ const mainController = {
     response.render("profil");
   },
 
-  getAccountsPage: async (request, response) => {
-    try {
-      const server = parseInt(request.query.server, 10);
-      let whereCondition = {};
-      if (server && request.session?.user) {
-        whereCondition = {
-          server_id:server,
-          user_id: request.session.user.id,
-        };
-      }else{
-        whereCondition = {
-          user_id: request.session.user.id,
-        };
-      }
-      const accounts = await Account.findAll({
-        where: whereCondition,
-        order: ["id"],
-      });
-      const servers = await Server.findAll();
-      response.render("accounts", { accounts, servers });
-    } catch (err) {
-      console.log(err);
-      return response.render("error", {
-        error: {
-          statusCode: 409,
-          name: "Error",
-          message: err,
-        },
-      });
-    }
-  },
-
   getServersPage: async (request, response) => {
     const servers = await Server.findAll();
     response.render("servers", { servers });

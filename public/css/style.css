@@ -73,6 +73,10 @@ img{
   user-select: none;
 }
 
+.link-div:hover{
+  opacity:0.8;
+}
+
 .main__index{
   background-image: url('../images/bg_dofus.jpg');
 }
@@ -438,7 +442,7 @@ form {
 
 .account__color{
   width:15rem;
-  height:14rem;
+  height:29rem;
   padding:0.5rem;
   border-radius:0.5rem;
   margin:1rem;
@@ -582,6 +586,10 @@ select{
   justify-content:space-evenly;
   flex-wrap:wrap;
   margin:3rem auto;
+}
+
+.img-all-characters{
+  width:5rem;
 }
 
  /* Style pour le tableau */

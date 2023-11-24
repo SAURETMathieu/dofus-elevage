@@ -1,9 +1,9 @@
 <%- include('./partials/header'); -%>
 <main class="main__index">
-  <h1 class="h1-admin-page">Personnages</h1>
+  <h1 class="h1-admin-page">Personnages sur le compte <%=account.name %></h1>
 
   <div class="admin__container-list column">
-    <form class="form__search" action="/id/characters" method="GET">
+    <form class="form__search" action="/<%=account.id%>/characters" method="GET">
       <div class="form__search-container search-characters">
         <input
           type="text"
@@ -25,7 +25,7 @@
       id="add-character-form"
     >
       <form
-        action="/character-add/<%= locals.user ? locals.user.id : ''%>/<%= accountId %>"
+        action="/character-add/<%= locals.user ? locals.user.id : ''%>/<%= locals.accountId %>"
         method="POST"
         class="addAccountForm"
       >
@@ -135,7 +135,7 @@
       <tbody>
       <% characters.forEach(character => { %>
         <tr>
-          <td><%= character.id %><%= character.name %></td>
+          <td><%= character.account.name %><%= character.name %></td>
           <td><%= character.date %></td>
           <td>calculer</td>
           <td>calculer</td>

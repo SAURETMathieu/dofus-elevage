@@ -1,14 +1,18 @@
 <%- include('./partials/header'); -%>
 <main class="admin__main">
-  <h1 class="h1-user-page">Comptes</h1>
+  <h1 class="h1-user-page">Tout les comptes</h1>
   
   <div class="container-list">
-    <% locals.accounts.forEach(account => { %>
+  <% locals.accounts.forEach(account => { %>
     
       <div class="bg--<%= account.color %> account__color">
+        
         <article class="article__account">
           <div class="article__title"><h2><%= account.name %></h2></div>
-          <div class="article__title"><h2><%= account.server_id %></h2></div>
+          <a class="link-div" href="/<%= account.id%>/characters">
+            <img class="logo__server" src="/images/<%= account.server.img %>" alt="image du serveur">
+          </a>
+          <div class="article__title"><h2><%= account.server.name %></h2></div>
           <div class="container-logo">
             <a href="/<%= account.id%>/characters">
               <i class="fa-solid fa-person-half-dress input-logo bg--yellow" style="color: #000000;"></i>
@@ -25,6 +29,8 @@
           </div>
         </article>
       </div>
+         
+  
    
     <% }) %>
     <article class="account__color bg--white">

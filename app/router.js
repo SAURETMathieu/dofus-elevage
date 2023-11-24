@@ -19,8 +19,8 @@ router.get("/servers", mainController.getServersPage);
 router.post("/account-add/:id",isConnected, accountController.addAccount);
 router.post("/character-add/:id/:accountId",isConnected, characterController.addCharacter);
 router.get("/:accountId/characters", isConnected, characterController.getCharactersOnAccountPage);
-router.get("/characters", isConnected, characterController.getCharactersPage);
-router.get("/accounts", isConnected, mainController.getAccountsPage);
+router.get("/characters", isConnected, characterController.getAllCharactersPage);
+router.get("/accounts", isConnected, accountController.getAccountsPage);
 
 // authentification
 router.get("/signup", canSignup, authController.getRegisterPage);
