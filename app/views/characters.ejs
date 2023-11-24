@@ -1,0 +1,167 @@
+<%- include('./partials/header'); -%>
+<main class="main__index">
+  <h1 class="h1-admin-page">Personnages</h1>
+
+  <div class="admin__container-list column">
+    <form class="form__search" action="/id/characters" method="GET">
+      <div class="form__search-container search-characters">
+        <input
+          type="text"
+          id="searchInput"
+          name="search"
+          placeholder="Recherche par nom"
+          required
+        />
+        <button type="submit">Rechercher</button>
+      </div>
+    </form>
+
+    <article class="open-form-character bg--white" id="open-character-form">
+      <button id="addButton" class="circular-button">+</button>
+    </article>
+
+    <article
+      class="add-character-form bg--white hidden"
+      id="add-character-form"
+    >
+      <form
+        action="/character-add/<%= locals.user ? locals.user.id : ''%>/<%= accountId %>"
+        method="POST"
+        class="addAccountForm"
+      >
+        <label for="name">Nom du personnage</label>
+        <input
+          class="h1r5 input-text"
+          type="text"
+          id="name"
+          name="name"
+          required
+        />
+        <label for="type">Classe</label>
+        <select class="h1r5 select-class" id="type" name="type" required>
+          <option value="" disabled selected hidden>
+            Choisissez une classe
+          </option>
+          <option value="enu">Enu</option>
+        </select>
+
+        <div class="genre-container">
+          <section class="section-genre">
+            <h2>Male</h2>
+            <label for="spemale">Spécialité</label>
+            <input
+              type="radio"
+              id="aucune-m"
+              name="spemale"
+              value="aucune"
+              checked
+              required
+            />
+            <label for="aucune-m">Aucune</label>
+            <input type="radio" id="repro-m" name="spemale" value="repro" />
+            <label for="repro-m">Repro</label>
+            <input type="radio" id="came-m" name="spemale" value="camé" />
+            <label for="came-m">Camé</label>
+            <div class="open-breed" id="open-breed-male">+</div>
+          </section>
+          <section class="section-genre">
+            <h2>Femelle</h2>
+            <label for="spefemale">Spécialité</label>
+            <input
+              type="radio"
+              id="aucune-f"
+              name="spefemale"
+              value="aucune"
+              checked
+              required
+            />
+            <label for="aucune-f">Aucune</label>
+            <input type="radio" id="repro-f" name="spefemale" value="repro" />
+            <label for="repro-f">Repro</label>
+            <input type="radio" id="came-f" name="spefemale" value="camé" />
+            <label for="came-f">Camé</label>
+            <div class="open-breed" id="open-breed-female">+</div>
+          </section>
+          <input class="hidden" id="breed-male-value" type="text" name="breedmale" value="" required>
+          <input class="hidden" id="breed-female-value" type="text" name="breedfemale" value="" required>
+        </div>
+
+        <div class="breed-list hidden" id="breed-list">
+          <section class="section-breed">
+            <% breeds.forEach(breed => { %>
+              <figure class="figure-dd">
+                <img class="image-dd" src="<%= breed.image%>" alt="Dragodinde <%= breed.color%>">
+                <figcaption class="figcaption-dd"><%= breed.id%></figcaption>
+              </figure>
+            <% }) %>
+          </section>
+            <input
+              class="input-submit-bis bg--red"
+              type="button"
+              id="close-breed"
+              value="X"
+            />
+        </div>
+
+        <div>
+          <input
+            class="input-submit-bis bg--red"
+            type="button"
+            id="cancelAdd"
+            value="X"
+          />
+          <input class="input-submit-bis bg--green" type="submit" value="O" />
+        </div>
+      </form>
+    </article>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Personnage</th>
+          <th>Date reproduction</th>
+          <th>Date accouchement</th>
+          <th>Heure Accouchement</th>
+          <th>Male</th>
+          <th>Femelle</th>
+          <th>Specialité</th>
+          <th>Réaccoupler</th>
+          <th>Statut</th>
+          <th>Reproduction</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% characters.forEach(character => { %>
+        <tr>
+          <td><%= character.id %><%= character.name %></td>
+          <td><%= character.date %></td>
+          <td>calculer</td>
+          <td>calculer</td>
+          <td><img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.name %>" ></td>
+          <td><img src="<%= character.breedFemale.image %>" alt="dragodinde <%= character.breedFemale.name %>" ></td>
+          <td><%= character.speMale %><%= character.speFemale %></td>
+          <td><img src="/images/bouttonrepro.png" alt="deux chiens qui s'accouplent" ></td>
+          <td>a calculer</td>
+          <td><%= character.reproduction %></td>
+          <td>
+            <a href="/character/update/<%= character.id %>"
+              ><i class="fa-regular fa-pen-to-square" style="color: #000000"></i
+            ></a>
+          </td>
+          <td>
+            <a href="/character/delete/<%= character.id %>"
+              ><i class="fa-regular fa-trash-can" style="color: #000000"></i
+            ></a>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script src="/js/formAddCharacter.js"></script>
+
+<%- include('./partials/footer'); -%>

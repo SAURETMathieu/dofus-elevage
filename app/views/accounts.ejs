@@ -1,0 +1,85 @@
+<%- include('./partials/header'); -%>
+<main class="admin__main">
+  <h1 class="h1-user-page">Comptes</h1>
+  
+  <div class="container-list">
+    <% locals.accounts.forEach(account => { %>
+    
+      <div class="bg--<%= account.color %> account__color">
+        <article class="article__account">
+          <div class="article__title"><h2><%= account.name %></h2></div>
+          <div class="article__title"><h2><%= account.server_id %></h2></div>
+          <div class="container-logo">
+            <a href="/<%= account.id%>/characters">
+              <i class="fa-solid fa-person-half-dress input-logo bg--yellow" style="color: #000000;"></i>
+            </a>
+            <a href="/naissances/<%= account.id%>">
+              <i class="fa-solid fa-paw input-logo bg--orange" style="color: #000000;"></i>
+            </a>
+            <a href="/account/update/<%= account.id%>">
+              <i class="fa-solid fa-pen input-logo bg-blue" style="color: #000000;"></i>
+            </a>
+            <a href="/account/delete/<%= account.id%>">
+              <i class="fa-solid fa-xmark input-logo bg--red" style="color: #000000;"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+   
+    <% }) %>
+    <article class="account__color bg--white">
+      <button id="addButton" class="circular-button">+</button>
+      <form action="/account-add/<%= locals.user ? locals.user.id : ''%>" method="POST" id="addForm" class="addAccountForm hidden">
+        <label for="name">Nom du compte</label>
+        <input class="h1r5" type="text" id="name" name="name" required>
+
+        <label for="color">Couleur</label>
+        <select class="h1r5" id="color" name="color" style="text-align: center;" required>
+          <option value="" disabled selected hidden>Choisissez une couleur</option>
+          <option style="background-color: red; color:white;" value="red">Rouge</option>
+          <option style="background-color: blue; color:white;" value="blue">Bleu</option>
+          <option style="background-color: green; color:white;" value="green">Vert</option>
+          <option style="background-color: yellow; color:black;" value="yellow">Jaune</option>
+          <option style="background-color: purple; color:white;" value="purple">Violet</option>
+          <option style="background-color: black; color:white;" value="black">Noir</option>
+          <option style="background-color: white; color:black;" value="white">Blanc</option>
+          <option style="background-color: gray; color:white;" value="gray">Gris</option>
+          <option style="background-color: turquoise; color:black;" value="turquoise">Turquoise</option>
+          <option style="background-color: pink; color:black;" value="pink">Rose</option>
+          <option style="background-color: orange; color:black;" value="orange">Orange</option>
+        </select>
+
+        <label for="server">Serveur</label>
+        <select class="h1r5" id="server" name="server" required>
+          <option value="" disabled selected hidden>Choisissez un serveur</option>
+          <% servers.forEach(server => { %>
+           <option value="<%= server.id %>"><%= server.name %></option>
+          <% }) %>
+        </select>
+        <div>
+          <input class="input-submit-bis bg--red" type="button" id="cancelAdd" value="X">
+          <input class="input-submit-bis bg--green" type="submit" value="O">
+        </div>
+      </form>
+    </article>
+  </div>
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const addButton = document.getElementById('addButton');
+    const addServerForm = document.getElementById('addForm');
+    const cancelButton = document.getElementById('cancelAdd');
+
+    addButton.addEventListener('click', function() {
+      addServerForm.classList.toggle('hidden');
+      addButton.classList.toggle('hidden');
+    });
+
+    cancelButton.addEventListener('click', function() {
+      addServerForm.classList.toggle('hidden');
+      addButton.classList.toggle('hidden');
+    });
+  });
+</script>
+<%- include('./partials/footer'); -%>

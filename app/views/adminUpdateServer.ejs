@@ -1,0 +1,61 @@
+<%- include('./partials/header'); -%>
+<main class="admin__main">
+  <h1 class="h1-admin-page">Gestion des serveurs - Administrateurs</h1>
+  <%- include('./partials/adminNavBar'); -%>
+  
+  <div class="admin__container-list">
+    <article class="article__server">
+      <form action="/admin/servers/update/<%=locals.server.id%>" method="POST" id="addServerForm" class="addServerForm" enctype="multipart/form-data">
+        <label for="serverName">Nom du serveur</label>
+        <input type="text" id="serverName" name="serverName" value="<%= locals.server.name%>" required>
+
+        <label for="game1"> 
+          <img src="/images/dofusretro.jpeg" alt="logo dofus rétro">
+        </label>
+        <% if (locals.server.game === "dofus retro") { %>
+         <input type="radio" id="game1" name="game" value="dofus retro" checked required>
+        <% }else{ %>
+          <input type="radio" id="game1" name="game" value="dofus retro" required>
+        <% } %>
+        
+        <label for="game2">
+          <img src="/images/dofus.jpeg" alt="logo dofus 2">
+        </label>
+        <% if (locals.server.game === "dofus 2") { %>
+          <input type="radio" id="game2" name="game" value="dofus 2" checked required>
+         <% }else{ %>
+          <input type="radio" id="game2" name="game" value="dofus 2" required>
+         <% } %>
+        
+        <label for="serverImage">Image</label>
+        
+        <input type="file" id="serverImage" name="serverImage" accept="image/*">
+
+        <input class="input-feature-admin" type="submit" value="Modifier">
+        <a href="/admin/servers/delete/<%= server.id %>"><input class="input-feature-admin" type="button" value="Supprimer"></a>
+      </form>
+    </article>
+    <article class="article__server">
+      <img class="admin__logo-update" id="previewImage" src="/images/<%= locals.server.img%>" alt="Logo du serveur <%=locals.server.name%>">
+    </article>
+    
+    <script>
+      const imageInput = document.getElementById('serverImage');
+      const previewImage = document.getElementById('previewImage');
+
+      imageInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            previewImage.src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+
+  </div>
+</main>
+<%- include('./partials/footer'); -%>

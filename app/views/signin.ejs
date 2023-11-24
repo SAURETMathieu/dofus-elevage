@@ -1,0 +1,35 @@
+<%- include('./partials/header'); -%>
+<main class="main__connexion">
+  <div class="login-container">
+    <h1 class="connexion__title">Connexion</h1>
+    <div class="img-dofus-container">
+      <img src="/images/ebene.png" draggable="false" alt="dofus ebene">
+      <img src="/images/ivoire.png" draggable="false" alt="dofus ivoire">
+      <img src="/images/ocre.png" draggable="false" alt="dofus ocre">
+      <img src="/images/vulbis.png" draggable="false" alt="dofus vulbis">
+      <img src="/images/pourpre.png" draggable="false" alt="dofus pourpre">
+      <img src="/images/turquoise.png" draggable="false" alt="dofus turquoise">
+      <img src="/images/emeraude.png" draggable="false" alt="dofus emeraude">
+    </div>
+    <form action="/signin" method="POST">
+      <div class="container-input">
+        <label class="label-email" for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="container-input">
+        <label class="label-password" for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="container-checkbox-remember">
+        <label>
+          <input type="checkbox" name="remember" /> Se souvenir de moi
+        </label>
+      </div>
+      <button class="input-submit" type="submit">Se connecter</button>
+    </form>
+    <div class="dragodinde-sauvage-container">
+      <img src="/images/ddlogo.png" alt="image dragodinde rousse sauvage">
+    </div>
+  </div>
+</main>
+<%- include('./partials/footer'); -%>

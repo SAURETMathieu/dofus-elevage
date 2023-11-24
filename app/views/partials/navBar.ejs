@@ -1,0 +1,40 @@
+<header class="header">
+  <div class="header__top">
+    <div class="header__brand">
+      <ul class="header__top-left">
+        <li><a href="https://www.dofus.com/fr">Ankama</a></li>
+        <li><a href="/support">Support</a></li>
+      </ul>
+      <ul class="header__top-right">
+        <% if (!locals.user) { %>
+          <li><a href="/signin">Connexion</a></li>
+          <li><a href="/signup">Inscription</a></li>  
+        <% }else{ %>
+          <% if(locals.user.role === "admin") { %>
+            <li><a href="/admin">Admin</a></li> 
+          <% } %>
+          <li><a href="/profil"><%=locals.user.pseudo.charAt(0).toUpperCase() + locals.user.pseudo.slice(1)%></a></li>  
+          <li><a href="/signout">Deconnexion</a></li>  
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <img class="logo-dofus" src="/images/dofuslogo.png" alt="gros logo dofus">
+      <ul class="nav-links">
+        <div class="navbar-left">
+          <li><a href="/">Accueil</a></li>
+        <li><a href="/public">Public</a></li>
+        <li><a href="/private">Privée</a></li>
+        </div>
+        <div class="navbar-right">
+          <li><a href="/characters">Personnages</a></li>
+          <li><a href="/accounts">Comptes</a></li>
+          <li><a href="/servers">Serveurs</a></li>
+        </div>
+        
+      </ul>
+    </div>
+  </nav>
+</header>

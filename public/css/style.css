@@ -1,0 +1,628 @@
+html,body{
+  width:100%;
+  background-color:black;
+  box-sizing:border-box;
+}
+
+.h1r5{
+  height:2rem;
+}
+
+header{
+  color:white;
+}
+
+.hidden {
+  display: none;
+}
+
+main{
+  width:100%;
+  min-height:100vh;
+  background-size: cover;
+  background-position: center;
+  padding:2.5rem 1rem;
+}
+
+.bg--red{
+  background-color:red;
+}
+
+.bg--blue{
+  background-color:blue;
+}
+
+.bg--green{
+  background-color:green;
+}
+
+.bg--yellow{
+  background-color:yellow;
+}
+
+.bg--purple{
+  background-color:purple;
+}
+
+.bg--black{
+  background-color:black;
+}
+
+.bg--white{
+  background-color:white;
+}
+
+.bg--gray{
+  background-color:gray;
+}
+
+.bg--turquoise{
+  background-color:turquoise;
+}
+
+.bg--pink{
+  background-color:pink;
+}
+
+.bg--orange{
+  background-color:orange;
+}
+
+img{
+  pointer-events: none;
+  user-select: none;
+}
+
+.main__index{
+  background-image: url('../images/bg_dofus.jpg');
+}
+
+.main__connexion{
+  background-image: url('../images/ladder_temporis7.jpg');
+}
+
+.header__brand{
+  display:flex;
+  justify-content:space-between;
+  height:100%;
+}
+
+.header__top{
+  border-bottom:solid 3px #97A703;
+  height:3rem;
+  width:100%;
+  padding:0 10%;
+}
+
+.navbar{
+  height:4rem;
+  width:100%;
+  display:flex;
+  align-items:center;
+}
+
+.navbar-container{
+  width:100%;
+  position:relative;
+}
+
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  width:90%;
+  margin:0 auto;
+  padding:1rem;
+  font-size:1.2rem;
+  font-weight:600;
+}
+
+.navbar-left, .navbar-right{
+  display:flex;
+  justify-content:space-evenly;
+  width:45%;
+}
+
+.nav-links a:hover{
+  color:#97A703;
+}
+
+.header__top li:hover{
+  background-color:#2b2727;
+  color:#97A703;
+}
+
+.header__top-right, .header__top-left{
+  display:flex;
+  justify-content:center;
+  height:100%;
+  align-items:center;
+}
+
+.header__top li{
+  background-color:#212020;
+  padding:0 1rem;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.logo-dofus{
+  width:14rem;
+  position:absolute;
+  top:-55px;
+  left:calc(50% - 7rem);
+}
+
+.login-container, .register-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width:60%;
+  margin:0 auto;
+  opacity:0.9;
+}
+
+h1{
+  text-align:center;
+  font-size:2rem;
+  font-weight:600;
+}
+
+.inscription__title,.connexion__title{
+  background-color:#97A703;
+  padding:1rem;
+  color:white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-input{
+  width: 70%;
+  padding:0.5rem 0;
+  margin:0 auto;
+  text-align:center;
+}
+
+.container-checkbox-remember{
+  width: 70%;
+  padding:0.5rem 0;
+  margin:0 auto;
+}
+
+#email,#password,#pseudo,#lastname,#firstname,#passwordconfirm{
+  padding: 8px;
+  border: 1px solid #646464;
+  border-radius: 3px;
+  width: 100%;
+  margin-top:0.5rem;
+  font-size:1.2rem;
+}
+
+.label-email,.label-password,.label-firstname,.label-lastname,.label-pseudo{
+  font-size:1.2rem;
+}
+
+.input-submit {
+  padding: 0.7rem;
+  background-color: #97A703;
+  border:none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin:1rem auto;
+  width:30%;
+  font-size:1.2rem;
+  color:white;
+}
+
+.input-submit:hover {
+  background-color: #7b8802;
+}
+
+.img-dofus-container{
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+  padding:1rem 0;
+}
+
+.img-dofus-container img{
+ width:100%;
+ padding:0 1rem;
+ width:calc(80% / 6);
+}
+
+.dragodinde-sauvage-container{
+  margin-top:2rem;
+  width:100%;
+  text-align:center;
+}
+
+/* admin navbar */
+
+.admin-navbar{
+  width:100%;
+  display:flex;
+  background-color:#000000;
+  color:white;
+  border-radius:1rem;
+  opacity:0.9;
+}
+
+/* admin page */
+
+.admin__main{
+  background-image: url('../images/servers.jpeg');
+}
+
+.h1-admin-page, .h1-user-page{
+  font-size:2rem; 
+  padding:0.8rem;
+  margin:1rem auto;
+  background-color:#97A703;
+  border: 2px solid #000000;
+  border-radius:0.5rem;
+  color:white;
+  width:fit-content;
+  opacity:0.9;
+}
+
+.admin__container-list, .container-list{
+  width:90%;
+  margin:0.5rem auto;
+  padding:1rem;
+  background-color:#97A703;
+  border: 2px solid #000000;
+  border-radius:0.5rem;
+  opacity:0.90;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-evenly;
+}
+
+.features__section{
+  text-align:center;
+  width:30%;
+  padding:1rem;
+  background-color:white;
+  border:solid 2px white;
+  border-radius:0.5rem;
+  margin-bottom:1rem;
+}
+
+.features__section h2{
+  font-size:1.5rem;
+  font-weight:600;
+  padding:0 1rem 1rem 1rem;
+}
+
+.admin__link-features{
+  width:80%;
+  margin: 0.2rem auto;
+  height:4rem;
+  background-color:rgb(83, 83, 83);
+  border-radius:0.5rem;
+  font-size:1.2rem;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* admin server page */
+
+.article__server{
+  width:15rem;
+  height:28rem;
+  padding:1rem;
+  margin:1rem;
+  background-color:rgb(255, 255, 255);
+  border-radius:0.5rem;
+  font-size:1.2rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0.3rem;
+}
+
+.article__server:hover{
+  background-color:rgb(0, 0, 0);
+  color:white;
+}
+
+.article__server h2{
+  font-size:1.5rem;
+  font-weight:600;
+  color:white;
+}
+
+.article__title-server, .article__title{
+  padding:0.3rem;
+  text-align:center;
+  width:100%;
+  background-color:#000000;
+  color:white;
+}
+
+.logo__server{
+  width:100%;
+  height:18rem;
+  padding-bottom:0.5rem;
+}
+
+.input-feature-admin, .input-form{
+  width:100%;
+  padding:0.5rem;
+  background-color:#000000;
+  border:1px solid black;
+  border-radius:0.5rem;
+  color:white;
+  font-weight:600;
+  font-size:1.2rem;
+}
+
+.input-feature-admin:hover{
+  background-color:#242424;
+}
+
+.article__server a{
+  width:100%;
+}
+
+.circular-button {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  border: 3px solid #97A703;
+  color:#97A703;
+  font-size: 3rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.circular-button:hover {
+  background-color:#97A703;
+  color:white;
+}
+
+.addServerForm{
+  width:100%;
+  gap:0.5rem;
+  text-align:center;
+}
+
+.addServerForm img{
+  width:30%;
+}
+
+.admin__logo-update{
+  margin:0 auto;
+  width:100%;
+  height:100%;
+}
+
+/* servers page */
+
+.servers__main{
+  background-image: url('../images/servers.jpeg');
+}
+
+.servers__container{
+  width:80%;
+  margin:0 auto;
+  background-color:white;
+  min-height:100vh;
+  opacity:0.90;
+}
+
+/* accounts page */
+
+.accounts__main{
+  background-image: url('../images/ladder_temporis7.jpg');
+}
+
+.accounts__container{
+  width:95%;
+  margin:0 auto;
+  background-color:white;
+  min-height:100vh;
+  opacity:0.90;
+}
+
+.account__color{
+  width:15rem;
+  height:14rem;
+  padding:0.5rem;
+  border-radius:0.5rem;
+  margin:1rem;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.article__account{
+  width:100%;
+  height:100%;
+  padding:0.5rem;
+  border-radius:0.5rem;
+  font-size:1.2rem;
+  background-color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0.8rem;
+}
+
+.addAccountForm{
+  width:100%;
+  gap:0.2rem;
+  text-align:center;
+}
+
+.input-submit-bis {
+  padding: 0.4rem 0;
+  border:none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin:0.5rem auto 0 auto;
+  width:40%;
+  font-size:1.2rem;
+  font-weight:600;
+  color:rgb(255, 255, 255);
+}
+
+.input-submit-bis:hover {
+  opacity:0.8;
+}
+
+select{
+  font-size:1.2rem;
+}
+
+.input-logo{
+  border:black solid 2px;
+  border-radius:0.5rem;
+  padding:0.5rem;
+}
+
+.input-logo:hover{
+  opacity:0.8;
+}
+
+.container-logo{
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+}
+
+.container-logo a{
+  width:22%;
+  height:2.8rem;
+}
+
+/* characters page*/
+
+.open-form-character{
+  border-radius:0.5rem;
+  padding:2rem 4rem;
+  margin: 1rem auto;
+}
+
+.add-character-form{
+  width:50%;
+  border-radius:0.5rem;
+  padding:0.5rem;
+  margin: 1rem auto;
+}
+
+.search-characters{
+  margin:0 auto;
+}
+
+.genre-container{
+  display:flex;
+  padding:1rem;
+}
+
+.section-genre{
+  width:50%;
+  border:solid 1px black;
+}
+
+.open-breed{
+  width: 5rem;
+  height: 5rem;
+  margin:0.5rem auto;
+  border: 3px solid #000000;
+  font-size: 2.5rem;
+  outline: none;
+  cursor: pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.breed-list {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  background-color: #f2f2f2;
+}
+
+.select-class, .input-text{
+  width:50%;
+  margin: 0 auto;
+}
+
+.figure-dd{
+  width:4rem;
+  height:4rem;
+  border:solid 1px black;
+  cursor:pointer;
+}
+
+.image-dd{
+  width:100%;
+  height:100%;
+}
+
+.section-breed{
+  display:flex;
+  justify-content:space-evenly;
+  flex-wrap:wrap;
+  margin:3rem auto;
+}
+
+ /* Style pour le tableau */
+table {
+  width:100%;
+  font-size:1rem;
+}
+
+td,tr,th {
+  border: 2px solid #707070;
+  text-align: center;
+  padding: 0.2rem;
+  width:fit-content;
+}
+
+th{
+  background-color:black;
+  color:white;
+}
+
+tr {
+  background-color: #f2f2f2;
+  color: #333333;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+thead {
+  background-color: #000000;
+  color: white;
+}
+
+.form__search-container{
+  display:flex;
+  padding:0.5rem;
+  height:3rem;
+}
+
+.column{
+  flex-direction:column;
+  justify-content:center;
+}

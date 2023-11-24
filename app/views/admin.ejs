@@ -1,0 +1,44 @@
+<%- include('./partials/header'); -%>
+<main class="admin__main">
+  <h1 class="h1-admin-page">Liste des fonctionnalités administrateurs</h1>
+  <%- include('./partials/adminNavBar'); -%>
+  <div class="admin__container-list">
+    <section class="features__section">
+      <a href="/admin/users"><h2>Utilisateurs</h2></a>
+      <a class="admin__link-features" href="/admin/add-user">Ajouter</a>
+      <a class="admin__link-features" href="/admin/update-user">Modifier</a>
+      <a class="admin__link-features" href="/admin/delete-user">Supprimer</a>
+    </section>
+    <section class="features__section">
+      <a href="/admin/servers"><h2>Serveurs</h2></a>
+      <a class="admin__link-features" href="/admin/add-server">Ajouter</a>
+      <a class="admin__link-features" href="/admin/update-server">Modifier</a>
+      <a class="admin__link-features" href="/admin/delete-server">Supprimer</a>
+    </section>
+    <section class="features__section">
+      <h2>Comptes</h2>
+      <a class="admin__link-features" href="/admin/add-account">Ajouter</a>
+      <a class="admin__link-features" href="/admin/update-account">Modifier</a>
+      <a class="admin__link-features" href="/admin/delete-account">Supprimer</a>
+    </section>
+    <section class="features__section">
+      <h2>Personnages</h2>
+      <a class="admin__link-features" href="/admin/add-character">Ajouter</a>
+      <a class="admin__link-features" href="/admin/update-character">Modifier</a>
+      <a class="admin__link-features" href="/admin/delete-character">Supprimer</a>
+    </section>
+    <section class="features__section">
+      <h2>Dragodindes</h2>
+      <a class="admin__link-features" href="/admin/add-breed">Ajouter</a>
+      <a class="admin__link-features" href="/admin/update-breed">Modifier</a>
+      <a class="admin__link-features" href="/admin/delete-breed">Supprimer</a>
+    </section>
+    <section class="features__section">
+      <h2>Naissances</h2>
+      <a class="admin__link-features" href="/admin/add-couple">Ajouter</a>
+      <a class="admin__link-features" href="/admin/update-couple">Modifier</a>
+      <a class="admin__link-features" href="/admin/delete-couple">Supprimer</a>
+    </section>
+  </div>
+</main>
+<%- include('./partials/footer'); -%>
