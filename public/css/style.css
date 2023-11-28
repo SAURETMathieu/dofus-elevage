@@ -335,8 +335,8 @@ form {
   gap:0.3rem;
 }
 
-.article__server:hover{
-  background-color:rgb(0, 0, 0);
+.article__server:hover,.article__account:hover{
+  background-color:#242424;
   color:white;
 }
 
@@ -363,6 +363,7 @@ form {
 .input-feature-admin, .input-form{
   width:100%;
   padding:0.5rem;
+  margin: 0.2rem 0;
   background-color:#000000;
   border:1px solid black;
   border-radius:0.5rem;
@@ -371,8 +372,8 @@ form {
   font-size:1.2rem;
 }
 
-.input-feature-admin:hover{
-  background-color:#242424;
+.input-feature-admin:hover, .input-form:hover{
+  background-color:#97A703;
 }
 
 .article__server a{
@@ -595,19 +596,23 @@ select{
  /* Style pour le tableau */
 table {
   width:100%;
-  font-size:1rem;
+  font-size:1.2rem;
+  border-collapse: collapse;
 }
 
 td,tr,th {
-  border: 2px solid #707070;
+  border: 3px solid #707070;
   text-align: center;
   padding: 0.2rem;
   width:fit-content;
+  vertical-align: middle;
 }
 
 th{
   background-color:black;
   color:white;
+  font-size:1.3rem;
+  font-weight:600;
 }
 
 tr {
@@ -616,13 +621,19 @@ tr {
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: rgb(231, 225, 203);
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(178, 178, 178);
 }
 
 thead {
   background-color: #000000;
   color: white;
 }
+
+/* */
 
 .form__search-container{
   display:flex;
@@ -633,4 +644,8 @@ thead {
 .column{
   flex-direction:column;
   justify-content:center;
+}
+
+i{
+  font-size:3rem;
 }

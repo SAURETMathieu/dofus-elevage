@@ -9,6 +9,10 @@ Character.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    class: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     nbMale: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
@@ -48,7 +52,7 @@ Character.init(
     },
     type: {
       type: DataTypes.STRING,
-      defaultValue: null,
+      defaultValue: "private",
       allowNull: true,
     }
   },

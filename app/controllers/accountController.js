@@ -1,39 +1,38 @@
 const { User, Server, Account, Character } = require("../models");
 
 const accountController = {
-
   getAccountsPage: async (request, response) => {
     try {
       const server = parseInt(request.query.server, 10);
-      let whereCondition = {};
-      if (server && request.session?.user) {
-        whereCondition = {
-          server_id:server,
-          user_id: request.session.user.id,
-        };
-      }else{
-        whereCondition = {
-          user_id: request.session.user.id,
-        };
+      const userId = request.session?.user?.id;
+
+      let whereCondition = { user_id: userId };
+
+      if (server && userId) {
+        whereCondition.server_id = server;
       }
+
       const accounts = await Account.findAll({
         where: whereCondition,
-        order: ["server_id","name"],
+        order: ["server_id", "name"],
         include: [
           {
             association: "server",
           },
         ],
       });
+
       const servers = await Server.findAll();
+
       response.render("accounts", { accounts, servers });
     } catch (err) {
       console.log(err);
-      return response.render("error", {
+      return response.status(500).render("error", {
         error: {
-          statusCode: 409,
-          name: "Error",
-          message: err,
+          statusCode: 500,
+          name: "Internal Server Error",
+          message:
+            "Une erreur est survenue lors de la récupération des comptes",
         },
       });
     }
@@ -41,9 +40,11 @@ const accountController = {
 
   addAccount: async (request, response) => {
     try {
-      const id = parseInt(request.params.id, 10);
-      if (id !== request.session.user.id) {
-        response.render("error", {
+      const userId = parseInt(request.params.id, 10);
+      const sessionId = request.session.user.id;
+
+      if (userId !== sessionId) {
+        return response.status(409).render("error", {
           error: {
             statusCode: 409,
             name: "Error",
@@ -51,27 +52,29 @@ const accountController = {
           },
         });
       }
-      const { name, color } = request.body;
-      const serverId = parseInt(request.body.server, 10);
+
+      const { name, color,server } = request.body;
+      const serverId = parseInt(server, 10);
+
       const account = await Account.create({
         name: name,
         color: color,
         server_id: serverId,
-        user_id: id,
+        user_id: userId,
       });
-      response.redirect(`/${id}/characters`);
+
+      response.redirect(`/${account.id}/characters`);
     } catch (err) {
       console.log(err);
-      return response.render("error", {
+      return response.status(500).render("error", {
         error: {
-          statusCode: 409,
-          name: "Error",
-          message: err,
+          statusCode: 500,
+          name: "Internal Server Error",
+          message: "Une erreur est survenue lors de la création du compte",
         },
       });
     }
   },
-
 };
 
 module.exports = accountController;

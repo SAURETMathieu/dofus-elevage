@@ -53,6 +53,7 @@ CREATE TABLE "account" (
 CREATE TABLE "character" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL,
+    "class" VARCHAR(255) NOT NULL,
     "breed_male" INT NOT NULL REFERENCES "breed"("id"),
     "breed_female" INT NOT NULL REFERENCES "breed"("id"),
     "account_id" INT REFERENCES "account"("id"),
@@ -63,7 +64,7 @@ CREATE TABLE "character" (
     "spe_female" VARCHAR(255) DEFAULT null,
     "nb_reproduction" INT DEFAULT 0,
     "date_reproduction" DATE DEFAULT null,
-    "type" VARCHAR(50) DEFAULT null,
+    "type" VARCHAR(50) DEFAULT 'private',
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
