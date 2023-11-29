@@ -29,37 +29,40 @@
         method="POST"
         class="addAccountForm"
       >
-        <label for="name">Nom du personnage</label>
-        <input
-          class="h1r5 input-text"
-          type="text"
-          id="name"
-          name="name"
-          required
-        />
+        <div class="container__section">
+          <section class="section__input-text">
+            <label for="name">Nom du personnage</label>
+            <input
+              class="h1r5 input-text"
+              type="text"
+              id="name"
+              name="name"
+              maxlength="20"
+              required
+            />
+          </section>
+          <section class="section__input-text">
+            <label for="type">Enclos</label>
+            <select class="h1r5 select-class" id="type" name="type" required>
+              <option value="private" selected>Privée</option>
+              <option value="public">Public</option>
+            </select>
+          </section>
+        </div>
         <label for="classe">Classe</label>
         <select class="h1r5 select-class" id="classe" name="classe" required>
-          <option value="" disabled selected hidden>
-            Choisissez une classe
-          </option>
-          <option value="enu">Enu</option>
-          <option value="cra">Cra</option>
-          <option value="iop">Iop</option>
-          <option value="sadi">Sadi</option>
-          <option value="sacri">Sacri</option>
-          <option value="feca">Feca</option>
-          <option value="panda">Panda</option>
-          <option value="eni">Eni</option>
-          <option value="osa">Osa</option>
-          <option value="eca">Eca</option>
-          <option value="sram">Sram</option>
-          <option value="xelor">Xelor</option>
-        </select>
-
-        <label for="type">Enclos</label>
-        <select class="h1r5 select-class" id="type" name="type" required>
-          <option value="private" selected>Privée</option>
-          <option value="public">Public</option>
+          <option value="enu" data-img="/images/enu.png">Enu</option>
+          <option value="cra" data-img="/images/cra.png">Cra</option>
+          <option value="iop" data-img="/images/iop.png">Iop</option>
+          <option value="sadi" data-img="/images/sadi.png">Sadi</option>
+          <option value="sacri" data-img="/images/sacri.png">Sacri</option>
+          <option value="feca" data-img="/images/feca.png">Feca</option>
+          <option value="panda" data-img="/images/panda.png">Panda</option>
+          <option value="eni" data-img="/images/eni.png">Eni</option>
+          <option value="osa" data-img="/images/osa.png">Osa</option>
+          <option value="eca" data-img="/images/eca.png">Eca</option>
+          <option value="sram" data-img="/images/sram.png">Sram</option>
+          <option value="xelor" data-img="/images/xelor.png">Xelor</option>
         </select>
 
         <div class="genre-container">
@@ -180,5 +183,24 @@
 </main>
 
 <script src="/js/formAddCharacter.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<script>
+$(document).ready(function() {
+  $('#classe').select2({
+    templateResult: function(data) {
+      var $option = $(data.element);
+      var $img = $option.attr('data-img');
+      if ($img) {
+        return $('<span><img src="' + $img + '" class="select-img" /> ' + data.text + '</span>');
+      }
+      return data.text;
+    }
+  });
+});
+</script>
 
 <%- include('./partials/footer'); -%>

@@ -134,17 +134,41 @@ const characterController = {
       const breeds = await Breed.findAll();
 
       const charactersFormatted = characters.map((character) => {
-        const updated_at = dayjs(character.updated_at)
-          .locale("fr")
-          .format("dddd DD/MM/YY [à] HH[h]mm");
-        const birth = dayjs(character.updated_at)
-          .locale("fr")
-          .add(character.breedFemale.gestation, "minute")
-          .format("dddd DD/MM/YY [à] HH[h]mm");
+        const dayRepro = dayjs(character.updated_at)
+        .locale("fr")
+        .format("dddd");
+
+        const dateRepro = dayjs(character.updated_at)
+        .locale("fr")
+        .format("DD/MM/YY");
+
+        const hoursRepro = dayjs(character.updated_at)
+        .locale("fr")
+        .format("HH[h]mm");
+
+        const dayBirth = dayjs(character.updated_at)
+        .locale("fr")
+        .add(character.breedFemale.gestation, "minute")
+        .format("dddd");
+
+        const dateBirth = dayjs(character.updated_at)
+        .locale("fr")
+        .add(character.breedFemale.gestation, "minute")
+        .format("DD/MM/YY");
+
+        const hoursBirth = dayjs(character.updated_at)
+        .locale("fr")
+        .add(character.breedFemale.gestation, "minute")
+        .format("HH[h]mm");
+
         return {
           ...character.toJSON(),
-          updated_at,
-          birth,
+          dayRepro,
+          dateRepro,
+          hoursRepro,
+          dayBirth,
+          dateBirth,
+          hoursBirth
         };
       });
       

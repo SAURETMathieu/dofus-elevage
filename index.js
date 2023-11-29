@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const router = require("./app/router");
 const session = require("express-session");
-const User = require("./app/models/User");
 
 const PORT = process.env.PORT || 4000;
 
