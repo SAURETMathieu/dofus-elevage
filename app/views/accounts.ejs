@@ -37,8 +37,8 @@
         <input class="h1r5" type="text" id="name" name="name" maxlength="20" required>
         <label for="color">Choisir une couleur :</label>
         <div class="color-picker">
-          <input type="color" id="color" name="color">
-          <div id="selected-color">#000000</div>
+          <input type="color" id="color" name="color"><span class="bold">#</span>
+          <input type="text" id="selected-color" pattern="[0-9a-fA-F]{3}|[0-9a-fA-F]{6}" maxlength="6" value="000000">
         </div>
         <label for="server">Serveur</label>
         <select class="h1r5" id="server" name="server" required>
@@ -57,6 +57,15 @@
 </main>
 
 <script>
+  function expandHexColor(hex) {
+    if (hex.length === 3) {
+        return hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    else {
+        return hex;
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     const addButton = document.getElementById('addButton');
     const addServerForm = document.getElementById('addForm');
@@ -75,9 +84,25 @@
     });
     
     colorPicker.addEventListener('input', function() {
-      const hexadecimalColor = colorPicker.value;
-      selectedColor.textContent = hexadecimalColor;
+      selectedColor.value = colorPicker.value.substring(1);
     });
+
+    selectedColor.addEventListener('input', function() {
+      const input = event.target;
+      const currentValue = input.value;
+      const filteredValue = currentValue.replace(/[^0-9a-fA-F]+/g, '');
+
+      if (currentValue !== filteredValue) {
+        input.value = filteredValue;
+      }
+
+      const isHexadecimal = /^([0-9A-F]{3}){1,2}$/i.test(expandHexColor(input.value));
+      
+      if (isHexadecimal) {
+          colorPicker.value = "#"+expandHexColor(input.value);
+      }
+    });
+
   });
 </script>
 <%- include('./partials/footer'); -%>
