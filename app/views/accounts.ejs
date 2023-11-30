@@ -3,33 +3,28 @@
   <h1 class="h1-user-page">Mes comptes</h1>
   
   <div class="container-list">
-  <% locals.accounts.forEach(account => { %>
-    
-      <div style="background-color:<%= account.color %>" class=" account__color">
-        
-        <article class="article__account">
-          <div class="article__title"><h2><%= account.name %></h2></div>
-          <a class="link-div" href="/<%= account.id%>/characters">
-            <img class="logo__server" src="/images/<%= account.server.img %>" alt="image du serveur">
+  <% locals.accounts.forEach(account => { %>   
+    <div style="background-color:<%= account.color %>" class=" account__color">     
+      <article class="article__account">
+        <div class="article__title"><h2><%= account.name %></h2></div>
+        <a class="link-div" href="/accounts/<%= account.id%>/characters">
+          <img class="logo__server" src="/images/<%= account.server.img %>" alt="image du serveur">
+        </a>
+        <div class="article__title"><h2><%= account.server.name %></h2></div>
+        <div class="container-logo">
+          <a href="/accounts/<%= account.id%>/characters">
+            <i class="fa-solid fa-person-half-dress input-logo bg--yellow" style="color: #000000;"></i>
           </a>
-          <div class="article__title"><h2><%= account.server.name %></h2></div>
-          <div class="container-logo">
-            <a href="/<%= account.id%>/characters">
-              <i class="fa-solid fa-person-half-dress input-logo bg--yellow" style="color: #000000;"></i>
-            </a>
-            <a href="/account/update/<%= account.id%>">
-              <i class="fa-solid fa-pen input-logo bg--blue" style="color: #ffffff;"></i>
-            </a>
-            <a href="/account/delete/<%= account.id%>">
-              <i class="fa-solid fa-xmark input-logo bg--red" style="color: #ffffff;"></i>
-            </a>
-          </div>
-        </article>
-      </div>
-         
-  
-   
-    <% }) %>
+          <a href="/account/update/<%= account.id%>">
+            <i class="fa-solid fa-pen input-logo bg--blue" style="color: #ffffff;"></i>
+          </a>
+          <a href="/account/delete/<%= account.id%>">
+            <i class="fa-solid fa-xmark input-logo bg--red" style="color: #ffffff;"></i>
+          </a>
+        </div>
+      </article>
+    </div>       
+  <% }) %>
     <article class="account__color bg--white">
       <button id="addButton" class="circular-button">+</button>
       <form action="/account-add/<%= locals.user ? locals.user.id : ''%>" method="POST" id="addForm" class="addAccountForm hidden">

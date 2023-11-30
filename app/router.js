@@ -18,7 +18,8 @@ router.get("/servers", mainController.getServersPage);
 // need to be connected
 router.post("/account-add/:id",isConnected, accountController.addAccount);
 router.post("/character-add/:id/:accountId",isConnected, characterController.addCharacter);
-router.get("/:accountId/characters", isConnected, characterController.getCharactersOnAccountPage);
+router.get("/accounts/:accountId/characters", isConnected, characterController.getCharactersOnAccountPage);
+router.delete("/characters/:id", isConnected, characterController.deleteCharacter);
 router.get("/characters", isConnected, characterController.getAllCharactersPage);
 router.get("/accounts", isConnected, accountController.getAccountsPage);
 

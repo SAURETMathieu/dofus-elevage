@@ -63,7 +63,7 @@ const accountController = {
         user_id: userId,
       });
 
-      response.redirect(`/${account.id}/characters`);
+      response.redirect(`/accounts/${account.id}/characters`);
     } catch (err) {
       console.log(err);
       return response.status(500).render("error", {

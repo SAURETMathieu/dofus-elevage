@@ -1,6 +1,12 @@
 <%- include('./partials/header'); -%>
 <main class="main__index">
-  <h1 class="h1-admin-page">Tous les personnages</h1>
+  <h1 class="h1-admin-page">
+    Tous les personnages
+    <% if(serverName !== undefined){%>
+      : serveur 
+      <%= serverName%>
+    <% } %>
+  </h1>
 
   <div class="admin__container-list column">
     <form class="form__search" action="/id/characters" method="GET">
@@ -35,6 +41,7 @@
       </thead>
       <tbody>
       <% characters.forEach(character => { %>
+        <tr id="character-<%= character.id %>">
          <td style="background-color: <%= character.account.color %>">
             <a href="/accounts?server=<%= character.account.server.id %>" class="inline-block">
               <img class="table__img-server" src="/images/<%= character.account.server.img %>" alt="logo du serveur dofus <%= character.account.server.name %>" >
@@ -78,8 +85,8 @@
             ></a>
           </td>
           <td>
-            <a href="/character/delete/<%= character.id %>"
-              ><i class="fa-regular fa-trash-can" style="color: #000000"></i
+            <a href="#" onclick="deleteCharacter(<%= character.id %>)">
+              <i class="fa-regular fa-trash-can" style="color: #000000"></i
             ></a>
           </td>
         </tr>
