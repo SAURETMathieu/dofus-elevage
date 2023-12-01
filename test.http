@@ -1,0 +1,12 @@
+### Création d'un user
+POST http://localhost:4000/signup
+Content-Type: application/json
+
+{
+  "lastname":"dfh",
+  "firstname":"hhh",
+  "pseudo":"sdfsdfsdf",
+  "password":"123456789",
+  "passwordConfirm":"123456789",
+  "email":"testdffg@test.fr"
+}

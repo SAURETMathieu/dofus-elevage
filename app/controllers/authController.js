@@ -15,35 +15,25 @@ const authController = {
     response.render('profil');
   },
 
-  getAdminPage: (request, response) => {
-    response.render('admin');
-  },
-
   postSignup: async (request, response) => {
     try {
-      const { firstname, lastname, email, pseudo, password, passwordConfirm } = request.body;
-      if (password !== passwordConfirm) {
-        return response.render("signup", {
-          error: "Les mots de passe ne correspondent pas",
-        });
-      }
+      const { firstname, lastname, email, pseudo, password } = request.body;
       const existingUser = await User.findOne({ where: {email} });
       if (existingUser) {
-        return response.render("signup", {
-          error: "Cet email est déjà utilisé",
-        });
+        return response.status(409).json({ error: "Email déjà utilisé" });
       }
       const hashedPassword = await bcrypt.hash(password, 10);
-      await User.create({
+      const user = await User.create({
         firstname,
         lastname,
         email,
         pseudo,
         password: hashedPassword,
       });
-      response.redirect("/signin");
+      response.status(201).redirect("/signin");
     } catch (err) {
       console.log(err);
+      return response.status(500).json({ error: "Erreur lors de la création du compte" });
     }
   },
 

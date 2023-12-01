@@ -27,7 +27,7 @@
   <% }) %>
     <article class="account__color bg--white">
       <button id="addButton" class="circular-button">+</button>
-      <form action="/account-add/<%= locals.user ? locals.user.id : ''%>" method="POST" id="addForm" class="addAccountForm hidden">
+      <form action="/accounts/<%= locals.user ? locals.user.id : ''%>" method="POST" id="addForm" class="addAccountForm hidden">
         <label for="name">Nom du compte</label>
         <input class="h1r5" type="text" id="name" name="name" maxlength="20" required>
         <label for="color">Choisir une couleur :</label>

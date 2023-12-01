@@ -5,8 +5,7 @@
   
   <div class="admin__container-list">
     <article class="article__server">
-      <form action="/admin/servers/update/<%=locals.server.id%>" method="POST" id="addServerForm" class="addServerForm" enctype="multipart/form-data">
-        <label for="serverName">Nom du serveur</label>
+      <form onsubmit="updateServer(event,'<%= server.id %>')" id="addServerForm" class="addServerForm" enctype="multipart/form-data">        <label for="serverName">Nom du serveur</label>
         <input type="text" id="serverName" name="serverName" value="<%= locals.server.name%>" required>
 
         <label for="game1"> 
@@ -54,6 +53,28 @@
           reader.readAsDataURL(file);
         }
       });
+
+      function updateServer(event, serverId) {
+        event.preventDefault();
+
+        const form = document.getElementById('addServerForm');
+        const formData = new FormData(form);
+
+        fetch(`/admin/servers/${serverId}`, {
+          method: 'PATCH',
+          body: formData
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erreur lors de la mise à jour du serveur');
+          }else{
+            console.log("Server update");
+          }
+        })
+        .catch(error => {
+          console.error('Erreur :', error);
+        });
+      }
     </script>
 
   </div>

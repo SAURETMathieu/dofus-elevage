@@ -19,6 +19,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const adminController = {
+  getAdminPage: (request, response) => {
+    response.render('admin');
+  },
+  
   getAdminServersPage: async (request, response) => {
     const servers = await Server.findAll({
       order: ["name"],
