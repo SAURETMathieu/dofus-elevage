@@ -3,7 +3,6 @@ const dayjs = require("dayjs");
 require("dayjs/locale/fr");
 
 const characterController = {
-
   addCharacter: async (request, response) => {
     try {
       const id = parseInt(request.params.id, 10);
@@ -81,14 +80,22 @@ const characterController = {
         include: includeOptions,
       });
 
-      if (!isNaN(serverId)) {
-        serverName = characters[0].account.server.name;
-      }
-
       const breeds = await Breed.findAll();
+      const accounts = await Account.findAll({
+        where: { user_id: request.session.user.id },
+        include: [
+          {
+            association: "server",
+          },
+        ],
+      });
 
+      if (!isNaN(serverId)) {
+        serverName = accounts[0]?.server.name;
+      }
+      
       const charactersFormatted = characters.map((character) => {
-        character.account.user.password=null;
+        character.account.user.password = null;
         const dayRepro = dayjs(character.updated_at)
           .locale("fr")
           .format("dddd");
@@ -131,6 +138,7 @@ const characterController = {
         characters: charactersFormatted,
         breeds,
         serverName,
+        accounts,
       });
     } catch (err) {
       console.log(err);
@@ -148,14 +156,15 @@ const characterController = {
   deleteCharacter: async (request, response) => {
     try {
       const characterId = parseInt(request.params.id, 10);
-      const foundCharacter = await Character.findByPk(characterId,{include:["account"]});
-      if(foundCharacter.account.user_id !== request.session.user.id){
+      const foundCharacter = await Character.findByPk(characterId, {
+        include: ["account"],
+      });
+      if (foundCharacter.account.user_id !== request.session.user.id) {
         return response.status(400).render("error", {
           error: {
             statusCode: 400,
             name: "Interdit",
-            message:
-              "Pas autorisé",
+            message: "Pas autorisé",
           },
         });
       }
@@ -171,6 +180,40 @@ const characterController = {
             "Une erreure est survenue lors de la récupération des personnages",
         },
       });
+    }
+  },
+
+  updateCharacter: async (request, response) => {
+    try {
+      const { name, type, nbrepro, accountId, classe, speMale, speFemale, breedMale, breedFemale } = request.body;
+      
+      const selectedCharacter = await Character.findByPk(request.params.id);
+      
+      if(!selectedCharacter){
+        return response.status(404).json({ error: "Character not found." });
+      }
+
+      const account = await Account.findByPk(accountId);
+
+      if(!account){
+        return response.status(404).json({ error: "Account not found." });
+      }
+
+      const breedMaleExist = await Breed.findByPk(breedMale);
+      const breedFemaleExist = await Breed.findByPk(breedFemale);
+
+      if(!breedMaleExist || !breedFemaleExist){
+        return response.status(404).json({ error: "Breed doesn't exist" });
+      }
+      const updatedCharacter = await selectedCharacter.update({ name, type, reproduction:nbrepro, account_id: accountId, class:classe, speMale, speFemale, breed_male: breedMale, breed_female: breedFemale });
+      if (updatedCharacter) {
+        updatedCharacter.breed_male = breedMaleExist;
+        updatedCharacter.breed_female = breedFemaleExist; 
+      }
+      response.json(updatedCharacter);
+    } catch(err) {
+      console.log(err);
+      return response.status(500).json({ error: "Internal server error" });
     }
   },
 };

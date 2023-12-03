@@ -6,11 +6,11 @@ class Account extends Model {}
 Account.init(
   {
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
     color: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(9),
       allowNull: false,
     }
   },

@@ -42,10 +42,9 @@ const accountController = {
 
   addAccount: async (request, response) => {
     try {
-      const userId = parseInt(request.params.id, 10);
-      const sessionId = request.session.user.id;
+      const userId = parseInt(request.session.user.id,10);
 
-      if (userId !== sessionId) {
+      if (!userId) {
         return response.status(409).render("error", {
           error: {
             statusCode: 409,
@@ -56,13 +55,12 @@ const accountController = {
       }
 
       const { name, color,server } = request.body;
-      const serverId = parseInt(server, 10);
 
       const account = await Account.create({
         name: name,
         color: color,
-        server_id: serverId,
-        user_id: userId,
+        server_id: server,
+        user_id: userId
       });
 
       response.redirect(`/accounts/${account.id}/characters`);
@@ -118,6 +116,7 @@ const accountController = {
       });
       const breeds = await Breed.findAll();
       const accounts = await Account.findAll({where:{user_id:request.session.user.id}});
+      
       const charactersFormatted = characters.map((character) => {
         character.account.user.password=null;
         const dayRepro = dayjs(character.updated_at)
@@ -174,6 +173,31 @@ const accountController = {
             "Une erreure est survenue lors de la récupération des personnages",
         },
       });
+    }
+  },
+
+  deleteAccount: async (request, response, next) => {
+    try {
+      const { id } = request.params;
+      const account = await Account.findByPk(id);
+      if(!account){
+        return response.status(404).json({ error: "Account not found." });
+      }
+      console.log(account);
+      const accountDeleted = await Account.destroy({
+        where: {
+          id: id,
+        },
+      });
+
+      if (accountDeleted) {
+        return response.status(201).json();
+      } else {
+        return response.status(400).json({ error: "Erreur lors de la suppression du compte" });
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression du serveur :", error);
+      next();
     }
   },
 };

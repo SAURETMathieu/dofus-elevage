@@ -28,6 +28,7 @@ Character.belongsTo(Account, {
 Account.hasMany(Character, {
   foreignKey: "account_id",
   as: "characters",
+  onDelete: 'CASCADE'
 });
 
 //Un personnage(male) a une race

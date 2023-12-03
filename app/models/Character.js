@@ -6,11 +6,11 @@ class Character extends Model {}
 Character.init(
   {
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
     class: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
     nbMale: {
@@ -24,17 +24,17 @@ Character.init(
       field: 'nb_female',
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: true,
     },
     speMale: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(10),
       defaultValue: null,
       allowNull: true,
       field: 'spe_male',
     },
     speFemale: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(10),
       defaultValue: null,
       allowNull: true,
       field: 'spe_female',
@@ -51,7 +51,7 @@ Character.init(
       field: 'date_reproduction',
     },
     type: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(10),
       defaultValue: "private",
       allowNull: true,
     }

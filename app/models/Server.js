@@ -6,12 +6,12 @@ class Server extends Model {}
 Server.init(
   {
     name: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(20),
       allowNull: false,
       unique: true,
     },
     game: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(20),
       defaultValue: "Dofus Rétro",
       allowNull: false,
     },

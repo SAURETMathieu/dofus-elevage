@@ -1,20 +1,12 @@
 <%- include('./partials/header'); -%>
-<main class="admin__main">
-  <h1 class="h1-admin-page">Gestion des serveurs - Administrateurs</h1>
+<main class="main__admin">
+  <h1>Gestion des serveurs - Administrateurs</h1>
   <%- include('./partials/adminNavBar'); -%>
   
-  <div class="admin__container-list">
-    <% locals.servers.forEach(server => { %>
-      <article class="article__server">
-        <div class="article__title-server"><h2><%= server.name %></h2></div>
-        <img class="logo__server" src="/images/<%= server.img %>" alt="image du serveur">
-        <a href="/admin/servers/update/<%= server.id %>"><input class="input-feature-admin" type="button" value="Modifier"></a>
-        <a href="/admin/servers/delete/<%= server.id %>"><input class="input-feature-admin" type="button" value="Supprimer"></a>
-      </article>
-    <% }) %>
-    <article class="article__server">
-      <button id="addButton" class="circular-button">+</button>
-      <form action="/admin/servers" method="POST" id="addServerForm" class="addServerForm hidden" enctype="multipart/form-data">
+  <div class="main__container-list">
+    <article class="main__article">
+      <button id="addButton" class="article__circular-button">+</button>
+      <form action="/admin/servers" method="POST" id="addServerForm" class="article__form hidden" enctype="multipart/form-data">
         <label for="serverName">Nom du serveur</label>
         <input type="text" id="serverName" name="serverName" required>
 
@@ -31,10 +23,18 @@
         <label for="serverImage">Image</label>
         <input type="file" id="serverImage" name="serverImage" accept="image/*" required>
 
-        <input class="input-feature-admin" type="submit" value="Ajouter">
-        <input class="input-feature-admin" type="button" id="cancelAdd" value="Annuler">
+        <input class="form__input" type="submit" value="Ajouter">
+        <input class="form__input" type="button" id="cancelAdd" value="Annuler">
       </form>
     </article>
+    <% locals.servers.forEach(server => { %>
+      <article class="main__article">
+        <div class="main__article-title"><h2><%= server.name %></h2></div>
+        <img class="article__logo-server" src="/images/<%= server.img %>" alt="image du serveur">
+        <a href="/admin/servers/update/<%= server.id %>"><input class="form__input" type="button" value="Modifier"></a>
+        <a href="/admin/servers/delete/<%= server.id %>"><input class="form__input" type="button" value="Supprimer"></a>
+      </article>
+    <% }) %>
   </div>
 </main>
 

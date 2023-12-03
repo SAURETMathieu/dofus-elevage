@@ -29,8 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
         openMaleButton.innerHTML = `<img src='${selectedImageUrl}' alt='${selectedImageAlt}'>`;
         breedMaleValue.value = figcaption.textContent;
       }
-      
-     
       // on remet invisible la liste des races
       breedList.classList.toggle("hidden");
     });

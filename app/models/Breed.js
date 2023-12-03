@@ -6,16 +6,16 @@ class Breed extends Model {}
 Breed.init(
   {
     name: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(30),
       allowNull: false,
       unique: true,
     },
     stade: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(10),
       allowNull: false,
     },
     color: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(30),
       allowNull: false,
     },
     image: {

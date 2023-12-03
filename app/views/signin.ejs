@@ -1,8 +1,8 @@
 <%- include('./partials/header'); -%>
 <main class="main__connexion">
-  <div class="login-container">
-    <h1 class="connexion__title">Connexion</h1>
-    <div class="img-dofus-container">
+  <div class="auth-container">
+    <h1 class="auth-container__title">Connexion</h1>
+    <div class="auth-container__img-group">
       <img src="/images/ebene.png" draggable="false" alt="dofus ebene">
       <img src="/images/ivoire.png" draggable="false" alt="dofus ivoire">
       <img src="/images/ocre.png" draggable="false" alt="dofus ocre">
@@ -12,22 +12,22 @@
       <img src="/images/emeraude.png" draggable="false" alt="dofus emeraude">
     </div>
     <form action="/signin" method="POST">
-      <div class="container-input">
-        <label class="label-email" for="email">Email</label>
+      <div class="auth-container__input-container">
+        <label class="auth-container__label" for="email">Email</label>
         <input type="email" id="email" name="email" required>
       </div>
-      <div class="container-input">
-        <label class="label-password" for="password">Mot de passe</label>
+      <div class="auth-container__input-container">
+        <label class="auth-container__label" for="password">Mot de passe</label>
         <input type="password" id="password" name="password" required>
       </div>
-      <div class="container-checkbox-remember">
+      <div class="auth-container__checkbox-container">
         <label>
           <input type="checkbox" name="remember" /> Se souvenir de moi
         </label>
       </div>
-      <button class="input-submit" type="submit">Se connecter</button>
+      <button class="auth-container__input-submit" type="submit">Se connecter</button>
     </form>
-    <div class="dragodinde-sauvage-container">
+    <div class="auth-container__dd-sauvage">
       <img src="/images/ddlogo.png" alt="image dragodinde rousse sauvage">
     </div>
   </div>

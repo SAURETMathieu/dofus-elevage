@@ -9,6 +9,10 @@ const createUserSchema = Joi.object({
     passwordConfirm: Joi.string().valid(Joi.ref('password')).min(8).required().strict()
 });
 
+const connectUserSchema = Joi.object({
+    email: Joi.string().email().max(50).required().trim().pattern(/^\S+$/),
+    password: Joi.string().required(),
+    remember: Joi.string()
+});
 
-
-module.exports = createUserSchema;
+module.exports = { createUserSchema, connectUserSchema };

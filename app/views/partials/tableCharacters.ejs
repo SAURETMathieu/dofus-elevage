@@ -1,0 +1,101 @@
+<table>
+  <thead>
+    <tr>
+      <th>Serveur</th>
+      <th>Personnage</th>
+      <th>Reproduction</th>
+      <th>Accouchement</th>
+      <th>Male</th>
+      <th>Femelle</th>
+      <th>Specialité</th>
+      <th>Réaccoupler</th>
+      <th>Statut</th>
+      <th>Reproduction</th>
+      <th>Modifier</th>
+      <th>Supprimer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% characters.forEach(character => { %>
+    <tr id="character-<%= character.id %>">
+      <td style="background-color: <%= character.account.color %>">
+        <a
+          href="/accounts?server=<%= character.account.server.id %>"
+          class="inline-block"
+        >
+          <img
+            class="table__img-server"
+            src="/images/<%= character.account.server.img %>"
+            alt="logo du serveur dofus <%= character.account.server.name %>"
+          />
+        </a>
+      </td>
+      <td style="background-color: <%= character.account.color %>">
+        <div class="table__account"><%= character.account.name %></div>
+        <div class="table__account-id hidden"><%= character.account.id %></div>
+        <img
+          class="table__img-perso"
+          src="/images/perso-<%= character.class%>.png"
+          alt="classe du jeu dofus: <%= character.class%>"
+        />
+        <div class="table__character"><%= character.name %></div>
+      </td>
+      <td class="table__date">
+        <div><%= character.dayRepro %></div>
+        <div><%= character.dateRepro %></div>
+        <div><%= character.hoursRepro %></div>
+      </td>
+      <td class="table__date">
+        <div><%= character.dayBirth %></div>
+        <div><%= character.dateBirth %></div>
+        <div><%= character.hoursBirth %></div>
+      </td>
+      <td>
+        <img
+        class="table__breed-male-img"
+          src="<%= character.breedMale.image %>"
+          alt="dragodinde <%= character.breedMale.name %>"
+        />
+      </td>
+      <td>
+        <img
+        class="table__breed-female-img"
+          src="<%= character.breedFemale.image %>"
+          alt="dragodinde <%= character.breedFemale.name %>"
+        />
+      </td>
+      <td class="table__spe">
+        <section class="table__td-section-speciality spe-male-value"><%= character.speMale %></section>
+        <section class="table__td-section-speciality spe-female-value"><%= character.speFemale %></section>
+      </td>
+      <td>
+        <button class="table__td-button-reproduction">
+          <img
+            src="/images/bouttonrepro.png"
+            class="table__couple"
+            alt="deux chiens qui s'accouplent"
+          />
+        </button>
+      </td>
+      <td>Féconde</td>
+      <td class="nb-repro"><%= character.reproduction %> / 20</td>
+      <td>
+        <button
+          class="table__td-icone"
+          onclick="displayUpdate('<%= JSON.stringify(character) %>')"
+        >
+          <i class="fa-regular fa-pen-to-square" style="color: #000000"></i>
+        </button>
+      </td>
+      <td>
+        <button
+          class="table__td-icone"
+          onclick="displayConfirmation('ce personnage','<%= character.id %>')"
+        >
+          <i class="fa-regular fa-trash-can" style="color: #000000"></i>
+        </button>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

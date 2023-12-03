@@ -1,0 +1,127 @@
+<form
+  action="/characters/<%= locals.user ? locals.user.id : ''%>/<%= locals.accountId %>"
+  method="POST"
+  class="article__form"
+>
+  <div class="form__container__section">
+    <section class="form__section-input-text">
+      <label for="name">Nom du personnage</label>
+      <input
+        class="height2 input-text"
+        type="text"
+        id="name"
+        name="name"
+        maxlength="20"
+        required
+      />
+    </section>
+    <section class="form__section-input-text">
+      <label for="type">Enclos</label>
+      <select class="height2 select-class" id="type" name="type" required>
+        <option value="private" selected>Privée</option>
+        <option value="public">Public</option>
+      </select>
+    </section>
+  </div>
+  <label for="classe">Classe</label>
+  <select class="height2 select-class" id="classe" name="classe" required>
+    <option value="enu" data-img="/images/enu.png">Enu</option>
+    <option value="cra" data-img="/images/cra.png">Cra</option>
+    <option value="iop" data-img="/images/iop.png">Iop</option>
+    <option value="sadi" data-img="/images/sadi.png">Sadi</option>
+    <option value="sacri" data-img="/images/sacri.png">Sacri</option>
+    <option value="feca" data-img="/images/feca.png">Feca</option>
+    <option value="panda" data-img="/images/panda.png">Panda</option>
+    <option value="eni" data-img="/images/eni.png">Eni</option>
+    <option value="osa" data-img="/images/osa.png">Osa</option>
+    <option value="eca" data-img="/images/eca.png">Eca</option>
+    <option value="sram" data-img="/images/sram.png">Sram</option>
+    <option value="xelor" data-img="/images/xelor.png">Xelor</option>
+  </select>
+
+  <div class="genre-container">
+    <section class="section-genre">
+      <h2>Male</h2>
+      <label for="spemale">Spécialité</label>
+      <input
+        type="radio"
+        id="aucune-m"
+        name="spemale"
+        value="aucune"
+        checked
+        required
+      />
+      <label for="aucune-m">Aucune</label>
+      <input type="radio" id="repro-m" name="spemale" value="repro" />
+      <label for="repro-m">Repro</label>
+      <input type="radio" id="came-m" name="spemale" value="camé" />
+      <label for="came-m">Camé</label>
+      <div class="open-breed" id="open-breed-male">+</div>
+    </section>
+    <section class="section-genre">
+      <h2>Femelle</h2>
+      <label for="spefemale">Spécialité</label>
+      <input
+        type="radio"
+        id="aucune-f"
+        name="spefemale"
+        value="aucune"
+        checked
+        required
+      />
+      <label for="aucune-f">Aucune</label>
+      <input type="radio" id="repro-f" name="spefemale" value="repro" />
+      <label for="repro-f">Repro</label>
+      <input type="radio" id="came-f" name="spefemale" value="camé" />
+      <label for="came-f">Camé</label>
+      <div class="open-breed" id="open-breed-female">+</div>
+    </section>
+    <input
+      class="hidden"
+      id="breed-male-value"
+      type="text"
+      name="breedmale"
+      value=""
+      required
+    />
+    <input
+      class="hidden"
+      id="breed-female-value"
+      type="text"
+      name="breedfemale"
+      value=""
+      required
+    />
+  </div>
+
+  <div class="breed-list hidden" id="breed-list">
+    <section class="section-breed">
+      <% breeds.forEach(breed => { %>
+      <figure class="figure-dd">
+        <img
+          class="image-dd"
+          src="<%= breed.image%>"
+          alt="Dragodinde <%= breed.color%>"
+        />
+        <figcaption class="figcaption-dd"><%= breed.id%></figcaption>
+      </figure>
+      <% }) %>
+    </section>
+    <input
+      class="input-submit --bgred"
+      type="button"
+      id="close-breed"
+      value="X"
+    />
+  </div>
+
+  <div>
+    <input
+      class="input-submit --bgred"
+      type="button"
+      id="cancelAdd"
+      value="X"
+    />
+    <input class="input-submit --bggreen" type="submit" value="O" />
+  </div>
+</form>

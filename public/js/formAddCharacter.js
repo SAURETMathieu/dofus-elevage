@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const breedList = document.getElementById("breed-list");
   const breedFemaleValue = document.getElementById("breed-female-value");
   const breedMaleValue = document.getElementById("breed-male-value");
-  const addButton = document.getElementById("open-character-form");
-  const addCharacterForm = document.getElementById("add-character-form");
-  const cancelButton = document.getElementById("cancelAdd");
 
   //Récupère tout les figures et les images dans la liste des races
   const figures = document.querySelectorAll(".figure-dd");
@@ -37,16 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // on remet invisible la liste des races
       breedList.classList.toggle("hidden");
     });
-  });
-
-  addButton.addEventListener("click", function () {
-    addCharacterForm.classList.toggle("hidden");
-    addButton.classList.toggle("hidden");
-  });
-
-  cancelButton.addEventListener("click", function () {
-    addCharacterForm.classList.toggle("hidden");
-    addButton.classList.toggle("hidden");
   });
 
   openMaleButton.addEventListener("click", function () {
