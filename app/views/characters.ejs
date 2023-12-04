@@ -1,9 +1,18 @@
 <%- include('./partials/header'); -%>
 <main class="main__index">
-  <h1>Personnages sur le compte <%=account.name %></h1>
+  <h1>
+    Tous les personnages
+    <% if(serverName){%>
+      : serveur 
+      <%= serverName%>
+    <% }else if(account){ %>
+      : compte
+      <%= account.name%>
+    <% } %>
+  </h1>
 
   <div class="main__container-list column">
-    <form id="formSearch" class="form__search" action="/<%=account.id%>/characters" method="GET">
+    <form id="formSearch" class="form__search" action="/characters" method="GET">
       <div class="form__search-container">
         <input
           type="text"
@@ -16,14 +25,16 @@
       </div>
     </form>
 
-    <article id="addButton" class="article__open-form --bgwhite" id="open-character-form">
+    <% if (account) { %>
+      <article id="addButton" class="article__open-form --bgwhite" id="open-character-form">
       <button  class="article__circular-button">+</button>
-    </article>
+      </article>
 
-    <article class="article__form-character --bgwhite hidden" id="addForm">
+      <article class="article__form-character --bgwhite hidden" id="addForm">
       <%- include('./partials/addCharacterForm'); -%>
-    </article>
-
+      </article>
+    <% } %>
+    
     <%- include('./partials/tableCharacters'); -%>
 
   </div>

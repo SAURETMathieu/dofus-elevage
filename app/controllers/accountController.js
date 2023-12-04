@@ -76,106 +76,6 @@ const accountController = {
     }
   },
 
-  getCharactersOnAccountPage: async (request, response) => {
-    try {
-      const accountId = parseInt(request.params.accountId, 10);
-
-      const account = await Account.findOne({ where: { id: accountId } });
-
-      if (!account || account.user_id !== request.session.user.id) {
-        return response.status(403).render("error", {
-          error: {
-            statusCode: 403,
-            name: "Acces interdit",
-            message:
-              "Vous n'avez pas le permission d'accéder aux personnagesde ce compte",
-          },
-        });
-      }
-      const characters = await Character.findAll({
-        where: { account_id: accountId },
-        include: [
-          {
-            association: "account",
-            include: [
-              {
-                association: "user",
-              },
-              {
-                association: "server",
-              },
-            ],
-          },
-          {
-            association: "breedFemale",
-          },
-          {
-            association: "breedMale",
-          },
-        ],
-      });
-      const breeds = await Breed.findAll();
-      const accounts = await Account.findAll({where:{user_id:request.session.user.id}});
-      
-      const charactersFormatted = characters.map((character) => {
-        character.account.user.password=null;
-        const dayRepro = dayjs(character.updated_at)
-          .locale("fr")
-          .format("dddd");
-
-        const dateRepro = dayjs(character.updated_at)
-          .locale("fr")
-          .format("DD/MM/YY");
-
-        const hoursRepro = dayjs(character.updated_at)
-          .locale("fr")
-          .format("HH[h]mm");
-
-        const dayBirth = dayjs(character.updated_at)
-          .locale("fr")
-          .add(character.breedFemale.gestation, "minute")
-          .format("dddd");
-
-        const dateBirth = dayjs(character.updated_at)
-          .locale("fr")
-          .add(character.breedFemale.gestation, "minute")
-          .format("DD/MM/YY");
-
-        const hoursBirth = dayjs(character.updated_at)
-          .locale("fr")
-          .add(character.breedFemale.gestation, "minute")
-          .format("HH[h]mm");
-
-        return {
-          ...character.toJSON(),
-          dayRepro,
-          dateRepro,
-          hoursRepro,
-          dayBirth,
-          dateBirth,
-          hoursBirth,
-        };
-      });
-      response.render("characters", {
-        characters: charactersFormatted,
-        breeds,
-        accountId,
-        account,
-        accounts
-      });
-    } catch (err) {
-      console.log(err);
-      return response.status(500).render("error", {
-        error: {
-          statusCode: 500,
-          name: "Internal Server Error",
-          message:
-            "Une erreure est survenue lors de la récupération des personnages",
-        },
-      });
-    }
-  },
-
   deleteAccount: async (request, response, next) => {
     try {
       const { id } = request.params;
@@ -183,7 +83,6 @@ const accountController = {
       if(!account){
         return response.status(404).json({ error: "Account not found." });
       }
-      console.log(account);
       const accountDeleted = await Account.destroy({
         where: {
           id: id,

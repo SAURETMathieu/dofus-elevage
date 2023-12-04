@@ -2,9 +2,12 @@
 <main class="main__index">
   <h1>
     Tous les personnages
-    <% if(serverName !== undefined){%>
+    <% if(serverName){%>
       : serveur 
       <%= serverName%>
+    <% }else if(account){ %>
+      : compte
+      <%= account.name%>
     <% } %>
   </h1>
 
