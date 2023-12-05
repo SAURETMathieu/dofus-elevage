@@ -6,4 +6,10 @@ const createAccountSchema = Joi.object({
     server: Joi.number().integer().min(1).required()
 });
 
-module.exports =  createAccountSchema ;
+const updateAccountSchema = Joi.object({
+    name: Joi.string().max(20),
+    color: Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/),
+    server: Joi.number().integer().min(1)
+}).or('name', 'color','serverId');
+
+module.exports =  {createAccountSchema, updateAccountSchema} ;

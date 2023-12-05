@@ -29,3 +29,26 @@ selectedColor.addEventListener('input', function(event) {
       colorPicker.value = "#"+expandHexColor(input.value);
   }
 });
+
+const colorPicker2 = document.getElementById('update-color');
+const selectedColor2 = document.getElementById('update-selected-color');
+
+colorPicker2.addEventListener('input', function() {
+  selectedColor2.value = colorPicker2.value.substring(1);
+});
+
+selectedColor2.addEventListener('input', function(event) {
+  const input = event.target;
+  const currentValue = input.value;
+  const filteredValue = currentValue.replace(/[^0-9a-fA-F]+/g, '');
+
+  if (currentValue !== filteredValue) {
+    input.value = filteredValue;
+  }
+
+  const isHexadecimal = /^([0-9A-F]{3}){1,2}$/i.test(expandHexColor(input.value));
+  
+  if (isHexadecimal) {
+      colorPicker2.value = "#"+expandHexColor(input.value);
+  }
+});

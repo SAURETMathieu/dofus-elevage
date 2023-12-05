@@ -18,17 +18,17 @@ const characterController = {
         });
       }
 
-      const { name, type, spemale, spefemale, classe } = request.body;
-      const breedmale = parseInt(request.body.breedmale, 10);
-      const breedfemale = parseInt(request.body.breedfemale, 10);
+      const { name, type, speMale, speFemale, classe } = request.body;
+      const breedMale = parseInt(request.body.breedMale, 10);
+      const breedFemale = parseInt(request.body.breedFemale, 10);
 
       const character = await Character.create({
         name: name,
-        breed_male: breedmale,
-        breed_female: breedfemale,
+        breed_male: breedMale,
+        breed_female: breedFemale,
         account_id: accountId,
-        speMale: spemale,
-        speFemale: spefemale,
+        speMale,
+        speFemale,
         class: classe,
         type: type,
       });
@@ -175,8 +175,6 @@ const characterController = {
         includeOptions[0].where.id = accountId;
       }
 
-      console.log( includeOptions);
-
       if (!isNaN(serverId)) {
         includeOptions[0].include[1].where.id = serverId;
       }
@@ -184,8 +182,6 @@ const characterController = {
       const characters = await Character.findAll({
         include: includeOptions,
       });
-
-      console.log(characters);
 
       const breeds = await Breed.findAll();
       const accounts = await Account.findAll({

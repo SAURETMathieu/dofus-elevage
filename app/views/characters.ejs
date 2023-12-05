@@ -44,8 +44,12 @@
   <%- include('./partials/updateCharacterForm'); -%>
 </main>
 
+<% if (account) { %>
 <script src="/js/openCloseForm.js"></script>
 <script src="/js/formAddCharacter.js"></script>
+<% } %>
+
+
 <script src="/js/formUpdateCharacter.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

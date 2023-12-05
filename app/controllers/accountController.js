@@ -99,6 +99,38 @@ const accountController = {
       next();
     }
   },
+
+  updateAccount: async (request, response) => {
+    try {
+      const {
+        name,
+        color,
+        serverId
+      } = request.body;
+
+      const selectedAccount = await Account.findByPk(request.params.id);
+
+      if (!selectedAccount) {
+        return response.status(404).json({ error: "Account not found." });
+      }
+
+      const server = await Server.findByPk(serverId);
+
+      if (!server) {
+        return response.status(404).json({ error: "Server not found." });
+      }
+
+      const updatedAccount = await selectedAccount.update({
+        name,
+        color,
+        server_id:serverId
+      });
+      response.json(updatedAccount);
+    } catch (err) {
+      console.log(err);
+      return response.status(500).json({ error: "Internal server error" });
+    }
+  },
 };
 
 module.exports = accountController;

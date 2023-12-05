@@ -11,8 +11,8 @@
         <input class="height2" type="text" id="name" name="name" maxlength="20" required>
         <label for="color">Choisir une couleur :</label>
         <div class="form__color-picker">
-          <input type="color" class="form__color-picker-input" id="color" name="color"><span class="bold">#</span>
-          <input type="text" class="form__color-picker-input-selected" id="selected-color" pattern="[0-9a-fA-F]{3}|[0-9a-fA-F]{6}" maxlength="6" value="000000">
+          <input type="color" class="form__color-picker-input height2" id="color" name="color"><span class="bold">#</span>
+          <input type="text" class="form__color-picker-input-selected height2" id="selected-color" pattern="[0-9a-fA-F]{3}|[0-9a-fA-F]{6}" maxlength="6" value="000000">
         </div>
         <label for="server">Serveur</label>
         <select class="height2" id="server" name="server" required>
@@ -36,20 +36,51 @@
           <img class="article__logo-server" src="/images/<%= account.server.img %>" alt="image du serveur">
         </a>
         <div class="article__title"><h2><%= account.server.name %></h2></div>
-        <div class="article__container-logo">
+        <div class="article__container-logo">   
           <a href="/accounts/<%= account.id%>/characters">
-            <i class="fa-solid fa-person-half-dress input-logo --bgyellow" style="color: #000000;"></i>
+            <button class="input-logo --bgyellow">
+              <i class="fa-solid fa-person-half-dress " style="color: #000000;"></i>
+            </button>
           </a>
-          <a href="#">
-            <i class="fa-regular fa-pen-to-square input-logo --bgblue" id="inputUpdateAccount" style="color: #ffffff;"></i>
-          </a>
-          <a href="#">
-            <i class="fa-regular fa-trash-can input-logo --bgred" id="inputDeleteAccount" style="color: #ffffff;" onclick="displayConfirmation('ce compte ? Cela entrainera la suppression de tous ses personnages','<%= account.id %>')"></i>
-          </a>
+          <button class="input-logo --bgblue input-update-account">
+            <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
+          </button>
+          <button class="input-logo --bgred" onclick="displayConfirmation('ce compte ? Cela entrainera la suppression de tous ses personnages','<%= account.id %>')">
+            <i class="fa-regular fa-trash-can" class="input-delete-account" style="color: #ffffff;"></i>
+          </button>
         </div>
       </article>
     </div>       
   <% }) %>
+  </div>
+
+
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <span class="close" id="closeModalBtn">&times;</span>
+      <h2 class="modal__update-account-title">UPDATE</h2>
+      <h3 class="modal__update-account-name">Compte </h3>
+      <form id="updateForm" class="article__form">
+        <label for="name">Nom du compte</label>
+        <input class="height2" type="text" id="update-name" name="name" maxlength="20" required>
+        <label for="color">Choisir une couleur :</label>
+        <div class="form__color-picker">
+          <input type="color" class="form__color-picker-input height2" id="update-color" name="color"><span class="bold">#</span>
+          <input type="text" class="form__color-picker-input-selected height2" id="update-selected-color" pattern="[0-9a-fA-F]{3}|[0-9a-fA-F]{6}" maxlength="6" value="000000">
+        </div>
+        <label for="server">Serveur</label>
+        <select class="height2" id="update-server" name="server" required>
+          <option value="" disabled selected hidden>Choisissez un serveur</option>
+          <% servers.forEach(server => { %>
+           <option value="<%= server.id %>"><%= server.name %></option>
+          <% }) %>
+        </select>
+        <div>
+          <input class="input-submit --bgred" type="button" id="update-cancel" value="X">
+          <input class="input-submit --bggreen submit" type="submit" value="O">
+        </div>
+      </form>
+    </div>
   </div>
 
   <%- include('./partials/deleteConfirmDiv'); -%>
@@ -58,6 +89,7 @@
 
 <script src="/js/deleteAccount.js"></script>
 <script src="/js/openCloseForm.js"></script>
+<script src="/js/openCloseFormUpdateAccount.js"></script>
 <script src="/js/colorPicker.js"></script>
 
 <%- include('./partials/footer'); -%>

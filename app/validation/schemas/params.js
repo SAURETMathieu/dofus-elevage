@@ -14,4 +14,15 @@ const paramAccountIdSchema = Joi.object({
     .required()
 });
 
-module.exports = { paramIdSchema, paramAccountIdSchema };
+const paramIdAndAccountIdSchema = Joi.object({
+  id: Joi.number()
+    .integer()
+    .min(1)
+    .required(),
+  accountId: Joi.number()
+    .integer()
+    .min(1)
+    .required()
+});
+
+module.exports = { paramIdSchema, paramAccountIdSchema, paramIdAndAccountIdSchema };
