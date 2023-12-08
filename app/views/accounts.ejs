@@ -7,8 +7,10 @@
     <article class="container-list__account-color --bgwhite">
       <button id="addButton" class="article__circular-button">+</button>
       <form action="/accounts" method="POST" id="addForm" class="article__form hidden">
-        <label for="name">Nom du compte</label>
-        <input class="height2" type="text" id="name" name="name" maxlength="20" required>
+        <div class="input-group">
+          <input class="input" type="text" id="name" name="name" maxlength="20" required>
+          <label class="label" for="name">Nom du compte</label>
+        </div>
         <label for="color">Choisir une couleur :</label>
         <div class="form__color-picker">
           <input type="color" class="form__color-picker-input height2" id="color" name="color"><span class="bold">#</span>
@@ -29,13 +31,13 @@
     </article>
 
   <% locals.accounts.forEach(account => { %>   
-    <div id="account-<%= account.id %>" style="background-color:<%= account.color %>" class="container-list__account-color">     
+    <div data-id="<%= account.id %>" data-type="account" id="account-<%= account.id %>" style="background-color:<%= account.color %>" class="container-list__account-color">     
       <article class="main__article-account">
-        <div class="article__title"><h2><%= account.name %></h2></div>
+        <div slot="account-name" class="article__title"><h2><%= account.name %></h2></div>
         <a class="link-div" href="/accounts/<%= account.id%>/characters">
           <img class="article__logo-server" src="/images/<%= account.server.img %>" alt="image du serveur">
         </a>
-        <div class="article__title"><h2><%= account.server.name %></h2></div>
+        <div data-server="<%= account.server.id %>" slot="account-server" class="article__title"><h2><%= account.server.name %></h2></div>
         <div class="article__container-logo">   
           <a href="/accounts/<%= account.id%>/characters">
             <button class="input-logo --bgyellow">
@@ -45,8 +47,8 @@
           <button class="input-logo --bgblue input-update-account">
             <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
           </button>
-          <button class="input-logo --bgred" onclick="displayConfirmation('ce compte ? Cela entrainera la suppression de tous ses personnages','<%= account.id %>')">
-            <i class="fa-regular fa-trash-can" class="input-delete-account" style="color: #ffffff;"></i>
+          <button class="input-logo --bgred">
+            <i class="fa-regular fa-trash-can" data-toggle="modal" class="input-delete-account" style="color: #ffffff;"></i>
           </button>
         </div>
       </article>
@@ -55,41 +57,58 @@
   </div>
 
 
-  <div class="modal" id="myModal">
-    <div class="modal-content">
-      <span class="close" id="closeModalBtn">&times;</span>
-      <h2 class="modal__update-account-title">UPDATE</h2>
-      <h3 class="modal__update-account-name">Compte </h3>
-      <form id="updateForm" class="article__form">
-        <label for="name">Nom du compte</label>
-        <input class="height2" type="text" id="update-name" name="name" maxlength="20" required>
-        <label for="color">Choisir une couleur :</label>
-        <div class="form__color-picker">
-          <input type="color" class="form__color-picker-input height2" id="update-color" name="color"><span class="bold">#</span>
-          <input type="text" class="form__color-picker-input-selected height2" id="update-selected-color" pattern="[0-9a-fA-F]{3}|[0-9a-fA-F]{6}" maxlength="6" value="000000">
-        </div>
-        <label for="server">Serveur</label>
-        <select class="height2" id="update-server" name="server" required>
-          <option value="" disabled selected hidden>Choisissez un serveur</option>
-          <% servers.forEach(server => { %>
-           <option value="<%= server.id %>"><%= server.name %></option>
-          <% }) %>
-        </select>
-        <div>
-          <input class="input-submit --bgred" type="button" id="update-cancel" value="X">
-          <input class="input-submit --bggreen submit" type="submit" value="O">
-        </div>
-      </form>
+  <div class="modal" id="updateAccountModal" >
+    <div class="modal-content modal-style-update">
+      <span class="close close-modal-btn">&times;</span>
+      <h2 class="modal__title">UPDATE</h2> 
+      <div class="modal__body">
+        <h3 class="modal__update-account-name">Compte</h3>
+        <form id="updateForm" class="article__form">
+          <div class="input-group back-input">
+            <input class="input" type="text" id="update-name" name="name" maxlength="20" required>
+            <label class="label" for="name">Nom du compte</label>
+          </div>
+          <h3>Couleur</h3>
+          <div class="form__color-picker back-input">  
+            <input type="color" class="form__color-picker-input" id="update-color" name="color">
+            <span class="bold"> # </span>
+            <input type="text" class="form__color-picker-input-selected" id="update-selected-color" pattern="[0-9a-fA-F]{3}|[0-9a-fA-F]{6}" maxlength="6" value="000000">
+          </div>
+          <h3><label for="server">Serveur</label></h3>
+          <div class="back-input">
+            <select class="height2" id="update-server" name="server" required>
+              <option value="" disabled selected hidden>Choisissez un serveur</option>
+              <% servers.forEach(server => { %>
+              <option value="<%= server.id %>"><%= server.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="modal-submit-buttons">
+            <input class="is-cancel" type="button" class="close-modal-btn" id="update-cancel" value="Annuler">
+            <input class="submit is-success" type="submit" value="Actualiser">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
-  <%- include('./partials/deleteConfirmDiv'); -%>
+  <div class="modal" id="confirm-delete-modal">
+    <div class="modal-content modal-style-delete">
+      <span class="close close-modal-btn">&times;</span>
+      <h2 class="modal__title">DELETE</h2> 
+      <div class="modal__body">
+        <h3>Voulez vous vraiment supprimer cet élément ?</h3>
+        <div class="modal-submit-buttons">
+          <input class="is-cancel" type="button" class="close-modal-btn" id="delete-cancel" value="Annuler">
+          <input class="is-success" type="button" id="delete-confirm" value="Confirmer">
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
 </main>
 
-<script src="/js/deleteAccount.js"></script>
-<script src="/js/openCloseForm.js"></script>
-<script src="/js/openCloseFormUpdateAccount.js"></script>
-<script src="/js/colorPicker.js"></script>
+<script type="module" src="/js/initAccountPage.js"></script>
 
 <%- include('./partials/footer'); -%>

@@ -1,54 +1,47 @@
-function expandHexColor(hex) {
+const colorPicker = document.getElementById("color");
+const selectedColor = document.getElementById("selected-color");
+
+export function rgbToHex(rgb) {
+  const rgbArray = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+  const hex = (x) => ("0" + parseInt(x).toString(16)).slice(-2);
+  return "#" + hex(rgbArray[1]) + hex(rgbArray[2]) + hex(rgbArray[3]);
+}
+
+function convertToHexadecimal(hex) {
   if (hex.length === 3) {
-      return hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-  }
-  else {
-      return hex;
+    return hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  } else {
+    return hex;
   }
 }
 
-const colorPicker = document.getElementById('color');
-const selectedColor = document.getElementById('selected-color');
+function removeHashTag() {
+  colorPicker.addEventListener("input", function () {
+    selectedColor.value = colorPicker.value.substring(1);
+  });
+}
 
-colorPicker.addEventListener('input', function() {
-  selectedColor.value = colorPicker.value.substring(1);
-});
+function colorPickerValue() {
+  selectedColor.addEventListener("input", function (event) {
+    const input = event.target;
+    const currentValue = input.value;
+    const filteredValue = currentValue.replace(/[^0-9a-fA-F]+/g, "");
 
-selectedColor.addEventListener('input', function(event) {
-  const input = event.target;
-  const currentValue = input.value;
-  const filteredValue = currentValue.replace(/[^0-9a-fA-F]+/g, '');
+    if (currentValue !== filteredValue) {
+      input.value = filteredValue;
+    }
 
-  if (currentValue !== filteredValue) {
-    input.value = filteredValue;
-  }
+    const isHexadecimal = /^([0-9A-F]{3}){1,2}$/i.test(
+      convertToHexadecimal(input.value)
+    );
 
-  const isHexadecimal = /^([0-9A-F]{3}){1,2}$/i.test(expandHexColor(input.value));
-  
-  if (isHexadecimal) {
-      colorPicker.value = "#"+expandHexColor(input.value);
-  }
-});
+    if (isHexadecimal) {
+      colorPicker.value = "#" + convertToHexadecimal(input.value);
+    }
+  });
+}
 
-const colorPicker2 = document.getElementById('update-color');
-const selectedColor2 = document.getElementById('update-selected-color');
-
-colorPicker2.addEventListener('input', function() {
-  selectedColor2.value = colorPicker2.value.substring(1);
-});
-
-selectedColor2.addEventListener('input', function(event) {
-  const input = event.target;
-  const currentValue = input.value;
-  const filteredValue = currentValue.replace(/[^0-9a-fA-F]+/g, '');
-
-  if (currentValue !== filteredValue) {
-    input.value = filteredValue;
-  }
-
-  const isHexadecimal = /^([0-9A-F]{3}){1,2}$/i.test(expandHexColor(input.value));
-  
-  if (isHexadecimal) {
-      colorPicker2.value = "#"+expandHexColor(input.value);
-  }
-});
+export function initColorPicker() {
+  removeHashTag();
+  colorPickerValue();
+}
