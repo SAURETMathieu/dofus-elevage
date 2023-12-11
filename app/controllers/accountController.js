@@ -105,7 +105,7 @@ const accountController = {
       const {
         name,
         color,
-        serverId
+        server
       } = request.body;
 
       const selectedAccount = await Account.findByPk(request.params.id);
@@ -114,18 +114,25 @@ const accountController = {
         return response.status(404).json({ error: "Account not found." });
       }
 
-      const server = await Server.findByPk(serverId);
+      const serverExist = await Server.findByPk(server);
 
-      if (!server) {
+      if (!serverExist) {
         return response.status(404).json({ error: "Server not found." });
       }
 
       const updatedAccount = await selectedAccount.update({
         name,
         color,
-        server_id:serverId
+        server_id:server
       });
-      response.json(updatedAccount);
+
+      if (updatedAccount) {
+        const { server_id, ...updatedData } = updatedAccount.toJSON();
+        updatedData.server = serverExist; 
+        response.json(updatedData);
+      } else {
+        return response.status(404).json({ error: "Account not found." });
+      }
     } catch (err) {
       console.log(err);
       return response.status(500).json({ error: "Internal server error" });
