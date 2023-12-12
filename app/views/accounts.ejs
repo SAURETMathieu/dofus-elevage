@@ -19,7 +19,6 @@
             <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
           </button>
         </div>
-      
     </div>
 
   <% locals.accounts.forEach(account => { %>   
@@ -40,17 +39,21 @@
               <i class="fa-solid fa-person-half-dress " style="color: #000000;"></i>
             </button>
           </a>
-          <button class="input-logo --bgblue input-update-account">
+          <button class="input-logo --bgblue" data-toggle="update-modal">
             <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
           </button>
-          <button class="input-logo --bgred">
-            <i class="fa-regular fa-trash-can input-delete-account" data-toggle="modal" style="color: #ffffff;"></i>
+          <button class="input-logo --bgred" data-toggle="delete-modal">
+            <i class="fa-regular fa-trash-can"  style="color: #ffffff;"></i>
           </button>
         </div>
       </article>
     </div>       
   <% }) %>
   </div>
+
+  <%- include('./partials/successNotif'); -%>
+
+  <%- include('./partials/failNotif'); -%>
 
   <%- include('./partials/createAccountModal'); -%>
 

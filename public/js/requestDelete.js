@@ -1,3 +1,5 @@
+import { notifications } from "./notifications.js";
+
 export async function deleteAccount(accountId) {
   try {
     const response = await fetch(`/accounts/${accountId}`, {
@@ -7,19 +9,21 @@ export async function deleteAccount(accountId) {
       },
     });
 
-    if (response.ok) {
-      console.log("Suppression confirmée");
-      const deletedElement = document.querySelector(
-        `#account-${accountId}`
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    const deletedElement = document.querySelector(`#account-${accountId}`);
+    if (deletedElement) {
+      deletedElement.remove();
+      notifications.editAndShowSuccessNotification(
+        "Le compte a bien été supprimé"
       );
-      if (deletedElement) {
-        deletedElement.remove();
-      }
-    } else {
-      console.error("La suppression a échoué.");
     }
   } catch (error) {
-    console.error("Une erreur est survenue :", error);
+    notifications.editAndShowFailNotification(
+      "La suppression du compte a échoué : " + error.message
+    );
+    console.error("Error", error);
   }
 }
 
@@ -32,17 +36,20 @@ export async function deleteCharacter(characterId) {
       },
     });
 
-    if (response.ok) {
-      const deletedElement = document.querySelector(
-        `#character-${characterId}`
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    const deletedElement = document.querySelector(`#character-${characterId}`);
+    if (deletedElement) {
+      deletedElement.remove();
+      notifications.editAndShowSuccessNotification(
+        "Le personnage a bien été supprimé"
       );
-      if (deletedElement) {
-        deletedElement.remove();
-      }
-    } else {
-      console.error("La suppression a échoué.");
     }
   } catch (error) {
-    console.error("Une erreur est survenue :", error);
+    notifications.editAndShowFailNotification(
+      "La suppression du personnage a échoué : " + error.message
+    );
+    console.error("Error", error);
   }
 }

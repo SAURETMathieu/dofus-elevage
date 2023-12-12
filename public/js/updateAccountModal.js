@@ -1,7 +1,7 @@
 import { rgbToHex } from "./colorPicker.js";
 import { updateAccount } from "./requestUpdate.js";
 
-const openModalBtn = document.querySelectorAll(".input-update-account");
+const openModalBtn = document.querySelectorAll("[data-toggle='update-modal']");
 const closeModalButtons = document.querySelectorAll(".close-modal-btn");
 const modal = document.getElementById("updateAccountModal");
 const cancelButton = document.getElementById("update-cancel");
@@ -38,6 +38,14 @@ function openModal() {
         updateSelectedColorInput.value = rgbToHex(accountColor).substring(1);
       }
 
+      const nameIndicator = document.getElementById("updateNameIndicator");
+      const colorIndicator = document.getElementById("updateColorIndicator");
+      const serverIndicator = document.getElementById("updateServerIndicator");
+
+      nameIndicator.style.display = "inline";
+      colorIndicator.style.display = "inline";
+      serverIndicator.style.display = "inline";
+
       modal.style.display = "block";
     });
   });
@@ -61,37 +69,40 @@ function closeModal() {
 
 function submitUpdateAccount() {
   submitButton.addEventListener("click", async function (event) {
-    event.preventDefault();
-    const accountIdToUpdate = modal.dataset.id;
-    const account = await updateAccount(accountIdToUpdate);
-    if (!account) {
-      console.log("Erreur");
-    }
-    console.log("Mis a jour réussie");
-    const updatedElement = document.querySelector(
-      `#account-${accountIdToUpdate}`
-    );
+    try {
+      event.preventDefault();
+      const accountIdToUpdate = modal.dataset.id;
+      const account = await updateAccount(accountIdToUpdate);
+      if (account) {
+        const updatedElement = document.querySelector(
+          `#account-${accountIdToUpdate}`
+        );
 
-    if (!updatedElement) {
-      console.log("L'élément n'a pas été trouvé");
-    }
+        if (!updatedElement) {
+          throw new Error(`Le compte a modifier est introuvable`);
+        }
 
-    updatedElement.querySelector("h2").textContent = account.name;
-    updatedElement.style.backgroundColor = account.color;
+        updatedElement.querySelector("h2").textContent = account.name;
+        updatedElement.style.backgroundColor = account.color;
 
-    updatedElement.setAttribute("data-name", account.name);
-    const dataServerElement = updatedElement.querySelector("[data-server]");
-    if (dataServerElement) {
-      dataServerElement.setAttribute("data-server", account.server.id);
+        updatedElement.setAttribute("data-name", account.name);
+        const dataServerElement = updatedElement.querySelector("[data-server]");
+        if (dataServerElement) {
+          dataServerElement.setAttribute("data-server", account.server.id);
+        }
+        updatedElement.querySelector("#account-name").textContent =
+          account.name;
+        updatedElement.querySelector("#account-server-name").textContent =
+          account.server.name;
+        updatedElement.querySelector(".article__logo-server").src =
+          "/images/" + account.server.img;
+        updatedElement.querySelector(".article__logo-server").alt =
+          "image du serveur " + account.server.name;
+        modal.style.display = "none";
+      }
+    } catch (error) {
+      console.error("Error", error);
     }
-    updatedElement.querySelector("#account-name").textContent = account.name;
-    updatedElement.querySelector("#account-server-name").textContent =
-      account.server.name;
-    updatedElement.querySelector(".article__logo-server").src =
-      "/images/" + account.server.img;
-    updatedElement.querySelector(".article__logo-server").alt =
-      "image du serveur " + account.server.name;
-    modal.style.display = "none";
   });
 }
 

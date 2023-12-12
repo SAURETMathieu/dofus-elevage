@@ -1,7 +1,7 @@
 import { deleteAccount, deleteCharacter } from "./requestDelete.js";
 
 const modalElem = document.getElementById("confirm-delete-modal");
-const openModalButtons = document.querySelectorAll('[data-toggle="modal"]');
+const openModalButtons = document.querySelectorAll('[data-toggle="delete-modal"]');
 const closeModalButtons = document.querySelectorAll(
   ".close-modal, [data-refuse], .close-modal-btn, #delete-cancel"
 );

@@ -5,6 +5,7 @@ import { initColorPicker } from "./colorPicker.js";
 import { initColorPicker2 } from "./colorPickerUpdate.js";
 import { searchByName } from "./searchByName.js";
 import { createAccountCheck, updateAccountCheck } from "./checkValidityForm.js";
+import { notifications } from "./notifications.js";
 
 initModalUpdateAccount();
 initColorPicker();
@@ -14,3 +15,4 @@ initDeleteModal("account");
 searchByName();
 createAccountCheck();
 updateAccountCheck();
+notifications.initCloseNotification();
