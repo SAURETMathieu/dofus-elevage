@@ -3,8 +3,11 @@
   <h1 class="h1-user-page">Serveurs</h1>
 
   <div class="main__container-list">
+
+    <%- include('./partials/searchContainer'); -%>
+
     <% locals.servers.forEach(server => { %>
-      <div class="server-container">
+      <div class="server-container" data-name="<%= server.name %>" data-type="server">
         <article class="main__article">
           <div class="main__article-title"><h2><%= server.name %></h2></div>
           <a class="link-div" href="/accounts?server=<%= server.id %>">
@@ -21,7 +24,10 @@
         </article>
       </div>
     <% }) %>
-    
+
   </div>
 </main>
+
+<script type="module" src="/js/initServerPage.js"></script>
+
 <%- include('./partials/footer'); -%>

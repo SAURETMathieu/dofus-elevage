@@ -14,30 +14,46 @@
     <form action="/signup" method="POST">
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="lastname">Nom* </label>
+        <span class="valid-indicator" style="display: none;">✔️</span>
         <input type="lastname" id="lastname" name="lastname" required>
       </div>
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="firstname">Prénom*</label>
+        <span class="valid-indicator" style="display: none;">✔️</span>
         <input type="firstname" id="firstname" name="firstname" required>
       </div>
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="pseudo">Pseudo* </label>
+        <span class="valid-indicator" style="display: none;">✔️</span>
         <input type="pseudo" id="pseudo" name="pseudo" required>
       </div>
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="email">Email* </label>
+        <span class="valid-indicator" style="display: none;">✔️</span>
         <input type="email" id="email" name="email" required>
       </div>
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="password">Mot de passe* </label>
+        <span class="valid-indicator-password" style="display: none;">✔️</span>
         <input type="password" id="password" name="password" required>
       </div>
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="passwordconfirm">Confirmation du mot de passe*</label>
+        <span class="valid-indicator-password" style="display: none;">✔️</span>
         <input type="password" id="passwordconfirm" name="passwordConfirm" required>
       </div>
       <button class="auth-container__input-submit" type="submit">S'inscrire</button>
     </form>
   </div>
+
+  <%- include('./partials/successNotif'); -%>
+
+  <%- include('./partials/failNotif'); -%>
+  
 </main>
+
+<script type="module" src="/js/initAuthPage.js"></script>
+<script type="module" src="/js/checkPassword.js"></script>
+<script type="module" src="/js/checkSignup.js"></script>
+
 <%- include('./partials/footer'); -%>

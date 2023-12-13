@@ -51,9 +51,26 @@ export function updateAccountCheck() {
 }
 
 function checkValidityAndDisplayIndicator(input, indicator) {
-    if (input.checkValidity()) {
-      indicator.style.display = "inline"; 
-    } else {
-      indicator.style.display = "none";
-    }
+  if (input.checkValidity()) {
+    indicator.style.display = "inline";
+  } else {
+    indicator.style.display = "none";
+  }
 }
+
+export function checkValidityForAll() {
+  const validatorsElement = document.querySelectorAll(".valid-indicator");
+
+  validatorsElement.forEach((validator) => {
+    const inputElement = validator.nextElementSibling;
+
+    inputElement.addEventListener("input", () => {
+      if (inputElement.checkValidity()) {
+        validator.style.display = "inline";
+      } else {
+        validator.style.display = "none";
+      }
+    });
+  });
+}
+

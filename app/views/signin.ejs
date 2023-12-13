@@ -14,11 +14,15 @@
     <form action="/signin" method="POST">
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="email">Email</label>
+        <span class="valid-indicator" style="display: none;">✔️</span>
         <input type="email" id="email" name="email" required>
+        
       </div>
       <div class="auth-container__input-container">
         <label class="auth-container__label" for="password">Mot de passe</label>
+        <span class="valid-indicator" style="display: none;">✔️</span>
         <input type="password" id="password" name="password" required>
+        
       </div>
       <div class="auth-container__checkbox-container">
         <label>
@@ -31,5 +35,14 @@
       <img src="/images/ddlogo.png" alt="image dragodinde rousse sauvage">
     </div>
   </div>
+
+  <%- include('./partials/successNotif'); -%>
+
+  <%- include('./partials/failNotif'); -%>
+
 </main>
+
+<script type="module" src="/js/initAuthPage.js"></script>
+<script type="module" src="/js/checkSignin.js"></script>
+
 <%- include('./partials/footer'); -%>

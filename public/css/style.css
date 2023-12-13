@@ -15,7 +15,7 @@ h1{
   font-size:2rem; 
   padding:0.8rem;
   margin:1rem auto;
-  background-color:#97A703;
+  background-color:#00000086;
   border: 2px solid #000000;
   border-radius:0.5rem;
   color:white;
@@ -61,10 +61,6 @@ select{
 
 .nav-icon img{
   width:3rem;
-}
-
-.back-input input:hover{
-  border-color:#97A703;
 }
 
 /*////////*/
@@ -197,22 +193,27 @@ main{
 
 .main__index{
   background-image: url('../images/bg_dofus.jpg');
+  background-repeat: repeat-y;
 }
 
 .main__connexion{
   background-image: url('../images/ladder_temporis7.jpg');
+  background-repeat: repeat-y;
 }
 
 .main__admin{
   background-image: url('../images/servers.jpeg');
+  background-repeat: repeat-y;
 }
 
-.main__accounts{
-  background-image: url('../images/ladder_temporis7.jpg');
+.main__accounts {
+  background-image: url('../images/accountbg.png');
+  background-repeat: repeat-y;
 }
 
 .main__servers{
   background-image: url('../images/servers.jpeg');
+  background-repeat: repeat-y;
 }
 
 /*////////////////////*/
@@ -243,7 +244,6 @@ main{
 }
 
 .auth-container__img-group img{
- width:100%;
  padding:0 1rem;
  width:calc(80% / 6);
 }
@@ -500,7 +500,7 @@ form {
   margin: 1rem auto;
 }
 
-.valid-indicator {
+.valid-indicator, .valid-indicator-password {
   color: green;
   font-size: 20px;
   margin-left: 20px;
@@ -521,7 +521,7 @@ form {
   padding:1rem;
 }
 
-.back-input input:focus{
+.back-input input:hover, .back-input input:focus{
   transform:scale(1.05);
 }
 
@@ -1107,15 +1107,22 @@ thead {
 /*     add button     */
 /*////////////////////*/
 
+.add-container{
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
 .add-button{
   font-size:1.5rem;
   font-weight:600;
   padding: 1rem;
   border:solid 1px rgb(0, 70, 0);
+  background-color:#97A703;
 }
 
 .add-button:hover{
-  background-color:rgb(50, 185, 45);
+  opacity:0.8;
 }
 
 /*////////////////////////*/
@@ -1124,7 +1131,7 @@ thead {
 
 .notification {
   position: fixed;
-  top: 20px;
+  top: 3rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -1157,6 +1164,116 @@ thead {
   color: #000000;
 }
 
+/*////////////////*/
+/*     search     */
+/*////////////////*/
+
+.search-container{
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
+.search-box{
+  height: fit-content;
+  position: relative;
+  width:fit-content;
+  margin: 0 auto;
+}
+
+.input-search{
+  height: 50px;
+  width: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight:600;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 50%;
+  padding-right: 40px;
+  color:#fff;
+  width: 300px;
+  border-radius: 0px;
+  padding-right:3.5rem;
+  background-color: transparent;
+  border-bottom:1px solid rgb(255, 255, 255);
+  text-shadow: 
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000; 
+}
+
+.input-search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.clear-search {
+  position: absolute;
+  top: 50%;
+  right: 3.5rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ffffff;
+  font-size:2rem;
+  text-shadow: 
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000; 
+}
+
+.clear-search:hover {
+  color: #000000;
+  text-shadow: 
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000; 
+}
+
+.input-search::placeholder{
+  color:rgba(255, 255, 255);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+.btn-search{
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right:0px;
+  color:#ffffff ;
+  background-color:transparent;
+  pointer-events: painted;  
+  text-shadow: 
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000; 
+}
+
+.btn-search i{
+  font-size:1.1rem;
+}
+
+.btn-search:focus ~ .input-search::placeholder,
+.btn-search:focus ~ .input-search,
+.input-search:focus,
+.input-search:focus::placeholder
+{
+  font-size:1.1rem;
+}
+
 /*//////////////////*/
 /*   MEDIA QUERIES  */
 /*//////////////////*/
@@ -1186,6 +1303,9 @@ thead {
     max-width: 80%;
   }
 
+  .auth-container{
+    width:95%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1196,6 +1316,10 @@ thead {
 
   .nav-text{
     display:none;
+  }
+
+  .auth-container__img-group img{
+    padding:0;
   }
 }
 
@@ -1214,7 +1338,13 @@ thead {
 }
 
 @media screen and (max-width: 600px) {
+  .auth-container__input-submit{
+    width:200px;
+  }
 
+  .auth-container__input-container{
+    width:95%;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -1282,6 +1412,10 @@ thead {
 
   .modal-submit-buttons{
     padding:0.2rem;
+  }
+
+  .auth-container__input-container input{
+    font-size:0.9rem;
   }
 }
 

@@ -4,23 +4,14 @@
   
   <div class="main__container-list">
 
-    <div class="search-input-container">
-        <div class="back-input input-group">
-          <input
-          class="input"
-            type="search"
-            id="searchInput"
-            name="search"
-            maxlength="20"
-            required
-          />
-          <label class="label" for="searchInput">Rechercher par Nom</label>
-          <button class="input-logo add-button --bggreen" id="addButton">
-            <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
-          </button>
-        </div>
-    </div>
+    <%- include('./partials/searchContainer'); -%>
 
+    <div class="add-container">
+      <button class="input-logo add-button" id="addButton">
+        <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
+      </button>
+    </div>
+        
   <% locals.accounts.forEach(account => { %>   
     <div data-id="<%= account.id %>" data-name="<%= account.name %>" data-type="account" id="account-<%= account.id %>" style="background-color:<%= account.color %>" class="container-list__account-color">     
       <article class="main__article-account">
