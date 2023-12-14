@@ -1,32 +1,35 @@
-<div class="update-box" id="updateBox">
-  <div class="update-content">
-    <h2>Modification du personnage</h2>
-    <form
-    id="form-update"
+<div class="modal" id="updateModal" >
+  <div class="modal-content modal-style-update">
+    <span class="close close-modal-btn">&times;</span>
+    <h2 class="modal__title">UPDATE</h2> 
+    <div class="modal__body">
+      <h3 class="modal__update-account-name">Compte</h3>
+      <form
+    id="updateForm"
     class="article__form"
     >
     <div class="form__container__section">
       <section class="form__section-input-text">
-        <label for="updateName">Nom du personnage</label>
+        <label for="update-name">Nom du personnage</label>
         <input
           class="height2 input-text"
           type="text"
-          id="updateName"
+          id="update-name"
           name="name"
           maxlength="20"
           required
         />
       </section>
       <section class="form__section-input-text">
-        <label for="updateType">Enclos</label>
-        <select class="height2 select-class" id="updateType" name="type" required>
+        <label for="update-type">Enclos</label>
+        <select class="height2 select-class" id="update-type" name="type" required>
           <option value="private">Privée</option>
           <option value="public">Public</option>
         </select>
       </section>
       <section class="form__section-input-text">
-        <label for="updateRepro">Reproductions</label>
-        <input class="height2 form__number-input" type="number" name="nbrepro" id="numberInput" min="0" max="20" value="0" required>
+        <label for="number-input">Reproductions</label>
+        <input class="height2 form__number-input" type="number" name="nbrepro" id="number-input" min="0" max="20" value="0" required>
       </section>
       <section class="form__section-input-text">
         <label for="update-account">Compte</label>
@@ -37,8 +40,8 @@
         </select>
       </section>
     </div>
-    <label for="updateClasse">Classe</label>
-    <select class="height2 select-class" id="updateClasse" name="classe" required>
+    <label for="update-classe">Classe</label>
+    <select class="height2 select-class" id="update-classe" name="classe" required>
       <option value="enu" data-img="/images/enu.png">Enu</option>
       <option value="cra" data-img="/images/cra.png">Cra</option>
       <option value="iop" data-img="/images/iop.png">Iop</option>
@@ -112,17 +115,11 @@
         />
     </div>
 
-    <div>
-      <input
-        class="input-submit --bgred"
-        type="button"
-        id="update-cancelAdd"
-        value="X"
-        onclick="closeUpdate()"
-      />
-      <input class="input-submit --bggreen" type="submit" value="O" />
-      <span id="selectedUpdate" class="hidden"></span>
+    <div class="modal-submit-buttons">
+      <input class="is-cancel" type="button" class="close-modal-btn" id="update-cancel" value="Annuler">
+      <input class="submit is-success" id="update-submit" type="submit" value="Actualiser">
     </div>
   </form>
+    </div>
   </div>
 </div>

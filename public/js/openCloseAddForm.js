@@ -1,6 +1,6 @@
 const openModalBtn = document.querySelector("#addButton");
 const closeModalButtons = document.querySelectorAll(".close-modal-btn");
-const modal = document.getElementById("createAccountModal");
+const modal = document.getElementById("createModal");
 const cancelButton = document.getElementById("cancel");
 
 function openModal() {
@@ -25,7 +25,7 @@ function closeModal() {
   });
 }
 
-export function initModalAddAccount() {
+export function initAddModal() {
   openModal();
   closeModal();
 }

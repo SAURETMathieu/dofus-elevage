@@ -1,3 +1,5 @@
+import { initAddModal } from "./openCloseAddForm.js";
+
 //variable pour savoir si on choisit la race pour le male ou la femelle
 document.addEventListener("DOMContentLoaded", function () {
   let currentSelectedBreed = 0;
@@ -49,4 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
   closeBreed.addEventListener("click", function () {
     breedList.classList.toggle("hidden");
   });
+  
+  initAddModal();
 });
+
+

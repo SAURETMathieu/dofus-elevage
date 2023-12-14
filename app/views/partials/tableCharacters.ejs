@@ -11,13 +11,14 @@
       <th>Réaccoupler</th>
       <th>Statut</th>
       <th>Reproduction</th>
+      <th>Type</th>
       <th>Modifier</th>
       <th>Supprimer</th>
     </tr>
   </thead>
   <tbody>
     <% characters.forEach(character => { %>
-    <tr id="character-<%= character.id %>">
+    <tr id="character-<%= character.id %>" data-id="<%= character.id %>" data-type="character">
       <td style="background-color: <%= character.account.color %>">
         <a
           href="/accounts?server=<%= character.account.server.id %>"
@@ -31,8 +32,7 @@
         </a>
       </td>
       <td style="background-color: <%= character.account.color %>">
-        <div class="table__account"><%= character.account.name %></div>
-        <div class="table__account-id hidden"><%= character.account.id %></div>
+        <div data-classe="<%= character.class%>" data-account="<%= character.account.id %>" class="table__account"><%= character.account.name %></div>
         <img
           class="table__img-perso"
           src="/images/<%= character.class%>.png"
@@ -50,14 +50,14 @@
         <div><%= character.dateBirth %></div>
         <div><%= character.hoursBirth %></div>
       </td>
-      <td>
+      <td class="breed-male" data-id="<%= character.breedMale.id %>" data-img="<%= character.breedMale.image %>" data-name="<%= character.breedMale.name %>">
         <img
         class="table__breed-male-img"
           src="<%= character.breedMale.image %>"
           alt="dragodinde <%= character.breedMale.name %>"
         />
       </td>
-      <td>
+      <td class="breed-female" data-id="<%= character.breedFemale.id %>" data-img="<%= character.breedFemale.image %>" data-name="<%= character.breedFemale.name %>">
         <img
         class="table__breed-female-img"
           src="<%= character.breedFemale.image %>"
@@ -78,19 +78,18 @@
         </button>
       </td>
       <td>Féconde</td>
-      <td class="nb-repro"><%= character.reproduction %> / 20</td>
+      <td data-repro="<%= character.reproduction %>" class="nb-repro"><%= character.reproduction %> / 20</td>
+      <td data-type="<%= character.type %>" class="type"><%= character.type %></td>
       <td>
         <button
-          class="table__td-icone"
-          onclick="displayUpdate('<%= JSON.stringify(character) %>')"
+          class="table__td-icone" data-toggle="update-modal"
         >
           <i class="fa-regular fa-pen-to-square" style="color: #1900ff"></i>
         </button>
       </td>
       <td>
         <button
-          class="table__td-icone"
-          onclick="displayConfirmation('ce personnage','<%= character.id %>')"
+          class="table__td-icone" data-toggle="delete-modal"
         >
           <i class="fa-regular fa-trash-can" style="color: #ff0000"></i>
         </button>

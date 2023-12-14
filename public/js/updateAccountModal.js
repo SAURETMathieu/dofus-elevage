@@ -3,7 +3,7 @@ import { updateAccount } from "./requestUpdate.js";
 
 const openModalBtn = document.querySelectorAll("[data-toggle='update-modal']");
 const closeModalButtons = document.querySelectorAll(".close-modal-btn");
-const modal = document.getElementById("updateAccountModal");
+const modal = document.getElementById("updateModal");
 const cancelButton = document.getElementById("update-cancel");
 const submitButton = modal.querySelector("#update-submit");
 
