@@ -1,49 +1,56 @@
-export function searchAccountByName() {
-  document.getElementById("searchInput").addEventListener("input", function () {
+export function searchByNameTable(elements, inputElem, clearElem){
+  inputElem.addEventListener("input", function () {
     const input = this.value.toLowerCase();
-    const results = document.querySelectorAll(".container-list__account-color");
-    const clearButton = document.querySelector(".clear-search");
-    const searchInput = document.querySelector(".input-search");
 
-    results.forEach((result) => {
-      const name = result.getAttribute("data-name").toLowerCase();
+    elements.forEach((element) => {
+      const name = element.getAttribute("data-name").toLowerCase();
+      const childElements = element.querySelectorAll("*");
       if (name.includes(input)) {
-        result.style.display = "block";
+        element.style.display = "";
+        childElements.forEach(child => {
+          child.style.display = "";
+        });
       } else {
-        result.style.display = "none";
+        element.style.display = "none";
+        childElements.forEach(child => {
+          child.style.display = "none";
+        });
       }
     });
 
-    clearButton.addEventListener("click", function () {
-      searchInput.value = "";
-      results.forEach((result) => {
-        result.style.display = "block";
+    clearElem.addEventListener("click", function () {
+      inputElem.value = "";
+      elements.forEach((element) => {
+        const childElements = element.querySelectorAll("*");
+        childElements.forEach(child => {
+          child.style.display = "";
+        });
+        element.style.display = "";
       });
     });
   });
 }
 
-export function searchServerByName() {
-  document.getElementById("searchInput").addEventListener("input", function () {
+export function searchByName(elements, inputElem, clearElem){
+  inputElem.addEventListener("input", function () {
     const input = this.value.toLowerCase();
-    const results = document.querySelectorAll(".server-container");
-    const clearButton = document.querySelector(".clear-search");
-    const searchInput = document.querySelector(".input-search");
 
-    results.forEach((result) => {
-      const name = result.getAttribute("data-name").toLowerCase();
+    elements.forEach((element) => {
+      const name = element.getAttribute("data-name").toLowerCase();
       if (name.includes(input)) {
-        result.style.display = "block";
+        element.style.display = "block";
       } else {
-        result.style.display = "none";
+        element.style.display = "none";
       }
     });
 
-    clearButton.addEventListener("click", function () {
-      searchInput.value = "";
-      results.forEach((result) => {
-        result.style.display = "block";
+    clearElem.addEventListener("click", function () {
+      inputElem.value = "";
+      elements.forEach((element) => {
+        const childElements = element.querySelectorAll("*");
+        element.style.display = "block";
       });
     });
   });
 }
+

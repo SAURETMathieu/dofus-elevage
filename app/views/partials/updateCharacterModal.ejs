@@ -10,9 +10,9 @@
     >
     <div class="form__container__section">
       <section class="form__section-input-text">
-        <label for="update-name">Nom du personnage</label>
+        <label for="update-name">Nom</label>
         <input
-          class="height2 input-text"
+          class="input-model"
           type="text"
           id="update-name"
           name="name"
@@ -29,7 +29,7 @@
       </section>
       <section class="form__section-input-text">
         <label for="number-input">Reproductions</label>
-        <input class="height2 form__number-input" type="number" name="nbrepro" id="number-input" min="0" max="20" value="0" required>
+        <input class="height2 form__number-input input-model" type="number" name="nbrepro" id="number-input" min="0" max="20" value="0" required>
       </section>
       <section class="form__section-input-text">
         <label for="update-account">Compte</label>
@@ -58,8 +58,8 @@
 
     <div class="genre-container">
       <section class="section-genre">
-        <h2>Male</h2>
-        <label for="update-spemale">Spécialité</label>
+        <h2><i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i></h2>
+        <label for="update-aucune-m">Aucune</label>
         <input
           type="radio"
           id="update-aucune-m"
@@ -68,16 +68,15 @@
           checked
           required
         />
-        <label for="update-aucune-m">Aucune</label>
-        <input type="radio" id="update-repro-m" name="speMale" value="repro" />
         <label for="update-repro-m">Repro</label>
-        <input type="radio" id="update-came-m" name="speMale" value="camé" />
+        <input type="radio" id="update-repro-m" name="speMale" value="repro" />
         <label for="update-came-m">Camé</label>
+        <input type="radio" id="update-came-m" name="speMale" value="camé" />
         <div class="open-breed" id="update-open-breed-male">+</div>
       </section>
       <section class="section-genre">
-        <h2>Femelle</h2>
-        <label for="update-spefemale">Spécialité</label>
+        <h2><i class="fa-solid fa-venus fa-sm" style="color: #fb63fd;"></i></h2>
+        <label for="update-aucune-f">Aucune</label>
         <input
           type="radio"
           id="update-aucune-f"
@@ -86,33 +85,14 @@
           checked
           required
         />
-        <label for="update-aucune-f">Aucune</label>
-        <input type="radio" id="update-repro-f" name="speFemale" value="repro" />
         <label for="update-repro-f">Repro</label>
-        <input type="radio" id="update-came-f" name="speFemale" value="camé" />
+        <input type="radio" id="update-repro-f" name="speFemale" value="repro" />
         <label for="update-came-f">Camé</label>
+        <input type="radio" id="update-came-f" name="speFemale" value="camé" />
         <div class="open-breed" id="update-open-breed-female">+</div>
       </section>
       <input class="hidden" id="update-breed-male-value" type="text" name="breedMale" value="" required>
       <input class="hidden" id="update-breed-female-value" type="text" name="breedFemale" value="" required>
-    </div>
-
-    <div class="breed-list hidden" id="update-breed-list">
-      <section class="section-breed">
-        <% breeds.forEach(breed => { %>
-          <figure class="update-figure-dd">
-            <img class="image-dd" src="<%= breed.image%>" alt="Dragodinde <%= breed.color%>">
-            <figcaption class="figcaption-dd"><%= breed.id%></figcaption>
-          </figure>
-        <% }) %>
-      </section>
-        <input
-          class="input-submit --bgred"
-          type="button"
-          id="update-close-breed"
-          value="X"
-          onclick="confirmUpdate()"
-        />
     </div>
 
     <div class="modal-submit-buttons">
@@ -121,5 +101,45 @@
     </div>
   </form>
     </div>
+
+    <div class="breed-list hidden" id="update-breed-list">
+      <h2 class="modal__title">RACES</h2> 
+      
+      <div class="search-container breed-select">
+        <div class="search-box">
+        <button class="btn-search"><i class="fas fa-search"></i></button>
+          <input 
+            class="input-search" 
+            type="search" 
+            id="search-dd-update"
+            name="search"
+            maxlength="20"
+            placeholder="Recherche par race"
+            required
+          />
+          <span class="clear-search">&times;</span>
+        </div>
+      </div>
+
+      <section class="section-breed">
+
+        <% for (let index = 1; index < 11; index++) {%>
+          <div class="stade-container">
+            <h3>Stade <%=index%></h3>
+            <div class="stade__breed-container" data-stade="<%=index%>"></div>
+          </div>
+        <%}%>
+      
+        <% breeds.forEach(breed => { %>
+          <figure data-id="<%= breed.id%>" data-stade="<%= breed.stade%>" class="update-figure-dd">
+            <img class="image-dd" src="<%= breed.image%>" alt="Dragodinde <%= breed.color%>">
+          </figure>
+        <% }) %>
+      </section>
+      <div class="modal-submit-buttons">
+        <input class="is-cancel input-submit" type="button" id="update-close-breed" value="Annuler">
+      </div>
+    </div>
+
   </div>
 </div>

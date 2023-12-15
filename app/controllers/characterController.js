@@ -96,9 +96,11 @@ const characterController = {
         return response.status(404).json({ error: "Character not found." });
       }
 
-      const account = await Account.findByPk(accountId);
+      const accountExist = await Account.findByPk(accountId, {
+        include: "server",
+      });
 
-      if (!account) {
+      if (!accountExist) {
         return response.status(404).json({ error: "Account not found." });
       }
 
@@ -119,10 +121,14 @@ const characterController = {
         breed_male: breedMale,
         breed_female: breedFemale,
       });
-      if (updatedCharacter) {
-        updatedCharacter.breed_male = breedMaleExist;
-        updatedCharacter.breed_female = breedFemaleExist;
+
+      if (!updatedCharacter) {
+        return response.status(500).json({ error: "Internal server error" });
       }
+      updatedCharacter.breed_male = breedMaleExist;
+      updatedCharacter.breed_female = breedFemaleExist;
+      updatedCharacter.account_id = accountExist;
+
       response.json(updatedCharacter);
     } catch (err) {
       console.log(err);
@@ -195,15 +201,14 @@ const characterController = {
 
       if (!isNaN(serverId)) {
         server = await Server.findOne({ where: { id: serverId } });
-        if(server){
-          serverName=server.name;
-        }else{
+        if (server) {
+          serverName = server.name;
+        } else {
           return response.status(404).render("error", {
             error: {
               statusCode: 403,
               name: "Server not found",
-              message:
-                "Le serveur n'existe pas",
+              message: "Le serveur n'existe pas",
             },
           });
         }
@@ -211,32 +216,42 @@ const characterController = {
 
       const charactersFormatted = characters.map((character) => {
         character.account.user.password = null;
-        const dayRepro = dayjs(character.updated_at)
-          .locale("fr")
-          .format("dddd");
 
-        const dateRepro = dayjs(character.updated_at)
-          .locale("fr")
-          .format("DD/MM/YY");
+        let dayRepro = "null", dateRepro, hoursRepro, dayBirth = "null", dateBirth, hoursBirth;
+        let condition = "Feconde";
+        
+        if(character.date){
+          if(!dayjs(character.date).isBefore(dayjs(), 'minute')){
+            condition = "Fecondee";
+          }
+          dayRepro = dayjs(character.updated_at)
+            .locale("fr")
+            .format("dddd");
 
-        const hoursRepro = dayjs(character.updated_at)
-          .locale("fr")
-          .format("HH[h]mm");
+          dateRepro = dayjs(character.updated_at)
+            .locale("fr")
+            .format("DD/MM/YY");
 
-        const dayBirth = dayjs(character.updated_at)
-          .locale("fr")
-          .add(character.breedFemale.gestation, "minute")
-          .format("dddd");
+          hoursRepro = dayjs(character.updated_at)
+            .locale("fr")
+            .format("HH[h]mm");
 
-        const dateBirth = dayjs(character.updated_at)
-          .locale("fr")
-          .add(character.breedFemale.gestation, "minute")
-          .format("DD/MM/YY");
+          dayBirth = dayjs(character.updated_at)
+            .locale("fr")
+            .add(character.breedFemale.gestation, "minute")
+            .format("dddd");
 
-        const hoursBirth = dayjs(character.updated_at)
-          .locale("fr")
-          .add(character.breedFemale.gestation, "minute")
-          .format("HH[h]mm");
+          dateBirth = dayjs(character.updated_at)
+            .locale("fr")
+            .add(character.breedFemale.gestation, "minute")
+            .format("DD/MM/YY");
+
+          hoursBirth = dayjs(character.updated_at)
+            .locale("fr")
+            .add(character.breedFemale.gestation, "minute")
+            .format("HH[h]mm");
+
+        }
 
         return {
           ...character.toJSON(),
@@ -246,6 +261,7 @@ const characterController = {
           dayBirth,
           dateBirth,
           hoursBirth,
+          condition
         };
       });
 
@@ -254,7 +270,7 @@ const characterController = {
         breeds,
         serverName,
         accounts,
-        account
+        account,
       });
     } catch (err) {
       return response.status(500).render("error", {

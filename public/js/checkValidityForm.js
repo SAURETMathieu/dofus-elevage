@@ -1,3 +1,5 @@
+import { notifications } from "./notifications.js";
+
 export function createAccountCheck() {
   const nameInput = document.getElementById("name");
   const colorInput = document.getElementById("color");
@@ -72,5 +74,19 @@ export function checkValidityForAll() {
       }
     });
   });
+}
+
+export function checkBreeds() {
+
+  document.querySelector('#createModal form').addEventListener('submit', function(event) {
+    const breedFemaleValue = document.getElementById('breed-female-value').value;
+    const breedMaleValue = document.getElementById('breed-male-value').value;
+
+    if (!breedFemaleValue || !breedMaleValue) {
+      event.preventDefault();
+      notifications.editAndShowFailNotification("Veuillez choisir les races pour les deux sexes");
+    }
+  });
+  
 }
 

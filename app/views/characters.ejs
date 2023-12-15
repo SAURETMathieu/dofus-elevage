@@ -11,7 +11,7 @@
     <% } %>
   </h1>
 
-  <div class="main__container-list column">
+  <div class="main__container-list column" data-server="<%= serverName %>">
 
     <%- include('./partials/searchContainer'); -%>
 
@@ -41,11 +41,8 @@
 
 <% if (account) { %>
   <%- include('./partials/createCharacterModal'); -%>
-  <script type="module "src="/js/formAddCharacter.js"></script>
+  <script type="module" src="/js/formAddCharacter.js"></script>
 <% } %>
-
-
-<!-- <script src="/js/formUpdateCharacter.js"></script>-->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>

@@ -1,100 +1,112 @@
-<table>
-  <thead>
-    <tr>
-      <th>Serveur</th>
-      <th>Personnage</th>
-      <th>Reproduction</th>
-      <th>Accouchement</th>
-      <th>Male</th>
-      <th>Femelle</th>
-      <th>Specialité</th>
-      <th>Réaccoupler</th>
-      <th>Statut</th>
-      <th>Reproduction</th>
-      <th>Type</th>
-      <th>Modifier</th>
-      <th>Supprimer</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% characters.forEach(character => { %>
-    <tr id="character-<%= character.id %>" data-id="<%= character.id %>" data-type="character">
-      <td style="background-color: <%= character.account.color %>">
-        <a
-          href="/accounts?server=<%= character.account.server.id %>"
-          class="inline-block"
-        >
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Serveur</th>
+        <th>Personnage</th>
+        <th>Reproduction</th>
+        <th>Accouchement</th>
+        <th>Male</th>
+        <th>Femelle</th>
+        <th>Specialité</th>
+        <th>Réaccoupler</th>
+        <th>Statut</th>
+        <th>Reproduction</th>
+        <th>Type</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% characters.forEach(character => { %>
+      <tr id="character-<%= character.id %>" data-id="<%= character.id %>" data-type="character" data-name="<%= character.name %>">
+        <td class="td-server" style="background-color: <%= character.account.color %>">
+          <a
+            href="/accounts?server=<%= character.account.server.id %>"
+            class="inline-block link-server"
+          >
+            <img
+              class="table__img-server"
+              src="/images/<%= character.account.server.img %>"
+              alt="logo du serveur dofus <%= character.account.server.name %>"
+            />
+          </a>
+        </td>
+        <td class="td-name" style="background-color: <%= character.account.color %>">
+          <div data-classe="<%= character.class%>" data-account="<%= character.account.id %>" class="table__account"><%= character.account.name %></div>
           <img
-            class="table__img-server"
-            src="/images/<%= character.account.server.img %>"
-            alt="logo du serveur dofus <%= character.account.server.name %>"
+            class="table__img-perso"
+            src="/images/<%= character.class%>.png"
+            alt="classe du jeu dofus: <%= character.class%>"
           />
-        </a>
-      </td>
-      <td style="background-color: <%= character.account.color %>">
-        <div data-classe="<%= character.class%>" data-account="<%= character.account.id %>" class="table__account"><%= character.account.name %></div>
-        <img
-          class="table__img-perso"
-          src="/images/<%= character.class%>.png"
-          alt="classe du jeu dofus: <%= character.class%>"
-        />
-        <div class="table__character"><%= character.name %></div>
-      </td>
-      <td class="table__date">
-        <div><%= character.dayRepro %></div>
-        <div><%= character.dateRepro %></div>
-        <div><%= character.hoursRepro %></div>
-      </td>
-      <td class="table__date">
-        <div><%= character.dayBirth %></div>
-        <div><%= character.dateBirth %></div>
-        <div><%= character.hoursBirth %></div>
-      </td>
-      <td class="breed-male" data-id="<%= character.breedMale.id %>" data-img="<%= character.breedMale.image %>" data-name="<%= character.breedMale.name %>">
-        <img
-        class="table__breed-male-img"
-          src="<%= character.breedMale.image %>"
-          alt="dragodinde <%= character.breedMale.name %>"
-        />
-      </td>
-      <td class="breed-female" data-id="<%= character.breedFemale.id %>" data-img="<%= character.breedFemale.image %>" data-name="<%= character.breedFemale.name %>">
-        <img
-        class="table__breed-female-img"
-          src="<%= character.breedFemale.image %>"
-          alt="dragodinde <%= character.breedFemale.name %>"
-        />
-      </td>
-      <td class="table__spe">
-        <section class="table__td-section-speciality spe-male-value"><%= character.speMale %></section>
-        <section class="table__td-section-speciality spe-female-value"><%= character.speFemale %></section>
-      </td>
-      <td>
-        <button class="table__td-button-reproduction">
+          <div class="table__character"><%= character.name %></div>
+        </td>
+        <td class="table__date">
+          <div><%= character.dayRepro %></div>
+          <div><%= character.dateRepro %></div>
+          <div><%= character.hoursRepro %></div>
+        </td>
+        <td class="table__date">
+          <div><%= character.dayBirth %></div>
+          <div><%= character.dateBirth %></div>
+          <div><%= character.hoursBirth %></div>
+        </td>
+        <td class="breed-male" data-id="<%= character.breedMale.id %>" data-img="<%= character.breedMale.image %>" data-name="<%= character.breedMale.name %>">
           <img
-            src="/images/bouttonrepro.png"
-            class="table__couple"
-            alt="deux chiens qui s'accouplent"
+          class="table__breed-male-img"
+            src="<%= character.breedMale.image %>"
+            alt="dragodinde <%= character.breedMale.name %>"
           />
-        </button>
-      </td>
-      <td>Féconde</td>
-      <td data-repro="<%= character.reproduction %>" class="nb-repro"><%= character.reproduction %> / 20</td>
-      <td data-type="<%= character.type %>" class="type"><%= character.type %></td>
-      <td>
-        <button
-          class="table__td-icone" data-toggle="update-modal"
-        >
-          <i class="fa-regular fa-pen-to-square" style="color: #1900ff"></i>
-        </button>
-      </td>
-      <td>
-        <button
-          class="table__td-icone" data-toggle="delete-modal"
-        >
-          <i class="fa-regular fa-trash-can" style="color: #ff0000"></i>
-        </button>
-      </td>
-    </tr>
-    <% }) %>
-  </tbody>
-</table>
+        </td>
+        <td class="breed-female" data-id="<%= character.breedFemale.id %>" data-img="<%= character.breedFemale.image %>" data-name="<%= character.breedFemale.name %>">
+          <img
+          class="table__breed-female-img"
+            src="<%= character.breedFemale.image %>"
+            alt="dragodinde <%= character.breedFemale.name %>"
+          />
+        </td>
+        <td class="table__spe">
+          <section class="table__td-section-speciality spe-male-value"><%= character.speMale %></section>
+          <section class="table__td-section-speciality spe-female-value"><%= character.speFemale %></section>
+        </td>
+        <td>
+          <button class="table__td-button-reproduction">
+            <img
+              src="/images/bouttonrepro.png"
+              class="table__couple"
+              alt="deux chiens qui s'accouplent"
+            />
+          </button>
+        </td>
+        <td class="<%= character.condition.toLowerCase() %>"><%= character.condition %></td>
+        <td data-repro="<%= character.reproduction %>" class="nb-repro"><%= character.reproduction %> / 20</td>
+        <td data-type="<%= character.type %>" class="type">
+          <button
+            class="table__td-type" data-toggle="update-type"
+          >
+          <% if(character.type === "private"){ %>
+            <i class="fa-solid fa-lock lock-icon" style="color: yellow;"></i>
+          <% }else{ %>
+            <i class="fa-solid fa-lock-open lock-icon" style="color: green;"></i>
+          <% } %>
+          </button>
+        </td>
+        <td>
+          <button
+            class="table__td-icone" data-toggle="update-modal"
+          >
+            <i class="fa-regular fa-pen-to-square" style="color: #1900ff"></i>
+          </button>
+        </td>
+        <td>
+          <button
+            class="table__td-icone" data-toggle="delete-modal"
+          >
+            <i class="fa-regular fa-trash-can" style="color: #ff0000"></i>
+          </button>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

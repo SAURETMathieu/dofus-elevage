@@ -1,4 +1,7 @@
-import { searchServerByName } from "./searchByName.js";
+import { searchByName } from "./searchByName.js";
 
-searchServerByName();
+const elements = document.querySelectorAll(".server-container");
+const clearButton = document.querySelector("#clear-search");
+const searchInput = document.querySelector("#searchInput");
 
+searchByName(elements, searchInput, clearButton);

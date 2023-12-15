@@ -17,17 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const img = figure.querySelector("img");
       const selectedImageUrl = img.src;
       const selectedImageAlt = img.alt;
-      const figcaption = figure.querySelector(".figcaption-dd");
+      const figcaption = figure.dataset.id;
       
       //on insere l'image dans le formulaire 
       //on récupère la valeur que l'on veut envoyer dans la base de données
       if(currentSelectedBreed === 2){
         openFemaleButton.innerHTML = `<img src='${selectedImageUrl}' alt='${selectedImageAlt}'>`; 
-        breedFemaleValue.value = figcaption.textContent;
+        breedFemaleValue.value = figcaption;
       }
       if(currentSelectedBreed === 1){
         openMaleButton.innerHTML = `<img src='${selectedImageUrl}' alt='${selectedImageAlt}'>`;
-        breedMaleValue.value = figcaption.textContent;
+        breedMaleValue.value = figcaption;
       }
       // on remet invisible la liste des races
       breedList.classList.toggle("hidden");

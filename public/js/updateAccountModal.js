@@ -98,6 +98,13 @@ function submitUpdateAccount() {
           "/images/" + account.server.img;
         updatedElement.querySelector(".article__logo-server").alt =
           "image du serveur " + account.server.name;
+
+        const searchValue = document.querySelector("#searchInput").value;
+        
+        if (!updatedElement.dataset.name.includes(searchValue)) {
+          updatedElement.style.display = "none";
+        }
+
         modal.style.display = "none";
       }
     } catch (error) {

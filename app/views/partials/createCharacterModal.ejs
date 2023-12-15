@@ -11,9 +11,9 @@
       >
         <div class="form__container__section">
           <section class="form__section-input-text">
-            <label for="name">Nom du personnage</label>
+            <label for="name">Nom</label>
             <input
-              class="height2 input-text"
+              class="input-model"
               type="text"
               id="name"
               name="name"
@@ -48,8 +48,8 @@
       
         <div class="genre-container">
           <section class="section-genre">
-            <h2>Male</h2>
-            <label for="speMale">Spécialité</label>
+            <h2><i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i></h2>
+            <label for="aucune-m">Aucune</label>
             <input
               type="radio"
               id="aucune-m"
@@ -58,16 +58,15 @@
               checked
               required
             />
-            <label for="aucune-m">Aucune</label>
-            <input type="radio" id="repro-m" name="speMale" value="repro" />
             <label for="repro-m">Repro</label>
-            <input type="radio" id="came-m" name="speMale" value="camé" />
+            <input type="radio" id="repro-m" name="speMale" value="repro" />
             <label for="came-m">Camé</label>
+            <input type="radio" id="came-m" name="speMale" value="camé" />
             <div class="open-breed" id="open-breed-male">+</div>
           </section>
           <section class="section-genre">
-            <h2>Femelle</h2>
-            <label for="speFemale">Spécialité</label>
+            <h2><i class="fa-solid fa-venus fa-sm" style="color: #fb63fd;"></i></h2>
+            <label for="aucune-f">Aucune</label>
             <input
               type="radio"
               id="aucune-f"
@@ -76,27 +75,22 @@
               checked
               required
             />
-            <label for="aucune-f">Aucune</label>
-            <input type="radio" id="repro-f" name="speFemale" value="repro" />
             <label for="repro-f">Repro</label>
-            <input type="radio" id="came-f" name="speFemale" value="camé" />
+            <input type="radio" id="repro-f" name="speFemale" value="repro" />
             <label for="came-f">Camé</label>
+            <input type="radio" id="came-f" name="speFemale" value="camé" />
             <div class="open-breed" id="open-breed-female">+</div>
           </section>
           <input
-            class="hidden"
             id="breed-male-value"
-            type="text"
+            type="hidden"
             name="breedMale"
-            value=""
             required
           />
           <input
-            class="hidden"
             id="breed-female-value"
-            type="text"
+            type="hidden"
             name="breedFemale"
-            value=""
             required
           />
         </div>
@@ -104,13 +98,12 @@
         <div class="breed-list hidden" id="breed-list">
           <section class="section-breed">
             <% breeds.forEach(breed => { %>
-            <figure class="figure-dd">
+            <figure data-id="<%= breed.id%>" class="figure-dd">
               <img
                 class="image-dd"
                 src="<%= breed.image%>"
                 alt="Dragodinde <%= breed.color%>"
               />
-              <figcaption class="figcaption-dd"><%= breed.id%></figcaption>
             </figure>
             <% }) %>
           </section>
