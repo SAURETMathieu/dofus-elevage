@@ -275,10 +275,10 @@ function submitUpdateCharacter() {
           lockIcon.classList.remove("fa-lock", "fa-lock-open");
           if (updatedData.type === "private") {
             lockIcon.classList.add("fa-lock");
-            lockIcon.style.color = ("yellow");
+            lockIcon.style.color = "yellow";
           } else {
             lockIcon.classList.add("fa-lock-open");
-            lockIcon.style.color = ("green");
+            lockIcon.style.color = "green";
           }
 
           const searchValue = document.querySelector("#searchInput").value;

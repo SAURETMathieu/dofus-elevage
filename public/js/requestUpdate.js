@@ -12,7 +12,7 @@ export async function updateAccount(accountId) {
       },
       body: JSON.stringify(data),
     });
-    if(!response.ok){
+    if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const account = await response.json();
@@ -41,7 +41,34 @@ export async function updateCharacter(characterId) {
       },
       body: JSON.stringify(data),
     });
-    if(!response.ok){
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    const account = await response.json();
+    notifications.editAndShowSuccessNotification(
+      "Le personnage a bien été modifié"
+    );
+    return account;
+  } catch (error) {
+    notifications.editAndShowFailNotification(
+      "La modification du personnage a échoué : " + error.message
+    );
+    console.error("Error", error);
+    return false;
+  }
+}
+
+export async function updateTypeOfCharacter(characterType, characterId) {
+  try {
+    const id = parseInt(characterId, 10);
+    const response = await fetch(`/characters/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ type: characterType }),
+    });
+    if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const account = await response.json();

@@ -91,43 +91,73 @@ const characterController = {
       } = request.body;
 
       const selectedCharacter = await Character.findByPk(request.params.id);
+      const updatedData = {};
+      let accountExist, breedMaleExist, breedFemaleExist;
 
       if (!selectedCharacter) {
         return response.status(404).json({ error: "Character not found." });
       }
 
-      const accountExist = await Account.findByPk(accountId, {
+      if(accountId){
+        accountExist = await Account.findByPk(accountId, {
         include: "server",
-      });
+        });
 
-      if (!accountExist) {
-        return response.status(404).json({ error: "Account not found." });
+        if (!accountExist) {
+          return response.status(404).json({ error: "Account not found." });
+        }
+        updatedData.account_id = accountId;
+      }
+      
+      if(breedMale && breedMale){
+        breedMaleExist = await Breed.findByPk(breedMale);
+        breedFemaleExist = await Breed.findByPk(breedFemale);
+
+        if (!breedMaleExist || !breedFemaleExist) {
+          return response.status(404).json({ error: "Breed doesn't exist" });
+        }
+        updatedData.breed_male = breedMale;
+        updatedData.breed_female = breedFemale;
       }
 
-      const breedMaleExist = await Breed.findByPk(breedMale);
-      const breedFemaleExist = await Breed.findByPk(breedFemale);
-
-      if (!breedMaleExist || !breedFemaleExist) {
-        return response.status(404).json({ error: "Breed doesn't exist" });
+      if (name !== undefined && name !== null) {
+        updatedData.name = name;
       }
-      const updatedCharacter = await selectedCharacter.update({
-        name,
-        type,
-        reproduction: nbrepro,
-        account_id: accountId,
-        class: classe,
-        speMale,
-        speFemale,
-        breed_male: breedMale,
-        breed_female: breedFemale,
-      });
+      if (type !== undefined && type !== null) {
+        updatedData.type = type;
+      }
+      if (nbrepro !== undefined && nbrepro !== null) {
+        updatedData.reproduction = nbrepro;
+      }
+      if (classe !== undefined && classe !== null) {
+        updatedData.class = classe;
+      }
+      if (speMale !== undefined && speMale !== null) {
+        updatedData.speMale = speMale;
+      }
+      if (speFemale !== undefined && speFemale !== null) {
+        updatedData.speFemale = speFemale;
+      }
+    
+      const updatedCharacter = await selectedCharacter.update(
+        updatedData
+      );
 
       if (!updatedCharacter) {
         return response.status(500).json({ error: "Internal server error" });
       }
-      updatedCharacter.breed_male = breedMaleExist;
-      updatedCharacter.breed_female = breedFemaleExist;
-      updatedCharacter.account_id = accountExist;
+
+      if(breedMaleExist){
+         updatedCharacter.breed_male = breedMaleExist;
+      }
+
+      if(breedFemaleExist){
+        updatedCharacter.breed_female = breedFemaleExist;
+      }
+
+      if(accountExist){
+        updatedCharacter.account_id = accountExist;
+      }
 
       response.json(updatedCharacter);
     } catch (err) {
