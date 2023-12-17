@@ -223,6 +223,10 @@ function submitUpdateCharacter() {
             "/images/" + updatedData.account_id.server.img;
           elementToUpdate.querySelector(".td-server img").alt =
             "logo du serveur dofus " + updatedData.account_id.server.img;
+          elementToUpdate.querySelector(".date-birth").dataset.gestation = 
+            updatedData.breed_female.gestation;
+
+            //TODO modifier la date d'accouchement coté back et front
 
           elementToUpdate.querySelector(".td-name").style.backgroundColor =
             updatedData.account_id.color;

@@ -19,7 +19,9 @@ const updateCharacterSchema = Joi.object({
     speMale:Joi.string().valid('aucune', 'repro', 'camé'), 
     speFemale:Joi.string().valid('aucune', 'repro', 'camé'), 
     breedMale: Joi.number().integer().min(1), 
-    breedFemale: Joi.number().integer().min(1)
-}).or('name', 'type','nbrepro','accountId','classe','speMale','speFemale','breedMale', 'breedFemale');
+    breedFemale: Joi.number().integer().min(1),
+    date: Joi.date().timestamp(),
+    dateBirth: Joi.date().timestamp(),
+}).or('name', 'type','nbrepro','accountId','classe','speMale','speFemale','breedMale', 'breedFemale', 'date', 'dateBirth');
 
 module.exports =  { updateCharacterSchema, createCharacterSchema } ;

@@ -12,7 +12,12 @@ Account.init(
     color: {
       type: DataTypes.STRING(9),
       allowNull: false,
-    }
+    },
+    order: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      field: 'order',
+    },
   },
   {
     sequelize,

@@ -84,3 +84,31 @@ export async function updateTypeOfCharacter(characterType, characterId) {
     return false;
   }
 }
+
+export async function updateReproOfCharacter(nbrepro, gestationTime, characterId) {
+  try {
+    const id = parseInt(characterId, 10);
+    const timestampBirth = Date.now() + gestationTime * 60 * 1000;
+    const response = await fetch(`/characters/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ date: Date.now(), nbrepro, dateBirth: timestampBirth}),
+    });
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    const account = await response.json();
+    notifications.editAndShowSuccessNotification(
+      "La reproduction s'est réalisée avec succès"
+    );
+    return account;
+  } catch (error) {
+    notifications.editAndShowFailNotification(
+      "La reproduction a échoué : " + error.message
+    );
+    console.error("Error", error);
+    return false;
+  }
+}

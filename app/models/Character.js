@@ -23,6 +23,11 @@ Character.init(
       defaultValue: 0,
       field: 'nb_female',
     },
+    order: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      field: 'order',
+    },
     status: {
       type: DataTypes.STRING(20),
       allowNull: true,
@@ -50,16 +55,26 @@ Character.init(
       allowNull: true,
       field: 'date_reproduction',
     },
+    dateBirth: {
+      type: DataTypes.DATE,
+      defaultValue: null,
+      allowNull: true,
+      field: 'date_birth',
+    },
     type: {
       type: DataTypes.STRING(10),
       defaultValue: "private",
       allowNull: true,
     }
   },
+  
   {
     sequelize,
     modelName: "Character",
     tableName: "character",
+    defaultScope: {
+      order: [['dateBirth', 'ASC']]
+    },
   }
 );
 

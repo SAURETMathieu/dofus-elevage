@@ -6,6 +6,7 @@ import { checkValidityForAll, checkBreeds } from "./checkValidityForm.js";
 import { notifications } from "./notifications.js";
 import { sortDragodindes } from "./sortDragodindes.js";
 import { initLockButtons } from "./lockButtons.js";
+import { initReproductionButtons } from "./reproductionButtons.js";
 
 const elements = document.querySelectorAll("[data-type='character']");
 const clearButton = document.querySelector("#clear-search");
@@ -18,3 +19,4 @@ initCustomSelect();
 notifications.initCloseNotification();
 sortDragodindes();
 initLockButtons();
+initReproductionButtons();

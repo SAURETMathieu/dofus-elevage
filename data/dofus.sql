@@ -43,6 +43,7 @@ CREATE TABLE "account" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(20) NOT NULL,
     "color" VARCHAR(9) NOT NULL,
+    "order" INT NOT NULL DEFAULT 0,
     "server_id" INT REFERENCES "server"("id"),
     "user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -63,7 +64,9 @@ CREATE TABLE "character" (
     "spe_male" VARCHAR(10) DEFAULT 'aucune',
     "spe_female" VARCHAR(10) DEFAULT null,
     "nb_reproduction" INT DEFAULT 0,
-    "date_reproduction" DATE DEFAULT null,
+    "date_reproduction" TIMESTAMPTZ DEFAULT NULL,
+    "date_birth" TIMESTAMPTZ DEFAULT NULL,
+    "order" INT NOT NULL DEFAULT 0,
     "type" VARCHAR(10) DEFAULT 'private',
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ

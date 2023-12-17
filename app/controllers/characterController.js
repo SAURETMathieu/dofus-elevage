@@ -88,6 +88,8 @@ const characterController = {
         speFemale,
         breedMale,
         breedFemale,
+        date,
+        dateBirth
       } = request.body;
 
       const selectedCharacter = await Character.findByPk(request.params.id);
@@ -137,6 +139,12 @@ const characterController = {
       }
       if (speFemale !== undefined && speFemale !== null) {
         updatedData.speFemale = speFemale;
+      }
+      if (date !== undefined && date !== null) {
+        updatedData.date = date;
+      }
+      if (dateBirth !== undefined && dateBirth !== null) {
+        updatedData.dateBirth = dateBirth;
       }
     
       const updatedCharacter = await selectedCharacter.update(
@@ -251,36 +259,32 @@ const characterController = {
         let condition = "Feconde";
         
         if(character.date){
-          if(!dayjs(character.date).isBefore(dayjs(), 'minute')){
+          if(!dayjs(character.dateBirth).isBefore(dayjs(), 'minute')){
             condition = "Fecondee";
           }
-          dayRepro = dayjs(character.updated_at)
+          dayRepro = dayjs(character.date)
             .locale("fr")
             .format("dddd");
 
-          dateRepro = dayjs(character.updated_at)
+          dateRepro = dayjs(character.date)
             .locale("fr")
             .format("DD/MM/YY");
 
-          hoursRepro = dayjs(character.updated_at)
+          hoursRepro = dayjs(character.date)
             .locale("fr")
             .format("HH[h]mm");
 
-          dayBirth = dayjs(character.updated_at)
+          dayBirth = dayjs(character.dateBirth)
             .locale("fr")
-            .add(character.breedFemale.gestation, "minute")
             .format("dddd");
 
-          dateBirth = dayjs(character.updated_at)
+          dateBirth = dayjs(character.dateBirth)
             .locale("fr")
-            .add(character.breedFemale.gestation, "minute")
             .format("DD/MM/YY");
 
-          hoursBirth = dayjs(character.updated_at)
+          hoursBirth = dayjs(character.dateBirth)
             .locale("fr")
-            .add(character.breedFemale.gestation, "minute")
             .format("HH[h]mm");
-
         }
 
         return {
