@@ -20,3 +20,8 @@ notifications.initCloseNotification();
 sortDragodindes();
 initLockButtons();
 initReproductionButtons();
+//TODO mutualiser les breed list
+//TODO la rendre responsive
+//TODO la remplir
+//TODO ajouter un :hover
+//TODO faire fonctionner la recherche par nom ou stade(input si possible)

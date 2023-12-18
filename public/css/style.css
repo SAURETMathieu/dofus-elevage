@@ -963,6 +963,11 @@ thead {
   width:100%;
 }
 
+.open-breed:hover{
+  opacity:0.9;
+  background-color:#e6e6e6
+}
+
 .breed-list {
   position: fixed;
   top: 50%;
@@ -972,12 +977,21 @@ thead {
   height: 80vh;
   border:solid 5px rgb(0, 0, 0);
   background-color: #ffffff;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
 }
 
 .breed-list h2{
   padding:1rem;
   font-size:2rem;
   background-color:rgb(58, 58, 58);
+}
+
+.breed-list .input-submit{
+  width:30%;
+  padding:0.3rem;
+  min-width:150px;
 }
 
 .stade-container{
@@ -1006,6 +1020,11 @@ thead {
   border:solid 1px black;
   cursor:pointer;
   margin:0.5rem;
+}
+
+.figure-dd:hover, .update-figure-dd:hover{
+  opacity:0.9;
+  background-color:#e6e6e6;
 }
 
 .figure-dd img, .update-figure-dd img{
@@ -1071,9 +1090,10 @@ thead {
   color:green;
 }
 
-.fecondee{
+.fecondee, .sterile{
   color:red;
 }
+
 /* Modal styles */
 .modal {
   display: none;
@@ -1296,7 +1316,6 @@ thead {
 
 .input-search{
   height: 50px;
-  width: 50px;
   border-style: none;
   padding: 10px;
   font-size: 1rem;
@@ -1403,7 +1422,8 @@ thead {
 
 .search-container.breed-select{
   height:fit-content;
-  margin-top:1rem;
+  padding:0.8rem 0;
+  border-bottom: solid 1px black;
 }
 
 /*//////////////////*/
@@ -1556,6 +1576,10 @@ thead {
     width:7rem;
     top:-25px;
     left:calc(50% - 3.5rem);
+  }
+
+  .search-container.breed-select .input-search{
+    width:220px;
   }
 }
 

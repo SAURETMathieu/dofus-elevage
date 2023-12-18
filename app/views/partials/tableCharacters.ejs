@@ -46,7 +46,7 @@
           <div><%= character.dateRepro %></div>
           <div><%= character.hoursRepro %></div>
         </td>
-        <td data-gestation="<%= character.breedFemale.gestation %>" class="table__date date-birth">
+        <td data-time="<%= character.timestamp %>" data-gestation="<%= character.breedFemale.gestation %>" class="table__date date-birth">
           <div><%= character.dayBirth %></div>
           <div><%= character.dateBirth %></div>
           <div><%= character.hoursBirth %></div>
@@ -79,7 +79,11 @@
           </button>
         </td>
         <td class="condition <%= character.condition.toLowerCase() %>"><%= character.condition %></td>
+        <% if(character.reproduction > 19){ %>
+          <td data-repro="<%= character.reproduction %>" class="nb-repro sterile">Sterile</td>
+        <% }else{ %>
         <td data-repro="<%= character.reproduction %>" class="nb-repro"><%= character.reproduction %> / 20</td>
+        <% } %>
         <td data-type="<%= character.type %>" class="type">
           <button
             class="table__td-type" data-toggle="update-type"

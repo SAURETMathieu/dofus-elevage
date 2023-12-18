@@ -73,7 +73,7 @@ Character.init(
     modelName: "Character",
     tableName: "character",
     defaultScope: {
-      order: [['dateBirth', 'ASC']]
+      order: [['dateBirth', 'ASC', 'NULLS FIRST']]
     },
   }
 );

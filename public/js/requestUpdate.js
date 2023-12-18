@@ -34,6 +34,7 @@ export async function updateCharacter(characterId) {
     const formElement = document.getElementById("updateForm");
     const formData = new FormData(formElement);
     const data = Object.fromEntries(formData);
+
     const response = await fetch(`/characters/${characterId}`, {
       method: "PATCH",
       headers: {
@@ -44,11 +45,25 @@ export async function updateCharacter(characterId) {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
-    const account = await response.json();
+    const character = await response.json();
+    console.log(character);
+
+    if (character.dateBirth) {
+      const characterChange = await updateReproOfCharacter(
+        character.reproduction,
+        character.breed_female.gestation,
+        characterId
+      );
+      if (!characterChange) {
+        throw new Error(`Erreur lors de la modification du personnage`);
+      }
+      character.dateBirth = characterChange.dateBirth;
+    }
+
     notifications.editAndShowSuccessNotification(
       "Le personnage a bien été modifié"
     );
-    return account;
+    return character;
   } catch (error) {
     notifications.editAndShowFailNotification(
       "La modification du personnage a échoué : " + error.message
@@ -71,11 +86,11 @@ export async function updateTypeOfCharacter(characterType, characterId) {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
-    const account = await response.json();
+    const character = await response.json();
     notifications.editAndShowSuccessNotification(
       "Le personnage a bien été modifié"
     );
-    return account;
+    return character;
   } catch (error) {
     notifications.editAndShowFailNotification(
       "La modification du personnage a échoué : " + error.message
@@ -99,11 +114,11 @@ export async function updateReproOfCharacter(nbrepro, gestationTime, characterId
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
-    const account = await response.json();
+    const character = await response.json();
     notifications.editAndShowSuccessNotification(
       "La reproduction s'est réalisée avec succès"
     );
-    return account;
+    return character;
   } catch (error) {
     notifications.editAndShowFailNotification(
       "La reproduction a échoué : " + error.message

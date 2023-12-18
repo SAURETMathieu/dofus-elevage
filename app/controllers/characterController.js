@@ -257,14 +257,16 @@ const characterController = {
 
         let dayRepro = "null", dateRepro, hoursRepro, dayBirth = "null", dateBirth, hoursBirth;
         let condition = "Feconde";
-        
+
+        const timestamp = new Date(character.dateBirth).getTime();
         if(character.date){
           if(!dayjs(character.dateBirth).isBefore(dayjs(), 'minute')){
             condition = "Fecondee";
           }
-          dayRepro = dayjs(character.date)
+          dayReproFormat = dayjs(character.date)
             .locale("fr")
             .format("dddd");
+          dayRepro = dayReproFormat.charAt(0).toUpperCase() + dayReproFormat.slice(1);
 
           dateRepro = dayjs(character.date)
             .locale("fr")
@@ -274,9 +276,10 @@ const characterController = {
             .locale("fr")
             .format("HH[h]mm");
 
-          dayBirth = dayjs(character.dateBirth)
+          dayBirthFormat = dayjs(character.dateBirth)
             .locale("fr")
             .format("dddd");
+          dayBirth = dayBirthFormat.charAt(0).toUpperCase() + dayBirthFormat.slice(1);
 
           dateBirth = dayjs(character.dateBirth)
             .locale("fr")
@@ -287,6 +290,10 @@ const characterController = {
             .format("HH[h]mm");
         }
 
+        if(character.reproduction > 19){
+          condition = "Sterile";
+        }
+
         return {
           ...character.toJSON(),
           dayRepro,
@@ -295,7 +302,8 @@ const characterController = {
           dayBirth,
           dateBirth,
           hoursBirth,
-          condition
+          condition,
+          timestamp
         };
       });
 

@@ -11,18 +11,23 @@ export function initLockButtons() {
       const lockIcon = tdElement.querySelector(".lock-icon");
       const characterId = tdElement.closest("tr").dataset.id;
 
-      lockIcon.classList.remove("fa-lock", "fa-lock-open");
-
       if (type === "public") {
-        tdElement.dataset.type = "private";
-        lockIcon.classList.add("fa-lock");
-        lockIcon.style.color = "yellow";
-        await updateTypeOfCharacter("private", characterId);
+        
+        const character = await updateTypeOfCharacter("private", characterId);
+        if(character){
+          lockIcon.classList.remove("fa-lock-open");
+          tdElement.dataset.type = "private";
+          lockIcon.classList.add("fa-lock");
+          lockIcon.style.color = "yellow";
+        }
       } else {
-        tdElement.dataset.type = "public";
-        lockIcon.classList.add("fa-lock-open");
-        lockIcon.style.color = "green";
-        await updateTypeOfCharacter("public", characterId);
+        const character = await updateTypeOfCharacter("public", characterId);
+        if(character){
+          lockIcon.classList.remove("fa-lock");
+          tdElement.dataset.type = "public";
+          lockIcon.classList.add("fa-lock-open");
+          lockIcon.style.color = "green";
+        }
       }
     });
   });
