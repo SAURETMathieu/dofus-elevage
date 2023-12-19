@@ -1094,14 +1094,16 @@ thead {
 
 .feconde{
   color:green;
+  font-weight:600;
 }
 
 .fecondee{
   color:red;
+  font-weight:600;
 }
 
 .sterile{
-  color:red;
+  color:rgb(100, 0, 0);
   font-weight:600;
 }
 

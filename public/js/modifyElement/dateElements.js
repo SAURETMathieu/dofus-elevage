@@ -27,6 +27,8 @@ export function updateDateElement(element, character) {
   dateElement.children[0].textContent = dayRepro;
   dateElement.children[1].textContent = dateRepro;
   dateElement.children[2].textContent = hourRepro;
+
+  dateElement.dataset.time = new Date(character.date).getTime();
 }
 
 export function updateBirthElement(element, character) {

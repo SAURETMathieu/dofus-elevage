@@ -258,7 +258,9 @@ const characterController = {
         let dayRepro = "null", dateRepro, hoursRepro, dayBirth = "null", dateBirth, hoursBirth;
         let condition = "Feconde";
 
+        const time = new Date(character.date).getTime();
         const timestamp = new Date(character.dateBirth).getTime();
+
         if(character.date){
           if(!dayjs(character.dateBirth).isBefore(dayjs(), 'minute')){
             condition = "Fecondee";
@@ -303,7 +305,8 @@ const characterController = {
           dateBirth,
           hoursBirth,
           condition,
-          timestamp
+          timestamp,
+          time
         };
       });
 

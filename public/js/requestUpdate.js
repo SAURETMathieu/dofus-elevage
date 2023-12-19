@@ -99,16 +99,28 @@ export async function updateTypeOfCharacter(characterType, characterId) {
   }
 }
 
-export async function updateReproOfCharacter(nbrepro, gestationTime, characterId) {
+export async function updateReproOfCharacter(nbrepro, gestationTime, characterId, reproEvent) {
   try {
     const id = parseInt(characterId, 10);
-    const timestampBirth = Date.now() + gestationTime * 60 * 1000;
+    const trElement = document.querySelector(`#character-${characterId}`);
+    const time = parseInt(trElement.querySelector(".date-repro").dataset.time,10);
+
+    const requestBody = { nbrepro };
+
+    if(reproEvent === "reproduction"){
+        requestBody.date = Date.now();
+        requestBody.dateBirth = requestBody.date + gestationTime * 60 * 1000;
+    }else{
+      if(time){
+        requestBody.dateBirth = time + gestationTime * 60 * 1000;
+      }
+    }
     const response = await fetch(`/characters/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ date: Date.now(), nbrepro, dateBirth: timestampBirth}),
+      body: JSON.stringify(requestBody),
     });
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);

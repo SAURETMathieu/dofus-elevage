@@ -27,7 +27,7 @@ export function initReproductionButtons() {
         newNbRepro = 20;
       }
 
-      const character = await updateReproOfCharacter(newNbRepro, gestationTime, characterId);
+      const character = await updateReproOfCharacter(newNbRepro, gestationTime, characterId, "reproduction");
 
       if (character) {
 
