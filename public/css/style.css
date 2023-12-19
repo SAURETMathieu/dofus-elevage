@@ -979,19 +979,21 @@ thead {
   background-color: #ffffff;
   display:flex;
   flex-direction:column;
-  justify-content:space-evenly;
+  justify-content:space-between;
 }
 
 .breed-list h2{
   padding:1rem;
   font-size:2rem;
   background-color:rgb(58, 58, 58);
+  align-self:flex-start;
 }
 
 .breed-list .input-submit{
   width:30%;
   padding:0.3rem;
   min-width:150px;
+  margin:0.5rem;
 }
 
 .stade-container{
@@ -1422,7 +1424,7 @@ thead {
 
 .search-container.breed-select{
   height:fit-content;
-  padding:0.8rem 0;
+  padding:0.5rem 0;
   border-bottom: solid 1px black;
 }
 
@@ -1580,6 +1582,12 @@ thead {
 
   .search-container.breed-select .input-search{
     width:220px;
+    padding-right:4.2rem;
+    font-size:0.7rem;
+  }
+
+  .search-container.breed-select .input-search::placeholder{
+    font-size:0.7rem;
   }
 }
 
