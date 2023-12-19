@@ -31,7 +31,7 @@ export function initReproductionButtons() {
 
       if (character) {
 
-        updateReproElement(nbReproElement, character.reproduction);
+        updateReproElement(trElement, character.reproduction);
 
         updateStatusElement(trElement, character);
 

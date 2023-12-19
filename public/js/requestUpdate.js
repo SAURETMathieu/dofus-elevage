@@ -46,7 +46,6 @@ export async function updateCharacter(characterId) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const character = await response.json();
-    console.log(character);
 
     if (character.dateBirth) {
       const characterChange = await updateReproOfCharacter(

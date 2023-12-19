@@ -751,13 +751,12 @@ thead {
   font-size:1rem;
   font-weight:600;
   text-transform: uppercase;
-  background-color:#B5E61D;
   border:solid 2px white;
   border-radius:0.2rem;
 }
 
 .table__spe section:hover{
-  background-color:rgb(5, 92, 2);
+  transform:scale(1.01);
   cursor:pointer;
 }
 
@@ -1094,6 +1093,18 @@ thead {
 
 .fecondee, .sterile{
   color:red;
+}
+
+.aucune{
+  background-color:#97A703;
+}
+
+.repro{
+  background-color:#fc869d;
+}
+
+.came{
+  background-color:#8e81ff;
 }
 
 /* Modal styles */

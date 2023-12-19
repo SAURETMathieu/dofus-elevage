@@ -66,8 +66,8 @@
           />
         </td>
         <td class="table__spe">
-          <section class="table__td-section-speciality spe-male-value"><%= character.speMale %></section>
-          <section class="table__td-section-speciality spe-female-value"><%= character.speFemale %></section>
+          <section class="table__td-section-speciality spe-male-value <%= character.speMale.replace(/é/g, 'e') %>"><%= character.speMale %></section>
+          <section class="table__td-section-speciality spe-female-value <%= character.speFemale.replace(/é/g, 'e') %>"><%= character.speFemale %></section>
         </td>
         <td>
           <button class="table__td-button-reproduction">

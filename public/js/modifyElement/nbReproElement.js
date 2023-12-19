@@ -1,12 +1,14 @@
-export function updateReproElement(element, nbRepro){
+export function updateReproElement(element, numberRepro) {
+  const reproToUpdate = element.querySelector(".nb-repro");
 
-  if(nbRepro > 19){
-    element.textContent = "Sterile";
-    element.classList.add("sterile");
-  }else{
-    element.textContent = nbRepro + " / 20";
-    element.classList.remove("sterile");
+  const nbRepro = parseInt(numberRepro, 10);
+
+  if (nbRepro > 19) {
+    reproToUpdate.textContent = "Sterile";
+    reproToUpdate.classList.add("sterile");
+  } else {
+    reproToUpdate.textContent = nbRepro + " / 20";
+    reproToUpdate.classList.remove("sterile");
   }
-  element.dataset.repro = nbRepro;
-
+  reproToUpdate.dataset.repro = nbRepro;
 }

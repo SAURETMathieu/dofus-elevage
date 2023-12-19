@@ -1,8 +1,5 @@
-import { updateCharacter, updateReproOfCharacter } from "./requestUpdate.js";
-import { updateReproElement } from "./modifyElement/nbReproElement.js";
-import { updateStatusElement } from "./modifyElement/statusElement.js";
-import { updateBirthElement } from "./modifyElement/dateElements.js";
-import { updateOrderTable } from "./modifyElement/sortCharactersTable.js";
+import { updateCharacter } from "./requestUpdate.js";
+import * as modifyElement from "./modifyElement/index.js";
 
 const openModalBtn = document.querySelectorAll("[data-toggle='update-modal']");
 const closeModalButtons = document.querySelectorAll(".close-modal-btn");
@@ -210,89 +207,33 @@ function submitUpdateCharacter() {
       }
 
       if (!removed) {
-        const nameToUpdate = elementToUpdate.querySelector(".table__character");
-        nameToUpdate.textContent = updatedData.name;
 
-        const reproToUpdate = elementToUpdate.querySelector(".nb-repro");
-        updateReproElement(reproToUpdate, updatedData.reproduction);
+        modifyElement.updateReproElement(elementToUpdate, updatedData.reproduction);
 
-        updateStatusElement(elementToUpdate, updatedData);
+        modifyElement.updateStatusElement(elementToUpdate, updatedData);
 
-        if(updatedData.dateBirth){
-          updateBirthElement(elementToUpdate, updatedData);
+        if (updatedData.dateBirth) {
+          modifyElement.updateBirthElement(elementToUpdate, updatedData);
         }
 
-        const classeImgToUpdate =
-          elementToUpdate.querySelector(".table__img-perso");
-        classeImgToUpdate.src = `/images/${updatedData.class}.png`;
-        classeImgToUpdate.alt = `classe du jeu dofus: ${updatedData.class}`;
+        modifyElement.updateClasseElement(elementToUpdate, updatedData.class);
 
-        elementToUpdate.querySelector(".td-server").style.backgroundColor =
-          updatedData.account_id.color;
+        modifyElement.updateServerElement(elementToUpdate, updatedData);
 
-        elementToUpdate.querySelector(".td-server img").src =
-          "/images/" + updatedData.account_id.server.img;
-        elementToUpdate.querySelector(".td-server img").alt =
-          "logo du serveur dofus " + updatedData.account_id.server.img;
-        elementToUpdate.querySelector(".date-birth").dataset.gestation =
-          updatedData.breed_female.gestation;
+        modifyElement.updateBreedMale(elementToUpdate, updatedData);
+        modifyElement.updateBreedFemale(elementToUpdate, updatedData);
 
-        elementToUpdate.querySelector(".td-name").style.backgroundColor =
-          updatedData.account_id.color;
-
-        elementToUpdate.dataset.name = updatedData.name;
-
-        elementToUpdate.querySelector(".table__account").dataset.classe =
-          updatedData.class;
-        elementToUpdate.querySelector(".table__account").dataset.account =
-          updatedData.account_id.id;
-        elementToUpdate.querySelector(".table__account").textContent =
-          updatedData.account_id.name;
-        elementToUpdate.querySelector(".link-server").href =
-          "/accounts?server=" + updatedData.account_id.server.id;
-
-        const maleImgToUpdate = elementToUpdate.querySelector(
-          ".table__breed-male-img"
+        modifyElement.updateSpeciality(
+          elementToUpdate,
+          updatedData.speMale,
+          updatedData.speFemale
         );
-        maleImgToUpdate.src = `${updatedData.breed_male.image}`;
-        maleImgToUpdate.alt = `dragodinde ${updatedData.breed_male.name}`;
-        maleImgToUpdate.closest("td").dataset.id = updatedData.breed_male.id;
-        maleImgToUpdate.closest("td").dataset.img =
-          updatedData.breed_male.image;
-        maleImgToUpdate.closest("td").dataset.name =
-          updatedData.breed_male.name;
 
-        const femaleImgToUpdate = elementToUpdate.querySelector(
-          ".table__breed-female-img"
-        );
-        femaleImgToUpdate.src = `${updatedData.breed_female.image}`;
-        femaleImgToUpdate.alt = `dragodinde ${updatedData.breed_female.name}`;
-        femaleImgToUpdate.closest("td").dataset.id =
-          updatedData.breed_female.id;
-        femaleImgToUpdate.closest("td").dataset.img =
-          updatedData.breed_female.image;
-        femaleImgToUpdate.closest("td").dataset.name =
-          updatedData.breed_female.name;
+        modifyElement.updateCharacterElement(elementToUpdate, updatedData);
 
-        const speMaleToUpdate =
-          elementToUpdate.querySelector(".spe-male-value");
-        speMaleToUpdate.textContent = updatedData.speMale;
-
-        const speFemaleToUpdate =
-          elementToUpdate.querySelector(".spe-female-value");
-        speFemaleToUpdate.textContent = updatedData.speFemale;
-
-        const typeToUpdate = elementToUpdate.querySelector(".type");
-        typeToUpdate.dataset.type = updatedData.type;
-        const lockIcon = typeToUpdate.querySelector(".lock-icon");
-        lockIcon.classList.remove("fa-lock", "fa-lock-open");
-        if (updatedData.type === "private") {
-          lockIcon.classList.add("fa-lock");
-          lockIcon.style.color = "yellow";
-        } else {
-          lockIcon.classList.add("fa-lock-open");
-          lockIcon.style.color = "green";
-        }
+        modifyElement.updateType(elementToUpdate, updatedData.type);
+        
+        modifyElement.updateDatasetValues(elementToUpdate, updatedData);
 
         const searchValue = document.querySelector("#searchInput").value;
 
@@ -301,8 +242,7 @@ function submitUpdateCharacter() {
         }
       }
 
-      //TODO ranger tout dans des fonctions
-      updateOrderTable();
+      modifyElement.updateOrderTable();
       modal.style.display = "none";
     } catch (error) {
       console.error("Error", error);
