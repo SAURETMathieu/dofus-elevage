@@ -1,5 +1,7 @@
 import { initAddModal } from "./openCloseAddForm.js";
 import { checkValidityForAll, checkBreeds } from "./checkValidityForm.js";
+import { sortCreateDragodindes } from "./sortDragodindes.js";
+import { searchDragodindesCreate } from "./searchByColor.js";
 
 //variable pour savoir si on choisit la race pour le male ou la femelle
 document.addEventListener("DOMContentLoaded", function () {
@@ -54,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
   
   initAddModal();
   checkBreeds();
+  sortCreateDragodindes();
+  searchDragodindesCreate();
 });
 
 

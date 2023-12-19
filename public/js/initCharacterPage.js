@@ -7,6 +7,7 @@ import { notifications } from "./notifications.js";
 import { sortDragodindes } from "./sortDragodindes.js";
 import { initLockButtons } from "./lockButtons.js";
 import { initReproductionButtons } from "./reproductionButtons.js";
+import { searchDragodindesUpdate } from "./searchByColor.js";
 
 const elements = document.querySelectorAll("[data-type='character']");
 const clearButton = document.querySelector("#clear-search");
@@ -20,8 +21,7 @@ notifications.initCloseNotification();
 sortDragodindes();
 initLockButtons();
 initReproductionButtons();
-//TODO mutualiser les breed list
+searchDragodindesUpdate();
 //TODO la remplir
-//TODO faire fonctionner la recherche par nom ou stade(input si possible)
 // TODO changer la couleur du nbrepro en fonction de la valeur
 // TODO changer la couleur de fond de la spé

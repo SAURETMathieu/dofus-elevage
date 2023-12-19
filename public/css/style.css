@@ -1408,11 +1408,11 @@ thead {
   font-size:1.1rem;
 }
 
-#search-dd-update{
+#search-dd-update, #search-dd{
   border: solid 1px;
 }
 
-#search-dd-update::placeholder{
+#search-dd-update::placeholder, #search-dd::placeholder{
   color:black;
   text-shadow:none;
 }
