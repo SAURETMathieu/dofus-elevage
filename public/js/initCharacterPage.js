@@ -23,5 +23,3 @@ initLockButtons();
 initReproductionButtons();
 searchDragodindesUpdate();
 //TODO la remplir
-// TODO changer la couleur du nbrepro en fonction de la valeur
-// TODO changer la couleur de fond de la spé

@@ -782,6 +782,11 @@ thead {
   padding:0;
 }
 
+.nb-repro{
+  font-weight:600;
+  color: green;
+}
+
 /*////////////////*/
 /*   BACKGROUND   */
 /*////////////////*/
@@ -1091,8 +1096,17 @@ thead {
   color:green;
 }
 
-.fecondee, .sterile{
+.fecondee{
   color:red;
+}
+
+.sterile{
+  color:red;
+  font-weight:600;
+}
+
+.orange{
+  color:#FF4500;
 }
 
 .aucune{

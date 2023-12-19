@@ -82,7 +82,11 @@
         <% if(character.reproduction > 19){ %>
           <td data-repro="<%= character.reproduction %>" class="nb-repro sterile">Sterile</td>
         <% }else{ %>
-        <td data-repro="<%= character.reproduction %>" class="nb-repro"><%= character.reproduction %> / 20</td>
+          <% if(character.reproduction > 15){ %>
+            <td data-repro="<%= character.reproduction %>" class="nb-repro orange"><%= character.reproduction %> / 20</td>
+          <% }else{ %>
+            <td data-repro="<%= character.reproduction %>" class="nb-repro"><%= character.reproduction %> / 20</td>
+          <% } %>
         <% } %>
         <td data-type="<%= character.type %>" class="type">
           <button
