@@ -1,24 +1,23 @@
-const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
-const mime = require("mime-types");
+const multer = require('multer');
+// eslint-disable-next-line no-unused-vars
+const path = require('path');
+const fs = require('fs');
+const mime = require('mime-types');
 
 function uploadImage(err, request, response) {
   if (err instanceof multer.MulterError) {
-    console.log(err);
-    return response.render("error", {
+    return response.render('error', {
       error: {
         statusCode: 400,
-        name: "Multer Error",
+        name: 'Multer Error',
         message: err.message,
       },
     });
-  } else if (err) {
-    console.log(err);
-    return response.render("error", {
+  } if (err) {
+    return response.render('error', {
       error: {
         statusCode: 500,
-        name: "Error",
+        name: 'Error',
         message: err.message,
       },
     });
@@ -26,16 +25,17 @@ function uploadImage(err, request, response) {
 
   const fileMimeType = mime.lookup(request.file.originalname);
 
-  if (!fileMimeType.startsWith("image/")) {
+  if (!fileMimeType.startsWith('image/')) {
     fs.unlinkSync(request.file.path);
-    return response.render("error", {
+    return response.render('error', {
       error: {
         statusCode: 400,
-        name: "Invalid File Type",
+        name: 'Invalid File Type',
         message: "Le fichier téléchargé n'est pas une image.",
       },
     });
   }
+  return true;
 }
 
 module.exports = { uploadImage };

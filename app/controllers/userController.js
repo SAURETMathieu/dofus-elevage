@@ -1,11 +1,11 @@
-const { User } = require("../models/");
+const { User } = require('../models/index.js');
 
 // https://sequelize.org/docs/v6/core-concepts/model-instances/
 
 const userController = {
   async getUsers(request, response) {
     const users = await User.findAll({
-      order: ["id"],
+      order: ['id'],
     });
     response.json(users);
   },

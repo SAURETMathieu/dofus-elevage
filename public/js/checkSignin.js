@@ -1,9 +1,9 @@
-import { notifications } from "./notifications.js";
+import notifications from './notifications.js';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('form');
 
-  form.addEventListener('submit', async function(event) {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const response = await fetch('/signin', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formObject)
+        body: JSON.stringify(formObject),
       });
 
       if (!response.ok) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.location.href = '/';
     } catch (error) {
       notifications.editAndShowFailNotification(
-        error
+        error,
       );
     }
   });

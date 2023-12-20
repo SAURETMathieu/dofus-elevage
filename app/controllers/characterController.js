@@ -1,6 +1,9 @@
-const { User, Server, Account, Character, Breed } = require("../models");
-const dayjs = require("dayjs");
-require("dayjs/locale/fr");
+const dayjs = require('dayjs');
+const {
+  Server, Account, Character, Breed,
+} = require('../models/index.js');
+// eslint-disable-next-line import/extensions
+require('dayjs/locale/fr');
 
 const characterController = {
   addCharacter: async (request, response) => {
@@ -9,38 +12,43 @@ const characterController = {
       const accountId = parseInt(request.params.accountId, 10);
 
       if (id !== request.session.user.id) {
-        return response.status(409).render("error", {
+        return response.status(409).render('error', {
           error: {
             statusCode: 409,
-            name: "Error",
-            message: "Erreur lors de la création du compte",
+            name: 'Error',
+            message: 'Erreur lors de la création du compte',
           },
         });
       }
 
-      const { name, type, speMale, speFemale, classe } = request.body;
+      const {
+        name, type, speMale, speFemale, classe,
+      } = request.body;
       const breedMale = parseInt(request.body.breedMale, 10);
       const breedFemale = parseInt(request.body.breedFemale, 10);
 
       const character = await Character.create({
-        name: name,
+        name,
         breed_male: breedMale,
         breed_female: breedFemale,
         account_id: accountId,
         speMale,
         speFemale,
         class: classe,
-        type: type,
+        type,
       });
 
-      response.redirect(`/accounts/${accountId}/characters`);
+      if (!character) {
+        throw new Error('Erreur lors de la création du personnage');
+      }
+
+      return response.redirect(`/accounts/${accountId}/characters`);
     } catch (err) {
-      console.log(err);
-      return response.status(500).render("error", {
+      return response.status(500).render('error', {
         error: {
           statusCode: 500,
-          name: "Error",
-          message: "Erreur lors de la création du personnage",
+          name: 'Error',
+          message: 'Erreur lors de la création du personnage',
         },
       });
     }
@@ -50,27 +58,27 @@ const characterController = {
     try {
       const characterId = parseInt(request.params.id, 10);
       const foundCharacter = await Character.findByPk(characterId, {
-        include: ["account"],
+        include: ['account'],
       });
       if (foundCharacter.account.user_id !== request.session.user.id) {
-        return response.status(400).render("error", {
+        return response.status(400).render('error', {
           error: {
             statusCode: 400,
-            name: "Interdit",
-            message: "Pas autorisé",
+            name: 'Interdit',
+            message: 'Pas autorisé',
           },
         });
       }
+      // eslint-disable-next-line no-unused-vars
       const result = await foundCharacter.destroy();
       return response.status(204).end();
     } catch (err) {
-      console.log(err);
-      return response.status(500).render("error", {
+      return response.status(500).render('error', {
         error: {
           statusCode: 500,
-          name: "Internal Server Error",
+          name: 'Internal Server Error',
           message:
-            "Une erreure est survenue lors de la récupération des personnages",
+            'Une erreure est survenue lors de la récupération des personnages',
         },
       });
     }
@@ -89,29 +97,30 @@ const characterController = {
         breedMale,
         breedFemale,
         date,
-        dateBirth
+        dateBirth,
       } = request.body;
 
       const selectedCharacter = await Character.findByPk(request.params.id);
       const updatedData = {};
-      let accountExist, breedMaleExist, breedFemaleExist;
+      let accountExist; let breedMaleExist; let
+        breedFemaleExist;
 
       if (!selectedCharacter) {
-        return response.status(404).json({ error: "Character not found." });
+        return response.status(404).json({ error: 'Character not found.' });
       }
 
-      if(accountId){
+      if (accountId) {
         accountExist = await Account.findByPk(accountId, {
-        include: "server",
+          include: 'server',
         });
 
         if (!accountExist) {
-          return response.status(404).json({ error: "Account not found." });
+          return response.status(404).json({ error: 'Account not found.' });
         }
         updatedData.account_id = accountId;
       }
-      
-      if(breedMale && breedMale){
+
+      if (breedMale && breedMale) {
         breedMaleExist = await Breed.findByPk(breedMale);
         breedFemaleExist = await Breed.findByPk(breedFemale);
 
@@ -146,31 +155,30 @@ const characterController = {
       if (dateBirth !== undefined && dateBirth !== null) {
         updatedData.dateBirth = dateBirth;
       }
-    
+
       const updatedCharacter = await selectedCharacter.update(
-        updatedData
+        updatedData,
       );
 
       if (!updatedCharacter) {
-        return response.status(500).json({ error: "Internal server error" });
+        return response.status(500).json({ error: 'Internal server error' });
       }
 
-      if(breedMaleExist){
-         updatedCharacter.breed_male = breedMaleExist;
+      if (breedMaleExist) {
+        updatedCharacter.breed_male = breedMaleExist;
       }
 
-      if(breedFemaleExist){
+      if (breedFemaleExist) {
         updatedCharacter.breed_female = breedFemaleExist;
       }
 
-      if(accountExist){
+      if (accountExist) {
         updatedCharacter.account_id = accountExist;
       }
 
-      response.json(updatedCharacter);
+      return response.json(updatedCharacter);
     } catch (err) {
-      console.log(err);
-      return response.status(500).json({ error: "Internal server error" });
+      return response.status(500).json({ error: 'Internal server error' });
     }
   },
 
@@ -179,27 +187,27 @@ const characterController = {
       const serverId = parseInt(request.query.server, 10);
       const accountId = parseInt(request.params.accountId, 10);
 
-      let account = undefined;
-      let serverName = undefined;
-      let includeOptions = [
+      let account;
+      let serverName;
+      const includeOptions = [
         {
-          association: "account",
+          association: 'account',
           where: { user_id: request.session.user.id },
           include: [
             {
-              association: "user",
+              association: 'user',
             },
             {
-              association: "server",
+              association: 'server',
               where: {},
             },
           ],
         },
         {
-          association: "breedFemale",
+          association: 'breedFemale',
         },
         {
-          association: "breedMale",
+          association: 'breedMale',
         },
       ];
 
@@ -207,10 +215,10 @@ const characterController = {
         account = await Account.findOne({ where: { id: accountId } });
 
         if (!account || account.user_id !== request.session.user.id) {
-          return response.status(403).render("error", {
+          return response.status(403).render('error', {
             error: {
               statusCode: 403,
-              name: "Acces interdit",
+              name: 'Acces interdit',
               message:
                 "Vous n'avez pas le permission d'accéder aux personnages de ce compte",
             },
@@ -219,7 +227,7 @@ const characterController = {
         includeOptions[0].where.id = accountId;
       }
 
-      if (!isNaN(serverId)) {
+      if (!Number.isNaN(serverId)) {
         includeOptions[0].include[1].where.id = serverId;
       }
 
@@ -232,20 +240,20 @@ const characterController = {
         where: { user_id: request.session.user.id },
         include: [
           {
-            association: "server",
+            association: 'server',
           },
         ],
       });
 
-      if (!isNaN(serverId)) {
-        server = await Server.findOne({ where: { id: serverId } });
+      if (!Number.isNaN(serverId)) {
+        const server = await Server.findOne({ where: { id: serverId } });
         if (server) {
           serverName = server.name;
         } else {
-          return response.status(404).render("error", {
+          return response.status(404).render('error', {
             error: {
               statusCode: 403,
-              name: "Server not found",
+              name: 'Server not found',
               message: "Le serveur n'existe pas",
             },
           });
@@ -253,47 +261,49 @@ const characterController = {
       }
 
       const charactersFormatted = characters.map((character) => {
+        // eslint-disable-next-line no-param-reassign
         character.account.user.password = null;
 
-        let dayRepro = "null", dateRepro, hoursRepro, dayBirth = "null", dateBirth, hoursBirth;
-        let condition = "Feconde";
+        let dayRepro = 'null'; let dateRepro; let hoursRepro; let dayBirth = 'null'; let dateBirth; let
+          hoursBirth;
+        let condition = 'Feconde';
 
         const time = new Date(character.date).getTime();
         const timestamp = new Date(character.dateBirth).getTime();
 
-        if(character.date){
-          if(!dayjs(character.dateBirth).isBefore(dayjs(), 'minute')){
-            condition = "Fecondee";
+        if (character.date) {
+          if (!dayjs(character.dateBirth).isBefore(dayjs(), 'minute')) {
+            condition = 'Fecondee';
           }
-          dayReproFormat = dayjs(character.date)
-            .locale("fr")
-            .format("dddd");
+          const dayReproFormat = dayjs(character.date)
+            .locale('fr')
+            .format('dddd');
           dayRepro = dayReproFormat.charAt(0).toUpperCase() + dayReproFormat.slice(1);
 
           dateRepro = dayjs(character.date)
-            .locale("fr")
-            .format("DD/MM/YY");
+            .locale('fr')
+            .format('DD/MM/YY');
 
           hoursRepro = dayjs(character.date)
-            .locale("fr")
-            .format("HH[h]mm");
+            .locale('fr')
+            .format('HH[h]mm');
 
-          dayBirthFormat = dayjs(character.dateBirth)
-            .locale("fr")
-            .format("dddd");
+          const dayBirthFormat = dayjs(character.dateBirth)
+            .locale('fr')
+            .format('dddd');
           dayBirth = dayBirthFormat.charAt(0).toUpperCase() + dayBirthFormat.slice(1);
 
           dateBirth = dayjs(character.dateBirth)
-            .locale("fr")
-            .format("DD/MM/YY");
+            .locale('fr')
+            .format('DD/MM/YY');
 
           hoursBirth = dayjs(character.dateBirth)
-            .locale("fr")
-            .format("HH[h]mm");
+            .locale('fr')
+            .format('HH[h]mm');
         }
 
-        if(character.reproduction > 19){
-          condition = "Sterile";
+        if (character.reproduction > 19) {
+          condition = 'Sterile';
         }
 
         return {
@@ -306,11 +316,11 @@ const characterController = {
           hoursBirth,
           condition,
           timestamp,
-          time
+          time,
         };
       });
 
-      response.render("characters", {
+      return response.render('characters', {
         characters: charactersFormatted,
         breeds,
         serverName,
@@ -318,12 +328,12 @@ const characterController = {
         account,
       });
     } catch (err) {
-      return response.status(500).render("error", {
+      return response.status(500).render('error', {
         error: {
           statusCode: 500,
-          name: "Internal Server Error",
+          name: 'Internal Server Error',
           message:
-            "Une erreure est survenue lors de la récupération des personnages",
+            'Une erreure est survenue lors de la récupération des personnages',
         },
       });
     }

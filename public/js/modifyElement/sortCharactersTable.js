@@ -1,14 +1,14 @@
-export function updateOrderTable() {
+export default function updateOrderTable() {
   const trElements = document.querySelectorAll("[data-type='character']");
   const trArray = Array.from(trElements);
   trArray.sort((a, b) => {
     const timestampA = parseInt(
-      a.querySelector(".date-birth").dataset.time,
-      10
+      a.querySelector('.date-birth').dataset.time,
+      10,
     );
     const timestampB = parseInt(
-      b.querySelector(".date-birth").dataset.time,
-      10
+      b.querySelector('.date-birth').dataset.time,
+      10,
     );
     return timestampA - timestampB;
   });

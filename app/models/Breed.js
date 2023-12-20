@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../database");
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../database.js');
 
 class Breed extends Model {}
 
@@ -30,9 +30,9 @@ Breed.init(
   },
   {
     sequelize,
-    modelName: "Breed",
-    tableName: "breed",
-  }
+    modelName: 'Breed',
+    tableName: 'breed',
+  },
 );
 
 module.exports = Breed;

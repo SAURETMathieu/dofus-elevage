@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../database");
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../database.js');
 
 class Server extends Model {}
 
@@ -12,7 +12,7 @@ Server.init(
     },
     game: {
       type: DataTypes.STRING(20),
-      defaultValue: "Dofus Rétro",
+      defaultValue: 'Dofus Rétro',
       allowNull: false,
     },
     img: {
@@ -22,9 +22,9 @@ Server.init(
   },
   {
     sequelize,
-    modelName: "Server",
-    tableName: "server",
-  }
+    modelName: 'Server',
+    tableName: 'server',
+  },
 );
 
 module.exports = Server;

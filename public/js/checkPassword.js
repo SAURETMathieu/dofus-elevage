@@ -1,7 +1,7 @@
-const passwordInput = document.getElementById("password");
-const passwordConfirmInput = document.getElementById("passwordconfirm");
+const passwordInput = document.getElementById('password');
+const passwordConfirmInput = document.getElementById('passwordconfirm');
 const passwordIndicators = document.querySelectorAll(
-  ".valid-indicator-password"
+  '.valid-indicator-password',
 );
 
 function checkPasswordsMatch() {
@@ -10,14 +10,14 @@ function checkPasswordsMatch() {
 
   if (password === passwordConfirm) {
     passwordIndicators.forEach((indicator) => {
-      indicator.style.display = "inline";
+      indicator.style.display = 'inline';
     });
   } else {
     passwordIndicators.forEach((indicator) => {
-      indicator.style.display = "none";
+      indicator.style.display = 'none';
     });
   }
 }
 
-passwordInput.addEventListener("input", checkPasswordsMatch);
-passwordConfirmInput.addEventListener("input", checkPasswordsMatch);
+passwordInput.addEventListener('input', checkPasswordsMatch);
+passwordConfirmInput.addEventListener('input', checkPasswordsMatch);

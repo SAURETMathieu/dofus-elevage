@@ -1,14 +1,14 @@
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 
 function deleteImage(urlImage) {
-  const absolutePath = path.resolve("./public/images/");
+  const absolutePath = path.resolve('./public/images/');
   if (fs.existsSync(absolutePath + urlImage)) {
     fs.unlink(absolutePath + urlImage, (err) => {
       if (err) {
-        console.error("Erreur lors de la suppression du fichier :", err);
+        console.error('Erreur lors de la suppression du fichier :', err);
       } else {
-        console.log("Fichier supprimé avec succès.");
+        console.log('Fichier supprimé avec succès.');
       }
     });
   } else {
@@ -16,4 +16,4 @@ function deleteImage(urlImage) {
   }
 }
 
-module.exports={deleteImage};
+module.exports = { deleteImage };

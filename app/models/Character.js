@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require("sequelize");
-const sequelize = require("../database");
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../database.js');
 
 class Character extends Model {}
 
@@ -63,19 +63,19 @@ Character.init(
     },
     type: {
       type: DataTypes.STRING(10),
-      defaultValue: "private",
+      defaultValue: 'private',
       allowNull: true,
-    }
+    },
   },
-  
+
   {
     sequelize,
-    modelName: "Character",
-    tableName: "character",
+    modelName: 'Character',
+    tableName: 'character',
     defaultScope: {
-      order: [['dateBirth', 'ASC', 'NULLS FIRST']]
+      order: [['dateBirth', 'ASC', 'NULLS FIRST']],
     },
-  }
+  },
 );
 
 module.exports = Character;

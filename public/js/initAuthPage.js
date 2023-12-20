@@ -1,3 +1,3 @@
-import { checkValidityForAll } from "./checkValidityForm.js";
+import { checkValidityForAll } from './checkValidityForm.js';
 
 checkValidityForAll();

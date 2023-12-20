@@ -1,108 +1,108 @@
-import { updateCharacter } from "./requestUpdate.js";
-import * as modifyElement from "./modifyElement/index.js";
+import { updateCharacter } from './requestUpdate.js';
+import * as modifyElement from './modifyElement/index.js';
 
 const openModalBtn = document.querySelectorAll("[data-toggle='update-modal']");
-const closeModalButtons = document.querySelectorAll(".close-modal-btn");
-const modal = document.getElementById("updateModal");
-const cancelButton = document.getElementById("update-cancel");
-const submitButton = modal.querySelector("#update-submit");
+const closeModalButtons = document.querySelectorAll('.close-modal-btn');
+const modal = document.getElementById('updateModal');
+const cancelButton = document.getElementById('update-cancel');
+const submitButton = modal.querySelector('#update-submit');
 
 function openModal() {
   openModalBtn.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const dataId = event.target.closest("[data-id]").getAttribute("data-id");
+    button.addEventListener('click', (event) => {
+      const dataId = event.target.closest('[data-id]').getAttribute('data-id');
       modal.dataset.id = dataId;
 
       // elements
-      const updateNameInput = document.querySelector("#update-name");
-      const updateTypeInput = document.querySelector("#update-type");
+      const updateNameInput = document.querySelector('#update-name');
+      const updateTypeInput = document.querySelector('#update-type');
       const updateTypeSpan = document.querySelector(
-        "#select2-update-type-container"
+        '#select2-update-type-container',
       );
-      const updateReproInput = document.querySelector("#number-input");
-      const updateAccountInput = document.querySelector("#update-account");
+      const updateReproInput = document.querySelector('#number-input');
+      const updateAccountInput = document.querySelector('#update-account');
       const updateAccountSpan = document.querySelector(
-        "#select2-update-account-container"
+        '#select2-update-account-container',
       );
-      const updateClasseInput = document.querySelector("#update-classe");
+      const updateClasseInput = document.querySelector('#update-classe');
       const updateClasseSpan = document.querySelector(
-        "#select2-update-classe-container"
+        '#select2-update-classe-container',
       );
-      const updateAucuneMInput = document.querySelector("#update-aucune-m");
-      const updateAucuneFInput = document.querySelector("#update-aucune-f");
-      const updateReproMInput = document.querySelector("#update-repro-m");
-      const updateReproFInput = document.querySelector("#update-repro-f");
-      const updateCameMInput = document.querySelector("#update-came-m");
-      const updateCameFInput = document.querySelector("#update-came-f");
+      const updateAucuneMInput = document.querySelector('#update-aucune-m');
+      const updateAucuneFInput = document.querySelector('#update-aucune-f');
+      const updateReproMInput = document.querySelector('#update-repro-m');
+      const updateReproFInput = document.querySelector('#update-repro-f');
+      const updateCameMInput = document.querySelector('#update-came-m');
+      const updateCameFInput = document.querySelector('#update-came-f');
       const updateBreedMInput = document.querySelector(
-        "#update-breed-male-value"
+        '#update-breed-male-value',
       );
       const updateBreedFInput = document.querySelector(
-        "#update-breed-female-value"
+        '#update-breed-female-value',
       );
-      const updateOpenMale = document.getElementById("update-open-breed-male");
+      const updateOpenMale = document.getElementById('update-open-breed-male');
       const updateOpenFemale = document.getElementById(
-        "update-open-breed-female"
+        'update-open-breed-female',
       );
-      const breedMale = event.target.closest("tr").querySelector(".breed-male");
+      const breedMale = event.target.closest('tr').querySelector('.breed-male');
       const breedFemale = event.target
-        .closest("tr")
-        .querySelector(".breed-female");
+        .closest('tr')
+        .querySelector('.breed-female');
 
-      //spe
+      // spe
       const speMale = event.target
-        .closest("tr")
-        .querySelector(".spe-male-value").textContent;
+        .closest('tr')
+        .querySelector('.spe-male-value').textContent;
 
       const speFemale = event.target
-        .closest("tr")
-        .querySelector(".spe-female-value").textContent;
-      //name
+        .closest('tr')
+        .querySelector('.spe-female-value').textContent;
+      // name
       updateNameInput.value = event.target
-        .closest("tr")
-        .querySelector(".table__character").textContent;
-      //type
+        .closest('tr')
+        .querySelector('.table__character').textContent;
+      // type
       updateTypeInput.value = event.target
-        .closest("tr")
-        .querySelector(".type").dataset.type;
+        .closest('tr')
+        .querySelector('.type').dataset.type;
 
       updateTypeSpan.textContent = event.target
-        .closest("tr")
-        .querySelector(".type").dataset.type;
+        .closest('tr')
+        .querySelector('.type').dataset.type;
       updateTypeSpan.title = event.target
-        .closest("tr")
-        .querySelector(".type").dataset.type;
-      //classe
+        .closest('tr')
+        .querySelector('.type').dataset.type;
+      // classe
       updateClasseInput.value = event.target
-        .closest("tr")
-        .querySelector(".table__account").dataset.classe;
+        .closest('tr')
+        .querySelector('.table__account').dataset.classe;
 
       updateClasseSpan.textContent = capitalizeFirstLetter(
-        event.target.closest("tr").querySelector(".table__account").dataset
-          .classe
+        event.target.closest('tr').querySelector('.table__account').dataset
+          .classe,
       );
 
       updateClasseSpan.title = capitalizeFirstLetter(
-        event.target.closest("tr").querySelector(".table__account").dataset
-          .classe
+        event.target.closest('tr').querySelector('.table__account').dataset
+          .classe,
       );
-      //repro
+      // repro
       updateReproInput.value = event.target
-        .closest("tr")
-        .querySelector(".nb-repro").dataset.repro;
-      //account
+        .closest('tr')
+        .querySelector('.nb-repro').dataset.repro;
+      // account
       updateAccountInput.value = event.target
-        .closest("tr")
-        .querySelector(".table__account").dataset.account;
+        .closest('tr')
+        .querySelector('.table__account').dataset.account;
 
       updateAccountSpan.textContent = event.target
-        .closest("tr")
-        .querySelector(".table__account").textContent;
+        .closest('tr')
+        .querySelector('.table__account').textContent;
 
       updateAccountSpan.title = event.target
-        .closest("tr")
-        .querySelector(".table__account").textContent;
-      //breeds
+        .closest('tr')
+        .querySelector('.table__account').textContent;
+      // breeds
       updateBreedMInput.value = breedMale.dataset.id;
 
       updateBreedFInput.value = breedFemale.dataset.id;
@@ -113,12 +113,12 @@ function openModal() {
       updateOpenFemale.innerHTML = `<img src='${breedFemale.dataset.img}' 
       alt='dragodinde ${breedFemale.dataset.name} 
       dans le jeu dofus'>`;
-      //spe
-      if (speMale === "aucune") {
+      // spe
+      if (speMale === 'aucune') {
         updateAucuneMInput.checked = true;
         updateReproMInput.checked = false;
         updateCameMInput.checked = false;
-      } else if (speMale === "repro") {
+      } else if (speMale === 'repro') {
         updateAucuneMInput.checked = false;
         updateReproMInput.checked = true;
         updateCameMInput.checked = false;
@@ -128,11 +128,11 @@ function openModal() {
         updateCameMInput.checked = true;
       }
 
-      if (speFemale === "aucune") {
+      if (speFemale === 'aucune') {
         updateAucuneFInput.checked = true;
         updateReproFInput.checked = false;
         updateCameFInput.checked = false;
-      } else if (speFemale === "repro") {
+      } else if (speFemale === 'repro') {
         updateAucuneFInput.checked = false;
         updateReproFInput.checked = true;
         updateCameFInput.checked = false;
@@ -146,29 +146,29 @@ function openModal() {
       // colorIndicator.style.display = "inline";
       // serverIndicator.style.display = "inline";
 
-      modal.style.display = "block";
+      modal.style.display = 'block';
     });
   });
 }
 
 function closeModal() {
   closeModalButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      modal.style.display = "none";
+    button.addEventListener('click', () => {
+      modal.style.display = 'none';
     });
-    window.addEventListener("click", (event) => {
+    window.addEventListener('click', (event) => {
       if (event.target === modal) {
-        modal.style.display = "none";
+        modal.style.display = 'none';
       }
-      cancelButton.addEventListener("click", function () {
-        modal.style.display = "none";
+      cancelButton.addEventListener('click', () => {
+        modal.style.display = 'none';
       });
     });
   });
 }
 
 function submitUpdateCharacter() {
-  submitButton.addEventListener("click", async function (event) {
+  submitButton.addEventListener('click', async (event) => {
     try {
       event.preventDefault();
       const characterIdToUpdate = modal.dataset.id;
@@ -177,23 +177,23 @@ function submitUpdateCharacter() {
       let removed = false;
 
       if (!updatedData) {
-        throw new Error(`Erreur lors de la modification du personnage`);
+        throw new Error('Erreur lors de la modification du personnage');
       }
 
       const elementToUpdate = document.querySelector(
-        `#character-${characterIdToUpdate}`
+        `#character-${characterIdToUpdate}`,
       );
 
       if (!elementToUpdate) {
-        throw new Error(`Le personnage a modifier est introuvable`);
+        throw new Error('Le personnage a modifier est introuvable');
       }
 
       const accountId = parseInt(
-        document.querySelector(".add-container")?.dataset.account,
-        10
+        document.querySelector('.add-container')?.dataset.account,
+        10,
       );
 
-      const serverId = document.querySelector(".main__container-list").dataset
+      const serverId = document.querySelector('.main__container-list').dataset
         .server;
 
       if (accountId && parseInt(updatedData.account_id.id, 10) !== accountId) {
@@ -207,7 +207,6 @@ function submitUpdateCharacter() {
       }
 
       if (!removed) {
-
         modifyElement.updateReproElement(elementToUpdate, updatedData.reproduction);
 
         modifyElement.updateStatusElement(elementToUpdate, updatedData);
@@ -226,26 +225,26 @@ function submitUpdateCharacter() {
         modifyElement.updateSpeciality(
           elementToUpdate,
           updatedData.speMale,
-          updatedData.speFemale
+          updatedData.speFemale,
         );
 
         modifyElement.updateCharacterElement(elementToUpdate, updatedData);
 
         modifyElement.updateType(elementToUpdate, updatedData.type);
-        
+
         modifyElement.updateDatasetValues(elementToUpdate, updatedData);
 
-        const searchValue = document.querySelector("#searchInput").value;
+        const searchValue = document.querySelector('#searchInput').value;
 
         if (!elementToUpdate.dataset.name.includes(searchValue)) {
-          elementToUpdate.style.display = "none";
+          elementToUpdate.style.display = 'none';
         }
       }
 
       modifyElement.updateOrderTable();
-      modal.style.display = "none";
+      modal.style.display = 'none';
     } catch (error) {
-      console.error("Error", error);
+      console.error('Error', error);
     }
   });
 }
@@ -254,7 +253,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function initModalUpdateCharacter() {
+export default function initModalUpdateCharacter() {
   openModal();
   closeModal();
   submitUpdateCharacter();

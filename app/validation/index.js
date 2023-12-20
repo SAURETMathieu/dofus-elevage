@@ -1,17 +1,17 @@
-function validate(schema, source = 'body'){
+function validate(schema, source = 'body') {
   return (request, response, next) => {
     const { error } = schema.validate(request[source]);
     if (error) {
-      return response.status(400).render("error", {
+      return response.status(400).render('error', {
         error: {
           statusCode: 400,
-          name: "Erreur",
+          name: 'Erreur',
           message: error.message,
         },
       });
     }
-    next();
-  }
+    return next();
+  };
 }
 
 module.exports = validate;

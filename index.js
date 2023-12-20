@@ -1,16 +1,17 @@
-require("dotenv").config();
-const express = require("express");
-const router = require("./app/router");
-const session = require("express-session");
+/* eslint-disable import/extensions */
+require('dotenv').config();
+const express = require('express');
+const session = require('express-session');
+const router = require('./app/router');
 
 const PORT = process.env.PORT || 4000;
 
 const app = express();
 
-app.set("view engine", "ejs");
-app.set("views", "./app/views");
+app.set('view engine', 'ejs');
+app.set('views', './app/views');
 
-app.use(express.static("./public"));
+app.use(express.static('./public'));
 app.use(express.json());
 
 app.use(
@@ -19,7 +20,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false },
-  })
+  }),
 );
 
 app.use(express.urlencoded({ extended: true }));
@@ -34,5 +35,6 @@ app.use((request, response, next) => {
 app.use(router);
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server listening on http://localhost:${PORT}`);
 });

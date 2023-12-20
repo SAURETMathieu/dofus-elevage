@@ -1,38 +1,39 @@
-const { User, Server, Account } = require("../models");
+// eslint-disable-next-line no-unused-vars
 const { Op } = require('sequelize');
+const { Server } = require('../models/index.js');
 
 const mainController = {
   getHomePage: (request, response) => {
-    response.render("homepage");
+    response.render('homepage');
   },
 
   getPublicPage: (request, response) => {
-    response.render("public");
+    response.render('public');
   },
 
   getPrivatePage: (request, response) => {
-    response.render("private");
+    response.render('private');
   },
 
   getGestionPage: (request, response) => {
-    response.render("gestion");
+    response.render('gestion');
   },
 
   getNaissancesPage: (request, response) => {
-    response.render("naissances");
+    response.render('naissances');
   },
 
   getProfilPage: (request, response) => {
-    response.render("profil");
+    response.render('profil');
   },
 
   getServersPage: async (request, response) => {
     const servers = await Server.findAll();
-    response.render("servers", { servers });
+    response.render('servers', { servers });
   },
 
   getErrorPage: (request, response) => {
-    response.render("404");
+    response.render('404');
   },
 };
 

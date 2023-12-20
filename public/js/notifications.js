@@ -1,50 +1,52 @@
-export const notifications = {
-  showSuccessNotification: function () {
-    const notification = document.getElementById("successNotification");
-    notification.classList.remove("hidden");
+const notifications = {
+  showSuccessNotification() {
+    const notification = document.getElementById('successNotification');
+    notification.classList.remove('hidden');
 
-    setTimeout(function () {
+    setTimeout(() => {
       notifications.closeSuccessNotification();
     }, 3000);
   },
 
-  closeSuccessNotification: function () {
-    const notification = document.getElementById("successNotification");
-    notification.classList.add("hidden");
+  closeSuccessNotification() {
+    const notification = document.getElementById('successNotification');
+    notification.classList.add('hidden');
   },
 
-  showFailNotification: function () {
-    const notification = document.getElementById("failNotification");
-    notification.classList.remove("hidden");
+  showFailNotification() {
+    const notification = document.getElementById('failNotification');
+    notification.classList.remove('hidden');
 
-    setTimeout(function () {
+    setTimeout(() => {
       notifications.closeFailNotification();
     }, 3000);
   },
 
-  closeFailNotification: function () {
-    const notification = document.getElementById("failNotification");
-    notification.classList.add("hidden");
+  closeFailNotification() {
+    const notification = document.getElementById('failNotification');
+    notification.classList.add('hidden');
   },
 
-  initCloseNotification: function () {
+  initCloseNotification() {
     document
-      .getElementById("closeButtonSuccess")
-      .addEventListener("click", notifications.closeSuccessNotification);
+      .getElementById('closeButtonSuccess')
+      .addEventListener('click', notifications.closeSuccessNotification);
     document
-      .getElementById("closeButtonFail")
-      .addEventListener("click", notifications.closeFailNotification);
+      .getElementById('closeButtonFail')
+      .addEventListener('click', notifications.closeFailNotification);
   },
 
-  editAndShowSuccessNotification: function (message) {
-    const notificationMessage = document.querySelector(".success-message");
+  editAndShowSuccessNotification(message) {
+    const notificationMessage = document.querySelector('.success-message');
     notificationMessage.textContent = message;
     notifications.showSuccessNotification();
   },
 
-  editAndShowFailNotification: function (message) {
-    const notificationMessage = document.querySelector(".fail-message");
+  editAndShowFailNotification(message) {
+    const notificationMessage = document.querySelector('.fail-message');
     notificationMessage.textContent = message;
     notifications.showFailNotification();
-  }
+  },
 };
+
+export default notifications;

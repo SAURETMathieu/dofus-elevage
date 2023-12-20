@@ -1,17 +1,17 @@
-const Joi = require("joi");
+const Joi = require('joi');
 
 const paramIdSchema = Joi.object({
   id: Joi.number()
     .integer()
     .min(1)
-    .required()
+    .required(),
 });
 
 const paramAccountIdSchema = Joi.object({
   accountId: Joi.number()
     .integer()
     .min(1)
-    .required()
+    .required(),
 });
 
 const paramIdAndAccountIdSchema = Joi.object({
@@ -22,7 +22,7 @@ const paramIdAndAccountIdSchema = Joi.object({
   accountId: Joi.number()
     .integer()
     .min(1)
-    .required()
+    .required(),
 });
 
 module.exports = { paramIdSchema, paramAccountIdSchema, paramIdAndAccountIdSchema };
