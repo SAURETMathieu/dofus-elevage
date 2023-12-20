@@ -1580,6 +1580,30 @@ thead {
   text-align-last: center;
 }
 
+.reset{
+  background-color:red;
+}
+
+.progress{
+ background-color:#CF500C;
+}
+
+.half{
+  background-color:#FFA500;
+}
+
+.ready{
+  background-color:yellow;
+}
+
+.advanced{
+  background-color:#B5E007;
+}
+
+.finish{
+  background-color:green;
+}
+
 /*//////////////////*/
 /*   MEDIA QUERIES  */
 /*//////////////////*/
