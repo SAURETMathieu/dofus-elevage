@@ -1,8 +1,9 @@
 const express = require('express');
-const accountsRouter = require('./accounts');
-const authsRouter = require('./auths');
-const charatersRouter = require('./characters');
-const adminsRouter = require('./admins');
+const accountsRouter = require('./accounts.js');
+const authsRouter = require('./auths.js');
+const charatersRouter = require('./characters.js');
+const adminsRouter = require('./admins.js');
+const privateRouter = require('./privates.js');
 
 const router = new express.Router();
 
@@ -10,5 +11,6 @@ router.use('/', authsRouter);
 router.use('/characters', charatersRouter);
 router.use('/accounts', accountsRouter);
 router.use('/admin', adminsRouter);
+router.use('/private', privateRouter);
 
 module.exports = router;

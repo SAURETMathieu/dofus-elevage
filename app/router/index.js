@@ -6,7 +6,7 @@ const router = new express.Router();
 
 router.get('/', mainController.getHomePage);
 router.get('/public', mainController.getPublicPage);
-router.get('/private', mainController.getPrivatePage);
+
 router.get('/gestion', mainController.getGestionPage);
 
 router.get('/servers', mainController.getServersPage);

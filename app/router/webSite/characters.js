@@ -1,10 +1,10 @@
 const express = require('express');
 
-const characterController = require('../../controllers/characterController');
-const { isConnected } = require('../../middlewares/authorization');
-const { updateCharacterSchema, createCharacterSchema } = require('../../validation/schemas/character');
-const { paramIdSchema, paramIdAndAccountIdSchema } = require('../../validation/schemas/params');
-const validate = require('../../validation');
+const characterController = require('../../controllers/characterController.js');
+const { isConnected } = require('../../middlewares/authorization.js');
+const { updateCharacterSchema, createCharacterSchema } = require('../../validation/schemas/character.js');
+const { paramIdSchema, paramIdAndAccountIdSchema } = require('../../validation/schemas/params.js');
+const validate = require('../../validation/index.js');
 
 const router = new express.Router();
 

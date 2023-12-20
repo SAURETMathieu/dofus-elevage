@@ -1,5 +1,67 @@
 <%- include('./partials/header'); -%>
 <main class="main__index">
+  <h1>
+    Enclos Privé
+  </h1>
 
+  <div class="container__list-accounts" data-server="server">
+
+  <% locals.accounts.forEach(account => { %>
+
+    <ul class="container__account" data-id="id" style="background-color:<%= account.color %>">
+      <h2><%= account.name %></h2>
+
+      <% account.characters.forEach(character => { %>
+
+        <li class="article__character">
+          <h3><%= character.name %></h3>
+          <div class="character__header">
+            <div class="character__header-class">
+              <img src="/images/<%= character.class %>.png">
+            </div>
+            <div class="character__header-logos">
+              <div class="character__header-mature">
+                <img src="/images/abreuvoir.png">
+              </div>
+              <div class="character__header-training">
+                <img src="/images/dragodindelogo.png">
+              </div>
+            </div> 
+          </div>
+
+          <div class="character__main-status"><%= character.status%></div>
+          <div class="character__genre-container">
+            <span>
+              <i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i>
+            </span>
+            <span>
+              <i class="fa-solid fa-venus fa-sm" style="color: #fb63fd;"></i>
+            </span>
+          </div>
+          <div class="character__footer">
+            <div class="character__footer-male">
+              <select class="custom-select" name="nbmale" value="<%= character.nb_male %>">
+                <% for (let index = 0; index <= 200; index++) { %>
+                  <option value="<%=index%>"><%=index%></option>
+                <%} %>
+              </select>
+            </div>
+            <div class="character__footer-female">
+              <select class="custom-select" name="nbfemale" value="<%= character.nb_female %>">
+                <% for (let index = 0; index <= 200; index++) { %>
+                  <option value="<%=index%>"><%=index%></option>
+                <%} %>
+              </select>
+            </div>
+          </div>
+        </li>
+
+      <% }) %>
+
+    </ul>
+
+  <% }) %>
+
+  </div>
 </main>
 <%- include('./partials/footer'); -%>

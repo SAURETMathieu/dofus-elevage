@@ -1,5 +1,10 @@
 import { updateCharacter } from './requestUpdate.js';
 import * as modifyElement from './modifyElement/index.js';
+import notifications from './notifications.js';
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 const openModalBtn = document.querySelectorAll("[data-toggle='update-modal']");
 const closeModalButtons = document.querySelectorAll('.close-modal-btn');
@@ -244,13 +249,11 @@ function submitUpdateCharacter() {
       modifyElement.updateOrderTable();
       modal.style.display = 'none';
     } catch (error) {
-      console.error('Error', error);
+      notifications.editAndShowFailNotification(
+        `Error : ${error.message}`,
+      );
     }
   });
-}
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 export default function initModalUpdateCharacter() {

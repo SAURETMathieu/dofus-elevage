@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const multer = require('multer');
 // eslint-disable-next-line no-unused-vars
 const path = require('path');

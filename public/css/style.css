@@ -1455,6 +1455,131 @@ thead {
   border-bottom: solid 1px black;
 }
 
+/*////////////////////*/
+/*    ENCLOS PAGES    */
+/*////////////////////*/
+
+.container__list-accounts{
+  width:100%;
+  text-align:center;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:0.2rem;
+}
+
+.container__account{
+  width:304px;
+  max-width:304px;
+  padding:0.3rem;
+  background-color:rgb(255, 255, 255);
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.4rem;
+  border:solid 2px black;
+  align-self:flex-start;
+}
+
+.container__account h2,
+.article__character h3{
+  width:100%;
+  height:42px;
+  padding:0.6rem 0.3rem;
+  font-weight:600;
+  background-color:black;
+  border: solid 3px rgb(255, 255, 255);
+  color:white;
+  overflow-x:hidden;
+}
+
+.article__character{
+  width:142px;
+  height:280px;
+  padding:0.1rem;
+  gap:0.2rem;
+  display:flex;
+  justify-content:space-evenly;
+  flex-wrap:wrap;
+  border:solid 5px black;
+  background-color:rgb(255, 255, 255);
+}
+
+.character__header{
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+  align-items:center;
+  background-color:white;
+}
+
+.character__header-class{
+  width:85px;
+  height:85px;
+}
+
+.article__character img{
+  width:100%;
+}
+
+.character__header-logos{
+  width:calc(100% - 85px);
+}
+
+.character__main-status{
+  width:98%;
+  margin:0 auto;
+  padding:1rem;
+  text-align:center;
+  border:2px solid black;
+}
+
+.character__main-status:hover,
+.character__footer select:hover,
+.character__header-logos div:hover{
+  cursor:pointer;
+  opacity:0.7;
+}
+
+.character__footer, .character__genre-container{
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+}
+
+.character__footer{
+  padding-bottom:0.2rem;
+}
+
+.character__footer div{
+  width:48%;
+  padding:0.3rem;
+  font-weight:600;
+  border:solid 1px black;
+}
+
+.character__genre-container span{
+  width:48%;
+  padding:0.3rem 0.3rem 0 0.3rem;
+  font-weight:600;
+  font-size:1.5rem;
+  border:solid 1px black;
+}
+
+.character__footer select{
+  width:100%;
+  border:none;
+  background-color:transparent;
+  text-align:center;
+}
+
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  text-align-last: center;
+}
+
 /*//////////////////*/
 /*   MEDIA QUERIES  */
 /*//////////////////*/

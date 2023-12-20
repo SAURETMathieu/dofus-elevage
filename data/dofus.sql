@@ -60,7 +60,7 @@ CREATE TABLE "character" (
     "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
     "nb_male" INT DEFAULT 0,
     "nb_female" INT DEFAULT 0,
-    "status" VARCHAR(20) DEFAULT 'aucune',
+    "status" VARCHAR(20) DEFAULT '',
     "spe_male" VARCHAR(10) DEFAULT 'aucune',
     "spe_female" VARCHAR(10) DEFAULT null,
     "nb_reproduction" INT DEFAULT 0,

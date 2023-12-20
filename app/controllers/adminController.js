@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const path = require('path');
 const multer = require('multer');
 const { Op } = require('sequelize');
