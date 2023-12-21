@@ -1,5 +1,21 @@
 const Joi = require('joi');
 
+const alternativeKeys = [
+  'name',
+  'type',
+  'nbrepro',
+  'accountId',
+  'classe',
+  'speMale',
+  'speFemale',
+  'breedMale',
+  'breedFemale',
+  'date',
+  'dateBirth',
+  'nbMale',
+  'nbFemale',
+];
+
 const createCharacterSchema = Joi.object({
   name: Joi.string().max(20).required(),
   type: Joi.string().max(10).valid('public', 'private').required(),
@@ -22,6 +38,8 @@ const updateCharacterSchema = Joi.object({
   breedFemale: Joi.number().integer().min(1),
   date: Joi.date().timestamp(),
   dateBirth: Joi.date().timestamp(),
-}).or('name', 'type', 'nbrepro', 'accountId', 'classe', 'speMale', 'speFemale', 'breedMale', 'breedFemale', 'date', 'dateBirth');
+  nbMale: Joi.number().integer().min(0).max(200),
+  nbFemale: Joi.number().integer().min(0).max(200),
+}).or(...alternativeKeys);
 
 module.exports = { updateCharacterSchema, createCharacterSchema };

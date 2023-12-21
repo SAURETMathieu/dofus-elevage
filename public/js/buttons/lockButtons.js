@@ -1,4 +1,4 @@
-import { updateTypeOfCharacter } from './requestUpdate.js';
+import { updateTypeOfCharacter } from '../requests/patch/requestUpdate.js';
 
 export default function initLockButtons() {
   const lockButtons = document.querySelectorAll(

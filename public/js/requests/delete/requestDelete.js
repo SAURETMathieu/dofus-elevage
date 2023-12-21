@@ -1,4 +1,4 @@
-import notifications from './notifications.js';
+import notifications from '../../notifications/notifications.js';
 
 export async function deleteAccount(accountId) {
   try {

@@ -1,6 +1,6 @@
-import { updateCharacter } from './requestUpdate.js';
-import * as modifyElement from './modifyElement/index.js';
-import notifications from './notifications.js';
+import { updateCharacter } from '../requests/patch/requestUpdate.js';
+import * as modifyElement from '../modifyElement/index.js';
+import notifications from '../notifications/notifications.js';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);

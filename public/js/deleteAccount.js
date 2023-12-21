@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { deleteAccount } from './requestDelete.js';
+import { deleteAccount } from './requests/delete/requestDelete.js';
 
 function displayConfirmation(text, id) {
   const confirmationBox = document.getElementById('confirmationBox');

@@ -98,6 +98,8 @@ const characterController = {
         breedFemale,
         date,
         dateBirth,
+        nbMale,
+        nbFemale,
       } = request.body;
 
       const selectedCharacter = await Character.findByPk(request.params.id);
@@ -155,6 +157,14 @@ const characterController = {
       if (dateBirth !== undefined && dateBirth !== null) {
         updatedData.dateBirth = dateBirth;
       }
+      if (nbMale !== undefined && nbMale !== null) {
+        updatedData.nbMale = nbMale;
+      }
+      if (nbFemale !== undefined && nbFemale !== null) {
+        updatedData.nbFemale = nbFemale;
+      }
+
+      console.log(updatedData);
 
       const updatedCharacter = await selectedCharacter.update(
         updatedData,

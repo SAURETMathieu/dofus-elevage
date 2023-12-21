@@ -1,8 +1,5 @@
-import { updateReproOfCharacter } from './requestUpdate.js';
-import { updateDateElement, updateBirthElement } from './modifyElement/dateElements.js';
-import updateStatusElement from './modifyElement/statusElement.js';
-import updateReproElement from './modifyElement/nbReproElement.js';
-import updateOrderTable from './modifyElement/sortCharactersTable.js';
+import { updateReproOfCharacter } from '../requests/patch/requestUpdate.js';
+import * as modifyElement from '../modifyElement/index.js';
 
 export default function initReproductionButtons() {
   const reproductionButtons = document.querySelectorAll(
@@ -27,15 +24,15 @@ export default function initReproductionButtons() {
       const character = await updateReproOfCharacter(newNbRepro, gestationTime, characterId, 'reproduction');
 
       if (character) {
-        updateReproElement(trElement, character.reproduction);
+        modifyElement.updateReproElement(trElement, character.reproduction);
 
-        updateStatusElement(trElement, character);
+        modifyElement.updateStatusElement(trElement, character);
 
-        updateDateElement(trElement, character);
+        modifyElement.updateDateElement(trElement, character);
 
-        updateBirthElement(trElement, character);
+        modifyElement.updateBirthElement(trElement, character);
 
-        updateOrderTable();
+        modifyElement.updateOrderTable();
       }
     });
   });

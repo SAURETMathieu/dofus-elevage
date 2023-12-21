@@ -1,5 +1,5 @@
-import { rgbToHex } from './colorPicker.js';
-import { updateAccount } from './requestUpdate.js';
+import { rgbToHex } from '../utils/colorPicker.js';
+import { updateAccount } from '../requests/patch/requestUpdate.js';
 
 const openModalBtn = document.querySelectorAll("[data-toggle='update-modal']");
 const closeModalButtons = document.querySelectorAll('.close-modal-btn');

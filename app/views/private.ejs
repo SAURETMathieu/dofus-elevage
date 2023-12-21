@@ -13,7 +13,7 @@
 
       <% account.characters.forEach(character => { %>
 
-        <li class="article__character">
+        <li data-id="<%= character.id %>" class="article__character">
           <h3><%= character.name %></h3>
           <div class="character__header">
             <div class="character__header-class">
@@ -29,7 +29,7 @@
             </div> 
           </div>
 
-          <div class="character__main-status"><%= character.status%></div>
+          <div class="character__main-status <%= character.status.toLowerCase()%>"><%= character.status%></div>
           <div class="character__genre-container">
             <span>
               <i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i>
@@ -40,16 +40,25 @@
           </div>
           <div class="character__footer">
             <div class="character__footer-male">
-              <select class="custom-select" name="nbmale" value="<%= character.nb_male %>">
+              <select data-genre="male" class="custom-select" name="nbmale" value="<%= character.nbMale %>">
+                <% console.log(character.nbMale) %>
                 <% for (let index = 0; index <= 200; index++) { %>
-                  <option value="<%=index%>"><%=index%></option>
+                  <% if (character.nbMale === index) { %>
+                    <option value="<%=index%>" selected><%=index%></option>
+                  <% }else{ %>
+                    <option value="<%=index%>"><%=index%></option>
+                  <% } %>
                 <%} %>
               </select>
             </div>
             <div class="character__footer-female">
-              <select class="custom-select" name="nbfemale" value="<%= character.nb_female %>">
+              <select data-genre="female" class="custom-select" name="nbfemale" value="<%= character.nbFemale %>">
                 <% for (let index = 0; index <= 200; index++) { %>
-                  <option value="<%=index%>"><%=index%></option>
+                  <% if (character.nbFemale === index) { %>
+                    <option value="<%=index%>" selected><%=index%></option>
+                  <% }else{ %>
+                    <option value="<%=index%>"><%=index%></option>
+                  <% } %>
                 <%} %>
               </select>
             </div>
@@ -63,5 +72,13 @@
   <% }) %>
 
   </div>
+
+  <%- include('./partials/successNotif'); -%>
+
+  <%- include('./partials/failNotif'); -%>
+
 </main>
+
+<script type="module" src="/js/inits/initPrivatePage.js"></script>
+
 <%- include('./partials/footer'); -%>
