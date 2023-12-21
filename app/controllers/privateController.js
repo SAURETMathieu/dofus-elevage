@@ -25,6 +25,11 @@ const privateController = {
           {
             association: 'characters',
             where: { type: 'private' },
+            include: [
+              {
+                association: 'breedFemale',
+              },
+            ],
           },
         ],
       });

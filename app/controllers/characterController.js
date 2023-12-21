@@ -164,8 +164,6 @@ const characterController = {
         updatedData.nbFemale = nbFemale;
       }
 
-      console.log(updatedData);
-
       const updatedCharacter = await selectedCharacter.update(
         updatedData,
       );

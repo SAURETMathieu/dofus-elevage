@@ -14,55 +14,91 @@
       <% account.characters.forEach(character => { %>
 
         <li data-id="<%= character.id %>" class="article__character">
-          <h3><%= character.name %></h3>
-          <div class="character__header">
-            <div class="character__header-class">
-              <img src="/images/<%= character.class %>.png">
-            </div>
-            <div class="character__header-logos">
-              <div class="character__header-mature">
-                <img src="/images/abreuvoir.png">
-              </div>
-              <div class="character__header-training">
-                <img src="/images/dragodindelogo.png">
-              </div>
-            </div> 
+          <div class="character__title">
+            <img src="/images/<%= character.class%>.png">
+            <h3><%= character.name %></h3>
+            <img src="/images/<%= character.class%>.png">
           </div>
+            
 
-          <div class="character__main-status <%= character.status.toLowerCase()%>"><%= character.status%></div>
-          <div class="character__genre-container">
-            <span>
-              <i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i>
-            </span>
-            <span>
-              <i class="fa-solid fa-venus fa-sm" style="color: #fb63fd;"></i>
-            </span>
-          </div>
-          <div class="character__footer">
-            <div class="character__footer-male">
-              <select data-genre="male" class="custom-select" name="nbmale" value="<%= character.nbMale %>">
-                <% console.log(character.nbMale) %>
-                <% for (let index = 0; index <= 200; index++) { %>
-                  <% if (character.nbMale === index) { %>
-                    <option value="<%=index%>" selected><%=index%></option>
-                  <% }else{ %>
-                    <option value="<%=index%>"><%=index%></option>
-                  <% } %>
-                <%} %>
-              </select>
+            <div class="character__container">
+              <div class="character__breed-img">
+                <img src="<%= character.breedFemale.image %>">
+              </div>
+              <div class="character__container-footer">
+                <div class="character__number">
+                  <select data-genre="male" class="custom-select" name="nbmale" value="<%= character.nbMale %>">
+                    <% for (let index = 0; index <= 200; index++) { %>
+                      <% if (character.nbMale === index) { %>
+                        <option value="<%=index%>" selected><%=index%></option>
+                      <% }else{ %>
+                        <option value="<%=index%>"><%=index%></option>
+                      <% } %>
+                    <%} %>
+                  </select>
+                </div>
+                <div class="character__genre">
+                  <span>
+                  <i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i>
+                  </span>
+                </div>
+              </div>
             </div>
-            <div class="character__footer-female">
-              <select data-genre="female" class="custom-select" name="nbfemale" value="<%= character.nbFemale %>">
-                <% for (let index = 0; index <= 200; index++) { %>
-                  <% if (character.nbFemale === index) { %>
-                    <option value="<%=index%>" selected><%=index%></option>
-                  <% }else{ %>
-                    <option value="<%=index%>"><%=index%></option>
-                  <% } %>
-                <%} %>
-              </select>
+
+            <div class="character__container-logos">
+              <button>
+                <img src="/images/abreuvoir.png">
+              </button>
+              <button>
+                <img src="/images/mangeoire.png">
+              </button>
+              <button>
+                <img src="/images/dragodindelogo.png">
+              </button>
+              <button>
+                <img src="/images/baffeur.png">
+              </button>
+              <button>
+                <img src="/images/endu.png">
+              </button>
+              <button>
+                <i class="fa-solid fa-xmark" style="color: red;"></i>
+              </button>
+              <button>
+                <img src="/images/caresse.png">
+              </button>
+              <button>
+                <img src="/images/amour.png">
+              </button>
+              <button>
+                <i class="fa-solid fa-check" style="color: green;"></i>
+              </button>
             </div>
-          </div>
+            
+            <div class="character__container">
+              <div class="character__breed-img">
+                <img src="<%= character.breedFemale.image %>">
+              </div>
+              <div class="character__container-footer">
+                <div class="character__number">
+                  <select data-genre="female" class="custom-select" name="nbfemale" value="<%= character.nbMale %>">
+                    <% for (let index = 0; index <= 200; index++) { %>
+                      <% if (character.nbFemale === index) { %>
+                        <option value="<%=index%>" selected><%=index%></option>
+                      <% }else{ %>
+                        <option value="<%=index%>"><%=index%></option>
+                      <% } %>
+                    <%} %>
+                  </select>
+                </div>
+                <div class="character__genre">
+                  <span>
+                  <i class="fa-solid fa-venus fa-sm" style="color: #fc00ef;"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
         </li>
 
       <% }) %>
