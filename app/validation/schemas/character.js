@@ -16,6 +16,16 @@ const alternativeKeys = [
   'nbFemale',
 ];
 
+const alternativeSteps = [
+  'mature',
+  'feed',
+  'ride',
+  'agressive',
+  'serene',
+  'love',
+  'endurance',
+];
+
 const createCharacterSchema = Joi.object({
   name: Joi.string().max(20).required(),
   type: Joi.string().max(10).valid('public', 'private').required(),
@@ -42,4 +52,14 @@ const updateCharacterSchema = Joi.object({
   nbFemale: Joi.number().integer().min(0).max(200),
 }).or(...alternativeKeys);
 
-module.exports = { updateCharacterSchema, createCharacterSchema };
+const updateStepsCharacterSchema = Joi.object({
+  mature: Joi.boolean(),
+  feed: Joi.boolean(),
+  ride: Joi.boolean(),
+  agressive: Joi.boolean(),
+  serene: Joi.boolean(),
+  love: Joi.boolean(),
+  endurance: Joi.boolean(),
+}).or(...alternativeSteps);
+
+module.exports = { updateCharacterSchema, createCharacterSchema, updateStepsCharacterSchema };

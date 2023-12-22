@@ -1517,7 +1517,7 @@ thead {
   justify-content:space-evenly;
   flex-wrap:wrap;
   border:solid 5px black;
-  background-color:rgb(121, 170, 129);
+  background-color:#87d30e;
 }
 
 .character__container{
@@ -1569,7 +1569,7 @@ thead {
 }
 
 .false{
-  opacity:0.4;
+  opacity:0.2;
 }
 
 .character__container-logos button{
@@ -1609,28 +1609,9 @@ thead {
   text-align-last: center;
 }
 
-.reset{
-  background-color:red;
-}
-
-.progress{
- background-color:#CF500C;
-}
-
-.half{
-  background-color:#FFA500;
-}
-
-.ready{
-  background-color:yellow;
-}
-
-.advanced{
-  background-color:#B5E007;
-}
-
-.finish{
-  background-color:green;
+.chrono{
+  cursor:pointer;
+  line-height:3rem;
 }
 
 /*//////////////////*/

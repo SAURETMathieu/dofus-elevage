@@ -68,6 +68,13 @@ CREATE TABLE "character" (
     "date_birth" TIMESTAMPTZ DEFAULT NULL,
     "order" INT NOT NULL DEFAULT 0,
     "type" VARCHAR(10) DEFAULT 'private',
+    "mature" BOOLEAN DEFAULT FALSE,
+    "ride" BOOLEAN DEFAULT FALSE,
+    "feed" BOOLEAN DEFAULT FALSE,
+    "serene" BOOLEAN DEFAULT FALSE,
+    "agressive" BOOLEAN DEFAULT FALSE,
+    "love" BOOLEAN DEFAULT FALSE,
+    "endurance" BOOLEAN DEFAULT FALSE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

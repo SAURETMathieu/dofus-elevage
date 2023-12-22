@@ -66,6 +66,34 @@ Character.init(
       defaultValue: 'private',
       allowNull: true,
     },
+    mature: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    ride: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    feed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    serene: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    agressive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    love: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    endurance: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
 
   {

@@ -2,7 +2,7 @@ const express = require('express');
 
 const characterController = require('../../controllers/characterController.js');
 const { isConnected } = require('../../middlewares/authorization.js');
-const { updateCharacterSchema, createCharacterSchema } = require('../../validation/schemas/character.js');
+const { updateStepsCharacterSchema, updateCharacterSchema, createCharacterSchema } = require('../../validation/schemas/character.js');
 const { paramIdSchema, paramIdAndAccountIdSchema } = require('../../validation/schemas/params.js');
 const validate = require('../../validation/index.js');
 
@@ -29,6 +29,14 @@ router.patch(
   validate(paramIdSchema, 'params'),
   validate(updateCharacterSchema),
   characterController.updateCharacter,
+);
+
+router.patch(
+  '/steps/:id',
+  isConnected,
+  validate(paramIdSchema, 'params'),
+  validate(updateStepsCharacterSchema),
+  characterController.updateStepsCharacter,
 );
 
 router.get(

@@ -29,6 +29,9 @@ const privateController = {
               {
                 association: 'breedFemale',
               },
+              {
+                association: 'breedMale',
+              },
             ],
           },
         ],

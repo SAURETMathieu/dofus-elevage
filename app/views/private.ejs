@@ -1,7 +1,7 @@
 <%- include('./partials/header'); -%>
 <main class="main__index">
-  <h1>
-    Enclos Privé
+  <h1 class="chrono">
+    Enclos Privé<br>00:00
   </h1>
 
   <div class="container__list-accounts" data-server="server">
@@ -15,15 +15,15 @@
 
         <li data-id="<%= character.id %>" class="article__character">
           <div class="character__title">
-            <img src="/images/<%= character.class%>.png">
+            <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
             <h3><%= character.name %></h3>
-            <img src="/images/<%= character.class%>.png">
+            <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
           </div>
             
 
             <div class="character__container">
               <div class="character__breed-img">
-                <img src="<%= character.breedFemale.image %>">
+                <img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.image %> pour le jeu dofus">
               </div>
               <div class="character__container-footer">
                 <div class="character__number">
@@ -46,38 +46,38 @@
             </div>
 
             <div class="character__container-logos">
-              <button>
-                <img src="/images/abreuvoir.png">
+              <button data-type="mature" aria-label="Valider ou Retirer la maturité de l'etable">
+                <img class="<%= character.mature%>" src="/images/abreuvoir.png" alt="objet d'elevage abreuvoir: jeu dofus">
               </button>
-              <button>
-                <img src="/images/mangeoire.png">
+              <button data-type="feed" aria-label="Valider ou Retirer l'energie de l'etable">
+                <img class="<%= character.feed%>" src="/images/mangeoire.png" alt="objet d'elevage mangeoire: jeu dofus">
               </button>
-              <button>
-                <img src="/images/dragodindelogo.png">
+              <button data-type="ride" aria-label="Valider ou Retirer le niveau 5 de l'etable">
+                <img class="<%= character.ride%>" src="/images/dragodindelogo.png" alt="tete de dragodinde: jeu dofus">
               </button>
-              <button>
-                <img src="/images/baffeur.png">
+              <button data-type="agressive" aria-label="Valider ou Retirer l'agressivité de l'etable">
+                <img class="<%= character.agressive%>" src="/images/baffeur.png" alt="objet d'elevage baffeur: jeu dofus">
               </button>
-              <button>
-                <img src="/images/endu.png">
+              <button data-type="endurance" aria-label="Valider ou Retirer l'endurance de l'etable">
+                <img class="<%= character.endurance%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
               </button>
-              <button>
+              <button data-type="reset" aria-label="Remettre a zéro l'etable">
                 <i class="fa-solid fa-xmark" style="color: red;"></i>
               </button>
-              <button>
-                <img src="/images/caresse.png">
+              <button data-type="serene" aria-label="Valider ou Retirer la sérénité de l'etable">
+                <img class="<%= character.serene%>" src="/images/caresse.png" alt="objet d'elevage caresseur: jeu dofus">
               </button>
-              <button>
-                <img src="/images/amour.png">
+              <button data-type="love" aria-label="Valider ou Retirer l'amour de l'etable">
+                <img class="<%= character.love%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
               </button>
-              <button>
+              <button data-type="valid-all" aria-label="Tout valider pour l'etable">
                 <i class="fa-solid fa-check" style="color: green;"></i>
               </button>
             </div>
             
             <div class="character__container">
               <div class="character__breed-img">
-                <img src="<%= character.breedFemale.image %>">
+                <img src="<%= character.breedFemale.image %>" alt="dragodinde <%= character.breedFemale.image %> pour le jeu dofus">
               </div>
               <div class="character__container-footer">
                 <div class="character__number">

@@ -190,6 +190,39 @@ const characterController = {
     }
   },
 
+  updateStepsCharacter: async (request, response) => {
+    try {
+      const selectedCharacter = await Character.findByPk(request.params.id);
+      const updatedData = {};
+
+      if (!selectedCharacter) {
+        return response.status(404).json({ error: 'Character not found.' });
+      }
+
+      const variablesToCheck = ['mature', 'feed', 'ride', 'agressive', 'serene', 'love', 'endurance'];
+
+      variablesToCheck.forEach((variable) => {
+        if (Object.prototype.hasOwnProperty.call(request.body, variable)
+         && request.body[variable] !== undefined
+         && request.body[variable] !== null) {
+          updatedData[variable] = request.body[variable];
+        }
+      });
+
+      const updatedCharacter = await selectedCharacter.update(
+        updatedData,
+      );
+
+      if (!updatedCharacter) {
+        return response.status(500).json({ error: 'Internal server error' });
+      }
+
+      return response.json(updatedCharacter);
+    } catch (err) {
+      return response.status(500).json({ error: 'Internal server error' });
+    }
+  },
+
   getAllCharactersPage: async (request, response) => {
     try {
       const serverId = parseInt(request.query.server, 10);
