@@ -132,3 +132,36 @@ export async function updateTypeOfCharacter(characterType, characterId) {
     return false;
   }
 }
+
+export async function updateSpecialityOfCharacter(characterSpe, genre, characterId) {
+  try {
+    const id = parseInt(characterId, 10);
+    const requestBody = { };
+
+    if (genre === 'male') {
+      requestBody.speMale = characterSpe;
+    } else if (genre === 'female') {
+      requestBody.speFemale = characterSpe;
+    } else {
+      throw new Error('Ce genre n\'existe pas');
+    }
+
+    const response = await fetch(`/characters/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    });
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+    const character = await response.json();
+    return character;
+  } catch (error) {
+    notifications.editAndShowFailNotification(
+      `La modification du personnage a échoué : ${error.message}`,
+    );
+    return false;
+  }
+}

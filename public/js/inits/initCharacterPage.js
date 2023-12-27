@@ -8,6 +8,7 @@ import { sortDragodindes } from '../utils/sortDragodindes.js';
 import initLockButtons from '../buttons/lockButtons.js';
 import initReproductionButtons from '../buttons/reproductionButtons.js';
 import { searchDragodindesUpdate } from '../searchs/searchByColor.js';
+import initSpecialityButtons from '../buttons/specialityButtons.js';
 
 const elements = document.querySelectorAll("[data-type='character']");
 const clearButton = document.querySelector('#clear-search');
@@ -22,4 +23,4 @@ sortDragodindes();
 initLockButtons();
 initReproductionButtons();
 searchDragodindesUpdate();
-// TODO la remplir
+initSpecialityButtons();
