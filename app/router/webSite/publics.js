@@ -1,6 +1,6 @@
 const express = require('express');
 
-const privateController = require('../../controllers/privateController.js');
+const publicController = require('../../controllers/publicController.js');
 const { isConnected } = require('../../middlewares/authorization.js');
 
 const router = new express.Router();
@@ -8,7 +8,7 @@ const router = new express.Router();
 router.get(
   '/',
   isConnected,
-  privateController.getPrivatePage,
+  publicController.getPublicPage,
 );
 
 module.exports = router;

@@ -5,8 +5,8 @@ const {
   Account,
 } = require('../models/index.js');
 
-const privateController = {
-  getPrivatePage: async (request, response) => {
+const publicController = {
+  getPublicPage: async (request, response) => {
     try {
       const server = parseInt(request.query.server, 10);
       const userId = request.session?.user?.id;
@@ -22,7 +22,7 @@ const privateController = {
         include: [
           {
             association: 'characters',
-            where: { type: 'private' },
+            where: { type: 'public' },
             include: [
               {
                 association: 'breedFemale',
@@ -39,7 +39,7 @@ const privateController = {
         account.characters = account.characters.sort((a, b) => a.order - b.order);
       });
 
-      return response.render('private', { accounts });
+      return response.render('public', { accounts });
     } catch (err) {
       return response.status(500).render('error', {
         error: {
@@ -53,4 +53,4 @@ const privateController = {
   },
 };
 
-module.exports = privateController;
+module.exports = publicController;

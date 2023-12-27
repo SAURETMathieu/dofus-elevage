@@ -5,7 +5,6 @@ const mainController = require('../controllers/mainController.js');
 const router = new express.Router();
 
 router.get('/', mainController.getHomePage);
-router.get('/public', mainController.getPublicPage);
 
 router.get('/gestion', mainController.getGestionPage);
 
