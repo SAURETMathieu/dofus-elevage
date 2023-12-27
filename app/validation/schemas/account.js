@@ -12,4 +12,12 @@ const updateAccountSchema = Joi.object({
   server: Joi.number().integer().min(1),
 }).or('name', 'color', 'serverId');
 
-module.exports = { createAccountSchema, updateAccountSchema };
+const updateOrderAccountSchema = Joi.object().keys({
+  accountsOrder: Joi.array().items(
+    Joi.object({
+      accountId: Joi.number().integer().positive().required(),
+    }),
+  ).min(1).required(),
+});
+
+module.exports = { createAccountSchema, updateAccountSchema, updateOrderAccountSchema };

@@ -1492,6 +1492,10 @@ thead {
   overflow-x:hidden;
 }
 
+.container__account h2:hover{
+  cursor:move;
+}
+
 .character__title h3{
   border:none;
 }

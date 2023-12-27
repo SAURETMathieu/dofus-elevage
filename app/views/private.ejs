@@ -8,7 +8,7 @@
 
   <% locals.accounts.forEach(account => { %>
 
-    <ul class="container__account" data-id="id" style="background-color:<%= account.color %>">
+    <ul class="container__account" data-id="<%= account.id %>" style="background-color:<%= account.color %>">
       <h2><%= account.name %></h2>
 
       <% account.characters.forEach(character => { %>
@@ -114,6 +114,8 @@
   <%- include('./partials/failNotif'); -%>
 
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 <script type="module" src="/js/inits/initPrivatePage.js"></script>
 

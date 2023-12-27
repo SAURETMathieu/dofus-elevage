@@ -1,16 +1,18 @@
 const express = require('express');
 
-const accountController = require('../../controllers/accountController');
-const characterController = require('../../controllers/characterController');
-const { isConnected } = require('../../middlewares/authorization');
-const { createAccountSchema, updateAccountSchema } = require('../../validation/schemas/account');
-const { paramIdSchema, paramAccountIdSchema } = require('../../validation/schemas/params');
-const validate = require('../../validation');
+const accountController = require('../../controllers/accountController.js');
+const characterController = require('../../controllers/characterController.js');
+const orderController = require('../../controllers/orderController.js');
+const { isConnected } = require('../../middlewares/authorization.js');
+const { createAccountSchema, updateAccountSchema, updateOrderAccountSchema } = require('../../validation/schemas/account.js');
+const { paramIdSchema, paramAccountIdSchema } = require('../../validation/schemas/params.js');
+const validate = require('../../validation/index.js');
 
 const router = new express.Router();
 
+router.patch('/order', isConnected, validate(updateOrderAccountSchema), orderController.updateAccountOrder);
 router.get('/:accountId/characters', isConnected, validate(paramAccountIdSchema, 'params'), characterController.getAllCharactersPage);
-router.delete('/:id', validate(paramIdSchema, 'params'), accountController.deleteAccount);
+router.delete('/:id', isConnected, validate(paramIdSchema, 'params'), accountController.deleteAccount);
 router.patch('/:id', isConnected, validate(updateAccountSchema), accountController.updateAccount);
 router.post('/', isConnected, validate(createAccountSchema), accountController.addAccount);
 router.get('/', isConnected, accountController.getAccountsPage);
