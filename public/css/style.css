@@ -1492,7 +1492,7 @@ thead {
   overflow-x:hidden;
 }
 
-.container__account h2:hover{
+.container__account h2:hover, .character__title h3{
   cursor:move;
 }
 
@@ -1510,7 +1510,8 @@ thead {
 }
 
 .character__title img{
-  width:20%;
+  width:55.44px;
+  height:55.44px;
 }
 
 .article__character{
@@ -1551,7 +1552,8 @@ thead {
 }
 
 .character__container img{
-  width:100%;
+  width:65.69px;
+  height:65.69px;
   margin-top:-0.5rem;
 }
 
@@ -1588,7 +1590,8 @@ thead {
 }
 
 .character__container-logos img{
-  width:100%;
+  width:38.39px;
+  height:38.39px;
 }
 
 .character__container-footer select{

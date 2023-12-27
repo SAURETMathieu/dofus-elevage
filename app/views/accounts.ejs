@@ -7,7 +7,7 @@
     <%- include('./partials/searchContainer'); -%>
 
     <div class="add-container">
-      <button class="input-logo add-button" id="addButton">
+      <button class="input-logo add-button" id="addButton" aria-label="ajouter un compte">
         <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
       </button>
     </div>
@@ -26,14 +26,14 @@
         </div>
         <div class="article__container-logo">   
           <a href="/accounts/<%= account.id%>/characters">
-            <button class="input-logo --bgyellow">
+            <button class="input-logo --bgyellow" aria-label="aller a la page des personnages du compte">
               <i class="fa-solid fa-person-half-dress " style="color: #000000;"></i>
             </button>
           </a>
-          <button class="input-logo --bgblue" data-toggle="update-modal">
+          <button class="input-logo --bgblue" data-toggle="update-modal" aria-label="modifier un compte">
             <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
           </button>
-          <button class="input-logo --bgred" data-toggle="delete-modal">
+          <button class="input-logo --bgred" data-toggle="delete-modal" aria-label="supprimer un compte">
             <i class="fa-regular fa-trash-can"  style="color: #ffffff;"></i>
           </button>
         </div>
