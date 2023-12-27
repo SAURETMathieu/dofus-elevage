@@ -6,6 +6,7 @@ import initValidStepsButtons from '../buttons/validStepsInputs.js';
 import initBackgroundCharacters from '../utils/initBackGroundCharacters.js';
 import displayTime from '../utils/chrono.js';
 import initDragAccount from '../dragAndDrop/dragAccounts.js';
+import initDragCharacter from '../dragAndDrop/dragCharacters.js';
 
 notifications.initCloseNotification();
 initInputsNumber();
@@ -15,3 +16,4 @@ initValidStepsButtons();
 initBackgroundCharacters();
 displayTime('Enclos Privé');
 initDragAccount();
+initDragCharacter();

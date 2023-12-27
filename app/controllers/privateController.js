@@ -20,7 +20,7 @@ const privateController = {
 
       const accounts = await Account.findAll({
         where: whereCondition,
-        order: ['order'],
+        order: [['order', 'ASC']],
         include: [
           {
             association: 'characters',
@@ -36,6 +36,11 @@ const privateController = {
           },
         ],
       });
+
+      accounts.forEach((account) => {
+        account.characters = account.characters.sort((a, b) => a.order - b.order);
+      });
+
       return response.render('private', { accounts });
     } catch (err) {
       return response.status(500).render('error', {

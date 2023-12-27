@@ -1,6 +1,6 @@
 import notifications from '../../notifications/notifications.js';
 
-export default async function updateAccountWhenDrop(accountsOrder) {
+export default async function updateAccountsWhenDrop(accountsOrder) {
   if (!Array.isArray(accountsOrder)) {
     return false;
   }

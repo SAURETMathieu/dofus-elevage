@@ -62,4 +62,17 @@ const updateStepsCharacterSchema = Joi.object({
   endurance: Joi.boolean(),
 }).or(...alternativeSteps);
 
-module.exports = { updateCharacterSchema, createCharacterSchema, updateStepsCharacterSchema };
+const updateOrderCharacterSchema = Joi.object().keys({
+  charactersOrder: Joi.array().items(
+    Joi.object({
+      characterId: Joi.number().integer().positive().required(),
+    }),
+  ).min(1).required(),
+});
+
+module.exports = {
+  updateCharacterSchema,
+  createCharacterSchema,
+  updateStepsCharacterSchema,
+  updateOrderCharacterSchema,
+};
