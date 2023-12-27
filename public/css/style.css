@@ -317,6 +317,25 @@ footer p{
   margin:0 auto;
 }
 
+.inscription-link-container{
+  width:100%;
+  padding:0.5rem;
+  text-align:center;
+  color:rgb(85, 85, 85);
+}
+
+.inscription-link-container a{
+  font-size:1.1rem;
+  text-decoration:underline;
+  text-align:center;
+  font-weight:600;
+}
+
+.inscription-link-container a:hover{
+  cursor:pointer;
+  color:rgb(54, 54, 54);
+}
+
 /*//////////*/
 /*  ADMIN   */
 /*//////////*/
