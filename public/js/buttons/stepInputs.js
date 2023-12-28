@@ -3,7 +3,7 @@ import calculNbOfSteps from '../utils/calculNbOfSteps.js';
 
 export default function initStepButtons() {
   const stepButtons = document.querySelectorAll(
-    '.character__container-logos button:not(:has(i))',
+    '.character__container-logos button',
   );
 
   stepButtons.forEach((button) => {
@@ -11,7 +11,7 @@ export default function initStepButtons() {
       const { type } = event.target.dataset;
       const liElement = event.target.closest('li');
       const buttonsOnCharacter = liElement
-        .querySelectorAll('.character__container-logos button:not(:has(i)):nth-child(n+4)');
+        .querySelectorAll('.character__container-logos button');
       const { id } = liElement.dataset;
       const imgElement = event.target.querySelector('img');
       const isTrue = imgElement.classList.contains('true');

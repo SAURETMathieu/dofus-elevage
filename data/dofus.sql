@@ -73,8 +73,10 @@ CREATE TABLE "character" (
     "feed" BOOLEAN DEFAULT FALSE,
     "serene" BOOLEAN DEFAULT FALSE,
     "agressive" BOOLEAN DEFAULT FALSE,
-    "love" BOOLEAN DEFAULT FALSE,
-    "endurance" BOOLEAN DEFAULT FALSE,
+    "lovem" BOOLEAN DEFAULT FALSE,
+    "endurancem" BOOLEAN DEFAULT FALSE,
+    "lovef" BOOLEAN DEFAULT FALSE,
+    "endurancef" BOOLEAN DEFAULT FALSE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

@@ -58,23 +58,23 @@
               <button data-type="ride" aria-label="Valider ou Retirer le niveau 5 de l'etable">
                 <img class="<%= character.ride%>" src="/images/dragodindelogo.png" alt="tete de dragodinde: jeu dofus">
               </button>
+              <button data-type="endurancem" aria-label="Valider ou Retirer l'endurance des males">
+                <img class="<%= character.endurancem%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
+              </button>
               <button data-type="agressive" aria-label="Valider ou Retirer l'agressivité de l'etable">
                 <img class="<%= character.agressive%>" src="/images/baffeur.png" alt="objet d'elevage baffeur: jeu dofus">
               </button>
-              <button data-type="endurance" aria-label="Valider ou Retirer l'endurance de l'etable">
-                <img class="<%= character.endurance%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
+              <button data-type="endurancef" aria-label="Valider ou Retirer l'endurance des femelles">
+                <img class="<%= character.endurancef%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
               </button>
-              <button data-type="reset" aria-label="Remettre a zéro l'etable">
-                <i class="fa-solid fa-xmark" style="color: red;"></i>
+              <button data-type="lovem" aria-label="Valider ou Retirer l'amour des males">
+                <img class="<%= character.lovem%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
               </button>
               <button data-type="serene" aria-label="Valider ou Retirer la sérénité de l'etable">
                 <img class="<%= character.serene%>" src="/images/caresse.png" alt="objet d'elevage caresseur: jeu dofus">
               </button>
-              <button data-type="love" aria-label="Valider ou Retirer l'amour de l'etable">
-                <img class="<%= character.love%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
-              </button>
-              <button data-type="valid-all" aria-label="Tout valider pour l'etable">
-                <i class="fa-solid fa-check" style="color: green;"></i>
+              <button data-type="lovef" aria-label="Valider ou Retirer l'amour des femelles">
+                <img class="<%= character.lovef%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
               </button>
             </div>
             
@@ -121,5 +121,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 <script type="module" src="/js/inits/initPrivatePage.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
 
 <%- include('./partials/footer'); -%>

@@ -199,7 +199,9 @@ const characterController = {
         return response.status(404).json({ error: 'Character not found.' });
       }
 
-      const variablesToCheck = ['mature', 'feed', 'ride', 'agressive', 'serene', 'love', 'endurance'];
+      const variablesToCheck = ['mature', 'feed', 'ride', 'agressive',
+        'serene', 'lovem', 'endurancem',
+        'lovef', 'endurancef'];
 
       variablesToCheck.forEach((variable) => {
         if (Object.prototype.hasOwnProperty.call(request.body, variable)

@@ -3,80 +3,17 @@ const { driver } = window.driver.js;
 export default function paddockTutorial() {
   const driverObj = driver({
     showProgress: true,
+    popoverClass: 'driverjs-theme',
     steps: [
-      {
-        element: 'h1',
-        popover: {
-          title: 'Chronomètre',
-          description: `Vous pouvez cliquer ici pour 
-          déclencher un chronomètre.<br> 
-           Il y a plusieurs timer disponible: 
-           ces timers fonctionnent uniquement avec 5 objets de qualité 9000.<br>`,
-          side: 'bottom',
-          align: 'start',
-        },
-      },
-      {
-        element: 'h1',
-        popover: {
-          title: 'Chronomètre',
-          description: `- Au premier clic 53min,<br> 
-           ce qui correspond au temps nécessaire 
-           pour monter une étable Stade 10 au 3/4 ( fatigue au max ).<br>`,
-          side: 'bottom',
-          align: 'start',
-        },
-      },
-      {
-        element: 'h1',
-        popover: {
-          title: 'Chronomètre',
-          description: `- Au second clic 45min,<br> 
-          ce qui correspond au temps nécessaire pour monter une étable Stade 9.<br> `,
-          side: 'bottom',
-          align: 'start',
-        },
-      },
-      {
-        element: 'h1',
-        popover: {
-          title: 'Chronomètre',
-          description: `-Au troisième clic 25min,<br> 
-          ce qui correspond au temps nécessaire pour monter une étable de stade 2. Ou finir de monter l'étable 10 (1/4) précédemment monter au 3/4`,
-          side: 'bottom',
-          align: 'start',
-        },
-      },
-      {
-        element: 'h1',
-        popover: {
-          title: 'Chronomètre',
-          description: `-Au quatrième clic 9min,<br> 
-          ce qui correspond au temps nécessaire pour
-           rendre agressive ou sereine une dinde à l'inverse de son passif,
-            sereine pour un male, agressive pour une femelle.`,
-          side: 'bottom',
-          align: 'start',
-        },
-      },
-      {
-        element: 'h1',
-        popover: {
-          title: 'Chronomètre',
-          description: `  -Au cinquième clic 3min,<br> 
-          ce qui correspond au temps nécessaire pour 
-          rendre agressive ou sereine une dinde dans le sens de son passif, 
-          sereine pour une femelle, agressive pour un male.`,
-          side: 'bottom',
-          align: 'start',
-        },
-      },
       {
         element: '.container__list-accounts',
         popover: {
-          title: 'La liste des comptes',
-          description: 'Voici la liste de vos comptes privé ou public selon la page où vous vous trouvez. \n Plusieurs fonctionnalités vous sont offertes, nous allons les voir une par une.',
-          side: 'bottom',
+          title: 'Liste des comptes',
+          description: `Voici la liste de vos comptes privés ou publics 
+          selon la page où vous vous trouvez.<br>
+          Plusieurs fonctionnalités vous sont offertes, 
+          nous allons les voir une par une.`,
+          side: 'top',
           align: 'center',
         },
       },
@@ -85,21 +22,24 @@ export default function paddockTutorial() {
         popover: {
           title: 'Le compte',
           description: 'Un compte a une couleur de fond qui représente la couleur de votre compte',
-          side: 'bottom',
+          side: 'top',
           align: 'start',
         },
       },
       {
-        element: '.container__account:nth-child(1) h2',
+        element: '.container__account h2',
         popover: {
           title: 'Le nom de compte',
-          description: 'Ici se trouve le nom de votre compte',
+          description: `Ici se trouve le nom de votre compte.<br>
+          Vous avez la possibilité de sélectionner et de déplacer 
+          cette partie pour organiser vos comptes selon votre préférence.<br><br>
+          Cette fonctionnalité est basée sur le glisser-déposer (drag and drop).`,
           side: 'left',
           align: 'start',
         },
       },
       {
-        element: '.container__account:nth-child(1)',
+        element: '.container__account',
         popover: {
           title: 'Les personnages',
           description: 'A l\'intérieur du compte se trouvent tout vos personnages composés de plusieurs sections.',
@@ -108,10 +48,16 @@ export default function paddockTutorial() {
         },
       },
       {
-        element: '.container__account:nth-child(1) .character__title',
+        element: '.container__account .character__title',
         popover: {
-          title: 'Les personnages',
-          description: 'Le nom du personnage, ainsi que la classe de votre personnage de chaques cotés de celui ci.',
+          title: 'Le nom du personnage',
+          description: `
+          Ici, vous trouverez le nom ainsi que la classe de votre personnage 
+          de chaque côté.<br>
+          De la même manière que pour les comptes, 
+          vous pouvez sélectionner et déplacer cette partie afin d'organiser 
+          vos personnages à l'intérieur de chaque compte 
+          dans l'ordre que vous souhaitez.`,
           side: 'left',
           align: 'start',
         },
@@ -120,7 +66,7 @@ export default function paddockTutorial() {
         element: '.article__character .section-male',
         popover: {
           title: 'Male/Femelle',
-          description: 'Ensuite, voici la section male',
+          description: 'Ensuite, voici la section mâle',
           side: 'left',
           align: 'start',
         },
@@ -129,7 +75,7 @@ export default function paddockTutorial() {
         element: '.article__character .character__breed-img',
         popover: {
           title: 'Male/Femelle 1/3',
-          description: 'En premier se trouve la race de vos males, vous avez le logo du genre pour vous repérer.',
+          description: 'En premier se trouve la race de vos mâles, vous avez le logo du genre pour vous repérer.',
           side: 'left',
           align: 'start',
         },
@@ -138,11 +84,12 @@ export default function paddockTutorial() {
         element: '.article__character .character__number',
         popover: {
           title: 'Male/Femelle 2/3',
-          description: `En second, le nombre de males que vous possédez 
-          dans votre étable. Vous pouvez le modifier en cliquant dessus 
-          et en séléctionnant à la main ou au clavier, 
-          le nombre de dragodinde que vous avez dans votre étable. 
-          Les valeurs vont de 0 a 125`,
+          description: `Ensuite, 
+          le nombre de mâles que vous possédez dans votre étable.<br> 
+          Vous pouvez le modifier en cliquant dessus 
+          et en sélectionnant à la main ou au clavier 
+          le nombre de dragodindes que vous avez dans votre étable.<br><br>
+          Les valeurs vont de 0 à 125.`,
           side: 'left',
           align: 'start',
         },
@@ -159,12 +106,12 @@ export default function paddockTutorial() {
       {
         element: '.article__character .character__container-logos',
         popover: {
-          title: 'L\'avancé de votre étable',
-          description: `Cette section est composée de 9 icones. 
-          Chacune peut être cliquée afin de déterminer ou non, 
-          si vous avez réalisé cette étape pour votre étable.<br> 
-          Si l'icone est grisé, c'est que l'étape n'a pas été réalisé.<br>
-          Si elle est coloré, c'est que vous avez déjà réalisé cette étape.`,
+          title: 'L\'avancée de votre étable',
+          description: `Cette section se compose de 9 icônes, 
+          chacune pouvant être cliquée pour indiquer 
+          si vous avez réalisé ou non une étape pour votre étable.<br>
+          Une icône grisée indique une étape non réalisée, 
+          tandis qu'une icône colorée signifie que l'étape a déjà été complétée.`,
           side: 'left',
           align: 'start',
         },
@@ -172,13 +119,13 @@ export default function paddockTutorial() {
       {
         element: '.article__character .character__container-logos',
         popover: {
-          title: 'L\'avancé de votre étable',
-          description: `Selon votre avancé, 
-          la couleur de fond changera.<br> 
-          Du rouge quand l'étable ne sera pas prête, 
-          jusqu'au vert quand l'intégralité des étapes seront fini.<br>
-          A noter que l'avancé des étapes: maturité, 
-          énergie et niveau 5 n'influent pas sur la couleur de fond.`,
+          title: 'L\'avancée de votre étable',
+          description: `Selon votre progression, 
+          la couleur de fond variera, 
+          passant du rouge lorsque l'étable n'est pas prête, 
+          au vert une fois toutes les étapes terminées.<br>
+          Il est à noter que la progression des étapes telles que la maturité, 
+          l'énergie et le niveau 5 n'affecte pas la couleur de fond.`,
           side: 'left',
           align: 'start',
         },
@@ -208,7 +155,17 @@ export default function paddockTutorial() {
         popover: {
           title: 'La monture',
           description: `
-          Détermine si l'étable est au niveau 5 minimum pour chaques dragodindes.`,
+          Détermine si chaque dragodinde dans l'étable a atteint un niveau minimum de 5.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.article__character [data-type="endurancem"]',
+        popover: {
+          title: 'Le foudroyeur',
+          description: `
+          Détermine si les mâles ont l'endurance au max.`,
           side: 'left',
           align: 'start',
         },
@@ -218,17 +175,27 @@ export default function paddockTutorial() {
         popover: {
           title: 'Le baffeur',
           description: `
-          Détermine si les dragodindes dans l'étable sont agressives pour celles qui en ont besoin.`,
+          Détermine si les dragodindes dans l'étable ont besoin d'être agressives.`,
           side: 'left',
           align: 'start',
         },
       },
       {
-        element: '.article__character [data-type="endurance"]',
+        element: '.article__character [data-type="endurancef"]',
         popover: {
           title: 'Le foudroyeur',
           description: `
-          Détermine si l'étable a l'endurance au max.`,
+          Détermine si les femelles ont l'endurance au max.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.article__character [data-type="lovem"]',
+        popover: {
+          title: 'La dragofesse',
+          description: `
+          Détermine si les mâles ont l'amour au max.`,
           side: 'left',
           align: 'start',
         },
@@ -238,38 +205,85 @@ export default function paddockTutorial() {
         popover: {
           title: 'Le caresseur',
           description: `
-          Détermine si les dragodindes dans l'étable sont sereines pour celles qui en ont besoin.`,
+          Détermine si les dragodindes dans l'étable ont besoin d'être sereines.`,
           side: 'left',
           align: 'start',
         },
       },
       {
-        element: '.article__character [data-type="love"]',
+        element: '.article__character [data-type="lovef"]',
         popover: {
           title: 'La dragofesse',
           description: `
-          Détermine si l'étable a l'amour au max.`,
+          Détermine si les femelles ont l'amour au max.`,
           side: 'left',
           align: 'start',
         },
       },
       {
-        element: '.article__character [data-type="reset"]',
+        element: 'h1',
         popover: {
-          title: 'RESET',
-          description: `
-          Remet à 0 toutes les étapes sauf la maturité, l'énergie, et le niveau 5.`,
-          side: 'left',
+          title: 'Chronomètre',
+          description: `Vous pouvez cliquer ici pour 
+          déclencher un chronomètre.<br> 
+           Il y a plusieurs timers disponibles : 
+           ces timers fonctionnent uniquement avec 5 objets de qualité 9000.<br>`,
+          side: 'bottom',
           align: 'start',
         },
       },
       {
-        element: '.article__character [data-type="valid-all"]',
+        element: 'h1',
         popover: {
-          title: 'VALIDE',
-          description: `
-          Valide toutes les étapes en dehors de la maturité, l'énergie, et le niveau 5.`,
-          side: 'left',
+          title: 'Chronomètre',
+          description: `- Au premier clic 53min,<br> 
+           correspond au temps nécessaire 
+           pour monter une étable Stade 10 au 3/4 ( fatigue au max ).<br>`,
+          side: 'bottom',
+          align: 'start',
+        },
+      },
+      {
+        element: 'h1',
+        popover: {
+          title: 'Chronomètre',
+          description: `- Au second clic 45min,<br> 
+          correspond au temps nécessaire pour monter une étable Stade 9.<br> `,
+          side: 'bottom',
+          align: 'start',
+        },
+      },
+      {
+        element: 'h1',
+        popover: {
+          title: 'Chronomètre',
+          description: `-Au troisième clic 25min,<br> 
+          correspond au temps nécessaire pour monter une étable de stade 2. Ou finir de monter l'étable 10 (1/4) précédemment monter au 3/4`,
+          side: 'bottom',
+          align: 'start',
+        },
+      },
+      {
+        element: 'h1',
+        popover: {
+          title: 'Chronomètre',
+          description: `-Au quatrième clic 9min,<br> 
+          correspond au temps nécessaire pour
+           rendre agressive ou sereine une dinde à l'inverse de son passif.<br>
+           Sereine pour un mâle, agressive pour une femelle.`,
+          side: 'bottom',
+          align: 'start',
+        },
+      },
+      {
+        element: 'h1',
+        popover: {
+          title: 'Chronomètre',
+          description: `  -Au cinquième clic 3min,<br> 
+          correspond au temps nécessaire pour 
+          rendre agressive ou sereine une dinde dans le sens de son passif.<br> 
+          Sereine pour une femelle, agressive pour un mâle.`,
+          side: 'bottom',
           align: 'start',
         },
       },
@@ -277,7 +291,8 @@ export default function paddockTutorial() {
         element: '.help',
         popover: {
           title: 'Le tutoriel est terminé !',
-          description: 'Vous pouvez à nouveau jouer le tutoriel en cliquant sur l\'aide',
+          description: `Vous pouvez à nouveau lancer le tutoriel 
+          en cliquant sur l'aide.<br>`,
         },
       },
     ],

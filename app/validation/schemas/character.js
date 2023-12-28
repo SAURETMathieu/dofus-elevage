@@ -22,8 +22,10 @@ const alternativeSteps = [
   'ride',
   'agressive',
   'serene',
-  'love',
-  'endurance',
+  'lovem',
+  'endurancem',
+  'lovef',
+  'endurancef',
 ];
 
 const createCharacterSchema = Joi.object({
@@ -48,8 +50,8 @@ const updateCharacterSchema = Joi.object({
   breedFemale: Joi.number().integer().min(1),
   date: Joi.date().timestamp(),
   dateBirth: Joi.date().timestamp(),
-  nbMale: Joi.number().integer().min(0).max(200),
-  nbFemale: Joi.number().integer().min(0).max(200),
+  nbMale: Joi.number().integer().min(0).max(125),
+  nbFemale: Joi.number().integer().min(0).max(125),
 }).or(...alternativeKeys);
 
 const updateStepsCharacterSchema = Joi.object({
@@ -58,8 +60,10 @@ const updateStepsCharacterSchema = Joi.object({
   ride: Joi.boolean(),
   agressive: Joi.boolean(),
   serene: Joi.boolean(),
-  love: Joi.boolean(),
-  endurance: Joi.boolean(),
+  lovef: Joi.boolean(),
+  endurancef: Joi.boolean(),
+  lovem: Joi.boolean(),
+  endurancem: Joi.boolean(),
 }).or(...alternativeSteps);
 
 const updateOrderCharacterSchema = Joi.object().keys({

@@ -86,11 +86,19 @@ Character.init(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    love: {
+    lovem: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    endurance: {
+    endurancem: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    lovef: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    endurancef: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
