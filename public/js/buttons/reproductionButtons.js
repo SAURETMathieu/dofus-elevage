@@ -1,5 +1,6 @@
 import { updateReproOfCharacter } from '../requests/patch/requestUpdate.js';
 import * as modifyElement from '../modifyElement/index.js';
+import updateStepsOfCharacter from '../requests/patch/updateSteps.js';
 
 export default function initReproductionButtons() {
   const reproductionButtons = document.querySelectorAll(
@@ -22,8 +23,17 @@ export default function initReproductionButtons() {
       }
 
       const character = await updateReproOfCharacter(newNbRepro, gestationTime, characterId, 'reproduction');
+      const dataTypesAndValues = [
+        { type: 'lovem', value: false },
+        { type: 'lovef', value: false },
+        { type: 'endurancem', value: false },
+        { type: 'endurancef', value: false },
+        { type: 'serene', value: false },
+        { type: 'agressive', value: false },
+      ];
+      const character2 = await updateStepsOfCharacter(characterId, dataTypesAndValues);
 
-      if (character) {
+      if (character && character2) {
         modifyElement.updateReproElement(trElement, character.reproduction);
 
         modifyElement.updateStatusElement(trElement, character);
