@@ -6,6 +6,10 @@
 
   <div class="container__list-accounts" data-server="server">
 
+  <button class="help" aria-label="Jouer le tutoriel">
+    <h3><span class="help-text">Besoin d'aide </span>?</h3>
+  </button>
+    
   <% locals.accounts.forEach(account => { %>
 
     <ul class="container__account" data-id="<%= account.id %>" style="background-color:<%= account.color %>">
@@ -20,7 +24,7 @@
             <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
           </div>
             
-            <div class="character__container">
+            <div class="character__container section-male">
               <div class="character__breed-img">
                 <img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.name %> pour le jeu dofus">
               </div>
@@ -74,7 +78,7 @@
               </button>
             </div>
             
-            <div class="character__container">
+            <div class="character__container section-female">
               <div class="character__breed-img">
                 <img src="<%= character.breedFemale.image %>" alt="dragodinde <%= character.breedFemale.name %> pour le jeu dofus">
               </div>
@@ -117,5 +121,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 <script type="module" src="/js/inits/initPublicPage.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
 
 <%- include('./partials/footer'); -%>

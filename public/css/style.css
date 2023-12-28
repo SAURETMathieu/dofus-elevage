@@ -63,6 +63,20 @@ select{
   width:3rem;
 }
 
+.help{
+  position:absolute;
+  top:2rem;
+  right:2rem;
+  padding:0.2rem;
+  border:solid 1px black;
+  color:white;
+  background:#97A703;
+}
+
+.help:hover{
+  transform:scale(1.05);
+}
+
 /*////////*/
 /* HEADER */
 /*////////*/
@@ -189,6 +203,7 @@ main{
   background-size: cover;
   background-position: center;
   padding:1.5rem 1rem;
+  position:relative;
 }
 
 /* TODO gérer les images de fond*/
@@ -1710,6 +1725,16 @@ thead {
 
   .auth-container__input-container{
     width:95%;
+  }
+
+  .help-text{
+    display:none;
+  }
+
+  .help{
+    width:2.5rem;
+    top:0.5rem;
+    right:0.5rem;
   }
 }
 

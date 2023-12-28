@@ -6,6 +6,10 @@
 
   <div class="container__list-accounts" data-server="server">
 
+  <button class="help" aria-label="Jouer le tutoriel">
+    <h3><span class="help-text">Besoin d'aide </span>?</h3>
+  </button>
+
   <% locals.accounts.forEach(account => { %>
 
     <ul class="container__account" data-id="<%= account.id %>" style="background-color:<%= account.color %>">
@@ -20,14 +24,14 @@
             <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
           </div>
             
-            <div class="character__container">
+            <div class="character__container section-male">
               <div class="character__breed-img">
                 <img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.name %> pour le jeu dofus">
               </div>
               <div class="character__container-footer">
                 <div class="character__number">
                   <select data-genre="male" class="custom-select" name="nbmale" value="<%= character.nbMale %>">
-                    <% for (let index = 0; index <= 200; index++) { %>
+                    <% for (let index = 0; index <= 125; index++) { %>
                       <% if (character.nbMale === index) { %>
                         <option value="<%=index%>" selected><%=index%></option>
                       <% }else{ %>
@@ -74,14 +78,14 @@
               </button>
             </div>
             
-            <div class="character__container">
+            <div class="character__container section-female">
               <div class="character__breed-img">
                 <img src="<%= character.breedFemale.image %>" alt="dragodinde <%= character.breedFemale.name %> pour le jeu dofus">
               </div>
               <div class="character__container-footer">
                 <div class="character__number">
                   <select data-genre="female" class="custom-select" name="nbfemale" value="<%= character.nbMale %>">
-                    <% for (let index = 0; index <= 200; index++) { %>
+                    <% for (let index = 0; index <= 125; index++) { %>
                       <% if (character.nbFemale === index) { %>
                         <option value="<%=index%>" selected><%=index%></option>
                       <% }else{ %>

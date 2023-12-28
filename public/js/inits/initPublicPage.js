@@ -7,6 +7,7 @@ import initBackgroundCharacters from '../utils/initBackGroundCharacters.js';
 import displayTime from '../utils/chrono.js';
 import initDragAccount from '../dragAndDrop/dragAccounts.js';
 import initDragCharacter from '../dragAndDrop/dragCharacters.js';
+import paddockTutorial from '../tutorials/paddockTutorial.js';
 
 notifications.initCloseNotification();
 initInputsNumber();
@@ -17,3 +18,4 @@ initBackgroundCharacters();
 displayTime('Enclos Public');
 initDragAccount();
 initDragCharacter();
+paddockTutorial();
