@@ -69,7 +69,7 @@
           <section class="table__td-section-speciality spe-male-value <%= character.speMale.replace(/é/g, 'e') %>"><%= character.speMale %></section>
           <section class="table__td-section-speciality spe-female-value <%= character.speFemale.replace(/é/g, 'e') %>"><%= character.speFemale %></section>
         </td>
-        <td>
+        <td class="table__reproduction">
           <button class="table__td-button-reproduction" aria-label="reproduire les dragodindes">
             <img
               src="/images/bouttonrepro.png"
@@ -99,14 +99,14 @@
           <% } %>
           </button>
         </td>
-        <td>
+        <td class="table__td-update">
           <button
             class="table__td-icone" data-toggle="update-modal" aria-label="modifier un personnage"
           >
             <i class="fa-regular fa-pen-to-square" style="color: #1900ff"></i>
           </button>
         </td>
-        <td>
+        <td class="table__td-delete">
           <button
             class="table__td-icone" data-toggle="delete-modal" aria-label="supprimer un personnage"
           >
