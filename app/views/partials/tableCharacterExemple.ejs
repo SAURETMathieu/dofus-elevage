@@ -1,0 +1,102 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Serveur</th>
+        <th>Personnage</th>
+        <th>Reproduction</th>
+        <th>Accouchement</th>
+        <th>Male</th>
+        <th>Femelle</th>
+        <th>Specialité</th>
+        <th>Réaccoupler</th>
+        <th>Statut</th>
+        <th>Reproduction</th>
+        <th>Type</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="character-1" data-id="1" data-type="character" data-name="toto">
+        <td class="td-server" style="background-color:blue">
+          <a
+            href="/accounts?server=3"
+            class="inline-block link-server"
+          >
+            <img
+              class="table__img-server"
+              src="/images/boune.jpeg"
+              alt="logo du serveur dofus Boune"
+            />
+          </a>
+        </td>
+        <td class="td-name" style="background-color:blue">
+          <div data-classe="cra" data-account="0" class="table__account">Exemple</div>
+          <img
+            class="table__img-perso"
+            src="/images/cra.png"
+            alt="classe du jeu dofus: cra"
+          />
+          <div class="table__character">toto</div>
+        </td>
+        <td data-time="0" class="table__date date-repro">
+          <div>null</div>
+        </td>
+        <td data-time="0" data-gestation="9360" class="table__date date-birth">
+          <div>null</div>
+        </td>
+        <td class="breed-male">
+          <img
+          class="table__breed-male-img"
+            src="/images/dd-emeraude-doree.png" 
+            alt="dragodinde emeraude-doree"
+          />
+        </td>
+        <td class="breed-female">
+          <img
+          class="table__breed-female-img"
+          src="/images/dd-emeraude-doree.png" 
+          alt="dragodinde emeraude-doree"
+          />
+        </td>
+        <td class="table__spe">
+          <section class="table__td-section-speciality spe-male-value repro">repro</section>
+          <section class="table__td-section-speciality spe-female-value aucune">aucune</section>
+        </td>
+        <td class="table__reproduction">
+          <button class="table__td-button-reproduction" aria-label="reproduire les dragodindes">
+            <img
+              src="/images/bouttonrepro.png"
+              class="table__couple"
+              alt="deux chiens qui s'accouplent"
+            />
+          </button>
+        </td>
+        <td class="condition feconde">feconde</td>
+        <td class="nb-repro">5 / 20</td>
+        <td data-type="private" class="type">
+          <button
+            class="table__td-type" data-toggle="update-type" aria-label="modifier le type d'étable"
+          >
+            <i class="fa-solid fa-lock lock-icon" style="color: yellow;"></i>
+          </button>
+        </td>
+        <td class="table__td-update">
+          <button
+            class="table__td-icone" data-toggle="update-modal" aria-label="modifier un personnage"
+          >
+            <i class="fa-regular fa-pen-to-square" style="color: #1900ff"></i>
+          </button>
+        </td>
+        <td class="table__td-delete">
+          <button
+            class="table__td-icone" data-toggle="delete-modal" aria-label="supprimer un personnage"
+          >
+            <i class="fa-regular fa-trash-can" style="color: #ff0000"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

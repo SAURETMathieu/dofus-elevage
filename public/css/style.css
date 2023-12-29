@@ -305,6 +305,11 @@ footer p{
   margin:1rem auto;
   width:30%;
   font-size:1.2rem;
+  text-shadow: 
+    -1px -1px 0 #535353,
+    1px -1px 0 #535353,
+    -1px 1px 0 #535353,
+    1px 1px 0 #535353; 
   color:white;
 }
 
@@ -1725,6 +1730,127 @@ thead {
   border-bottom-color: #fde047;
 }
 
+/*////////////////////*/
+/*      HOME PAGE     */
+/*////////////////////*/
+
+.main__home{
+  padding:0;
+  background:white;
+  text-align:center;
+}
+
+.main__home h2{
+  font-size:2rem;
+  font-weight:600;
+  padding:1rem;
+  text-decoration:underline;
+}
+
+.main__home h3{
+  font-size:1.5rem;
+  font-weight:600;
+  padding:1rem;
+  border: solid 2px;
+  margin:1rem auto;
+  width:fit-content;
+}
+
+.main__home p{
+  font-size:1.5rem;
+  padding:1rem;
+}
+
+.home__intro{
+  width:100%;
+  background:#97A703;
+  padding:2rem;
+  text-align:center;
+  color:black;
+  line-height: 1.8rem;
+}
+
+.home__img-section{
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+  background:#231A32;
+  border-top:solid 10px #09110b;
+  border-bottom:solid 10px #09110b;
+}
+
+.home__img-section img{
+  width: calc(100% / 6);
+  max-width:150px;
+}
+
+.home__summary{
+  width:100%;
+  background:#00bb73;
+  padding:2rem;
+  text-align:center;
+  color:black;
+  line-height: 1.8rem;
+}
+
+.summary-list{
+  display:flex;
+  justify-content:space-evenly;
+  flex-wrap:wrap;
+}
+
+.summary-list li{
+  min-width:300px;
+  width:50%;
+  padding:1rem;
+  font-size:2rem;
+}
+
+.summary-list h3{
+  padding:1rem;
+}
+
+.summary-list li img{
+  width:100%;
+}
+
+.home__account-section{
+  background:#2e64c7;
+  color:white;
+  width:100%;
+  padding:2rem;
+}
+
+.home__character-section{
+  background:#bb9440;
+  color:black;
+  width:100%;
+  padding:2rem;
+}
+
+.home__paddock-section{
+  background:#ad4e4e;
+  color:black;
+  width:100%;
+  padding:2rem;
+}
+
+.warning{
+  color:red;
+  font-weight:600;
+}
+
+.warning-link{
+  text-decoration:underline;
+}
+
+.help-character, .help-paddock{
+  padding:1rem;
+  margin: 1rem auto;
+  font-weight:600;
+  background:rgb(238, 255, 0);
+}
+
 /*//////////////////*/
 /*   MEDIA QUERIES  */
 /*//////////////////*/
@@ -1756,6 +1882,17 @@ thead {
 
   .auth-container{
     width:95%;
+  }
+
+  .home__account-section img,
+  .home__character-section img
+  {
+    width:100%;
+  }
+
+  .home__account-section button i,
+  .home__character-section button i{
+    font-size:1.5rem;
   }
 }
 
