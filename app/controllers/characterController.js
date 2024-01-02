@@ -11,12 +11,22 @@ const characterController = {
       const id = parseInt(request.params.id, 10);
       const accountId = parseInt(request.params.accountId, 10);
 
+      if (!request.session?.user?.id) {
+        return response.status(403).render('error', {
+          error: {
+            statusCode: 403,
+            name: 'Error',
+            message: 'Vous devez être connecté pour créer un personnage.',
+          },
+        });
+      }
+
       if (id !== request.session.user.id) {
         return response.status(409).render('error', {
           error: {
             statusCode: 409,
             name: 'Error',
-            message: 'Erreur lors de la création du compte',
+            message: 'Erreur lors de la création du personnage.',
           },
         });
       }
@@ -232,10 +242,15 @@ const characterController = {
 
       let account;
       let serverName;
+      let idToRequest = parseInt(request.session?.user?.id, 10);
+      if (Number.isNaN(idToRequest)) {
+        idToRequest = 16;
+      }
+
       const includeOptions = [
         {
           association: 'account',
-          where: { user_id: request.session.user.id },
+          where: { user_id: idToRequest },
           include: [
             {
               association: 'user',
@@ -257,7 +272,7 @@ const characterController = {
       if (accountId) {
         account = await Account.findOne({ where: { id: accountId } });
 
-        if (!account || account.user_id !== request.session.user.id) {
+        if (!account || account.user_id !== idToRequest) {
           return response.status(403).render('error', {
             error: {
               statusCode: 403,
@@ -280,7 +295,7 @@ const characterController = {
 
       const breeds = await Breed.findAll();
       const accounts = await Account.findAll({
-        where: { user_id: request.session.user.id },
+        where: { user_id: idToRequest },
         include: [
           {
             association: 'server',
@@ -307,8 +322,12 @@ const characterController = {
         // eslint-disable-next-line no-param-reassign
         character.account.user.password = null;
 
-        let dayRepro = 'null'; let dateRepro; let hoursRepro; let dayBirth = 'null'; let dateBirth; let
-          hoursBirth;
+        let dayRepro = 'null';
+        let dateRepro;
+        let hoursRepro;
+        let dayBirth = 'null';
+        let dateBirth;
+        let hoursBirth;
         let condition = 'Feconde';
 
         const time = new Date(character.date).getTime();

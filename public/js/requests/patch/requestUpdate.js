@@ -13,6 +13,9 @@ export async function updateAccount(accountId) {
       body: JSON.stringify(data),
     });
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
+      }
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const account = await response.json();
@@ -50,6 +53,9 @@ export async function updateReproOfCharacter(nbrepro, gestationTime, characterId
       body: JSON.stringify(requestBody),
     });
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
+      }
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const character = await response.json();
@@ -79,6 +85,9 @@ export async function updateCharacter(characterId) {
       body: JSON.stringify(data),
     });
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
+      }
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const character = await response.json();
@@ -118,6 +127,9 @@ export async function updateTypeOfCharacter(characterType, characterId) {
       body: JSON.stringify({ type: characterType }),
     });
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
+      }
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const character = await response.json();
@@ -154,6 +166,9 @@ export async function updateSpecialityOfCharacter(characterSpe, genre, character
       body: JSON.stringify(requestBody),
     });
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
+      }
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const character = await response.json();

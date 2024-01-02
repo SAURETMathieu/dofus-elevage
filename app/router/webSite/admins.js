@@ -5,12 +5,12 @@ const { isConnected, isAdmin, canSignup } = require('../../middlewares/authoriza
 
 const router = new express.Router();
 
-router.delete('/servers/:id', adminController.deleteServer);
-router.get('/servers/update/:id', adminController.getUpdateServerPage);
-router.patch('/servers/:id', adminController.updateServer);
-router.get('/servers', adminController.getAdminServersPage);
-router.get('/users', adminController.getAdminUsersPage);
-router.post('/servers', adminController.addServer);
-router.get('/', adminController.getAdminPage);
+router.delete('/servers/:id', isAdmin, adminController.deleteServer);
+router.get('/servers/update/:id', isAdmin, adminController.getUpdateServerPage);
+router.patch('/servers/:id', isAdmin, adminController.updateServer);
+router.get('/servers', isAdmin, adminController.getAdminServersPage);
+router.get('/users', isAdmin, adminController.getAdminUsersPage);
+router.post('/servers', isAdmin, adminController.addServer);
+router.get('/', isAdmin, adminController.getAdminPage);
 
 module.exports = router;

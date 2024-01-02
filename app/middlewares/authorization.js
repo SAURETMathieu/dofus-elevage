@@ -1,10 +1,9 @@
 const authorizationMiddleware = {
   isConnected(request, response, next) {
     if (request.session?.user) {
-      next();
-    } else {
-      response.redirect('/signin');
+      return next();
     }
+    return response.status(401).json({ error: 'Veuillez vous connecter pour accéder à ce contenu.' });
   },
 
   canSignup(request, response, next) {
@@ -20,8 +19,8 @@ const authorizationMiddleware = {
     if (!request.session?.user) {
       return response.render('error', {
         error: {
-          statusCode: 403,
-          name: 'Forbidden',
+          statusCode: 401,
+          name: 'Unauthorized',
           message: 'Veuillez vous connecter pour accéder à cette page',
         },
       });
@@ -30,8 +29,8 @@ const authorizationMiddleware = {
     if (request.session.user.role !== 'admin') {
       return response.render('error', {
         error: {
-          statusCode: 401,
-          name: 'Unauthorized',
+          statusCode: 403,
+          name: 'Forbidden',
           message: "Vous n'êtes pas autorisé à accéder à cette page",
         },
       });

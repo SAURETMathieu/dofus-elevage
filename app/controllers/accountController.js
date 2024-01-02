@@ -10,13 +10,32 @@ require('dayjs/locale/fr');
 const accountController = {
   getAccountsPage: async (request, response) => {
     try {
-      const server = parseInt(request.query.server, 10);
+      const serverId = parseInt(request.query.server, 10);
       const userId = request.session?.user?.id;
+
+      const servers = await Server.findAll();
+
+      if (!userId) {
+        const conditions = { user_id: 16 };
+        if (serverId) {
+          conditions.server_id = serverId;
+        }
+        const exempleAccounts = await Account.findAll({
+          where: conditions,
+          order: ['server_id', 'name'],
+          include: [
+            {
+              association: 'server',
+            },
+          ],
+        });
+        return response.render('accounts', { accounts: exempleAccounts, servers });
+      }
 
       const whereCondition = { user_id: userId };
 
-      if (server && userId) {
-        whereCondition.server_id = server;
+      if (serverId && userId) {
+        whereCondition.server_id = serverId;
       }
 
       const accounts = await Account.findAll({
@@ -28,8 +47,6 @@ const accountController = {
           },
         ],
       });
-
-      const servers = await Server.findAll();
 
       return response.render('accounts', { accounts, servers });
     } catch (err) {
@@ -46,14 +63,14 @@ const accountController = {
 
   addAccount: async (request, response) => {
     try {
-      const userId = parseInt(request.session.user.id, 10);
+      const userId = parseInt(request.session?.user?.id, 10);
 
-      if (!userId) {
-        return response.status(409).render('error', {
+      if (Number.isNaN(userId) || userId <= 0) {
+        return response.status(403).render('error', {
           error: {
-            statusCode: 409,
+            statusCode: 403,
             name: 'Error',
-            message: 'Erreur lors de la création du compte',
+            message: 'Vous devez être connecté pour créer un compte.',
           },
         });
       }

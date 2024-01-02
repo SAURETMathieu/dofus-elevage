@@ -9,7 +9,12 @@ const publicController = {
   getPublicPage: async (request, response) => {
     try {
       const server = parseInt(request.query.server, 10);
-      const userId = request.session?.user?.id;
+      let userId = request.session?.user?.id;
+
+      if (!userId) {
+        userId = 16;
+      }
+
       const whereCondition = { user_id: userId };
 
       if (server && userId) {

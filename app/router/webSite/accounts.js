@@ -11,10 +11,10 @@ const validate = require('../../validation/index.js');
 const router = new express.Router();
 
 router.patch('/order', isConnected, validate(updateOrderAccountSchema), orderController.updateAccountOrder);
-router.get('/:accountId/characters', isConnected, validate(paramAccountIdSchema, 'params'), characterController.getAllCharactersPage);
+router.get('/:accountId/characters', validate(paramAccountIdSchema, 'params'), characterController.getAllCharactersPage);
 router.delete('/:id', isConnected, validate(paramIdSchema, 'params'), accountController.deleteAccount);
 router.patch('/:id', isConnected, validate(updateAccountSchema), accountController.updateAccount);
-router.post('/', isConnected, validate(createAccountSchema), accountController.addAccount);
-router.get('/', isConnected, accountController.getAccountsPage);
+router.post('/', validate(createAccountSchema), accountController.addAccount);
+router.get('/', accountController.getAccountsPage);
 
 module.exports = router;

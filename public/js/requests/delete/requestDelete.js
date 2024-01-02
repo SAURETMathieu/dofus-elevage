@@ -10,6 +10,9 @@ export async function deleteAccount(accountId) {
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
+      }
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const deletedElement = document.querySelector(`#account-${accountId}`);
@@ -36,6 +39,9 @@ export async function deleteCharacter(characterId) {
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
+      }
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const deletedElement = document.querySelector(`#character-${characterId}`);

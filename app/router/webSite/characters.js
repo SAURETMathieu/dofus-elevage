@@ -24,7 +24,6 @@ router.patch(
 
 router.post(
   '/:id/:accountId',
-  isConnected,
   validate(paramIdAndAccountIdSchema, 'params'),
   validate(createCharacterSchema),
   characterController.addCharacter,
@@ -55,7 +54,6 @@ router.patch(
 
 router.get(
   '/',
-  isConnected,
   characterController.getAllCharactersPage,
 );
 

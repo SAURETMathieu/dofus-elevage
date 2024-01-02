@@ -24,13 +24,15 @@ export default function characterPageTutorial() {
                     Si vous n'avez pas de personnages, 
                     commencez par créer un compte sur un serveur.<br>
                     Ensuite, accédez à la page de ce compte 
-                    pour créer un personnage en cliquant sur le bouton '+' en vert.<br>
+                    pour créer un personnage en cliquant sur le bouton '+' en vert.<br><br>
+                    <span class="warning">
                     Ce bouton est exclusivement accessible 
-                    depuis la page de personnages d'un compte unique.<br>
+                    depuis la page des personnages d'un compte unique.
+                    </span><br><br>
                     Si vous avez déjà créé votre compte, 
                     accédez à la 
                     <a href="/accounts" style="text-decoration:underline; color:blue;">
-                    page des comptes</a>.<br>
+                    page des comptes</a> .<br>
                     Une fois sur cette page, cliquez sur le bouton jaune 
                     avec un logo de personnage.`,
           side: 'bottom',

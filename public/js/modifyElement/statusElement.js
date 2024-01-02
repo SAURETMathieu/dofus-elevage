@@ -9,8 +9,7 @@ export default function updateStatusElement(elementToUpdate, character) {
     statusElement.classList.add('sterile');
     statusElement.classList.remove('fecondee', 'feconde');
   } else {
-    // TODO vérifier si la comparaison est correcte
-    if (character.date > character.dateBirth) {
+    if (new Date() > new Date(character.dateBirth)) {
       statusElement.textContent = 'Feconde';
       statusElement.classList.add('feconde');
       statusElement.classList.remove('fecondee', 'sterile');

@@ -48,6 +48,6 @@ VALUES
 COMMIT;
 -- Fin du seeding
 
--- UPDATE "user" SET role='admin' WHERE id=2;
+--UPDATE "user" SET role='admin' WHERE email='example@example.example';
 
 --UPDATE "breed" SET image='/images/dindedoree.png' WHERE "name"='Dorée';

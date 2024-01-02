@@ -16,8 +16,11 @@ export default function initStepButtons() {
       const imgElement = event.target.querySelector('img');
       const isTrue = imgElement.classList.contains('true');
 
-      await updateStepsOfCharacter(id, [{ type, value: !isTrue }]);
+      const response = await updateStepsOfCharacter(id, [{ type, value: !isTrue }]);
 
+      if (!response) {
+        return;
+      }
       if (isTrue) {
         imgElement.classList.remove('true');
         imgElement.classList.add('false');
