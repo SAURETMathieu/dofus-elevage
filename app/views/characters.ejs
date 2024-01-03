@@ -15,6 +15,30 @@
 
     <%- include('./partials/searchContainer'); -%>
 
+    <div class="sort-container">
+      <div>
+        <input type="checkbox" id="null-value" checked>
+        <label for="null-value">Null</label>
+      </div>
+      <div>
+        <input type="checkbox" id="feconde-value" checked>
+        <label for="feconde-value">Féconde</label>
+      </div>
+      <div>
+        <input type="checkbox" id="fecondee-value" checked>
+        <label for="fecondee-value">Fécondée</label>
+      </div>
+      <div>
+        <input type="checkbox" id="public-type" checked>
+        <label for="public-type">Public</label>
+      </div>
+      <div>
+        <input type="checkbox" id="private-type" checked>
+        <label for="private-type">Privé</label>
+      </div>  
+    </div>
+    
+
     <% if (account) { %>
       <div data-account="<%= account.id %>" class="add-container">
         <button class="input-logo add-button" id="addButton" aria-label="ajouter un personnage">

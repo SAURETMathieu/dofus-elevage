@@ -72,7 +72,7 @@ export default function characterPageTutorial() {
           title: 'La date de reproduction',
           description: `Initialement, la date sera définie sur 'null'.<br>
           Une fois l'étable reproduite, 
-          sa valeur sera la date et l'heure actuelles.<br>`,
+          sa valeur sera la date et l'heure de reproduction.<br>`,
           side: 'left',
           align: 'start',
         },

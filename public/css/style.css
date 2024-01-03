@@ -888,6 +888,29 @@ thead {
   color:rgb(255, 255, 255);
 }
 
+.sort-container{
+  width:fit-content;
+  display:flex;
+  justify-content: center;
+  flex-wrap:wrap;
+  margin:0 auto;
+  padding:1rem;
+  color:white;
+  background:rgba(0, 0, 0, 0.9);
+  gap:2rem;
+  font-weight:600;
+  text-shadow: 
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000; 
+}
+
+input[type="checkbox"]:not(:checked) + label {
+  text-decoration: line-through;
+  color:rgb(255, 109, 109);
+}
+
 /*////////////////////////*/
 /*     DELETE CONFIRM     */
 /*////////////////////////*/

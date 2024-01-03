@@ -10,6 +10,7 @@ import initReproductionButtons from '../buttons/reproductionButtons.js';
 import { searchDragodindesUpdate } from '../searchs/searchByColor.js';
 import initSpecialityButtons from '../buttons/specialityButtons.js';
 import initHelpButton from '../buttons/helpCharacter.js';
+import checkboxesInit from '../buttons/checkboxesInit.js';
 
 const elements = document.querySelectorAll("[data-type='character']");
 const clearButton = document.querySelector('#clear-search');
@@ -26,3 +27,4 @@ initReproductionButtons();
 searchDragodindesUpdate();
 initSpecialityButtons();
 initHelpButton();
+checkboxesInit();
