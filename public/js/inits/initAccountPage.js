@@ -6,6 +6,7 @@ import initColorPicker2 from '../utils/colorPickerUpdate.js';
 import { searchByName } from '../searchs/searchByName.js';
 import { createAccountCheck, updateAccountCheck } from '../checkings/checkValidityForm.js';
 import notifications from '../notifications/notifications.js';
+import initHelpButton from '../buttons/helpAccount.js';
 
 const elements = document.querySelectorAll('.container-list__account-color');
 const clearButton = document.querySelector('#clear-search');
@@ -20,3 +21,4 @@ searchByName(elements, searchInput, clearButton);
 createAccountCheck();
 updateAccountCheck();
 notifications.initCloseNotification();
+initHelpButton();
