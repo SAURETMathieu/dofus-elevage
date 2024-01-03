@@ -227,6 +227,22 @@ export default function characterPageTutorial() {
         },
       },
       {
+        element: '.sort-container',
+        popover: {
+          title: 'Trier par informations',
+          description: `Vous pouvez trier les personnages 
+            de différentes manières.<br>
+            Si la case est cochée pour une information, 
+            cela affichera les personnages
+            qui correspondent à cette information.<br>
+            Si la case est décochée, 
+            cela masquera les personnages qui possèdent 
+            cette information que vous ne souhaitez pas voir.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
         element: '.help',
         popover: {
           title: 'Le tutoriel est terminé !',
