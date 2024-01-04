@@ -1,18 +1,27 @@
 const express = require('express');
 
 const characterController = require('../../controllers/characterController.js');
+const modeController = require('../../controllers/modeController.js');
 const { isConnected } = require('../../middlewares/authorization.js');
 const {
   updateStepsCharacterSchema,
   updateCharacterSchema,
   createCharacterSchema,
   updateOrderCharacterSchema,
+  updateModeCharacterSchema,
 } = require('../../validation/schemas/character.js');
 const { paramIdSchema, paramIdAndAccountIdSchema } = require('../../validation/schemas/params.js');
 const validate = require('../../validation/index.js');
 const orderController = require('../../controllers/orderController.js');
 
 const router = new express.Router();
+
+router.patch(
+  '/mode',
+  isConnected,
+  validate(updateModeCharacterSchema),
+  modeController.updateCharacterMode,
+);
 
 router.patch(
   '/order/:id',

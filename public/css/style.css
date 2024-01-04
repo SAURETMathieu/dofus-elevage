@@ -1548,6 +1548,18 @@ input[type="checkbox"]:not(:checked) + label {
   border: solid 3px rgb(255, 255, 255);
   color:white;
   overflow-x:hidden;
+  position:relative;
+}
+
+.angle{
+  position:absolute;
+  right:1rem;
+  font-size:1.2rem;
+  width:1.5rem;
+}
+
+.angle:hover{
+  cursor:pointer;
 }
 
 .container__account h2:hover, .character__title h3{

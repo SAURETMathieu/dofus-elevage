@@ -7,3 +7,5 @@ export { default as initResetStepsButtons } from './resetStepsInputs.js';
 export { default as initSpecialityButtons } from './specialityButtons.js';
 export { default as initStepButtons } from './stepInputs.js';
 export { default as initValidStepsButtons } from './validStepsInputs.js';
+export { default as hideCharactersOnAccount } from './hideCharactersOnAccount.js';
+export { default as hidePartOfCharacter } from './hidePartOfCharacter.js';

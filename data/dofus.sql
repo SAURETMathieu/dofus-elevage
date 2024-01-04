@@ -44,6 +44,7 @@ CREATE TABLE "account" (
     "name" VARCHAR(20) NOT NULL,
     "color" VARCHAR(9) NOT NULL,
     "order" INT NOT NULL DEFAULT 0,
+    "mode" TEXT NOT NULL DEFAULT 'up',
     "server_id" INT REFERENCES "server"("id"),
     "user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -77,6 +78,7 @@ CREATE TABLE "character" (
     "endurancem" BOOLEAN DEFAULT FALSE,
     "lovef" BOOLEAN DEFAULT FALSE,
     "endurancef" BOOLEAN DEFAULT FALSE,
+    "mode" TEXT NOT NULL DEFAULT 'opened',
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

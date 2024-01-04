@@ -1,12 +1,9 @@
-### Création d'un user
-POST http://localhost:4000/signup
+PATCH http://localhost:4000/accounts/mode
 Content-Type: application/json
 
 {
-  "lastname":"fgdgdfg",
-  "firstname":"hhh",
-  "pseudo":"sdfsdfs999df",
-  "password":"123456789",
-  "passwordConfirm":"123456789",
-  "email":"t@tgdfgfh.fr"
+  "accountsMode": [
+    { "accountId": 1, "mode": "up" },
+    { "accountId": 10, "mode": "down" }
+  ]
 }

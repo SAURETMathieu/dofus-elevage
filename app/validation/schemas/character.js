@@ -74,9 +74,19 @@ const updateOrderCharacterSchema = Joi.object().keys({
   ).min(1).required(),
 });
 
+const updateModeCharacterSchema = Joi.object().keys({
+  charactersMode: Joi.array().items(
+    Joi.object({
+      characterId: Joi.number().integer().min(1).required(),
+      mode: Joi.string().valid('opened', 'closed').required(),
+    }),
+  ).required(),
+});
+
 module.exports = {
   updateCharacterSchema,
   createCharacterSchema,
   updateStepsCharacterSchema,
   updateOrderCharacterSchema,
+  updateModeCharacterSchema,
 };

@@ -18,6 +18,11 @@ Account.init(
       defaultValue: 0,
       field: 'order',
     },
+    mode: {
+      type: DataTypes.TEXT,
+      defaultValue: 'up',
+      field: 'mode',
+    },
   },
   {
     sequelize,

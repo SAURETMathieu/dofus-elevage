@@ -102,6 +102,11 @@ Character.init(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    mode: {
+      type: DataTypes.TEXT,
+      defaultValue: 'opened',
+      field: 'mode',
+    },
   },
 
   {

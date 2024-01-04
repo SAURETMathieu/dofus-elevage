@@ -20,4 +20,18 @@ const updateOrderAccountSchema = Joi.object().keys({
   ).min(1).required(),
 });
 
-module.exports = { createAccountSchema, updateAccountSchema, updateOrderAccountSchema };
+const updateModeAccountSchema = Joi.object().keys({
+  accountsMode: Joi.array().items(
+    Joi.object({
+      accountId: Joi.number().integer().min(1).required(),
+      mode: Joi.string().valid('up', 'down').required(),
+    }),
+  ).required(),
+});
+
+module.exports = {
+  createAccountSchema,
+  updateAccountSchema,
+  updateOrderAccountSchema,
+  updateModeAccountSchema,
+};
