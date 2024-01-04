@@ -9,11 +9,16 @@
   <% locals.accounts.forEach(account => { %>
 
     <ul class="container__account" data-id="<%= account.id %>" style="background-color:<%= account.color %>">
-      <h2><%= account.name %></h2>
+      <h2>
+        <%= account.name %>
+        <span class="angle">
+          <i class="fa-solid fa-angle-<%= account.mode%> fa-sm" style="color: #ffffff;"></i>
+        </span>
+      </h2>
 
       <% account.characters.forEach(character => { %>
 
-        <li data-id="<%= character.id %>" class="article__character">
+        <li data-id="<%= character.id %>" class="article__character <%= character.mode%>">
           <div class="character__title">
             <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
             <h3><%= character.name %></h3>
