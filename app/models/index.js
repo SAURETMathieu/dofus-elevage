@@ -3,6 +3,7 @@ const Breed = require('./Breed.js');
 const Character = require('./Character.js');
 const Server = require('./Server.js');
 const User = require('./User.js');
+const Rotate = require('./Rotate.js');
 
 // Associations
 
@@ -65,8 +66,35 @@ Account.belongsTo(User, {
 User.hasMany(Account, {
   foreignKey: 'user_id',
   as: 'accounts',
+  onDelete: 'CASCADE',
+});
+
+Rotate.belongsTo(User, {
+  foreignKey: 'user_id',
+  as: 'user',
+});
+
+User.hasMany(Rotate, {
+  foreignKey: 'user_id',
+  as: 'userRotates',
+  onDelete: 'CASCADE',
+});
+
+Rotate.belongsTo(User, {
+  foreignKey: 'user_id',
+  as: 'userRotate',
+});
+
+Server.hasMany(Rotate, {
+  foreignKey: 'server_id',
+  as: 'rotatesServer',
+});
+
+Rotate.belongsTo(Server, {
+  foreignKey: 'server_id',
+  as: 'rotateServer',
 });
 
 module.exports = {
-  Account, Breed, Character, Server, User,
+  Account, Breed, Character, Server, User, Rotate,
 };

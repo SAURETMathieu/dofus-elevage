@@ -4,119 +4,121 @@
     Enclos Public<br>00:00
   </h1>
 
-  <div class="container__list-accounts" data-server="server">
-    
-  <% locals.accounts.forEach(account => { %>
+  <div class="main__container-list column">
 
-    <ul class="container__account" data-id="<%= account.id %>" style="background-color:<%= account.color %>">
-      <h2>
-        <%= account.name %>
-        <span class="angle">
-          <i class="fa-solid fa-angle-<%= account.mode%> fa-sm" style="color: #ffffff;"></i>
-        </span>
-      </h2>
+    <div class="container__list-accounts" data-server="server">
+      
+    <% locals.accounts.forEach(account => { %>
 
-      <% account.characters.forEach(character => { %>
+      <ul class="container__account" data-id="<%= account.id %>" style="background-color:<%= account.color %>">
+        <h2>
+          <%= account.name %>
+          <span class="angle">
+            <i class="fa-solid fa-angle-<%= account.mode%> fa-sm" style="color: #ffffff;"></i>
+          </span>
+        </h2>
 
-        <li data-id="<%= character.id %>" class="article__character <%= character.mode%>">
-          <div class="character__title">
-            <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
-            <h3><%= character.name %></h3>
-            <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
-          </div>
-            
-            <div class="character__container section-male">
-              <div class="character__breed-img">
-                <img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.name %> pour le jeu dofus">
-              </div>
-              <div class="character__container-footer">
-                <div class="character__number">
-                  <select data-genre="male" class="custom-select" name="nbmale" value="<%= character.nbMale %>">
-                    <% for (let index = 0; index <= 125; index++) { %>
-                      <% if (character.nbMale === index) { %>
-                        <option value="<%=index%>" selected><%=index%></option>
-                      <% }else{ %>
-                        <option value="<%=index%>"><%=index%></option>
-                      <% } %>
-                    <%} %>
-                  </select>
-                </div>
-                <div class="character__genre">
-                  <span>
-                  <i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i>
-                  </span>
-                </div>
-              </div>
+        <% account.characters.forEach(character => { %>
+
+          <li data-id="<%= character.id %>" class="article__character <%= character.mode%>">
+            <div class="character__title">
+              <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
+              <h3><%= character.name %></h3>
+              <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
             </div>
-
-            <div class="character__container-logos">
-              <button data-type="mature" aria-label="Valider ou Retirer la maturité de l'etable">
-                <img class="<%= character.mature%>" src="/images/abreuvoir.png" alt="objet d'elevage abreuvoir: jeu dofus">
-              </button>
-              <button data-type="feed" aria-label="Valider ou Retirer l'energie de l'etable">
-                <img class="<%= character.feed%>" src="/images/mangeoire.png" alt="objet d'elevage mangeoire: jeu dofus">
-              </button>
-              <button data-type="ride" aria-label="Valider ou Retirer le niveau 5 de l'etable">
-                <img class="<%= character.ride%>" src="/images/dragodindelogo.png" alt="tete de dragodinde: jeu dofus">
-              </button>
-              <button data-type="endurancem" aria-label="Valider ou Retirer l'endurance des males">
-                <img class="<%= character.endurancem%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
-              </button>
-              <button data-type="agressive" aria-label="Valider ou Retirer l'agressivité de l'etable">
-                <img class="<%= character.agressive%>" src="/images/baffeur.png" alt="objet d'elevage baffeur: jeu dofus">
-              </button>
-              <button data-type="endurancef" aria-label="Valider ou Retirer l'endurance des femelles">
-                <img class="<%= character.endurancef%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
-              </button>
-              <button data-type="lovem" aria-label="Valider ou Retirer l'amour des males">
-                <img class="<%= character.lovem%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
-              </button>
-              <button data-type="serene" aria-label="Valider ou Retirer la sérénité de l'etable">
-                <img class="<%= character.serene%>" src="/images/caresse.png" alt="objet d'elevage caresseur: jeu dofus">
-              </button>
-              <button data-type="lovef" aria-label="Valider ou Retirer l'amour des femelles">
-                <img class="<%= character.lovef%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
-              </button>
-            </div>
-            
-            <div class="character__container section-female">
-              <div class="character__breed-img">
-                <img src="<%= character.breedFemale.image %>" alt="dragodinde <%= character.breedFemale.name %> pour le jeu dofus">
-              </div>
-              <div class="character__container-footer">
-                <div class="character__number">
-                  <select data-genre="female" class="custom-select" name="nbfemale" value="<%= character.nbMale %>">
-                    <% for (let index = 0; index <= 125; index++) { %>
-                      <% if (character.nbFemale === index) { %>
-                        <option value="<%=index%>" selected><%=index%></option>
-                      <% }else{ %>
-                        <option value="<%=index%>"><%=index%></option>
-                      <% } %>
-                    <%} %>
-                  </select>
+              
+              <div class="character__container section-male">
+                <div class="character__breed-img">
+                  <img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.name %> pour le jeu dofus">
                 </div>
-                <div class="character__genre">
-                  <span>
-                  <i class="fa-solid fa-venus fa-sm" style="color: #fc00ef;"></i>
-                  </span>
+                <div class="character__container-footer">
+                  <div class="character__number">
+                    <select data-genre="male" class="custom-select" name="nbmale" value="<%= character.nbMale %>">
+                      <% for (let index = 0; index <= 125; index++) { %>
+                        <% if (character.nbMale === index) { %>
+                          <option value="<%=index%>" selected><%=index%></option>
+                        <% }else{ %>
+                          <option value="<%=index%>"><%=index%></option>
+                        <% } %>
+                      <%} %>
+                    </select>
+                  </div>
+                  <div class="character__genre">
+                    <span>
+                    <i class="fa-solid fa-mars fa-sm" style="color: #1d5ac3;"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-        </li>
+              <div class="character__container-logos">
+                <button data-type="mature" aria-label="Valider ou Retirer la maturité de l'etable">
+                  <img class="<%= character.mature%>" src="/images/abreuvoir.png" alt="objet d'elevage abreuvoir: jeu dofus">
+                </button>
+                <button data-type="feed" aria-label="Valider ou Retirer l'energie de l'etable">
+                  <img class="<%= character.feed%>" src="/images/mangeoire.png" alt="objet d'elevage mangeoire: jeu dofus">
+                </button>
+                <button data-type="ride" aria-label="Valider ou Retirer le niveau 5 de l'etable">
+                  <img class="<%= character.ride%>" src="/images/dragodindelogo.png" alt="tete de dragodinde: jeu dofus">
+                </button>
+                <button data-type="endurancem" aria-label="Valider ou Retirer l'endurance des males">
+                  <img class="<%= character.endurancem%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
+                </button>
+                <button data-type="agressive" aria-label="Valider ou Retirer l'agressivité de l'etable">
+                  <img class="<%= character.agressive%>" src="/images/baffeur.png" alt="objet d'elevage baffeur: jeu dofus">
+                </button>
+                <button data-type="endurancef" aria-label="Valider ou Retirer l'endurance des femelles">
+                  <img class="<%= character.endurancef%>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
+                </button>
+                <button data-type="lovem" aria-label="Valider ou Retirer l'amour des males">
+                  <img class="<%= character.lovem%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
+                </button>
+                <button data-type="serene" aria-label="Valider ou Retirer la sérénité de l'etable">
+                  <img class="<%= character.serene%>" src="/images/caresse.png" alt="objet d'elevage caresseur: jeu dofus">
+                </button>
+                <button data-type="lovef" aria-label="Valider ou Retirer l'amour des femelles">
+                  <img class="<%= character.lovef%>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
+                </button>
+              </div>
+              
+              <div class="character__container section-female">
+                <div class="character__breed-img">
+                  <img src="<%= character.breedFemale.image %>" alt="dragodinde <%= character.breedFemale.name %> pour le jeu dofus">
+                </div>
+                <div class="character__container-footer">
+                  <div class="character__number">
+                    <select data-genre="female" class="custom-select" name="nbfemale" value="<%= character.nbMale %>">
+                      <% for (let index = 0; index <= 125; index++) { %>
+                        <% if (character.nbFemale === index) { %>
+                          <option value="<%=index%>" selected><%=index%></option>
+                        <% }else{ %>
+                          <option value="<%=index%>"><%=index%></option>
+                        <% } %>
+                      <%} %>
+                    </select>
+                  </div>
+                  <div class="character__genre">
+                    <span>
+                    <i class="fa-solid fa-venus fa-sm" style="color: #fc00ef;"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
 
-      <% }) %>
+          </li>
 
-    </ul>
+        <% }) %>
 
-  <% }) %>
+      </ul>
 
+    <% }) %>
+
+    </div>
+
+    <%- include('./partials/successNotif'); -%>
+
+    <%- include('./partials/failNotif'); -%>
   </div>
-
-  <%- include('./partials/successNotif'); -%>
-
-  <%- include('./partials/failNotif'); -%>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>

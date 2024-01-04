@@ -5,6 +5,7 @@ const charatersRouter = require('./characters.js');
 const adminsRouter = require('./admins.js');
 const privateRouter = require('./privates.js');
 const publicRouter = require('./publics.js');
+const rotatesRouter = require('./rotates.js');
 
 const router = new express.Router();
 
@@ -14,5 +15,6 @@ router.use('/accounts', accountsRouter);
 router.use('/admin', adminsRouter);
 router.use('/private', privateRouter);
 router.use('/public', publicRouter);
+router.use('/rotates', rotatesRouter);
 
 module.exports = router;

@@ -3,6 +3,7 @@
 /* eslint-disable camelcase */
 const {
   Account,
+  Server,
 } = require('../models/index.js');
 
 const privateController = {
@@ -44,7 +45,9 @@ const privateController = {
         account.characters = account.characters.sort((a, b) => a.order - b.order);
       });
 
-      return response.render('private', { accounts });
+      const servers = await Server.findAll();
+
+      return response.render('private', { accounts, servers });
     } catch (err) {
       return response.status(500).render('error', {
         error: {

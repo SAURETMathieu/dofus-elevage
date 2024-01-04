@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS "user", "account", "character","server","breed";
+DROP TABLE IF EXISTS "user", "account", "character","server","breed","rotate";
 
 -- Table User
 CREATE TABLE "user" (
@@ -79,6 +79,28 @@ CREATE TABLE "character" (
     "lovef" BOOLEAN DEFAULT FALSE,
     "endurancef" BOOLEAN DEFAULT FALSE,
     "mode" TEXT NOT NULL DEFAULT 'opened',
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ
+);
+
+CREATE TABLE "rotate" (
+    "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" VARCHAR(20) NOT NULL,
+    "color" VARCHAR(9) NOT NULL,
+    "order" INT NOT NULL DEFAULT 0,
+    "mode" TEXT NOT NULL DEFAULT 'up',
+    "mature" BOOLEAN DEFAULT FALSE,
+    "ride" BOOLEAN DEFAULT FALSE,
+    "feed" BOOLEAN DEFAULT FALSE,
+    "serene" BOOLEAN DEFAULT FALSE,
+    "agressive" BOOLEAN DEFAULT FALSE,
+    "lovem" BOOLEAN DEFAULT FALSE,
+    "endurancem" BOOLEAN DEFAULT FALSE,
+    "lovef" BOOLEAN DEFAULT FALSE,
+    "endurancef" BOOLEAN DEFAULT FALSE,
+    "time" TIME DEFAULT NULL,
+    "server_id" INT NOT NULL REFERENCES "server"("id"),
+    "user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
