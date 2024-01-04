@@ -60,6 +60,18 @@ export default function paddockTutorial() {
         },
       },
       {
+        element: '.container__account h2 span',
+        popover: {
+          title: 'Afficher/Cacher',
+          description: `En cliquant sur ce bouton, 
+          vous pouvez masquer ou afficher les personnages du compte.<br><br>
+          Remarque : Votre préférence d'affichage est sauvegardée. 
+          Vous n'aurez pas à la modifier à chaque rafraîchissement de la page.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
         element: '.container__account',
         popover: {
           title: 'Les personnages',
@@ -79,6 +91,18 @@ export default function paddockTutorial() {
           vous pouvez sélectionner et déplacer cette partie afin d'organiser 
           vos personnages à l'intérieur de chaque compte 
           dans l'ordre que vous souhaitez.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.container__account .character__title',
+        popover: {
+          title: 'Affichage du personnage',
+          description: `En cliquant sur le nom du personnage, 
+          vous pouvez changer la manière dont le personnage est affiché.<br><br>
+          Remarque : Votre préférence d'affichage est enregistrée 
+          et restera inchangée même après le rafraîchissement de la page.`,
           side: 'left',
           align: 'start',
         },
