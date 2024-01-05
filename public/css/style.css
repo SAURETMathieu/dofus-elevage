@@ -9,7 +9,7 @@ html,body{
 /* GENERAL  */
 /*//////////*/
 
-h1{
+h1, .rotate__container-title{
   text-align:center;
   font-weight:600;
   font-size:2rem; 
@@ -1628,7 +1628,8 @@ input[type="checkbox"]:not(:checked) + label {
   margin-top:-0.5rem;
 }
 
-.character__container-logos{
+.character__container-logos,
+.rotate__container-logos{
   width:45%;
   padding:0.2rem;
   display:flex;
@@ -1639,7 +1640,8 @@ input[type="checkbox"]:not(:checked) + label {
   border-left:solid 1px black;
 }
 
-.character__container-logos button:hover{
+.character__container-logos button:hover,
+.rotate__container-logos button:hover{
   cursor:pointer;
   opacity:0.8;
   transform:scale(1.1);
@@ -1649,18 +1651,21 @@ input[type="checkbox"]:not(:checked) + label {
   opacity:0.2;
 }
 
-.character__container-logos button{
+.character__container-logos button, 
+.rotate__container-logos button{
   width:33%;
   border: none;
   background: none;
   padding: 0;
 }
 
-.character__container-logos i{
+.character__container-logos i,
+.rotate__container-logos i{
   font-size:1.8rem;
 }
 
-.character__container-logos img{
+.character__container-logos img,
+.rotate__container-logos img{
   width:38.39px;
   height:38.39px;
 }
@@ -1885,6 +1890,110 @@ input[type="checkbox"]:not(:checked) + label {
   margin: 1rem auto;
   font-weight:600;
   background:rgb(238, 255, 0);
+}
+
+/*//////////////////*/
+/*     ROTATES      */
+/*//////////////////*/
+
+.rotate__list{
+  width:100%;
+  text-align:center;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:0.2rem;
+}
+
+.rotate__card{
+  font-weight:600;
+  width:304px;
+  max-width:304px;
+  padding:0.3rem;
+  background-color:rgb(128, 128, 128);
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.4rem;
+  border:solid 2px black;
+  align-self:flex-start;
+}
+
+.rotate__title{
+  width:100%;
+  height:3rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background-color:black;
+  border: solid 3px white;
+}
+
+.rotate__title img{
+  width:55.44px;
+  height:55.44px;
+}
+
+.rotate__title h3{
+  color:white;
+}
+
+.rotate__main{
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+  background:#AF3D32;
+  border: solid 5px rgb(0, 0, 0);
+}
+
+.rotate__side{
+  width:26%;
+  padding:0.2rem;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-evenly;
+  gap:0.2rem;
+}
+
+.rotate__side-crud,
+.rotate__side-time,
+.rotate__side-manage
+{
+  width:100%;
+  height:30%;
+  background:white;
+  border:solid 1px black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.rotate__side-time span:hover{
+  transform:scale(1.05);
+  cursor:pointer;
+}
+
+.rotate__side button{
+  background:none;
+  border:none;
+}
+
+.rotate__side button i{
+  font-size:1.7rem;
+  font-weight:600;
+}
+
+.rotate__side button i:hover{
+  transform:scale(1.1);
+}
+
+.rotate__side-manage, .rotate__side-crud{
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+}
+
+.rotate__side img{
+  width:100%;
 }
 
 /*//////////////////*/

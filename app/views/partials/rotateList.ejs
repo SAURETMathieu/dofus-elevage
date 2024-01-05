@@ -1,0 +1,87 @@
+<div class="add-container">
+  <button class="input-logo add-button" id="addButton" aria-label="ajouter une rotation">
+    <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
+  </button>
+</div>
+<h2 class="rotate__container-title">
+  Rotations
+</h2>
+
+<section class="rotate__list">
+
+  <% rotates.forEach(rotate => { %>
+
+  <article class="rotate__card" id="rotate-<%= rotate.id%>" data-id="<%= rotate.id %>" style="background-color:<%= rotate.color %>">
+      <div class="rotate__title" data-classe="<%= rotate.class%>">
+        <img src="/images/<%= rotate.class %>.png" alt="classe <%= rotate.class %> pour le jeu dofus">
+        <h3 slot="rotate-name"><%= rotate.name %></h3>
+        <img src="/images/<%= rotate.class %>.png" alt="classe <%= rotate.class %> pour le jeu dofus">
+      </div>
+      <div class="rotate__main">
+
+        <div class="rotate__side" data-server-name="<%= rotate.rotateServer.name %>" data-server="<%= rotate.rotateServer.id %>" slot="rotate-server">
+            <img src="./images/<%= rotate.rotateServer.img %>" alt="logo du server <%= rotate.rotateServer.img %>">
+            <button class="rotate-angle">
+              <i class="fa-solid fa-angle-<%= rotate.mode %>"></i>
+            </button>
+        </div>
+
+        <div class="rotate__container-logos">
+          <button data-type="mature" aria-label="Valider ou Retirer la maturité de l'etable">
+            <img class="<%= rotate.mature %>" src="/images/abreuvoir.png" alt="objet d'elevage abreuvoir: jeu dofus">
+          </button>
+          <button data-type="feed" aria-label="Valider ou Retirer l'energie de l'etable">
+            <img class="<%= rotate.feed %>" src="/images/mangeoire.png" alt="objet d'elevage mangeoire: jeu dofus">
+          </button>
+          <button data-type="ride" aria-label="Valider ou Retirer le niveau 5 de l'etable">
+            <img class="<%= rotate.ride %>" src="/images/dragodindelogo.png" alt="tete de dragodinde: jeu dofus">
+          </button>
+          <button data-type="endurancem" aria-label="Valider ou Retirer l'endurance des males">
+            <img class="<%= rotate.endurancem %>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
+          </button>
+          <button data-type="agressive" aria-label="Valider ou Retirer l'agressivité de l'etable">
+            <img class="<%= rotate.agressive %>" src="/images/baffeur.png" alt="objet d'elevage baffeur: jeu dofus">
+          </button>
+          <button data-type="endurancef" aria-label="Valider ou Retirer l'endurance des femelles">
+            <img class="<%= rotate.endurancef %>" src="/images/endu.png" alt="objet d'elevage foudroyeur: jeu dofus">
+          </button>
+          <button data-type="lovem" aria-label="Valider ou Retirer l'amour des males">
+            <img class="<%= rotate.lovem %>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
+          </button>
+          <button data-type="serene" aria-label="Valider ou Retirer la sérénité de l'etable">
+            <img class="<%= rotate.serene %>" src="/images/caresse.png" alt="objet d'elevage caresseur: jeu dofus">
+          </button>
+          <button data-type="lovef" aria-label="Valider ou Retirer l'amour des femelles">
+            <img class="<%= rotate.lovef %>" src="/images/amour.png" alt="objet d'elevage dragofesse: jeu dofus">
+          </button>
+        </div>
+        
+        <div class="rotate__side">
+          <div class="rotate__side-crud">
+            <button data-toggle="delete-modal">
+              <i class="fa-solid fa-trash-can" style="color: red;"></i>
+            </button>
+            <button data-toggle="update-modal">
+              <i class="fa-regular fa-pen-to-square" style="color: blue;"></i>
+            </button>
+          </div>
+          <div class="rotate__side-time">
+            <span>
+              <%= rotate.time %>
+            </span>
+          </div>
+          <div class="rotate__side-manage">
+            <button>
+              <i class="fa-solid fa-xmark" style="color: red;"></i>
+            </button>
+            <button>
+              <i class="fa-solid fa-check" style="color: green;"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  </article>
+
+  <% }) %>
+
+</section>

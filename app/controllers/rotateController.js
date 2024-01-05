@@ -21,11 +21,14 @@ const rotateController = {
         });
       }
 
-      const { name, color, server } = request.body;
+      const {
+        name, color, server, classe,
+      } = request.body;
 
       const rotate = await Rotate.create({
         name,
         color,
+        class: classe,
         server_id: server,
         user_id: userId,
       });
@@ -70,6 +73,7 @@ const rotateController = {
         name,
         color,
         server,
+        classe,
       } = request.body;
 
       const selectedRotate = await Rotate.findByPk(request.params.id);
@@ -88,6 +92,7 @@ const rotateController = {
         name,
         color,
         server_id: server,
+        class: classe,
       });
 
       if (updatedRotate) {

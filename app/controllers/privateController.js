@@ -4,6 +4,7 @@
 const {
   Account,
   Server,
+  Rotate,
 } = require('../models/index.js');
 
 const privateController = {
@@ -47,7 +48,18 @@ const privateController = {
 
       const servers = await Server.findAll();
 
-      return response.render('private', { accounts, servers });
+      const rotates = await Rotate.findAll({
+        where: {
+          user_id: userId,
+        },
+        include: [
+          {
+            association: 'rotateServer',
+          },
+        ],
+      });
+
+      return response.render('private', { accounts, servers, rotates });
     } catch (err) {
       return response.status(500).render('error', {
         error: {

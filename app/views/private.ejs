@@ -6,11 +6,9 @@
 
   <div class="main__container-list column">
 
-    <div class="add-container">
-      <button class="input-logo add-button" id="addButton" aria-label="ajouter une rotation">
-        <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
-      </button>
-    </div>
+    <%- include('./partials/rotateList.ejs'); -%>
+    
+    <h2 class="rotate__container-title">Etables</h2>
 
     <div class="container__list-accounts" data-server="server">
 
@@ -120,15 +118,22 @@
     <% }) %>
 
     </div>
-
-    <%- include('./partials/successNotif'); -%>
-
-    <%- include('./partials/failNotif'); -%>
-
-    <%- include('./partials/createRotateModal'); -%>
-
+    
   </div>
+
+  <%- include('./partials/successNotif'); -%>
+  
+  <%- include('./partials/failNotif'); -%>
+
+  <%- include('./partials/createRotateModal'); -%>
+
+  <%- include('./partials/updateRotateModal'); -%>
+  
 </main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" /> 
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 

@@ -13,6 +13,10 @@ Rotate.init(
       type: DataTypes.STRING(9),
       allowNull: false,
     },
+    class: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+    },
     order: {
       type: DataTypes.INTEGER,
       defaultValue: 0,

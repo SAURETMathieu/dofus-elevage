@@ -14,10 +14,13 @@ import initDragAccount from '../dragAndDrop/dragAccounts.js';
 import initDragCharacter from '../dragAndDrop/dragCharacters.js';
 import initHelpButton from '../buttons/helpButton.js';
 import * as buttons from '../buttons/index.js';
+import initCustomSelect from '../utils/addImageToSelectRotate.js';
+import initModalUpdateRotate from '../modals/updateRotateModal.js';
 
 notifications.initCloseNotification();
 initColorPicker();
 initAddModal();
+initModalUpdateRotate();
 createAccountCheck();
 initInputsNumber();
 initStepButtons();
@@ -32,3 +35,4 @@ buttons.hideCharactersOnAccount();
 buttons.hidePartOfCharacter();
 initClosedCharacters();
 initClosedAccounts();
+initCustomSelect();

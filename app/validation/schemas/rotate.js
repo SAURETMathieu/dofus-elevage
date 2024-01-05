@@ -3,12 +3,14 @@ const Joi = require('joi');
 const createRotateSchema = Joi.object({
   name: Joi.string().min(1).max(20).required(),
   color: Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/).required(),
+  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa').required(),
   server: Joi.number().integer().min(1).required(),
 });
 
 const updateRotateSchema = Joi.object({
   name: Joi.string().min(1).max(20),
   color: Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/),
+  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa').required(),
   server: Joi.number().integer().min(1),
 }).or('name', 'color', 'serverId');
 
