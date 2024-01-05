@@ -1,4 +1,5 @@
 import { deleteAccount, deleteCharacter } from '../requests/delete/requestDelete.js';
+import deleteRotate from '../requests/delete/deleteRotate.js';
 
 const modalElem = document.getElementById('confirm-delete-modal');
 const openModalButtons = document.querySelectorAll('[data-toggle="delete-modal"]');
@@ -20,6 +21,9 @@ function openDeleteModal() {
       }
       if (type === 'character') {
         titleToDeleteModal.textContent = 'Voulez vous vraiment supprimer ce personnage ?';
+      }
+      if (type === 'rotate') {
+        titleToDeleteModal.textContent = 'Voulez vous vraiment supprimer cette rotation ?';
       }
       modalElem.style.display = 'block';
     });
@@ -49,6 +53,9 @@ function confirmDeleteModal() {
     }
     if (type === 'character') {
       deleteCharacter(idToDelete);
+    }
+    if (type === 'rotate') {
+      deleteRotate(idToDelete);
     }
   });
 }

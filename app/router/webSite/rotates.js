@@ -8,7 +8,7 @@ const {
   createRotateSchema,
   updateRotateSchema,
 } = require('../../validation/schemas/rotate.js');
-// const { paramIdSchema } = require('../../validation/schemas/params.js');
+const { paramIdSchema } = require('../../validation/schemas/params.js');
 const validate = require('../../validation/index.js');
 
 const router = new express.Router();
@@ -27,12 +27,12 @@ const router = new express.Router();
 //   orderController.updateRotateOrder,
 // );
 
-// router.delete(
-//   '/:id',
-//   isConnected,
-//   validate(paramIdSchema, 'params'),
-//   rotateController.deleteRotate,
-// );
+router.delete(
+  '/:id',
+  isConnected,
+  validate(paramIdSchema, 'params'),
+  rotateController.deleteRotate,
+);
 
 router.patch(
   '/:id',

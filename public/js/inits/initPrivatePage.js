@@ -16,6 +16,7 @@ import initHelpButton from '../buttons/helpButton.js';
 import * as buttons from '../buttons/index.js';
 import initCustomSelect from '../utils/addImageToSelectRotate.js';
 import initModalUpdateRotate from '../modals/updateRotateModal.js';
+import initDeleteModal from '../modals/deleteModal.js';
 
 notifications.initCloseNotification();
 initColorPicker();
@@ -36,3 +37,4 @@ buttons.hidePartOfCharacter();
 initClosedCharacters();
 initClosedAccounts();
 initCustomSelect();
+initDeleteModal('rotate');

@@ -55,11 +55,11 @@ const rotateController = {
       const rotateDeleted = await Rotate.destroy({
         where: {
           id,
+          user_id: request.session.user.id,
         },
       });
-
       if (rotateDeleted) {
-        return response.status(201).json();
+        return response.status(204).json();
       }
       return response.status(400).json({ error: 'Erreur lors de la suppression de la rotation' });
     } catch (error) {

@@ -106,11 +106,12 @@ const accountController = {
       const accountDeleted = await Account.destroy({
         where: {
           id,
+          user_id: request.session.user.id,
         },
       });
 
       if (accountDeleted) {
-        return response.status(201).json();
+        return response.status(204).json();
       }
       return response.status(400).json({ error: 'Erreur lors de la suppression du compte' });
     } catch (error) {

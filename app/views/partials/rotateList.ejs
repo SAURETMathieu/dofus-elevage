@@ -11,7 +11,7 @@
 
   <% rotates.forEach(rotate => { %>
 
-  <article class="rotate__card" id="rotate-<%= rotate.id%>" data-id="<%= rotate.id %>" style="background-color:<%= rotate.color %>">
+  <article class="rotate__card" id="rotate-<%= rotate.id%>" data-type="rotate" data-id="<%= rotate.id %>" style="background-color:<%= rotate.color %>">
       <div class="rotate__title" data-classe="<%= rotate.class%>">
         <img src="/images/<%= rotate.class %>.png" alt="classe <%= rotate.class %> pour le jeu dofus">
         <h3 slot="rotate-name"><%= rotate.name %></h3>
@@ -59,10 +59,10 @@
         <div class="rotate__side">
           <div class="rotate__side-crud">
             <button data-toggle="delete-modal">
-              <i class="fa-solid fa-trash-can" style="color: red;"></i>
+              <i class="fas fa-trash-alt" style="color: red;"></i>
             </button>
             <button data-toggle="update-modal">
-              <i class="fa-regular fa-pen-to-square" style="color: blue;"></i>
+              <i class="fas fa-pencil-alt" style="color: blue;"></i>
             </button>
           </div>
           <div class="rotate__side-time">
