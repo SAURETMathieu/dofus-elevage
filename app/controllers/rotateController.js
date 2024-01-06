@@ -105,6 +105,32 @@ const rotateController = {
       return response.status(500).json({ error: 'Internal server error' });
     }
   },
+
+  updateTime: async (request, response) => {
+    try {
+      const {
+        time,
+      } = request.body;
+
+      const selectedRotate = await Rotate.findByPk(request.params.id);
+
+      if (!selectedRotate) {
+        return response.status(404).json({ error: 'Rotate not found.' });
+      }
+
+      const updatedRotate = await selectedRotate.update({
+        time,
+      });
+
+      if (updatedRotate) {
+        return response.json(updatedRotate);
+      }
+
+      return response.status(404).json({ error: 'Rotate not found.' });
+    } catch (err) {
+      return response.status(500).json({ error: 'Internal server error' });
+    }
+  },
 };
 
 module.exports = rotateController;

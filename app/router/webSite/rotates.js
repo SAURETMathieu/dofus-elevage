@@ -27,6 +27,14 @@ const router = new express.Router();
 //   orderController.updateRotateOrder,
 // );
 
+router.patch(
+  '/time/:id',
+  isConnected,
+  validate(paramIdSchema, 'params'),
+  validate(updateRotateSchema),
+  rotateController.updateTime,
+);
+
 router.delete(
   '/:id',
   isConnected,

@@ -10,9 +10,10 @@ const createRotateSchema = Joi.object({
 const updateRotateSchema = Joi.object({
   name: Joi.string().min(1).max(20),
   color: Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/),
-  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa').required(),
+  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa'),
   server: Joi.number().integer().min(1),
-}).or('name', 'color', 'serverId');
+  time: Joi.string().regex(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/),
+}).or('name', 'color', 'serverId', 'classe', 'time');
 
 const updateOrderRotateSchema = Joi.object().keys({
   rotationsOrder: Joi.array().items(

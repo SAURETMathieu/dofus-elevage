@@ -18,6 +18,7 @@ import initCustomSelect from '../utils/addImageToSelectRotate.js';
 import initModalUpdateRotate from '../modals/updateRotateModal.js';
 import initDeleteModal from '../modals/deleteModal.js';
 import initToggleLists from '../buttons/togglePaddockList.js';
+import timeRotateButton from '../buttons/timeRotate.js';
 
 notifications.initCloseNotification();
 initColorPicker();
@@ -40,3 +41,4 @@ initClosedAccounts();
 initCustomSelect();
 initDeleteModal('rotate');
 initToggleLists();
+timeRotateButton();
