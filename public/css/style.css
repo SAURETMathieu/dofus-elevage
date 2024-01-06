@@ -1591,6 +1591,12 @@ input[type="checkbox"]:not(:checked) + label {
   background-color:#87d30e;
 }
 
+.character__main{
+  width:100%;
+  display:flex;
+  position:relative;
+}
+
 .character__container{
   width:26%;
   padding:0.2rem;
@@ -1998,6 +2004,72 @@ input[type="checkbox"]:not(:checked) + label {
   cursor:pointer;
   opacity:0.8;
   background:#7b8802;
+}
+
+.rotate__add{
+  width:100%;
+  background:#000000;
+  border: solid 5px rgb(255, 255, 255);
+  padding:0.2rem;
+}
+
+.rotate__add button{
+  border:none;
+  background:none;
+  width:100%;
+  height:100%;
+}
+
+.rotate__add button:hover{
+  transform: scale(1.1);
+  cursor:pointer;
+}
+
+.rotate__add button i{
+  font-size:1.2rem;
+}
+
+.add-rotate{
+  position:absolute;
+  z-index:50;
+  width:100%;
+  height:100%;
+  border: solid 5px rgb(255, 255, 255);
+  padding:0.2rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:2rem;
+  font-weight:600;
+  color:white;
+}
+
+.add-rotate:hover{
+  opacity:0.9;
+  font-size:2.2rem;
+  cursor:pointer;
+}
+
+.finish-button{
+  position:fixed;
+  bottom:1rem;
+  left:50%;
+  transform: translate(-50%);
+  height:3rem;
+  width:300px;
+  background:#004706;
+  border: solid 5px #ffffff;
+  color:rgb(255, 255, 255);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:600;
+  font-size:2rem;
+}
+
+.finish-button:hover{
+  cursor:pointer;
+  
 }
 
 /*//////////////////*/

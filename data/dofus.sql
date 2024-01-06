@@ -59,6 +59,7 @@ CREATE TABLE "character" (
     "breed_male" INT NOT NULL REFERENCES "breed"("id"),
     "breed_female" INT NOT NULL REFERENCES "breed"("id"),
     "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
+    "rotate_id" INT DEFAULT NULL REFERENCES "rotate"("id"),
     "nb_male" INT DEFAULT 0,
     "nb_female" INT DEFAULT 0,
     "status" VARCHAR(20) DEFAULT '',

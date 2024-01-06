@@ -24,13 +24,14 @@
 
         <% account.characters.forEach(character => { %>
 
-          <li data-id="<%= character.id %>" class="article__character <%= character.mode%>">
+          <li data-id="<%= character.id %>" data-rotate="<%= character.rotate_id %>" class="article__character <%= character.mode%>">
             <div class="character__title">
               <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
               <h3><%= character.name %></h3>
               <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
             </div>
               
+            <div class="character__main">
               <div class="character__container section-male">
                 <div class="character__breed-img">
                   <img src="<%= character.breedMale.image %>" alt="dragodinde <%= character.breedMale.name %> pour le jeu dofus">
@@ -108,7 +109,7 @@
                   </div>
                 </div>
               </div>
-
+            </div>
           </li>
 
         <% }) %>

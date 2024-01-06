@@ -24,6 +24,14 @@ router.patch(
 );
 
 router.patch(
+  '/rotate/:id',
+  isConnected,
+  validate(paramIdSchema, 'params'),
+  validate(updateStepsCharacterSchema),
+  characterController.updateRotateCharacter,
+);
+
+router.patch(
   '/order/:id',
   isConnected,
   validate(paramIdSchema, 'params'),

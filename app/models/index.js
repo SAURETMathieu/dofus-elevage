@@ -95,6 +95,16 @@ Rotate.belongsTo(Server, {
   as: 'rotateServer',
 });
 
+Rotate.hasMany(Character, {
+  foreignKey: 'rotate_id',
+  as: 'charactersRotate',
+});
+
+Character.belongsTo(Rotate, {
+  foreignKey: 'rotate_id',
+  as: 'characterRotate',
+});
+
 module.exports = {
   Account, Breed, Character, Server, User, Rotate,
 };

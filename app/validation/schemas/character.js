@@ -26,6 +26,7 @@ const alternativeSteps = [
   'endurancem',
   'lovef',
   'endurancef',
+  'rotateId',
 ];
 
 const createCharacterSchema = Joi.object({
@@ -64,6 +65,7 @@ const updateStepsCharacterSchema = Joi.object({
   endurancef: Joi.boolean(),
   lovem: Joi.boolean(),
   endurancem: Joi.boolean(),
+  rotateId: Joi.number().integer().min(1).allow(null),
 }).or(...alternativeSteps);
 
 const updateOrderCharacterSchema = Joi.object().keys({

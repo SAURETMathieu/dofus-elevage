@@ -1,6 +1,6 @@
 const dayjs = require('dayjs');
 const {
-  Server, Account, Character, Breed,
+  Server, Account, Character, Breed, Rotate,
 } = require('../models/index.js');
 // eslint-disable-next-line import/extensions
 require('dayjs/locale/fr');
@@ -223,6 +223,39 @@ const characterController = {
 
       const updatedCharacter = await selectedCharacter.update(
         updatedData,
+      );
+
+      if (!updatedCharacter) {
+        return response.status(500).json({ error: 'Internal server error' });
+      }
+
+      return response.json(updatedCharacter);
+    } catch (err) {
+      return response.status(500).json({ error: 'Internal server error' });
+    }
+  },
+
+  updateRotateCharacter: async (request, response) => {
+    try {
+      const { rotateId } = request.body;
+      let parsedRotateId = rotateId;
+      const selectedCharacter = await Character.findByPk(request.params.id);
+
+      if (!selectedCharacter) {
+        return response.status(404).json({ error: 'Character not found.' });
+      }
+
+      if (rotateId !== null) {
+        parsedRotateId = parseInt(rotateId, 10);
+        const selectedRotate = await Rotate.findByPk(parsedRotateId);
+
+        if (!selectedRotate) {
+          return response.status(404).json({ error: 'Rotate not found.' });
+        }
+      }
+
+      const updatedCharacter = await selectedCharacter.update(
+        { rotate_id: parsedRotateId },
       );
 
       if (!updatedCharacter) {

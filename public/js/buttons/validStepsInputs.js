@@ -5,16 +5,15 @@ export default function initValidStepsButtons() {
   const validStepsButtons = document.querySelectorAll(
     '[data-type="valid-all"]',
   );
-
   validStepsButtons.forEach((button) => {
     button.addEventListener('click', async (event) => {
-      const liElement = event.target.closest('li');
-      const buttonsOnCharacter = liElement
-        .querySelectorAll('.character__container-logos button:not(:has(i)):nth-child(n+4)');
+      const rotateElement = event.target.closest('article');
+      const buttonsOnRotate = rotateElement
+        .querySelectorAll('.rotate__container-logos button:nth-child(n+4)');
       const dataTypesAndValues = [];
-      const { id } = liElement.dataset;
+      const { id } = rotateElement.dataset;
 
-      buttonsOnCharacter.forEach((buttonOnCharacter) => {
+      buttonsOnRotate.forEach((buttonOnCharacter) => {
         const dataType = buttonOnCharacter.getAttribute('data-type');
         const imgElement = buttonOnCharacter.querySelector('img');
         if (dataType && imgElement) {
@@ -24,9 +23,9 @@ export default function initValidStepsButtons() {
         }
       });
 
-      calculNbOfSteps(buttonsOnCharacter);
+      //calculNbOfSteps(buttonsOnRotate);
 
-      await updateStepsOfCharacter(id, dataTypesAndValues);
+      //await updateStepsOfCharacter(id, dataTypesAndValues);
     });
   });
 }
