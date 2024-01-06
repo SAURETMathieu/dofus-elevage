@@ -9,7 +9,7 @@ html,body{
 /* GENERAL  */
 /*//////////*/
 
-h1, .rotate__container-title{
+h1, .rotate__container-title, .account__container-title{
   text-align:center;
   font-weight:600;
   font-size:2rem; 
@@ -48,7 +48,7 @@ i{
   opacity:0.90;
   display:flex;
   flex-wrap:wrap;
-  justify-content:center;
+  flex-direction:column;
   gap:0.5rem;
 }
 
@@ -1146,11 +1146,6 @@ input[type="checkbox"]:not(:checked) + label {
   letter-spacing: 1px;
 }
 
-.column{
-  flex-direction:column;
-  justify-content:center;
-}
-
 .feconde{
   color:green;
   font-weight:600;
@@ -1997,6 +1992,12 @@ input[type="checkbox"]:not(:checked) + label {
 
 .rotate__side img{
   width:100%;
+}
+
+.rotate__container-title:hover, .account__container-title:hover{
+  cursor:pointer;
+  opacity:0.8;
+  background:#7b8802;
 }
 
 /*//////////////////*/
