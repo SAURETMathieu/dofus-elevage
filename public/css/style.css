@@ -39,7 +39,6 @@ i{
 
 .main__container-list{
   width:90%;
-  min-height:60vh;
   margin:0.5rem auto;
   padding:1rem;
   background-color:#00000086;
@@ -47,8 +46,9 @@ i{
   border-radius:0.5rem;
   opacity:0.90;
   display:flex;
+  justify-content:center;
   flex-wrap:wrap;
-  flex-direction:column;
+
   gap:0.5rem;
 }
 
@@ -2073,13 +2073,14 @@ input[type="checkbox"]:not(:checked) + label {
 
 .character-list{
   width:100%;
+  background:black;
+  border: solid 5px white;
 }
 
 .character-list h3{
   width:100%;
   padding:0.2rem;
-  background: black;
-  border: solid 5px white;
+  border:solid 1px grey;
   color:white;
 }
 

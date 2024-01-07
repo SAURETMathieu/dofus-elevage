@@ -24,7 +24,7 @@
 
         <% account.characters.forEach(character => { %>
 
-          <li data-id="<%= character.id %>" class="article__character <%= character.mode%>">
+          <li data-id="<%= character.id %>" data-rotate="<%= character.rotate_id %>" class="article__character <%= character.mode%>">
             <div class="character__title">
               <img src="/images/<%= character.class%>.png" alt="classe <%= character.class%> pour le jeu dofus">
               <h3><%= character.name %></h3>

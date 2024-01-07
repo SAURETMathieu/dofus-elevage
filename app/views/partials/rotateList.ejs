@@ -81,6 +81,9 @@
         </div>
       </div>
       <div class="hidden character-list">
+        <% rotate.charactersRotate.forEach(character => { %>
+         <h3 id="character-list-<%= character.id%>"><%= character.name%></h3>
+        <% }) %>
       </div>
       <div class="rotate__add">
         <button data-type="active-add" aria-label="Activer les boutons d'ajout de personnage à la rotation">

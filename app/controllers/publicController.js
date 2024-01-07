@@ -54,6 +54,9 @@ const publicController = {
           {
             association: 'rotateServer',
           },
+          {
+            association: 'charactersRotate',
+          },
         ],
       });
 

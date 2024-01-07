@@ -7,6 +7,27 @@ function deleteAllAddButtons() {
   });
 }
 
+function removeOnCharacterList(characterId) {
+  const characterOnListElement = document.getElementById(`character-list-${characterId}`);
+  if (characterOnListElement) {
+    characterOnListElement.remove();
+  }
+}
+
+function addOnCharacterList(character, rotateId) {
+  if (rotateId === null) {
+    return;
+  }
+  const rotateCardElement = document.querySelector(`.rotate__card[data-id="${rotateId}"]`);
+  const characterListElement = rotateCardElement.querySelector('.character-list');
+  if (characterListElement) {
+    const h3Element = document.createElement('h3');
+    h3Element.textContent = character.name;
+    h3Element.setAttribute('id', `character-list-${character.id}`);
+    characterListElement.appendChild(h3Element);
+  }
+}
+
 function initAddButton(div, characterId, rotateId) {
   div.addEventListener('click', async (event) => {
     let characterUpdated;
@@ -18,7 +39,8 @@ function initAddButton(div, characterId, rotateId) {
     }
 
     if (characterUpdated) {
-      // TODO addCharacterElementToRotateElement();
+      removeOnCharacterList(characterUpdated.id);
+      addOnCharacterList(characterUpdated, characterUpdated.rotate_id);
       if (characterUpdated.rotate_id === rotateId) {
         div.textContent = '-';
         div.style.background = 'red';
