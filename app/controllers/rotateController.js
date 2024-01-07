@@ -33,7 +33,7 @@ const rotateController = {
         user_id: userId,
       });
 
-      return response.redirect('/private');
+      return response.redirect('/public');
     } catch (err) {
       return response.status(500).render('error', {
         error: {

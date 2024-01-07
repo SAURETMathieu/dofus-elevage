@@ -23,6 +23,28 @@ const modeController = {
     }
   },
 
+  updateRotateMode: async (request, response) => {
+    try {
+      const { rotatesMode } = request.body;
+
+      let updateQuery = 'UPDATE rotate SET "mode" = CASE ';
+
+      rotatesMode.forEach((rotate) => {
+        updateQuery += `WHEN id = ${rotate.rotateId} THEN '${rotate.mode}' `;
+      });
+
+      updateQuery += 'ELSE "mode" END ';
+
+      updateQuery += `WHERE user_id = ${request.session.user.id} AND id IN (${rotatesMode.map((rotate) => rotate.rotateId).join(',')})`;
+
+      await sequelize.query(updateQuery, { type: QueryTypes.UPDATE });
+
+      response.status(200).json({ message: 'Changement d\'affichage de la rotation mis à jour avec succès.' });
+    } catch (error) {
+      response.status(500).json({ error: 'Une erreur est survenue lors de la mise à jour de l\'affichage de la rotation.' });
+    }
+  },
+
   updateCharacterMode: async (request, response) => {
     try {
       const { charactersMode } = request.body;

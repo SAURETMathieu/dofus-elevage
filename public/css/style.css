@@ -1181,7 +1181,7 @@ input[type="checkbox"]:not(:checked) + label {
 .modal {
   display: none;
   position: fixed;
-  z-index: 20;
+  z-index: 999;
   left: 0;
   top: 0;
   width: 100%;
@@ -2069,7 +2069,18 @@ input[type="checkbox"]:not(:checked) + label {
 
 .finish-button:hover{
   cursor:pointer;
-  
+}
+
+.character-list{
+  width:100%;
+}
+
+.character-list h3{
+  width:100%;
+  padding:0.2rem;
+  background: black;
+  border: solid 5px white;
+  color:white;
 }
 
 /*//////////////////*/

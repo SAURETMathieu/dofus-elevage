@@ -2,23 +2,24 @@ const express = require('express');
 
 const rotateController = require('../../controllers/rotateController.js');
 // const orderController = require('../../controllers/orderController.js');
-// const modeController = require('../../controllers/modeController.js');
+const modeController = require('../../controllers/modeController.js');
 const { isConnected } = require('../../middlewares/authorization.js');
 const {
   createRotateSchema,
   updateRotateSchema,
+  updateModeRotateSchema,
 } = require('../../validation/schemas/rotate.js');
 const { paramIdSchema } = require('../../validation/schemas/params.js');
 const validate = require('../../validation/index.js');
 
 const router = new express.Router();
 
-// router.patch(
-//   '/mode',
-//   isConnected,
-//   validate(updateModeRotateSchema),
-//   modeController.updateRotateMode,
-// );
+router.patch(
+  '/mode',
+  isConnected,
+  validate(updateModeRotateSchema),
+  modeController.updateRotateMode,
+);
 
 // router.patch(
 //   '/order',

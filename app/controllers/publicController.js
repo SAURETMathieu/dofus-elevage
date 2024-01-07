@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 const {
-  Account,
+  Account, Server, Rotate,
 } = require('../models/index.js');
 
 const publicController = {
@@ -44,7 +44,20 @@ const publicController = {
         account.characters = account.characters.sort((a, b) => a.order - b.order);
       });
 
-      return response.render('public', { accounts });
+      const servers = await Server.findAll();
+
+      const rotates = await Rotate.findAll({
+        where: {
+          user_id: userId,
+        },
+        include: [
+          {
+            association: 'rotateServer',
+          },
+        ],
+      });
+
+      return response.render('public', { accounts, servers, rotates });
     } catch (err) {
       return response.status(500).render('error', {
         error: {

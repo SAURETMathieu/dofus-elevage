@@ -46,20 +46,7 @@ const privateController = {
         account.characters = account.characters.sort((a, b) => a.order - b.order);
       });
 
-      const servers = await Server.findAll();
-
-      const rotates = await Rotate.findAll({
-        where: {
-          user_id: userId,
-        },
-        include: [
-          {
-            association: 'rotateServer',
-          },
-        ],
-      });
-
-      return response.render('private', { accounts, servers, rotates });
+      return response.render('private', { accounts });
     } catch (err) {
       return response.status(500).render('error', {
         error: {

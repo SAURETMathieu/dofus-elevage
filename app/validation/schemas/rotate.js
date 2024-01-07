@@ -24,9 +24,9 @@ const updateOrderRotateSchema = Joi.object().keys({
 });
 
 const updateModeRotateSchema = Joi.object().keys({
-  rotationsMode: Joi.array().items(
+  rotatesMode: Joi.array().items(
     Joi.object({
-      rotationId: Joi.number().integer().min(1).required(),
+      rotateId: Joi.number().integer().min(1).required(),
       mode: Joi.string().valid('up', 'down').required(),
     }),
   ).required(),
