@@ -1,18 +1,17 @@
 import notifications from '../../notifications/notifications.js';
 
-export default async function updateCharactersOrderWhenDrop(objectToSend) {
-  const { charactersOrder, accountId } = objectToSend;
-  if (!Array.isArray(charactersOrder)) {
+export default async function updateRotatesWhenDrop(rotatesOrder) {
+  if (!Array.isArray(rotatesOrder)) {
     return false;
   }
 
   try {
-    const response = await fetch(`/characters/order/${accountId}`, {
+    const response = await fetch('/rotates/order', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ order: charactersOrder }),
+      body: JSON.stringify({ rotatesOrder }),
     });
 
     if (!response.ok) {
@@ -24,7 +23,7 @@ export default async function updateCharactersOrderWhenDrop(objectToSend) {
 
     return true;
   } catch (error) {
-    notifications.editAndShowFailNotification("Une erreur est survenue lors de la modification de l'ordre des personnages");
+    notifications.editAndShowFailNotification("Une erreur est survenue lors de la modification de l'ordre des rotations");
     return false;
   }
 }

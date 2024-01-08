@@ -13,7 +13,7 @@ const updateAccountSchema = Joi.object({
 }).or('name', 'color', 'serverId');
 
 const updateOrderAccountSchema = Joi.object().keys({
-  accountsOrder: Joi.array().items(
+  order: Joi.array().items(
     Joi.object({
       accountId: Joi.number().integer().positive().required(),
     }),

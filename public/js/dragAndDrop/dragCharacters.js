@@ -1,5 +1,5 @@
 import getCharactersOrder from './getCharactersOrder.js';
-import updateCharactersWhenDrop from '../requests/patch/updateOrderCharacters.js';
+import updateCharactersOrderWhenDrop from '../requests/patch/updateOrderCharacters.js';
 
 export default function initDragCharacter() {
   const accountsContainer = document.querySelector('.container__list-accounts');
@@ -14,7 +14,7 @@ export default function initDragCharacter() {
         animation: 100,
         onEnd() {
           const objectToSend = getCharactersOrder(container);
-          updateCharactersWhenDrop(objectToSend);
+          updateCharactersOrderWhenDrop(objectToSend);
         },
       });
     });

@@ -1,5 +1,5 @@
-// import getRotatesOrder from './getRotatesOrder.js';
-// import updateRotatesWhenDrop from '../requests/patch/updateOrderRotates.js';
+import getRotatesOrder from './getRotatesOrder.js';
+import updateOrderWhenDrop from '../requests/patch/updateOrder.js';
 
 export default function initDragRotate() {
   const rotatesContainer = document.querySelector('.rotate__list');
@@ -10,8 +10,8 @@ export default function initDragRotate() {
       handle: '.rotate__title',
       animation: 100,
       onEnd() {
-        // const rotatesOrder = getRotatesOrder();
-        // updateRotatesWhenDrop(rotatesOrder);
+        const rotatesOrder = getRotatesOrder(rotatesContainer);
+        updateOrderWhenDrop(rotatesOrder, 'rotates');
       },
     });
   }

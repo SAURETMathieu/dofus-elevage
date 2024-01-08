@@ -26,9 +26,9 @@ const updateRotateSchema = Joi.object({
 }).or('name', 'color', 'serverId', 'classe', 'time');
 
 const updateOrderRotateSchema = Joi.object().keys({
-  rotationsOrder: Joi.array().items(
+  order: Joi.array().items(
     Joi.object({
-      rotationId: Joi.number().integer().positive().required(),
+      rotateId: Joi.number().integer().positive().required(),
     }),
   ).min(1).required(),
 });

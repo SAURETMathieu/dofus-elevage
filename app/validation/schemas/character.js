@@ -69,7 +69,7 @@ const updateStepsCharacterSchema = Joi.object({
 }).or(...alternativeSteps);
 
 const updateOrderCharacterSchema = Joi.object().keys({
-  charactersOrder: Joi.array().items(
+  order: Joi.array().items(
     Joi.object({
       characterId: Joi.number().integer().positive().required(),
     }),

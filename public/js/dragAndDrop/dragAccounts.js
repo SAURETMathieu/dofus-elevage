@@ -1,5 +1,5 @@
 import getAccountsOrder from './getAccountsOrder.js';
-import updateAccountsWhenDrop from '../requests/patch/updateOrderAccounts.js';
+import updateOrderWhenDrop from '../requests/patch/updateOrder.js';
 
 export default function initDragAccount() {
   const accountsContainer = document.querySelector('.container__list-accounts');
@@ -11,7 +11,7 @@ export default function initDragAccount() {
       animation: 100,
       onEnd() {
         const accountsOrder = getAccountsOrder();
-        updateAccountsWhenDrop(accountsOrder);
+        updateOrderWhenDrop(accountsOrder, 'accounts');
       },
     });
   }

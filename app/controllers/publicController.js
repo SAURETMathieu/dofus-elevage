@@ -53,6 +53,9 @@ const publicController = {
             association: 'charactersRotate',
           },
         ],
+        order: [
+          ['order', 'ASC'],
+        ],
       });
 
       return response.render('public', { accounts, rotates });
