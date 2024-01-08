@@ -1,5 +1,17 @@
 const Joi = require('joi');
 
+const alternativeSteps = [
+  'mature',
+  'feed',
+  'ride',
+  'agressive',
+  'serene',
+  'lovem',
+  'endurancem',
+  'lovef',
+  'endurancef',
+];
+
 const createRotateSchema = Joi.object({
   name: Joi.string().min(1).max(20).required(),
   color: Joi.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/).required(),
@@ -32,9 +44,22 @@ const updateModeRotateSchema = Joi.object().keys({
   ).required(),
 });
 
+const updateStepsRotateSchema = Joi.object({
+  mature: Joi.boolean(),
+  feed: Joi.boolean(),
+  ride: Joi.boolean(),
+  agressive: Joi.boolean(),
+  serene: Joi.boolean(),
+  lovef: Joi.boolean(),
+  endurancef: Joi.boolean(),
+  lovem: Joi.boolean(),
+  endurancem: Joi.boolean(),
+}).or(...alternativeSteps);
+
 module.exports = {
   createRotateSchema,
   updateRotateSchema,
   updateOrderRotateSchema,
   updateModeRotateSchema,
+  updateStepsRotateSchema,
 };

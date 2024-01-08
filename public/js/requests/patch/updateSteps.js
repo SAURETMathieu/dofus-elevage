@@ -1,6 +1,6 @@
 import notifications from '../../notifications/notifications.js';
 
-export default async function updateStepsOfCharacter(id, typesValuesArray) {
+export default async function updateStepsOfCharacter(id, typesValuesArray, isRotate) {
   try {
     const requestBody = {};
 
@@ -8,13 +8,24 @@ export default async function updateStepsOfCharacter(id, typesValuesArray) {
       requestBody[type] = value;
     });
 
-    const response = await fetch(`/characters/steps/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    });
+    let response;
+    if (isRotate) {
+      response = await fetch(`/rotates/steps/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+    } else {
+      response = await fetch(`/characters/steps/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+    }
 
     if (!response.ok) {
       if (response.status === 401) {

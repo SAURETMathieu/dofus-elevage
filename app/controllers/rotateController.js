@@ -106,6 +106,41 @@ const rotateController = {
     }
   },
 
+  updateStepsRotate: async (request, response) => {
+    try {
+      const selectedRotate = await Rotate.findByPk(request.params.id);
+      const updatedData = {};
+
+      if (!selectedRotate) {
+        return response.status(404).json({ error: 'Rotate not found.' });
+      }
+
+      const variablesToCheck = ['mature', 'feed', 'ride', 'agressive',
+        'serene', 'lovem', 'endurancem',
+        'lovef', 'endurancef'];
+
+      variablesToCheck.forEach((variable) => {
+        if (Object.prototype.hasOwnProperty.call(request.body, variable)
+         && request.body[variable] !== undefined
+         && request.body[variable] !== null) {
+          updatedData[variable] = request.body[variable];
+        }
+      });
+
+      const updatedRotate = await selectedRotate.update(
+        updatedData,
+      );
+
+      if (!updatedRotate) {
+        return response.status(500).json({ error: 'Internal server error' });
+      }
+
+      return response.json(updatedRotate);
+    } catch (err) {
+      return response.status(500).json({ error: 'Internal server error' });
+    }
+  },
+
   updateTime: async (request, response) => {
     try {
       const {

@@ -2051,6 +2051,7 @@ input[type="checkbox"]:not(:checked) + label {
   transform: translate(-50%);
   height:3rem;
   width:300px;
+  z-index:51;
   background:#004706;
   border: solid 5px #ffffff;
   color:rgb(255, 255, 255);

@@ -3,7 +3,7 @@ import initInputsNumber from '../buttons/initInputsNumber.js';
 import initStepButtons from '../buttons/stepInputs.js';
 import initResetStepsButtons from '../buttons/resetStepsInputs.js';
 import initValidStepsButtons from '../buttons/validStepsInputs.js';
-import initBackgroundCharacters from '../utils/initBackGroundCharacters.js';
+import initBackgroundCharacters from '../utils/initBackgroundCharacters.js';
 import initClosedAccounts from '../utils/initClosedAccounts.js';
 import initClosedCharacters from '../utils/initClosedCharacters.js';
 import displayTime from '../utils/chrono.js';

@@ -1,6 +1,5 @@
 export default function changeBackgroundOfCharacter(buttonsOnCharacter, nbValidSteps) {
-  const liElement = buttonsOnCharacter[0].closest('li');
-
+  const liElement = buttonsOnCharacter[0].closest('li') || buttonsOnCharacter[0].closest('.rotate__main');
   if (nbValidSteps === 0) {
     liElement.style.background = '#a73535';
   } else if (nbValidSteps === 1) {

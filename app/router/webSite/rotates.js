@@ -8,6 +8,7 @@ const {
   createRotateSchema,
   updateRotateSchema,
   updateModeRotateSchema,
+  updateStepsRotateSchema,
 } = require('../../validation/schemas/rotate.js');
 const { paramIdSchema } = require('../../validation/schemas/params.js');
 const validate = require('../../validation/index.js');
@@ -27,6 +28,14 @@ router.patch(
 //   validate(updateOrderRotateSchema),
 //   orderController.updateRotateOrder,
 // );
+
+router.patch(
+  '/steps/:id',
+  isConnected,
+  validate(paramIdSchema, 'params'),
+  validate(updateStepsRotateSchema),
+  rotateController.updateStepsRotate,
+);
 
 router.patch(
   '/time/:id',

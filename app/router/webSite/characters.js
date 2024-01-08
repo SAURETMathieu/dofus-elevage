@@ -32,6 +32,14 @@ router.patch(
 );
 
 router.patch(
+  '/steps/:id',
+  isConnected,
+  validate(paramIdSchema, 'params'),
+  validate(updateStepsCharacterSchema),
+  characterController.updateStepsCharacter,
+);
+
+router.patch(
   '/order/:id',
   isConnected,
   validate(paramIdSchema, 'params'),
@@ -59,14 +67,6 @@ router.patch(
   validate(paramIdSchema, 'params'),
   validate(updateCharacterSchema),
   characterController.updateCharacter,
-);
-
-router.patch(
-  '/steps/:id',
-  isConnected,
-  validate(paramIdSchema, 'params'),
-  validate(updateStepsCharacterSchema),
-  characterController.updateStepsCharacter,
 );
 
 router.get(

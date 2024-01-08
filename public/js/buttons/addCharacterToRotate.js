@@ -24,6 +24,7 @@ function addOnCharacterList(character, rotateId) {
     const h3Element = document.createElement('h3');
     h3Element.textContent = character.name;
     h3Element.setAttribute('id', `character-list-${character.id}`);
+    h3Element.dataset.id = character.id;
     characterListElement.appendChild(h3Element);
   }
 }
