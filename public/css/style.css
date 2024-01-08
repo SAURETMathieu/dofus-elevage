@@ -15,12 +15,11 @@ h1, .rotate__container-title, .account__container-title{
   font-size:2rem; 
   padding:0.8rem;
   margin:1rem auto;
-  background-color:#00000086;
+  background-color:#00000099;
   border: 2px solid #000000;
   border-radius:0.5rem;
   color:white;
   width:fit-content;
-  opacity:0.9;
   text-shadow: 
     -1px -1px 0 #000000,
     1px -1px 0 #000000,
@@ -41,14 +40,12 @@ i{
   width:90%;
   margin:0.5rem auto;
   padding:1rem;
-  background-color:#00000086;
+  background-color:#00000099;
   border: 2px solid #000000;
   border-radius:0.5rem;
-  opacity:0.90;
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
-
   gap:0.5rem;
 }
 
@@ -198,35 +195,32 @@ header{
 main{
   width:100%;
   min-height:100vh;
-  background-size: cover;
-  background-position: center;
+  background-repeat:no-repeat;
+  background-position: top;
+  background-size:cover;
+  background-attachment: fixed;
   padding:1.5rem 1rem;
 }
 
 /* TODO gérer les images de fond*/
 .main__index{
-  background-image: url('../images/bg_dofus.jpg');
-  background-repeat: repeat-y;
+  background-image: url('../images/bg_dofus2.jpg');
 }
 
 .main__connexion{
-  background-image: url('../images/ladder_temporis7.jpg');
-  background-repeat: repeat-y;
+  background-image: url('../images/zaapbg.webp');
 }
 
 .main__admin{
   background-image: url('../images/servers.jpeg');
-  background-repeat: repeat-y;
 }
 
 .main__accounts {
-  background-image: url('../images/accountbg.png');
-  background-repeat: repeat-y;
+  background-image: url('../images/bg_dofus.jpg');
 }
 
 .main__servers{
   background-image: url('../images/servers.jpeg');
-  background-repeat: repeat-y;
 }
 
 /*//////////*/

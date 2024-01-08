@@ -148,6 +148,9 @@ const characterController = {
       }
       if (type !== undefined && type !== null) {
         updatedData.type = type;
+        if (type === 'private') {
+          updatedData.rotate_id = null;
+        }
       }
       if (nbrepro !== undefined && nbrepro !== null) {
         updatedData.reproduction = nbrepro;
