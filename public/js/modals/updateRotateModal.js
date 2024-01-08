@@ -89,14 +89,6 @@ function submitUpdateRotate() {
         updatedElement.querySelector('h3').textContent = rotate.name;
         updatedElement.style.backgroundColor = rotate.color;
 
-        const dataServerElement = updatedElement.querySelector('[data-server]');
-        if (dataServerElement) {
-          dataServerElement.setAttribute('data-server', rotate.server.id);
-          dataServerElement.setAttribute('data-server-name', rotate.server.name);
-        }
-        dataServerElement.querySelector('img').src = `/images/${rotate.server.img}`;
-        dataServerElement.querySelector('img').alt = `image du serveur ${rotate.server.name}`;
-
         const dataClasseElements = updatedElement.querySelectorAll('[data-classe] img');
         dataClasseElements.forEach((element) => {
           element.src = `/images/${rotate.class}.png`;
