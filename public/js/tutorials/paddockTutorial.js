@@ -1,10 +1,219 @@
 const { driver } = window.driver.js;
 
-export default function paddockTutorial() {
+export default function paddockTutorial(type) {
+  let additionalSteps = [];
+
+  // Vérifiez si type n'est pas égal à 'public'
+  if (type === 'public') {
+    additionalSteps = [
+      {
+        element: '.rotate__container-title',
+        popover: {
+          title: 'Les rotations',
+          description: `Une rotation représente un groupe de personnages 
+          effectuant les mêmes actions simultanément.<br><br>
+          Par exemple, si vous placez 8 personnages dans un enclos public, 
+          ils avanceront ensemble et valideront les mêmes étapes.<br>
+          Les rotations simplifient la mise à jour en permettant de modifier 
+          les étapes d'un groupe entier de personnages en une seule fois.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__container-title',
+        popover: {
+          title: 'Les rotations',
+          description: `Si vous le souhaitez, 
+          vous pouvez masquer la liste des rotations en cliquant 
+          sur le titre 'Rotations' ici-même.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__list',
+        popover: {
+          title: 'Les rotations',
+          description: `Cette liste affiche vos rotations.<br><br>
+          Vous pouvez les réorganiser grâce à la fonctionnalité
+           de glisser-déposer en sélectionnant le nom d'une rotation.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__card',
+        popover: {
+          title: 'Éléments d\'une rotation',
+          description: `Une rotation est composée de plusieurs éléments.<br>
+          Nous allons les passer en revue un par un.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__card',
+        popover: {
+          title: 'La couleur de la rotation',
+          description: `Vous avez la possibilité de définir une couleur 
+          de la même manière que pour un compte.<br><br>
+          Cette couleur est utilisée comme code visuel pour 
+          vous repérer plus facilement.<br>
+          Elle sera affichée en fond.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__title',
+        popover: {
+          title: 'Nom de la rotation',
+          description: `Ce champ présente le nom attribué à votre rotation, 
+          ainsi que la classe sélectionnée pour celle-ci.<br><br>
+          Il est à noter qu'une rotation peut comporter 
+          une ou plusieurs classes.<br>
+          Il est recommandé d'utiliser la même classe pour vos rotations, 
+          mais vous avez la liberté de les combiner.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.active-add',
+        popover: {
+          title: 'Ajouter un personnage',
+          description: `En cliquant sur ce bouton, 
+          vous pourrez sélectionner un ou plusieurs personnages dans la liste 
+          de vos comptes et personnages.<br><br>
+          Chaque personnage dispose de boutons :<br>
+          - Vert avec un signe + s'ils ne font pas partie 
+          de la rotation sélectionnée.<br>
+          - Rouge s'ils appartiennent déjà à cette rotation.<br><br>
+          Une fois la sélection terminée, 
+          appuyez sur le bouton "Terminé" en bas de votre écran.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__container-logos',
+        popover: {
+          title: 'Les étapes d\'une rotation',
+          description: `Nous aborderons prochainement la fonctionnalité 
+          de chaque bouton ici.<br><br>
+          Sachez simplement que chaque modification effectuée 
+          dans les étapes de votre rotation 
+          sera également appliquée à tous les personnages 
+          qui en font partie.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__side-crud [data-toggle="delete-modal"]',
+        popover: {
+          title: 'Supprimer une rotation',
+          description: `En cliquant sur ce bouton, 
+          vous pouvez supprimer une rotation.<br>
+          Une fenêtre de confirmation apparaîtra 
+          vous demandant de confirmer votre action.<br>
+          Vous aurez la possibilité d'annuler 
+          ou de confirmer la suppression.<br>
+          Veuillez noter que cette action est irréversible.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__side-crud [data-toggle="update-modal"]',
+        popover: {
+          title: 'Modifier une rotation',
+          description: `En cliquant sur ce bouton, 
+          vous pouvez modifier une rotation existante.<br>
+          Une fenêtre apparaîtra vous permettant 
+          de changer le nom, la couleur ou la classe de la rotation.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__side-time',
+        popover: {
+          title: 'L\'heure',
+          description: `En cliquant sur ce bouton, 
+          vous pouvez mettre à jour l'heure à l'heure actuelle.<br>
+          Cela vous permettra de savoir à quel moment votre rotation 
+          a effectué une action, 
+          ce qui peut être utile pour optimiser la récupération d'énergie.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__side-manage [data-type="reset-all"]',
+        popover: {
+          title: 'Réinitialisation',
+          description: `En cliquant sur ce bouton, 
+          vous pouvez réinitialiser 
+          toutes les étapes des étables de vos personnages, 
+          à l'exception de la maturité, 
+          de l'énergie et de la montabilité des montures.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate__side-manage [data-type="valid-all"]',
+        popover: {
+          title: 'Validation',
+          description: `En cliquant sur ce bouton, vous pouvez valider 
+          toutes les étapes des étables de vos personnages, 
+          à l'exception de la maturité, 
+          de l'énergie et de la montabilité des montures.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.rotate-angle',
+        popover: {
+          title: 'Liste des personnages de la rotation',
+          description: `Ce bouton vous permet d'ouvrir 
+          ou de fermer la liste des personnages qui composent la rotation.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+      {
+        element: '.add-button',
+        popover: {
+          title: 'Ajouter une rotation',
+          description: `Ce bouton ouvre une 
+          fenêtre d'ajout de rotation.`,
+          side: 'left',
+          align: 'start',
+        },
+      },
+    ];
+  }
+
   const driverObj = driver({
     showProgress: true,
     popoverClass: 'driverjs-theme',
     steps: [
+      ...additionalSteps,
+      {
+        element: '.account__container-title',
+        popover: {
+          title: 'Les étables',
+          description: `Si vous le souhaitez, 
+          vous pouvez masquer la liste des comptes et personnages en cliquant 
+          sur le titre 'Etables' ici-même.`,
+          side: 'top',
+          align: 'center',
+        },
+      },
       {
         element: '.container__list-accounts',
         popover: {

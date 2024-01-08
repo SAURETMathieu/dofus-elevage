@@ -1,6 +1,6 @@
 import * as tutorial from '../tutorials/index.js';
 
-export default function initHelpButton(page) {
+export default function initHelpButton(page, type) {
   const helpButton = document.querySelector('.help');
   helpButton.addEventListener('click', () => {
     if (page === 'account') {
@@ -10,7 +10,7 @@ export default function initHelpButton(page) {
     } else if (page === 'character') {
       tutorial.characterTutorial();
     } else if (page === 'paddock') {
-      tutorial.paddockTutorial();
+      tutorial.paddockTutorial(type);
     } else if (page === 'auth') {
       tutorial.authTutorial();
     }

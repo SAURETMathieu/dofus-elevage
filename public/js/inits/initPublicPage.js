@@ -21,7 +21,7 @@ dragAndDrop.initDragCharacter();
 dragAndDrop.initDragRotate();
 
 // buttons
-buttons.initHelpButton('paddock');
+buttons.initHelpButton('paddock', 'public');
 buttons.hideCharactersOnAccount();
 buttons.hidePartOfCharacter();
 buttons.initInputsNumber();

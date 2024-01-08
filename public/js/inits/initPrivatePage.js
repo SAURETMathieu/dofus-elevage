@@ -11,7 +11,7 @@ dragAndDrop.initDragAccount();
 dragAndDrop.initDragCharacter();
 
 // buttons
-buttons.initHelpButton('paddock');
+buttons.initHelpButton('paddock', 'private');
 buttons.initInputsNumber();
 buttons.initStepButtons();
 buttons.initResetStepsButtons();
