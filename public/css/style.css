@@ -1923,6 +1923,10 @@ input[type="checkbox"]:not(:checked) + label {
   border: solid 3px white;
 }
 
+.rotate__title:hover{
+  cursor:move;
+}
+
 .rotate__title img{
   width:55.44px;
   height:55.44px;
@@ -2000,27 +2004,9 @@ input[type="checkbox"]:not(:checked) + label {
   background:#7b8802;
 }
 
-.rotate__add{
-  width:100%;
-  background:#000000;
-  border: solid 5px rgb(255, 255, 255);
-  padding:0.2rem;
-}
-
-.rotate__add button{
-  border:none;
-  background:none;
-  width:100%;
-  height:100%;
-}
-
-.rotate__add button:hover{
+.active-add:hover{
   transform: scale(1.1);
   cursor:pointer;
-}
-
-.rotate__add button i{
-  font-size:1.2rem;
 }
 
 .add-rotate{

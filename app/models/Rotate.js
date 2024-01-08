@@ -24,7 +24,7 @@ Rotate.init(
     },
     mode: {
       type: DataTypes.TEXT,
-      defaultValue: 'up',
+      defaultValue: 'down',
       field: 'mode',
     },
     time: {

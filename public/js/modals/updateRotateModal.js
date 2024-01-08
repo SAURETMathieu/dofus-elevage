@@ -17,7 +17,6 @@ function openModal() {
       const dataId = event.target.closest('[data-id]').getAttribute('data-id');
       modal.dataset.id = dataId;
       const updateNameInput = modal.querySelector('#update-name');
-      const updateServerInput = modal.querySelector('#update-server');
       const updateColorInput = modal.querySelector('#update-color');
       const updateClasseInput = modal.querySelector('#update-classe');
       const updateSelectedColorInput = modal.querySelector(
@@ -26,21 +25,10 @@ function openModal() {
       const updateClasseSpan = document.querySelector(
         '#select2-update-classe-container',
       );
-      const updateServerSpan = document.querySelector(
-        '#select2-update-server-container',
-      );
 
       const rotateName = event.target
         .closest('article')
         .querySelector("[slot='rotate-name']").textContent;
-      const rotateServerId = event.target
-        .closest('article')
-        .querySelector("[slot='rotate-server']")
-        .getAttribute('data-server');
-      const rotateServerName = event.target
-        .closest('article')
-        .querySelector("[slot='rotate-server']")
-        .getAttribute('data-server-name');
       const rotateClasse = event.target
         .closest('article')
         .querySelector('.rotate__title')
@@ -50,16 +38,9 @@ function openModal() {
 
       updateClasseSpan.title = capitalizeFirstLetter(rotateClasse);
 
-      updateServerSpan.textContent = capitalizeFirstLetter(rotateServerName);
-
-      updateServerSpan.title = capitalizeFirstLetter(rotateServerName);
-
       const rotateColor = event.target.closest('[data-id]').style.backgroundColor;
       if (updateNameInput) {
         updateNameInput.value = rotateName;
-      }
-      if (rotateServerId) {
-        updateServerInput.value = rotateServerId;
       }
       if (rotateColor) {
         updateColorInput.value = rgbToHex(rotateColor);

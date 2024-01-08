@@ -85,16 +85,6 @@ Rotate.belongsTo(User, {
   as: 'userRotate',
 });
 
-Server.hasMany(Rotate, {
-  foreignKey: 'server_id',
-  as: 'rotatesServer',
-});
-
-Rotate.belongsTo(Server, {
-  foreignKey: 'server_id',
-  as: 'rotateServer',
-});
-
 Rotate.hasMany(Character, {
   foreignKey: 'rotate_id',
   as: 'charactersRotate',

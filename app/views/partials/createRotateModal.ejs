@@ -32,13 +32,6 @@
           <input type="text" class="form__color-picker-input-selected" id="selected-color" pattern="[0-9a-fA-F]{3}|[0-9a-fA-F]{6}" maxlength="6" value="000000">
           <span class="valid-indicator" id="colorIndicator" style="display: none;">✔️</span>
         </div>
-        <h3><label for="server">Serveur</label></h3>
-          <select class="height2" id="server" name="server" required>
-            <option value="" disabled selected hidden>Choisissez un serveur</option>
-            <% servers.forEach(server => { %>
-            <option value="<%= server.id %>"><%= server.name %></option>
-            <% }) %>
-          </select>
         <div class="modal-submit-buttons">
           <input class="is-cancel" type="button" class="close-modal-btn" id="cancel" value="Annuler">
           <input class="submit is-success" id="submit" type="submit" value="Ajouter">

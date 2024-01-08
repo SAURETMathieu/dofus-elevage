@@ -19,11 +19,13 @@
       </div>
       <div class="rotate__main">
 
-        <div class="rotate__side" data-server-name="<%= rotate.rotateServer.name %>" data-server="<%= rotate.rotateServer.id %>" slot="rotate-server">
-            <img src="./images/<%= rotate.rotateServer.img %>" alt="logo du server <%= rotate.rotateServer.img %>">
-            <button class="rotate-angle">
-              <i class="fa-solid fa-angle-<%= rotate.mode %>"></i>
-            </button>
+        <div class="rotate__side">
+          <button class="active-add" data-type="active-add" aria-label="Activer les boutons d'ajout de personnage à la rotation">
+            <img src="./images/add-character.png" alt="logo ajout de personnage">
+          </button>
+          <button class="rotate-angle" aria-label="ouvrir/fermer la liste des personnages de la rotation">
+            <i class="fa-solid fa-angle-<%= rotate.mode %>"></i>
+          </button>
         </div>
 
         <div class="rotate__container-logos">
@@ -84,11 +86,6 @@
         <% rotate.charactersRotate.forEach(character => { %>
          <h3 id="character-list-<%= character.id%>" data-id="<%= character.id%>"><%= character.name%></h3>
         <% }) %>
-      </div>
-      <div class="rotate__add">
-        <button data-type="active-add" aria-label="Activer les boutons d'ajout de personnage à la rotation">
-          <i class="fa-solid fa-plus" style="color: white;"></i>
-        </button>
       </div>
   </article>
 

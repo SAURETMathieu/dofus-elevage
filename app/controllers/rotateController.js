@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 const {
-  Server, Rotate,
+  Rotate,
 } = require('../models/index.js');
 
 const rotateController = {
@@ -22,14 +22,13 @@ const rotateController = {
       }
 
       const {
-        name, color, server, classe,
+        name, color, classe,
       } = request.body;
 
       const rotate = await Rotate.create({
         name,
         color,
         class: classe,
-        server_id: server,
         user_id: userId,
       });
 
@@ -72,7 +71,6 @@ const rotateController = {
       const {
         name,
         color,
-        server,
         classe,
       } = request.body;
 
@@ -82,22 +80,14 @@ const rotateController = {
         return response.status(404).json({ error: 'Rotate not found.' });
       }
 
-      const serverExist = await Server.findByPk(server);
-
-      if (!serverExist) {
-        return response.status(404).json({ error: 'Server not found.' });
-      }
-
       const updatedRotate = await selectedRotate.update({
         name,
         color,
-        server_id: server,
         class: classe,
       });
 
       if (updatedRotate) {
-        const { server_id, ...updatedData } = updatedRotate.toJSON();
-        updatedData.server = serverExist;
+        const { ...updatedData } = updatedRotate.toJSON();
         return response.json(updatedData);
       }
       return response.status(404).json({ error: 'Rotate not found.' });

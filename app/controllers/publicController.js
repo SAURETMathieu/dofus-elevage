@@ -44,23 +44,18 @@ const publicController = {
         account.characters = account.characters.sort((a, b) => a.order - b.order);
       });
 
-      const servers = await Server.findAll();
-
       const rotates = await Rotate.findAll({
         where: {
           user_id: userId,
         },
         include: [
           {
-            association: 'rotateServer',
-          },
-          {
             association: 'charactersRotate',
           },
         ],
       });
 
-      return response.render('public', { accounts, servers, rotates });
+      return response.render('public', { accounts, rotates });
     } catch (err) {
       return response.status(500).render('error', {
         error: {
