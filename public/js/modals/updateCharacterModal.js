@@ -197,7 +197,6 @@ function submitUpdateCharacter() {
         document.querySelector('.add-container')?.dataset.account,
         10,
       );
-
       const serverId = document.querySelector('.main__container-list').dataset
         .server;
 

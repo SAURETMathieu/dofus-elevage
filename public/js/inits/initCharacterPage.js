@@ -1,29 +1,35 @@
+import notifications from '../notifications/notifications.js';
+import * as buttons from '../buttons/index.js';
+import * as utils from '../utils/index.js';
+
 import initModalUpdateCharacter from '../modals/updateCharacterModal.js';
 import initDeleteModal from '../modals/deleteModal.js';
-import initCustomSelect from '../utils/addImageToSelectInput.js';
 import { searchByNameTable } from '../searchs/searchByName.js';
-import notifications from '../notifications/notifications.js';
 import { sortDragodindes } from '../utils/sortDragodindes.js';
-import initLockButtons from '../buttons/lockButtons.js';
-import initReproductionButtons from '../buttons/reproductionButtons.js';
 import { searchDragodindesUpdate } from '../searchs/searchByColor.js';
-import initSpecialityButtons from '../buttons/specialityButtons.js';
-import initHelpButton from '../buttons/helpButton.js';
-import checkboxesInit from '../buttons/checkboxesInit.js';
 
 const elements = document.querySelectorAll("[data-type='character']");
 const clearButton = document.querySelector('#clear-search');
 const searchInput = document.querySelector('#searchInput');
 
+// notifications
+notifications.initCloseNotification();
+
+// modals
 initModalUpdateCharacter();
 initDeleteModal('character');
+
+// searchs
 searchByNameTable(elements, searchInput, clearButton);
-initCustomSelect();
-notifications.initCloseNotification();
-sortDragodindes();
-initLockButtons();
-initReproductionButtons();
 searchDragodindesUpdate();
-initSpecialityButtons();
-initHelpButton('character');
-checkboxesInit();
+
+// buttons
+buttons.initLockButtons();
+buttons.initReproductionButtons();
+buttons.initSpecialityButtons();
+buttons.initHelpButton('character');
+buttons.checkboxesInit();
+
+// utils
+sortDragodindes();
+utils.initCustomSelect();

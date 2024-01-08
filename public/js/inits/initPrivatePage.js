@@ -1,28 +1,26 @@
 import notifications from '../notifications/notifications.js';
-import initInputsNumber from '../buttons/initInputsNumber.js';
-import initStepButtons from '../buttons/stepInputs.js';
-import initResetStepsButtons from '../buttons/resetStepsInputs.js';
-import initValidStepsButtons from '../buttons/validStepsInputs.js';
-import initBackgroundCharacters from '../utils/initBackgroundCharacters.js';
-import initClosedAccounts from '../utils/initClosedAccounts.js';
-import initClosedCharacters from '../utils/initClosedCharacters.js';
-import displayTime from '../utils/chrono.js';
-import initDragAccount from '../dragAndDrop/dragAccounts.js';
-import initDragCharacter from '../dragAndDrop/dragCharacters.js';
-import initHelpButton from '../buttons/helpButton.js';
+import * as dragAndDrop from '../dragAndDrop/index.js';
 import * as buttons from '../buttons/index.js';
+import * as utils from '../utils/index.js';
 
+// notifications
 notifications.initCloseNotification();
-initInputsNumber();
-initStepButtons();
-initResetStepsButtons();
-initValidStepsButtons();
-initBackgroundCharacters();
-displayTime('Enclos Privée');
-initDragAccount();
-initDragCharacter();
-initHelpButton('paddock');
+
+// drag and drop
+dragAndDrop.initDragAccount();
+dragAndDrop.initDragCharacter();
+
+// buttons
+buttons.initHelpButton('paddock');
+buttons.initInputsNumber();
+buttons.initStepButtons();
+buttons.initResetStepsButtons();
+buttons.initValidStepsButtons();
 buttons.hideCharactersOnAccount();
 buttons.hidePartOfCharacter();
-initClosedCharacters();
-initClosedAccounts();
+
+// utils
+utils.initBackgroundCharacters();
+utils.displayTime('Enclos Privée');
+utils.initClosedCharacters();
+utils.initClosedAccounts();

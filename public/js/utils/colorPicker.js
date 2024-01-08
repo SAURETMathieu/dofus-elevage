@@ -40,7 +40,7 @@ function colorPickerValue() {
   });
 }
 
-export function initColorPicker() {
+export default function initColorPicker() {
   removeHashTag();
   colorPickerValue();
 }
