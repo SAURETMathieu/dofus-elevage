@@ -14,6 +14,13 @@ const authorizationMiddleware = {
     }
   },
 
+  isConnectedAndRedirect(request, response, next) {
+    if (request.session?.user) {
+      return next();
+    }
+    return response.redirect('/signin');
+  },
+
   isAdmin(request, response, next) {
     // utilisateur non connecté
     if (!request.session?.user) {

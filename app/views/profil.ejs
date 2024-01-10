@@ -1,5 +1,63 @@
 <%- include('./partials/header'); -%>
 <main class="main__index">
-  <h1>profil</h1>
+  <h1>PROFIL</h1>
+
+  <div class="profil__container">
+    <h2>Informations</h2>
+    <div class="profil__header-role">
+      <img
+        src="./images/<%= user.role%>.png"
+        alt="Image représentant le rôle de l'utilisateur sur le site"
+      />
+      <h3>Role : <%= user.role%></h3>
+    </div>
+
+    <div class="profil__header-pseudo">
+      <strong>Pseudo :</strong>
+      <span><%= user.pseudo%></span>
+      <button>
+        <i class="fa-solid fa-pen" style="color: #005eff"></i>
+      </button>
+    </div>
+
+    <div class="profil__header-lastname">
+      <strong>Nom :</strong>
+      <span><%= user.lastname%></span>
+      <button>
+        <i class="fa-solid fa-pen" style="color: #005eff"></i>
+      </button>
+    </div>
+
+    <div class="profil__header-firstname">
+      <strong>Prénom :</strong>
+      <span><%= user.firstname%></span>
+      <button>
+        <i class="fa-solid fa-pen" style="color: #005eff"></i>
+      </button>
+    </div>
+
+    <div class="profil__header-mail">
+      <strong>Email :</strong>
+      <span><%= user.email%></span>
+      <button>
+        <i class="fa-solid fa-pen" style="color: #005eff"></i>
+      </button>
+    </div>
+
+    <div class="profil__header-password">
+      <strong>Mot de passe :</strong>
+      <span>****************</span>
+      <button>
+        <i class="fa-solid fa-pen" style="color: #005eff"></i>
+      </button>
+    </div>
+
+    <div class="profil__header-delete" data-id="<%= user.id%>">
+      <strong>Supprimer le compte :</strong>
+      <button>
+        <i class="fa-solid fa-trash" style="color: #ff0000"></i>
+      </button>
+    </div>
+  </div>
 </main>
 <%- include('./partials/footer'); -%>

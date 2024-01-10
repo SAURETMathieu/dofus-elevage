@@ -2076,6 +2076,77 @@ input[type="checkbox"]:not(:checked) + label {
   color:white;
 }
 
+/*//////////*/
+/*  PROFIL  */
+/*//////////*/
+
+.profil__container{
+  width:50%;
+  padding:.5rem;
+  font-size:1.5rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
+  align-items:center;
+  background:white;
+  margin:0 auto;
+  border: solid 4px black;
+}
+
+.profil__container h2{
+  width:100%;
+  padding:1.5rem;
+  font-size:2rem;
+  font-weight:600;
+  text-align:center;
+  color:white;
+  background:rgb(87, 87, 87);
+}
+
+.profil__header-role{
+  width:100%;
+  padding:1.2rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  border-bottom: solid 1px grey;
+}
+
+.profil__header-role img{
+  width:200px;
+  height:200px;
+}
+
+.profil__container div:not(.profil__header-role){
+  width:100%;
+  border-bottom: solid 1px grey;
+  padding:0.5rem;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+}
+
+.profil__container div:not(.profil__header-role) strong{
+  font-weight:600;
+  float:left;
+}
+
+.profil__container div:not(.profil__header-role) button{
+  font-weight:600;
+  float:right;
+  border:none;
+  background:none;
+}
+
+.profil__container div:not(.profil__header-role) button:hover{
+  transform: scale(1.1);
+}
+
+.profil__container div:not(.profil__header-role) button i{
+  font-size:100%;
+}
+
 /*//////////////////*/
 /*   MEDIA QUERIES  */
 /*//////////////////*/
@@ -2103,7 +2174,11 @@ input[type="checkbox"]:not(:checked) + label {
   .figure-dd img, .update-figure-dd img{
     width:85%;
     height:75%;
-    }
+  }
+
+  .profil__container{
+    width:90%;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -2149,6 +2224,10 @@ input[type="checkbox"]:not(:checked) + label {
 
   .auth-container__img-group img{
     padding:0;
+  }
+
+  .profil__container{
+    font-size:1rem;
   }
 }
 
@@ -2245,6 +2324,19 @@ input[type="checkbox"]:not(:checked) + label {
 
   .auth-container__input-container input{
     font-size:0.9rem;
+  }
+
+  .profil__container div:not(.profil__header-role){
+    flex-direction:column;
+    gap:0.3rem;
+  }
+
+  .profil__container div:not(.profil__header-role) button{
+    font-size:1.2rem;
+  }
+
+  .profil__container{
+    width:100%;
   }
 }
 
