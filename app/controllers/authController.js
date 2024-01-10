@@ -85,6 +85,35 @@ const authController = {
       response.redirect('/');
     });
   },
+
+  deleteUser: async (request, response) => {
+    try {
+      const userIdToDelete = parseInt(request.params.id, 10);
+      const loggedInUserId = request.session.user.id;
+
+      if (userIdToDelete !== loggedInUserId) {
+        return response.status(403).json({ message: 'Acces interdit' });
+      }
+
+      const userToDelete = await User.findByPk(userIdToDelete);
+
+      if (!userToDelete) {
+        return response.status(404).json({ message: 'Utilisateur introuvable' });
+      }
+
+      const isDeleted = await userToDelete.destroy();
+
+      if (!isDeleted) {
+        return response.status(500).json({ message: 'Echec lors de la suppression de votre compte' });
+      }
+
+      request.session.destroy();
+      return response.status(204).end();
+    } catch (err) {
+      return response.status(500).json({ error: 'Erreur lors de la suppression du compte' });
+    }
+  },
+
 };
 
 module.exports = authController;

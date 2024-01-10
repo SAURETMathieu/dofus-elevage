@@ -1,5 +1,6 @@
 import { deleteAccount, deleteCharacter } from '../requests/delete/requestDelete.js';
 import deleteRotate from '../requests/delete/deleteRotate.js';
+import deleteUser from '../requests/delete/deleteUser.js';
 
 const modalElem = document.getElementById('confirm-delete-modal');
 const openModalButtons = document.querySelectorAll('[data-toggle="delete-modal"]');
@@ -24,6 +25,9 @@ function openDeleteModal() {
       }
       if (type === 'rotate') {
         titleToDeleteModal.textContent = 'Voulez vous vraiment supprimer cette rotation ?';
+      }
+      if (type === 'user') {
+        titleToDeleteModal.textContent = 'Voulez vous vraiment supprimer votre compte ?';
       }
       modalElem.style.display = 'block';
     });
@@ -56,6 +60,9 @@ function confirmDeleteModal() {
     }
     if (type === 'rotate') {
       deleteRotate(idToDelete);
+    }
+    if (type === 'user') {
+      deleteUser(idToDelete);
     }
   });
 }

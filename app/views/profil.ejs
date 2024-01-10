@@ -15,7 +15,7 @@
     <div class="profil__header-pseudo">
       <strong>Pseudo :</strong>
       <span><%= user.pseudo%></span>
-      <button>
+      <button aria-label="modifier son pseudo">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
@@ -23,7 +23,7 @@
     <div class="profil__header-lastname">
       <strong>Nom :</strong>
       <span><%= user.lastname%></span>
-      <button>
+      <button aria-label="modifier son nom">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
@@ -31,7 +31,7 @@
     <div class="profil__header-firstname">
       <strong>Prénom :</strong>
       <span><%= user.firstname%></span>
-      <button>
+      <button aria-label="modifier son prénom">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
@@ -39,7 +39,7 @@
     <div class="profil__header-mail">
       <strong>Email :</strong>
       <span><%= user.email%></span>
-      <button>
+      <button aria-label="modifier l'email">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
@@ -47,17 +47,27 @@
     <div class="profil__header-password">
       <strong>Mot de passe :</strong>
       <span>****************</span>
-      <button>
+      <button aria-label="modifier son mot de passe">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
 
-    <div class="profil__header-delete" data-id="<%= user.id%>">
+    <div class="profil__header-delete" data-id="<%= user.id%>" data-type="user">
       <strong>Supprimer le compte :</strong>
-      <button>
+      <button aria-label="supprimer son compte" data-toggle="delete-modal">
         <i class="fa-solid fa-trash" style="color: #ff0000"></i>
       </button>
     </div>
   </div>
+
+  <%- include('./partials/deleteModal'); -%>
+
+  <%- include('./partials/failNotif'); -%>
+
+  <%- include('./partials/successNotif'); -%>
+
 </main>
+
+<script type="module" src="/js/inits/initProfilPage.js"></script>
+
 <%- include('./partials/footer'); -%>

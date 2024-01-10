@@ -7,3 +7,8 @@ Content-Type: application/json
     { "accountId": 10, "mode": "down" }
   ]
 }
+
+###
+
+DELETE http://localhost:4000/user/5
+
