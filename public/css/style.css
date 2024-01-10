@@ -1030,8 +1030,8 @@ input[type="checkbox"]:not(:checked) + label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 80vh;
+  width: 90vw;
+  height: 90vh;
   border:solid 5px rgb(0, 0, 0);
   background-color: #ffffff;
   display:flex;
@@ -1072,14 +1072,23 @@ input[type="checkbox"]:not(:checked) + label {
   justify-content:center;
   flex-wrap:wrap;
   gap:0.5rem;
+  background-color:rgb(58, 58, 58);
 }
 
 .figure-dd, .update-figure-dd{
-  width:4rem;
-  height:4rem;
+  width:116px;
+  height:135px;
+  padding-bottom:0.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+  text-align: center;
   border:solid 1px black;
   cursor:pointer;
   margin:0.5rem;
+  font-size:0.8rem;
+  background:white;
 }
 
 .figure-dd:hover, .update-figure-dd:hover{
@@ -2083,6 +2092,18 @@ input[type="checkbox"]:not(:checked) + label {
   .header__top{
     padding:0;
   }
+
+  .figure-dd, .update-figure-dd{
+  width:81px;
+  height:91px;
+  margin:0.2rem;
+  font-size:0.7rem;
+  }
+
+  .figure-dd img, .update-figure-dd img{
+    width:85%;
+    height:75%;
+    }
 }
 
 @media screen and (max-width: 1024px) {

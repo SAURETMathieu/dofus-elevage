@@ -133,6 +133,7 @@
         <% breeds.forEach(breed => { %>
           <figure data-color="<%= breed.color%>" data-id="<%= breed.id%>" data-stade="<%= breed.stade%>" class="figure-dd">
             <img class="image-dd" src="<%= breed.image%>" alt="Dragodinde <%= breed.color%>">
+            <figcaption><%= breed.name %></figcaption>
           </figure>
         <% }) %>
       </section>
