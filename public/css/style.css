@@ -1056,6 +1056,7 @@ input[type="checkbox"]:not(:checked) + label {
 .stade-container{
   border:solid 1px black;
   height:fit-content;
+  text-align:center;
 }
 
 .stade-container h3{

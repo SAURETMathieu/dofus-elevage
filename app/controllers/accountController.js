@@ -1,11 +1,9 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
-const dayjs = require('dayjs');
 const {
   Server, Account,
 } = require('../models/index.js');
-require('dayjs/locale/fr');
 
 const accountController = {
   getAccountsPage: async (request, response) => {
