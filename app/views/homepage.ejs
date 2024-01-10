@@ -1,214 +1,28 @@
 <%- include('./partials/header'); -%>
 <main class="main__home">
+  <h1 class="h1-user-page">O'DD</h1>
 
   <section class="home__intro">
-    <h1>O'DD</h1>
-    <h2 class="home__intro-title">BIENVENUE</h2>
+    <section class="home__img-section">
+      <img src="/images/abreuvoir.png" alt="" />
+      <img src="/images/endu.png" alt="" />
+      <img src="/images/mangeoire.png" alt="" />
+    </section>
     <p class="home__intro-text">
-      Ce site représente une application de gestion d'élevage exclusivement 
-      conçue pour DOFUS Rétro.<br>
-      Il n'est pas adapté aux autres versions de Dofus. <br>
-      Toutefois, il est conçu de manière à permettre à l'utilisateur 
-      de personnaliser et d'ajuster l'expérience à sa convenance.<br> 
-      Actuellement fonctionnel pour DOFUS Rétro uniquement.<br> 
-      Notre objectif est de fournir une base flexible 
-      pour que chaque utilisateur puisse adapter 
-      l'application selon ses besoins spécifiques dans la gestion de son élevage sur les jeux Dofus.
+      Ce site est une application de gestion d'élevage exclusivement conçue pour
+      <strong>DOFUS Rétro</strong>.<br />
+      Il n'est pas adapté aux autres versions de <strong>Dofus</strong>.<br />
+      Toutefois, il est conçu de manière à permettre à l'utilisateur de
+      personnaliser et d'ajuster l'expérience à sa convenance.<br /><br />
+      Notre objectif est de fournir une base flexible pour que chaque
+      utilisateur puisse adapter l'application selon ses besoins spécifiques
+      dans la gestion de son élevage sur les jeux <strong>Dofus</strong>.
     </p>
+    <section class="home__img-section">
+      <img src="/images/baffeur.png" alt="" />
+      <img src="/images/amour.png" alt="" />
+      <img src="/images/caresse.png" alt="" />
+    </section>
   </section>
-
-  <%- include('./partials/homeImgSection'); -%>
-
-  <section class="home__summary">
-    <h2 class="home__summary-title">SOMMAIRE</h2>
-    <p class="home__summary-text">
-      Le site comporte plusieurs pages et fonctionnalités
-    </p>
-    <ul class="summary-list">
-      <li>
-        <h3>Les comptes</h3>
-        <img src="/images/serverpage.png" alt="">
-      </li>
-      <li>
-        <h3>Les personnages</h3>
-        <img src="/images/serverpage.png" alt="">
-      </li>
-      <li>
-        <h3>Les enclos</h3>
-        <img src="/images/serverpage.png" alt="">
-      </li>
-    </ul>
-  </section>
-
-  <%- include('./partials/homeImgSection'); -%>
-
-  <section class="home__account-section">
-    <h2>Les comptes</h2>
-    <p class="home__account-text">
-      La page des comptes est accessible de diverses manières.<br>
-      Vous pouvez y accéder de manière générale pour retrouver 
-      l'ensemble de vos comptes sur tous les serveurs, 
-      ou choisir spécifiquement les comptes d'un serveur en particulier.
-    </p>
-
-    <h3>Création d'un compte</h3>
-    <div class="add-container">
-      <button class="input-logo add-button" aria-label="montrer l'apparence du bouton ajouter un compte">
-        <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
-      </button>
-    </div>
-
-    <p class="home__account-text">
-      Pour créer un compte, appuyez simplement sur le bouton ci-dessus 
-      lorsque vous êtes sur la page des comptes.<br>
-      Cela fera apparaître un formulaire vous permettant 
-      de créer votre compte facilement.
-    </p>
-
-    <h3>Formulaire de création de compte</h3>
-    
-    <img src="/images/modal-create-account.png" alt="">
-
-    <h3>Modification de compte</h3>
-
-    <button class="input-logo --bgblue" data-toggle="update-modal" aria-label="montrer l'apparence du bouton modifier un compte">
-      <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
-    </button>
-
-    <p class="home__account-text">
-      Pour modifier un compte, cliquez sur le bouton ci-dessus 
-      lorsque vous êtes sur la page des comptes.<br>
-      Cela ouvrira un formulaire avec les informations actuelles, 
-      vous permettant de modifier facilement votre compte.
-    </p>
-
-    <h3>Formulaire de modification de compte</h3>
-    
-    <img src="/images/modal-update-account.png" alt="">
-
-    <h3>Suppression de compte</h3>
-
-    <button class="input-logo --bgred" data-toggle="delete-modal" aria-label="montrer l'apparence du bouton supprimer un compte">
-      <i class="fa-regular fa-trash-can"  style="color: #ffffff;"></i>
-    </button>
-
-    <p class="home__account-text">
-      Pour supprimer un compte, cliquez sur le bouton ci-dessus 
-      lorsque vous êtes sur la page des comptes.<br>
-      Une fenêtre modale de confirmation 
-      s'ouvrira pour confirmer ou non la suppression.
-    </p>
-
-    <h3>Modale de suppression de compte</h3>
-    
-    <img src="/images/modal-delete-account.png" alt="">
-
-  </section>
-
-  <%- include('./partials/homeImgSection'); -%>
-
-  <section class="home__character-section">
-    <h2>Les personnages</h2>
-    <p class="home__character-text">
-      La page des personnages est accessible de diverses manières.<br>
-      Vous pouvez y accéder de manière générale pour retrouver 
-      l'ensemble de vos personnages sur tous les serveurs, 
-      ou choisir spécifiquement les personnages 
-      d'un serveur ou d'un compte en particulier.
-    </p>
-
-    <h3>Création d'un personnage</h3>
-
-    <p class="warning">
-      Attention ! La création d'un personnage est uniquement 
-      disponible sur la page des personnages d'un compte unique.<br>
-      Pour créer un personnage, 
-      rendez-vous sur la page 
-      <a class="warning-link" href="/accounts">MES COMPTES</a>. 
-      Choisissez ensuite un compte unique en cliquant sur le bouton 
-      <button class="input-logo --bgyellow" aria-label="montrer l'apparence du bouton aller a la page des personnages du compte">
-        <i class="fa-solid fa-person-half-dress " style="color: #000000;"></i>
-      </button>
-      pour accéder à la page des personnages.
-    </p>
-
-    <div class="add-container">
-      <button class="input-logo add-button" aria-label="montrer l'apparence du bouton ajouter un personnage">
-        <i class="fa-solid fa-plus fa-lg" style="color: #ffffff;"></i>
-      </button>
-    </div>
-
-    <p>
-      Pour créer un personnage, appuyez simplement sur le bouton ci-dessus 
-      lorsque vous êtes sur la page des personnages.<br>
-      Cela fera apparaître un formulaire vous permettant 
-      de créer votre personnage facilement.
-    </p>
-
-    <h3>Formulaire de création de personnage</h3>
-    
-    <img src="/images/modal-create-character.png" alt="">
-
-    <h3>Modification de personnage</h3>
-
-    <button class="input-logo --bgblue" data-toggle="update-modal" aria-label="montrer l'apparence du bouton modifier un personnage">
-      <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
-    </button>
-
-    <p class="home__character-text">
-      Pour modifier un personnage, cliquez sur le bouton ci-dessus 
-      lorsque vous êtes sur la page des personnages.<br>
-      Cela ouvrira un formulaire avec les informations actuelles, 
-      vous permettant de modifier facilement votre personnage.
-    </p>
-
-    <h3>Formulaire de modification de personnage</h3>
-    
-    <img src="/images/modal-update-character.png" alt="">
-
-    <h3>Suppression de personnage</h3>
-
-    <button class="input-logo --bgred" data-toggle="delete-modal" aria-label="montrer l'apparence du bouton supprimer un compte">
-      <i class="fa-regular fa-trash-can"  style="color: #ffffff;"></i>
-    </button>
-
-    <p class="home__character-text">
-      Pour supprimer un personnage, cliquez sur le bouton ci-dessus 
-      lorsque vous êtes sur la page des personnages.<br>
-      Une fenêtre modale de confirmation 
-      s'ouvrira pour confirmer ou non la suppression.
-    </p>
-
-    <h3>Modale de suppression de personnage</h3>
-    
-    <img src="/images/modal-delete-character.png" alt="">
-
-    <h3>Comment ça marche ?</h3>
-
-    <button class="help-character" aria-label="Jouer le tutoriel de la page personnage">
-      Lancer le tutoriel
-    </button>
-
-    <%- include('./partials/tableCharacterExemple'); -%>
-
-  </section>
-
-  <%- include('./partials/homeImgSection'); -%>
-
-  <section class="home__paddock-section">
-    <h2>Les étables</h2>
-    <p class="home__paddock-text">
-      Les pages des enclos privé et public 
-      sont accessible directement depuis le menu.<br>
-    </p>
-
-    <h3>Comment ça marche ?</h3>
-
-    <button class="help-paddock" aria-label="Jouer le tutoriel des pages enclos">
-      Lancer le tutoriel
-    </button>
-
-  </section>
-
 </main>
 <%- include('./partials/footer'); -%>
