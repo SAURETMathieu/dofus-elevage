@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 const {
-  Server, Account,
+  Server, Account, User,
 } = require('../models/index.js');
 
 const accountController = {
@@ -10,11 +10,16 @@ const accountController = {
     try {
       const serverId = parseInt(request.query.server, 10);
       const userId = request.session?.user?.id;
-
+      let idToRequest = userId;
       const servers = await Server.findAll();
 
       if (!userId) {
-        const conditions = { user_id: 16 };
+        const exampleUser = await User.findOne({
+          attributes: ['id'],
+          where: { email: 'example@example.example' },
+        });
+        idToRequest = exampleUser.id;
+        const conditions = { user_id: idToRequest };
         if (serverId) {
           conditions.server_id = serverId;
         }

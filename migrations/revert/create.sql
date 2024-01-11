@@ -1,0 +1,17 @@
+-- Revert dofus:create from pg
+
+BEGIN;
+
+DROP TABLE IF EXISTS "character" CASCADE;
+
+DROP TABLE IF EXISTS "account" CASCADE;
+
+DROP TABLE IF EXISTS "breed" CASCADE;
+
+DROP TABLE IF EXISTS "server" CASCADE;
+
+DROP TABLE IF EXISTS "user" CASCADE;
+
+DROP TABLE IF EXISTS "rotate" CASCADE;
+
+COMMIT;

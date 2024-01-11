@@ -1,6 +1,6 @@
 const dayjs = require('dayjs');
 const {
-  Server, Account, Character, Breed, Rotate,
+  Server, Account, Character, Breed, Rotate, User,
 } = require('../models/index.js');
 // eslint-disable-next-line import/extensions
 require('dayjs/locale/fr');
@@ -280,7 +280,11 @@ const characterController = {
       let serverName;
       let idToRequest = parseInt(request.session?.user?.id, 10);
       if (Number.isNaN(idToRequest)) {
-        idToRequest = 16;
+        const exampleUser = await User.findOne({
+          attributes: ['id'],
+          where: { email: 'example@example.example' },
+        });
+        idToRequest = exampleUser.id;
       }
 
       const includeOptions = [

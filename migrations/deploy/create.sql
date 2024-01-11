@@ -1,3 +1,5 @@
+-- Deploy dofus:create to pg
+
 BEGIN;
 
 DROP TABLE IF EXISTS "user", "account", "character","server","breed","rotate";
@@ -106,6 +108,5 @@ CREATE TABLE "character" (
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
-
 
 COMMIT;

@@ -20,7 +20,6 @@ const rotateController = {
           },
         });
       }
-
       const {
         name, color, classe,
       } = request.body;

@@ -1,7 +1,7 @@
--- Début du seeding
+-- Deploy dofus:seeding-breed to pg
+
 BEGIN;
 
--- Insertion des races
 INSERT INTO "breed" ("name", "stade", "color", "image", "gestation")
 VALUES 
     ('Amande', '1', 'amande', '/images/dd-amande.png', 2880),
@@ -72,7 +72,3 @@ VALUES
     ('Prune-Ivoire', '10', 'prune-ivoire', '/images/dd-prune-ivoire.png', 9360);
 
 COMMIT;
--- Fin du seeding
-
---UPDATE "user" SET role='admin' WHERE email='example@example.example';
---UPDATE "breed" SET image='/images/dindedoree.png' WHERE "name"='Dorée';

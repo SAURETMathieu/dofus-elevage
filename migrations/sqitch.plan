@@ -1,0 +1,8 @@
+%syntax-version=1.0.0
+%project=dofus
+
+create 2024-01-11T14:10:57Z Etudiant O'clock <student@teleporter> # create database
+seeding-breed 2024-01-11T14:17:14Z Etudiant O'clock <student@teleporter> # add breeds to database
+example-user 2024-01-11T15:29:30Z Etudiant O'clock <student@teleporter> # add example user
+insert-servers 2024-01-11T15:54:15Z Etudiant O'clock <student@teleporter> # insert servers to database
+example-data 2024-01-11T15:48:00Z Etudiant O'clock <student@teleporter> # insert examples data for non-connected users

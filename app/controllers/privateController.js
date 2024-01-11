@@ -5,21 +5,27 @@ const {
   Account,
   Server,
   Rotate,
+  User,
 } = require('../models/index.js');
 
 const privateController = {
   getPrivatePage: async (request, response) => {
     try {
       const server = parseInt(request.query.server, 10);
-      let userId = request.session?.user?.id;
+      const userId = parseInt(request.session?.user?.id, 10);
+      let idToRequest = userId;
 
-      if (!userId) {
-        userId = 16;
+      if (Number.isNaN(idToRequest)) {
+        const exampleUser = await User.findOne({
+          attributes: ['id'],
+          where: { email: 'example@example.example' },
+        });
+        idToRequest = exampleUser.id;
       }
 
-      const whereCondition = { user_id: userId };
+      const whereCondition = { user_id: idToRequest };
 
-      if (server && userId) {
+      if (server && idToRequest) {
         whereCondition.server_id = server;
       }
 

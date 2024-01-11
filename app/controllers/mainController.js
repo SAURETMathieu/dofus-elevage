@@ -27,9 +27,13 @@ const mainController = {
     response.render('profil');
   },
 
-  getServersPage: async (request, response) => {
-    const servers = await Server.findAll();
-    response.render('servers', { servers });
+  getServersPage: async (request, response, next) => {
+    try {
+      const servers = await Server.findAll();
+      response.render('servers', { servers });
+    } catch {
+      next();
+    }
   },
 
   getErrorPage: (request, response) => {

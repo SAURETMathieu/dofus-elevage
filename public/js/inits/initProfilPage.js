@@ -9,4 +9,4 @@ notifications.initCloseNotification();
 initDeleteModal('user');
 
 // buttons
-buttons.initHelpButton('character');
+buttons.initHelpButton('auth');
