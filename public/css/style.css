@@ -209,11 +209,11 @@ main{
 
 /* TODO gérer les images de fond*/
 .main__index{
-  background-image: url('../images/bg_dofus2.jpg');
+  background-image: url('../images/bg.jpg');
 }
 
 .main__connexion{
-  background-image: url('../images/zaapbg.webp');
+  background-image: url('../images/bg2.jpg');
 }
 
 .main__admin{
