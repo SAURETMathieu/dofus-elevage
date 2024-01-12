@@ -19,10 +19,16 @@
         
       </div>
       <div class="auth-container__input-container">
-        <label class="auth-container__label" for="password">Mot de passe</label>
-        <span class="valid-indicator" style="display: none;">✔️</span>
-        <input type="password" id="password" name="password" required>
-        
+        <label class="auth-container__label" for="password">
+          Mot de passe
+        </label>
+        <span class="valid-indicator-password" style="display: none;">✔️</span>
+        <div class="password-input-container">
+          <input type="password" class="password-input" id="password" name="password" required>
+          <button type="button" class="password-toggle" id="togglePassword" aria-label="montrer/cacher le mot de passe">
+            <i class="fas fa-eye-slash"></i>
+          </button>
+        </div>
       </div>
       <div class="auth-container__checkbox-container">
         <label>

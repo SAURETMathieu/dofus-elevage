@@ -8,7 +8,7 @@ function checkPasswordsMatch() {
   const password = passwordInput.value;
   const passwordConfirm = passwordConfirmInput.value;
 
-  if (password === passwordConfirm) {
+  if (password === passwordConfirm && password !== '') {
     passwordIndicators.forEach((indicator) => {
       indicator.style.display = 'inline';
     });

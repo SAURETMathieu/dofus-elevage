@@ -14,3 +14,4 @@ export { default as timeRotateButton } from './timeRotate.js';
 export { default as toggleCharacterList } from './toggleCharacterList.js';
 export { default as initToggleLists } from './togglePaddockList.js';
 export { default as initValidStepsButtons } from './validStepsInputs.js';
+export { default as togglePassword } from './togglePassword.js';

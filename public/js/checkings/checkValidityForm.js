@@ -10,7 +10,6 @@ function checkValidityAndDisplayIndicator(input, indicator) {
 
 export function checkValidityForAll() {
   const validatorsElement = document.querySelectorAll('.valid-indicator');
-
   validatorsElement.forEach((validator) => {
     const inputElement = validator.nextElementSibling;
 

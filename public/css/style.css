@@ -32,6 +32,11 @@ h3{
   padding:0.5rem;
 }
 
+button{
+  border:none;
+  background:none;
+}
+
 i{
   font-size:3rem;
 }
@@ -374,6 +379,42 @@ footer{
   color:rgb(54, 54, 54);
 }
 
+.password-input-container{
+  position:relative;
+  
+}
+
+.password-toggle{
+  position:absolute;
+  right:0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: solid 1px grey;
+  border-bottom:none;
+  width:2.5rem;
+  height:calc(100% - 0.5rem);
+  margin-top:0.25rem;
+  
+}
+
+.password-toggle:hover{
+  background: rgb(90, 90, 90);
+}
+
+.password-toggle:hover i{
+  color:white;
+  transform:scale(1.05);
+}
+
+.password-toggle i{
+  font-size:1rem;
+  color:#313131
+}
+
+.password-input-container input {
+  padding-right: 2.8rem;
+}
+
 /*//////////*/
 /*  ADMIN   */
 /*//////////*/
@@ -670,7 +711,7 @@ form {
   width:100%;
 }
 
-form input[type="text"]:not(.input-model){
+form input[type="text"]:not(.input-model, .password-input, .sign){
   height:2.5rem;
   padding:0.5rem;
   font-size:1.5rem;
