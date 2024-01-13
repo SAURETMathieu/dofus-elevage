@@ -12,3 +12,13 @@ Content-Type: application/json
 
 DELETE http://localhost:4000/user/5
 
+###
+
+POST http://localhost:4000/accounts
+Content-Type: application/json
+
+{
+  "name": "sdfsdf",
+  "color": "#455635",
+  "server":1
+}

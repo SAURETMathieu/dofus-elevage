@@ -6,6 +6,8 @@ const {
   updateUserSchema,
 } = require('../../validation/schemas/user.js');
 const { paramIdSchema } = require('../../validation/schemas/params.js');
+
+const controllerWrapper = require('../../helpers/controller.wrapper.js');
 const validate = require('../../validation/index.js');
 
 const router = new express.Router();
@@ -15,14 +17,14 @@ router.patch(
   isConnected,
   validate(paramIdSchema, 'params'),
   validate(updateUserSchema),
-  userController.updateUser,
+  controllerWrapper(userController.updateUser),
 );
 
 router.delete(
   '/:id',
   isConnected,
   validate(paramIdSchema, 'params'),
-  userController.deleteUser,
+  controllerWrapper(userController.deleteUser),
 );
 
 module.exports = router;

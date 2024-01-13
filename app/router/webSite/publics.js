@@ -4,9 +4,11 @@ const publicController = require('../../controllers/publicController.js');
 
 const router = new express.Router();
 
+const controllerWrapper = require('../../helpers/controller.wrapper.js');
+
 router.get(
   '/',
-  publicController.getPublicPage,
+  controllerWrapper(publicController.getPublicPage),
 );
 
 module.exports = router;

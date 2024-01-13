@@ -1,48 +1,32 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
+
+const ApiError = require('../errors/api.error.js');
+
 const {
   Server, Account, User,
 } = require('../models/index.js');
 
 const accountController = {
   getAccountsPage: async (request, response) => {
-    try {
-      const serverId = parseInt(request.query.server, 10);
-      const userId = request.session?.user?.id;
-      let idToRequest = userId;
-      const servers = await Server.findAll();
+    const serverId = parseInt(request.query.server, 10);
+    const userId = request.session?.user?.id;
+    let idToRequest = userId;
+    const servers = await Server.findAll();
 
-      if (!userId) {
-        const exampleUser = await User.findOne({
-          attributes: ['id'],
-          where: { email: 'example@example.example' },
-        });
-        idToRequest = exampleUser.id;
-        const conditions = { user_id: idToRequest };
-        if (serverId) {
-          conditions.server_id = serverId;
-        }
-        const exempleAccounts = await Account.findAll({
-          where: conditions,
-          order: ['server_id', 'name'],
-          include: [
-            {
-              association: 'server',
-            },
-          ],
-        });
-        return response.render('accounts', { accounts: exempleAccounts, servers });
+    if (!userId) {
+      const exampleUser = await User.findOne({
+        attributes: ['id'],
+        where: { email: 'example@example.example' },
+      });
+      idToRequest = exampleUser.id;
+      const conditions = { user_id: idToRequest };
+      if (serverId) {
+        conditions.server_id = serverId;
       }
-
-      const whereCondition = { user_id: userId };
-
-      if (serverId && userId) {
-        whereCondition.server_id = serverId;
-      }
-
-      const accounts = await Account.findAll({
-        where: whereCondition,
+      const exempleAccounts = await Account.findAll({
+        where: conditions,
         order: ['server_id', 'name'],
         include: [
           {
@@ -50,113 +34,117 @@ const accountController = {
           },
         ],
       });
-
-      return response.render('accounts', { accounts, servers });
-    } catch (err) {
-      return response.status(500).render('error', {
-        error: {
-          statusCode: 500,
-          name: 'Internal Server Error',
-          message:
-            'Une erreur est survenue lors de la récupération des comptes',
-        },
-      });
+      return response.render('accounts', { accounts: exempleAccounts, servers });
     }
+
+    const whereCondition = { user_id: userId };
+
+    if (serverId && userId) {
+      whereCondition.server_id = serverId;
+    }
+
+    const accounts = await Account.findAll({
+      where: whereCondition,
+      order: ['server_id', 'name'],
+      include: [
+        {
+          association: 'server',
+        },
+      ],
+    });
+
+    return response.render('accounts', { accounts, servers });
   },
 
-  addAccount: async (request, response) => {
-    try {
-      const userId = parseInt(request.session?.user?.id, 10);
+  addAccount: async (request, response, next) => {
+    const userId = parseInt(request.session?.user?.id, 10);
 
-      if (Number.isNaN(userId) || userId <= 0) {
-        return response.status(403).render('error', {
-          error: {
-            statusCode: 403,
-            name: 'Error',
-            message: 'Vous devez être connecté pour créer un compte.',
-          },
-        });
-      }
-
-      const { name, color, server } = request.body;
-
-      const account = await Account.create({
-        name,
-        color,
-        server_id: server,
-        user_id: userId,
-      });
-
+    if (Number.isNaN(userId) || userId <= 0) {
       return response.redirect('/accounts');
-    } catch (err) {
-      return response.status(500).render('error', {
-        error: {
-          statusCode: 500,
-          name: 'Internal Server Error',
-          message: 'Une erreur est survenue lors de la création du compte',
-        },
-      });
     }
+
+    const { name, color, server } = request.body;
+
+    const account = await Account.create({
+      name,
+      color,
+      server_id: server,
+      user_id: userId,
+    });
+
+    return response.redirect('/accounts');
   },
 
   deleteAccount: async (request, response, next) => {
-    try {
-      const { id } = request.params;
-      const account = await Account.findByPk(id);
-      if (!account) {
-        return response.status(404).json({ error: 'Account not found.' });
-      }
-      const accountDeleted = await Account.destroy({
-        where: {
-          id,
-          user_id: request.session.user.id,
-        },
-      });
-
-      if (accountDeleted) {
-        return response.status(204).json();
-      }
-      return response.status(400).json({ error: 'Erreur lors de la suppression du compte' });
-    } catch (error) {
-      return next();
+    const { id } = request.params;
+    const account = await Account.findByPk(id);
+    if (!account) {
+      const err = new ApiError(
+        'Echec lors de la suppression du compte: Le compte n\'existe pas.',
+        { httpStatus: 404 },
+      );
+      return next(err);
     }
+    const accountDeleted = await Account.destroy({
+      where: {
+        id,
+        user_id: request.session.user.id,
+      },
+    });
+
+    if (accountDeleted) {
+      return response.status(204).json();
+    }
+    const err = new ApiError(
+      'Echec lors de la suppression du compte.',
+      { httpStatus: 400 },
+    );
+    return next(err);
   },
 
-  updateAccount: async (request, response) => {
-    try {
-      const {
-        name,
-        color,
-        server,
-      } = request.body;
+  updateAccount: async (request, response, next) => {
+    const {
+      name,
+      color,
+      server,
+    } = request.body;
 
-      const selectedAccount = await Account.findByPk(request.params.id);
+    const selectedAccount = await Account.findByPk(request.params.id);
 
-      if (!selectedAccount) {
-        return response.status(404).json({ error: 'Account not found.' });
-      }
-
-      const serverExist = await Server.findByPk(server);
-
-      if (!serverExist) {
-        return response.status(404).json({ error: 'Server not found.' });
-      }
-
-      const updatedAccount = await selectedAccount.update({
-        name,
-        color,
-        server_id: server,
-      });
-
-      if (updatedAccount) {
-        const { server_id, ...updatedData } = updatedAccount.toJSON();
-        updatedData.server = serverExist;
-        return response.json(updatedData);
-      }
-      return response.status(404).json({ error: 'Account not found.' });
-    } catch (err) {
-      return response.status(500).json({ error: 'Internal server error' });
+    if (!selectedAccount) {
+      const err = new ApiError(
+        'Echec lors de la modification du compte: Le compte n\'existe pas.',
+        { httpStatus: 404 },
+      );
+      return next(err);
     }
+
+    const serverExist = await Server.findByPk(server);
+
+    if (!serverExist) {
+      const err = new ApiError(
+        'Echec lors de la modification du compte: Le serveur n\'existe pas.',
+        { httpStatus: 404 },
+      );
+      return next(err);
+    }
+
+    const updatedAccount = await selectedAccount.update({
+      name,
+      color,
+      server_id: server,
+    });
+
+    if (updatedAccount) {
+      const { server_id, ...updatedData } = updatedAccount.toJSON();
+      updatedData.server = serverExist;
+      return response.json(updatedData);
+    }
+    const err = new ApiError(
+      'Echec lors de la modification du compte',
+      { httpStatus: 400 },
+    );
+    return next(err);
   },
 };
 

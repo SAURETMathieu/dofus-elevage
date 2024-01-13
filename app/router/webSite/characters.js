@@ -1,8 +1,11 @@
 const express = require('express');
 
+const orderController = require('../../controllers/orderController.js');
 const characterController = require('../../controllers/characterController.js');
 const modeController = require('../../controllers/modeController.js');
+
 const { isConnected } = require('../../middlewares/authorization.js');
+
 const {
   updateStepsCharacterSchema,
   updateCharacterSchema,
@@ -10,9 +13,11 @@ const {
   updateOrderCharacterSchema,
   updateModeCharacterSchema,
 } = require('../../validation/schemas/character.js');
+
 const { paramIdSchema, paramIdAndAccountIdSchema } = require('../../validation/schemas/params.js');
+
 const validate = require('../../validation/index.js');
-const orderController = require('../../controllers/orderController.js');
+const controllerWrapper = require('../../helpers/controller.wrapper.js');
 
 const router = new express.Router();
 
@@ -20,7 +25,7 @@ router.patch(
   '/mode',
   isConnected,
   validate(updateModeCharacterSchema),
-  modeController.updateCharacterMode,
+  controllerWrapper(modeController.updateCharacterMode),
 );
 
 router.patch(
@@ -28,7 +33,7 @@ router.patch(
   isConnected,
   validate(paramIdSchema, 'params'),
   validate(updateStepsCharacterSchema),
-  characterController.updateRotateCharacter,
+  controllerWrapper(characterController.updateRotateCharacter),
 );
 
 router.patch(
@@ -36,7 +41,7 @@ router.patch(
   isConnected,
   validate(paramIdSchema, 'params'),
   validate(updateStepsCharacterSchema),
-  characterController.updateStepsCharacter,
+  controllerWrapper(characterController.updateStepsCharacter),
 );
 
 router.patch(
@@ -44,21 +49,21 @@ router.patch(
   isConnected,
   validate(paramIdSchema, 'params'),
   validate(updateOrderCharacterSchema),
-  orderController.updateCharacterOrder,
+  controllerWrapper(orderController.updateCharacterOrder),
 );
 
 router.post(
   '/:id/:accountId',
   validate(paramIdAndAccountIdSchema, 'params'),
   validate(createCharacterSchema),
-  characterController.addCharacter,
+  controllerWrapper(characterController.addCharacter),
 );
 
 router.delete(
   '/:id',
   isConnected,
   validate(paramIdSchema, 'params'),
-  characterController.deleteCharacter,
+  controllerWrapper(characterController.deleteCharacter),
 );
 
 router.patch(
@@ -66,12 +71,12 @@ router.patch(
   isConnected,
   validate(paramIdSchema, 'params'),
   validate(updateCharacterSchema),
-  characterController.updateCharacter,
+  controllerWrapper(characterController.updateCharacter),
 );
 
 router.get(
   '/',
-  characterController.getAllCharactersPage,
+  controllerWrapper(characterController.getAllCharactersPage),
 );
 
 module.exports = router;

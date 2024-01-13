@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const router = require('./app/router');
+const errorHandler = require('./app/helpers/error.handler.js');
 
 const PORT = process.env.PORT || 4000;
 
@@ -33,6 +34,8 @@ app.use((request, response, next) => {
 });
 
 app.use(router);
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console

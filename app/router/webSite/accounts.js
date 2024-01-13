@@ -13,6 +13,7 @@ const {
 } = require('../../validation/schemas/account.js');
 const { paramIdSchema, paramAccountIdSchema } = require('../../validation/schemas/params.js');
 const validate = require('../../validation/index.js');
+const controllerWrapper = require('../../helpers/controller.wrapper.js');
 
 const router = new express.Router();
 
@@ -20,45 +21,45 @@ router.patch(
   '/mode',
   isConnected,
   validate(updateModeAccountSchema),
-  modeController.updateAccountMode,
+  controllerWrapper(modeController.updateAccountMode),
 );
 
 router.patch(
   '/order',
   isConnected,
   validate(updateOrderAccountSchema),
-  orderController.updateAccountOrder,
+  controllerWrapper(orderController.updateAccountOrder),
 );
 
 router.get(
   '/:accountId/characters',
   validate(paramAccountIdSchema, 'params'),
-  characterController.getAllCharactersPage,
+  controllerWrapper(characterController.getAllCharactersPage),
 );
 
 router.delete(
   '/:id',
   isConnected,
   validate(paramIdSchema, 'params'),
-  accountController.deleteAccount,
+  controllerWrapper(accountController.deleteAccount),
 );
 
 router.patch(
   '/:id',
   isConnected,
   validate(updateAccountSchema),
-  accountController.updateAccount,
+  controllerWrapper(accountController.updateAccount),
 );
 
 router.post(
   '/',
   validate(createAccountSchema),
-  accountController.addAccount,
+  controllerWrapper(accountController.addAccount),
 );
 
 router.get(
   '/',
-  accountController.getAccountsPage,
+  controllerWrapper(accountController.getAccountsPage),
 );
 
 module.exports = router;
