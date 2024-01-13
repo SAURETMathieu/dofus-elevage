@@ -18,13 +18,13 @@ const authController = {
   postSignup: async (request, response) => {
     try {
       const {
-        firstname, lastname, email, pseudo, password, passwordConfirm,
+        firstname, lastname, email, pseudo, password, passwordconfirm,
       } = request.body;
       const existingUser = await User.findOne({ where: { email } });
       if (existingUser) {
         return response.status(409).json({ error: 'Email déjà utilisé' });
       }
-      if (password !== passwordConfirm) {
+      if (password !== passwordconfirm) {
         return response
           .status(422)
           .json({ error: 'Les mots de passes ne sont pas identiques' });
@@ -84,34 +84,6 @@ const authController = {
     request.session.destroy(() => {
       response.redirect('/');
     });
-  },
-
-  deleteUser: async (request, response) => {
-    try {
-      const userIdToDelete = parseInt(request.params.id, 10);
-      const loggedInUserId = request.session.user.id;
-
-      if (userIdToDelete !== loggedInUserId) {
-        return response.status(403).json({ message: 'Acces interdit' });
-      }
-
-      const userToDelete = await User.findByPk(userIdToDelete);
-
-      if (!userToDelete) {
-        return response.status(404).json({ message: 'Utilisateur introuvable' });
-      }
-
-      const isDeleted = await userToDelete.destroy();
-
-      if (!isDeleted) {
-        return response.status(500).json({ message: 'Echec lors de la suppression de votre compte' });
-      }
-
-      request.session.destroy();
-      return response.status(204).end();
-    } catch (err) {
-      return response.status(500).json({ error: 'Erreur lors de la suppression du compte' });
-    }
   },
 
 };

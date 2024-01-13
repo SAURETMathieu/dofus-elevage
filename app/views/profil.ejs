@@ -2,7 +2,7 @@
 <main class="main__index">
   <h1>PROFIL</h1>
 
-  <div class="profil__container">
+  <div class="profil__container" data-id="<%= user.id%>">
     <h2>Informations</h2>
     <div class="profil__header-role">
       <img
@@ -12,53 +12,55 @@
       <h3>Role : <%= user.role%></h3>
     </div>
 
-    <div class="profil__header-pseudo">
+    <div data-type="pseudo" class="profil__header-pseudo">
       <strong>Pseudo :</strong>
       <span><%= user.pseudo%></span>
-      <button aria-label="modifier son pseudo">
+      <button aria-label="modifier son pseudo" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
 
-    <div class="profil__header-lastname">
+    <div data-type="lastname" class="profil__header-lastname">
       <strong>Nom :</strong>
       <span><%= user.lastname%></span>
-      <button aria-label="modifier son nom">
+      <button aria-label="modifier son nom" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
 
-    <div class="profil__header-firstname">
+    <div data-type="firstname" class="profil__header-firstname">
       <strong>Prénom :</strong>
       <span><%= user.firstname%></span>
-      <button aria-label="modifier son prénom">
+      <button aria-label="modifier son prénom" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
 
-    <div class="profil__header-mail">
+    <div data-type="email" class="profil__header-mail">
       <strong>Email :</strong>
       <span><%= user.email%></span>
-      <button aria-label="modifier l'email">
+      <button aria-label="modifier l'email" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
 
-    <div class="profil__header-password">
+    <div data-type="password" class="profil__header-password">
       <strong>Mot de passe :</strong>
       <span>****************</span>
-      <button aria-label="modifier son mot de passe">
+      <button data-type="password" aria-label="modifier son mot de passe" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
     </div>
 
     <div class="profil__header-delete" data-id="<%= user.id%>" data-type="user">
       <strong>Supprimer le compte :</strong>
-      <button aria-label="supprimer son compte" data-toggle="delete-modal">
+      <button data-type="password" aria-label="supprimer son compte" data-toggle="delete-modal">
         <i class="fa-solid fa-trash" style="color: #ff0000"></i>
       </button>
     </div>
   </div>
+
+  <%- include('./partials/updateProfil'); -%>
 
   <%- include('./partials/deleteModal'); -%>
 

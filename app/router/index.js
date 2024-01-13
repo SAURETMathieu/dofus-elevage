@@ -6,8 +6,6 @@ const router = new express.Router();
 
 router.get('/', mainController.getHomePage);
 
-router.get('/gestion', mainController.getGestionPage);
-
 router.get('/servers', mainController.getServersPage);
 
 router.use('/', webSiteRouter);

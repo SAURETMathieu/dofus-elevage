@@ -15,11 +15,5 @@ router.get('/signout', isConnected, authController.getSignout);
 router.get('/profil', isConnectedAndRedirect, authController.getProfilPage);
 router.post('/signup', /* validate(createUserSchema), */ authController.postSignup);
 router.post('/signin', /* validate(connectUserSchema), */ authController.postSignin);
-router.delete(
-  '/user/:id',
-  validate(paramIdSchema, 'params'),
-  isConnected,
-  authController.deleteUser,
-);
 
 module.exports = router;

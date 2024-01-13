@@ -2,7 +2,7 @@ import notifications from '../../notifications/notifications.js';
 
 export default async function deleteUser(userId) {
   try {
-    const response = await fetch(`/user/${userId}`, {
+    const response = await fetch(`/users/${userId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

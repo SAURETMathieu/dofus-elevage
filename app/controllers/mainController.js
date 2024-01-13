@@ -15,14 +15,6 @@ const mainController = {
     response.render('private');
   },
 
-  getGestionPage: (request, response) => {
-    response.render('gestion');
-  },
-
-  getNaissancesPage: (request, response) => {
-    response.render('naissances');
-  },
-
   getProfilPage: (request, response) => {
     response.render('profil');
   },
@@ -37,7 +29,7 @@ const mainController = {
   },
 
   getErrorPage: (request, response) => {
-    response.render('404');
+    response.status(404).render('404');
   },
 };
 
