@@ -1,9 +1,16 @@
+let successTimeoutId;
+let failTimeoutId;
+
 const notifications = {
   showSuccessNotification() {
     const notification = document.getElementById('successNotification');
     notification.classList.remove('hidden');
 
-    setTimeout(() => {
+    if (successTimeoutId) {
+      clearTimeout(successTimeoutId);
+    }
+
+    successTimeoutId = setTimeout(() => {
       notifications.closeSuccessNotification();
     }, 3000);
   },
@@ -17,7 +24,11 @@ const notifications = {
     const notification = document.getElementById('failNotification');
     notification.classList.remove('hidden');
 
-    setTimeout(() => {
+    if (failTimeoutId) {
+      clearTimeout(failTimeoutId);
+    }
+
+    failTimeoutId = setTimeout(() => {
       notifications.closeFailNotification();
     }, 3000);
   },
