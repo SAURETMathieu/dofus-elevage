@@ -1,14 +1,14 @@
+const ApiError = require('../errors/api.error.js');
+
 function validate(schema, source = 'body') {
   return (request, response, next) => {
     const { error } = schema.validate(request[source]);
     if (error) {
-      return response.status(400).json({
-        error: {
-          statusCode: 400,
-          name: 'Erreur',
-          message: error.message,
-        },
-      });
+      const err = new ApiError(
+        error.message,
+        { httpStatus: 400 },
+      );
+      return next(err);
     }
     return next();
   };

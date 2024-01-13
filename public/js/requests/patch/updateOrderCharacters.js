@@ -16,15 +16,15 @@ export default async function updateCharactersOrderWhenDrop(objectToSend) {
     });
 
     if (!response.ok) {
-      if (response.status === 401) {
-        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
-      }
-      throw new Error(`${response.status} ${response.statusText}`);
+      const { error } = await response.json();
+      throw new Error(error);
     }
 
     return true;
   } catch (error) {
-    notifications.editAndShowFailNotification("Une erreur est survenue lors de la modification de l'ordre des personnages");
+    notifications.editAndShowFailNotification(
+      `Une erreur est survenue lors de la modification de l'ordre des personnages : ${error.message}`,
+    );
     return false;
   }
 }

@@ -23,11 +23,8 @@ export default async function updateUser(userId, updatePassword) {
       body: JSON.stringify(dataToSend),
     });
     if (!response.ok) {
-      if (response.status === 401) {
-        throw new Error('Vous devez être connecté pour utiliser cette fonctionnalité.');
-      }
       const { error } = await response.json();
-      throw new Error(`${error.name}: Status ${error.statusCode} ${error.message}`);
+      throw new Error(error);
     }
     const user = await response.json();
     notifications.editAndShowSuccessNotification(
@@ -36,7 +33,7 @@ export default async function updateUser(userId, updatePassword) {
     return user;
   } catch (error) {
     notifications.editAndShowFailNotification(
-      `${error.message}`,
+      `Erreur lors de la mise à jour du profil: ${error.message}`,
     );
     return false;
   }

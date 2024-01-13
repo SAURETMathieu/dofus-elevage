@@ -15,12 +15,13 @@ export default async function updateAccountsMode(accountsMode) {
     });
 
     if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`);
+      const { error } = await response.json();
+      throw new Error(error);
     }
 
     return true;
   } catch (error) {
-    notifications.editAndShowFailNotification("Une erreur est survenue lors de la sauvegarde de l'affichage.");
+    notifications.editAndShowFailNotification(`Une erreur est survenue lors de la sauvegarde de l'affichage : ${error.message}`);
     return false;
   }
 }

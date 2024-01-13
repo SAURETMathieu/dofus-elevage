@@ -249,7 +249,7 @@ function submitUpdateCharacter() {
       modal.style.display = 'none';
     } catch (error) {
       notifications.editAndShowFailNotification(
-        `Error : ${error.message}`,
+        error.message,
       );
     }
   });
