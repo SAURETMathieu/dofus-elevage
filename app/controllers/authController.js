@@ -62,7 +62,7 @@ const authController = {
       );
       if (isValidPassword) {
         if (remember === 'on') {
-          request.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 7;
+          request.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 60;
         }
         request.session.user = existingUser;
         request.session.user.password = null;
