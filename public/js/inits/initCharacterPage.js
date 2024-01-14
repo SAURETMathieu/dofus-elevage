@@ -7,6 +7,7 @@ import initDeleteModal from '../modals/deleteModal.js';
 import { searchByNameTable } from '../searchs/searchByName.js';
 import { sortDragodindes } from '../utils/sortDragodindes.js';
 import { searchDragodindesUpdate } from '../searchs/searchByColor.js';
+import removeLoading from './loading.js';
 
 const elements = document.querySelectorAll("[data-type='character']");
 const clearButton = document.querySelector('#clear-search');
@@ -33,3 +34,5 @@ buttons.checkboxesInit();
 // utils
 sortDragodindes();
 utils.initCustomSelect();
+
+removeLoading();

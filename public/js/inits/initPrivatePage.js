@@ -2,6 +2,7 @@ import notifications from '../notifications/notifications.js';
 import * as dragAndDrop from '../dragAndDrop/index.js';
 import * as buttons from '../buttons/index.js';
 import * as utils from '../utils/index.js';
+import removeLoading from './loading.js';
 
 // notifications
 notifications.initCloseNotification();
@@ -24,3 +25,5 @@ utils.initBackgroundCharacters();
 utils.displayTime('Enclos Privée');
 utils.initClosedCharacters();
 utils.initClosedAccounts();
+
+removeLoading();

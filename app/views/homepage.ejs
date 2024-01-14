@@ -24,6 +24,30 @@
       <img src="/images/caresse.png" alt="" />
     </section>
   </section>
+
+  <% if (!locals.user) { %>
+    <div id="cookieBanner" class="cookie-banner">
+      <div class="close-banner">
+        <button class="close-button">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <h2>Bienvenue</h2>
+      <p>Veuillez vous connecter pour accéder au contenu.</p>
+      <a href="/signin">
+        <button id="getSigninPage">Connexion</button>
+      </a>
+      <a href="/signup">
+        <button id="getSignupPage">S'inscrire</button>
+      </a>
+      <p>Les données hors connexion sont fictives.</p>
+      <p>Chaque page possède un tutoriel.</p>
+      <button id="showTutorial">Tutoriel</button>
+      <button id="closeBanner">Fermer</button>
+    </div>
+    <script defer type="module" src="/js/inits/initBanner.js"></script>
+  <% } %>
+
 </main>
 
 <script type="module" src="/js/inits/initHomePage.js"></script>

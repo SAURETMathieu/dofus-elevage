@@ -7,6 +7,7 @@ import initAddModal from '../forms/openCloseAddForm.js';
 import initDeleteModal from '../modals/deleteModal.js';
 import { searchByName } from '../searchs/searchByName.js';
 import { createAccountCheck, updateAccountCheck } from '../checkings/checkValidityForm.js';
+import removeLoading from './loading.js';
 
 const elements = document.querySelectorAll('.container-list__account-color');
 const clearButton = document.querySelector('#clear-search');
@@ -32,3 +33,5 @@ utils.initColorPicker2();
 
 createAccountCheck();
 updateAccountCheck();
+
+removeLoading();

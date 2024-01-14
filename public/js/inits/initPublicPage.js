@@ -6,6 +6,7 @@ import * as utils from '../utils/index.js';
 import initAddModal from '../forms/openCloseAddForm.js';
 import initModalUpdateRotate from '../modals/updateRotateModal.js';
 import initDeleteModal from '../modals/deleteModal.js';
+import removeLoading from './loading.js';
 
 // notifications
 notifications.initCloseNotification();
@@ -43,3 +44,5 @@ utils.initBackgroundRotates();
 utils.initClosedCharacters();
 utils.initClosedAccounts();
 utils.initCustomSelect();
+
+removeLoading();
