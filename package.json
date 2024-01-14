@@ -24,7 +24,9 @@
     "multer": "^1.4.5-lts.1",
     "pg": "^8.11.3",
     "sequelize": "^6.35.0",
-    "sortablejs": "^1.15.1"
+    "sortablejs": "^1.15.1",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

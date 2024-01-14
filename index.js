@@ -1,9 +1,10 @@
 /* eslint-disable import/extensions */
 require('dotenv').config();
 const express = require('express');
-const session = require('express-session');
 const router = require('./app/router');
 const errorHandler = require('./app/helpers/error.handler.js');
+const httpLogger = require('./app/middlewares/httpLogger.js');
+const sessionMiddleware = require('./app/middlewares/sessions.js');
 
 const PORT = process.env.PORT || 4000;
 
@@ -15,14 +16,9 @@ app.set('views', './app/views');
 app.use(express.static('./public'));
 app.use(express.json());
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false },
-  }),
-);
+app.use(httpLogger);
+
+app.use(sessionMiddleware());
 
 app.use(express.urlencoded({ extended: true }));
 
