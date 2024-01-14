@@ -14,8 +14,8 @@ const transportCombinedFile = new winston.transports.DailyRotateFile({
   filename: './logs/combined.log',
   datePattern: 'YYYY-MM-DD-HH-mm',
   zippedArchive: true,
-  frequency: '1d',
-  maxFiles: '5d',
+  frequency: '1h',
+  maxFiles: '3d',
   format: combine(
     now(),
     json(),
@@ -27,8 +27,8 @@ const transportErrorFile = new winston.transports.DailyRotateFile({
   filename: './logs/error.log',
   datePattern: 'YYYY-MM-DD-HH-mm',
   zippedArchive: true,
-  frequency: '1d',
-  maxFiles: '5d',
+  frequency: '1h',
+  maxFiles: '3d',
   format: combine(
     now(),
     json(),

@@ -19,6 +19,7 @@ const authController = {
     const {
       firstname, lastname, email, pseudo, password, passwordconfirm,
     } = request.body;
+
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       const err = new ApiError(
