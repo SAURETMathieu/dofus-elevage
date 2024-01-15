@@ -7,6 +7,7 @@ const privateRouter = require('./privates.js');
 const publicRouter = require('./publics.js');
 const rotatesRouter = require('./rotates.js');
 const usersRouter = require('./users.js');
+const supportRouter = require('./support.js');
 
 const router = new express.Router();
 
@@ -18,5 +19,6 @@ router.use('/private', privateRouter);
 router.use('/public', publicRouter);
 router.use('/rotates', rotatesRouter);
 router.use('/users', usersRouter);
+router.use('/support', supportRouter);
 
 module.exports = router;

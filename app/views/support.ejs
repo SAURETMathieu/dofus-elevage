@@ -1,0 +1,37 @@
+<%- include('./partials/header'); -%>
+<main class="main__index">
+  <h1>SUPPORT</h1>
+  
+  <div class="main__container-list">
+    <p class="support__text">
+      Si vous rencontrez le moindre problème, 
+      n'hésitez pas à nous contacter via notre service de support.
+      <br>
+      <br>
+      Notre équipe de support vous répondra par email. 
+      Assurez-vous d'avoir accès à votre boîte de réception 
+      pour recevoir toute réponse de notre part.<br><br>
+      Notre email : <br><span>do-not-reply-odd@outlook.com</span>
+    </p>
+    
+    <form class="support__form" id="supportForm" data-id="<%= locals.user.id%>">
+      <label for="subject">Motif :</label>
+      <input class="support__subject" type="text" id="subject" name="subject" required />
+
+      <label for="message">Message :</label>
+      <textarea class="support__textarea" id="message" name="message" rows="20" required></textarea>
+
+      <div class="modal-submit-buttons">
+        <input class="support__is-cancel" type="button" value="RESET">
+        <input class="support__is-success" type="submit" value="ENVOYER">
+      </div>
+    </form>
+  </div>
+
+  <%- include('./partials/failNotif'); -%> 
+  <%- include('./partials/successNotif'); -%>
+</main>
+
+<script type="module" src="/js/inits/initSupportPage.js"></script>
+
+<%- include('./partials/footer'); -%>
