@@ -18,7 +18,7 @@ POST http://localhost:4000/accounts
 Content-Type: application/json
 
 {
-  "name": "sdfsdf",
-  "color": "#455635",
+  "name": "sdfsdf45fsdfsdfsdfsdfsdfdsfdf",
+  "color": 5,
   "server":1
 }

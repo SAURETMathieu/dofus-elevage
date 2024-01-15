@@ -30,25 +30,41 @@ const alternativeSteps = [
 ];
 
 const createCharacterSchema = Joi.object({
-  name: Joi.string().max(20).required(),
-  type: Joi.string().max(10).valid('public', 'private').required(),
-  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa').required(),
-  speMale: Joi.string().valid('aucune', 'repro', 'camé').required(),
-  speFemale: Joi.string().valid('aucune', 'repro', 'camé').required(),
-  breedMale: Joi.number().integer().min(1).required(),
-  breedFemale: Joi.number().integer().min(1).required(),
+  name: Joi.string().max(20).required()
+    .error(new Error('Le nom est requis et doit contenir au plus 20 caractères')),
+  type: Joi.string().max(10).valid('public', 'private').required()
+    .error(new Error('Le type doit être "public" ou "private"')),
+  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa').required()
+    .error(new Error('La classe doit être une classe valide')),
+  speMale: Joi.string().valid('aucune', 'repro', 'camé').required()
+    .error(new Error('La spécialité mâle doit être "aucune", "repro" ou "camé"')),
+  speFemale: Joi.string().valid('aucune', 'repro', 'camé').required()
+    .error(new Error('La spécialité femelle doit être "aucune", "repro" ou "camé"')),
+  breedMale: Joi.number().integer().min(1).required()
+    .error(new Error('L\'identifiant de race mâle doit être un nombre entier positif')),
+  breedFemale: Joi.number().integer().min(1).required()
+    .error(new Error('L\'identifiant de race femelle doit être un nombre entier positif')),
 });
 
 const updateCharacterSchema = Joi.object({
-  name: Joi.string().max(20),
-  type: Joi.string().max(10).valid('public', 'private'),
-  nbrepro: Joi.number().integer().min(0).max(20),
-  accountId: Joi.number().integer().min(1),
-  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa'),
-  speMale: Joi.string().valid('aucune', 'repro', 'camé'),
-  speFemale: Joi.string().valid('aucune', 'repro', 'camé'),
-  breedMale: Joi.number().integer().min(1),
-  breedFemale: Joi.number().integer().min(1),
+  name: Joi.string().max(20)
+    .error(new Error('Le nom doit contenir au plus 20 caractères')),
+  type: Joi.string().max(10).valid('public', 'private')
+    .error(new Error('Le type doit être "public" ou "private"')),
+  nbrepro: Joi.number().integer().min(0).max(20)
+    .error(new Error('Le nombre de reproductions doit être compris entre 0 et 20')),
+  accountId: Joi.number().integer().min(1)
+    .error(new Error('L\'identifiant de compte doit être un nombre entier positif')),
+  classe: Joi.string().valid('enu', 'cra', 'iop', 'sadi', 'sacri', 'feca', 'panda', 'eni', 'sram', 'xelor', 'eca', 'osa')
+    .error(new Error('La classe doit être une classe valide')),
+  speMale: Joi.string().valid('aucune', 'repro', 'camé')
+    .error(new Error('La spécialité mâle doit être "aucune", "repro" ou "camé"')),
+  speFemale: Joi.string().valid('aucune', 'repro', 'camé')
+    .error(new Error('La spécialité femelle doit être "aucune", "repro" ou "camé"')),
+  breedMale: Joi.number().integer().min(1)
+    .error(new Error('L\'identifiant de race mâle doit être un nombre entier positif')),
+  breedFemale: Joi.number().integer().min(1)
+    .error(new Error('L\'identifiant de race femelle doit être un nombre entier positif')),
   date: Joi.date().timestamp(),
   dateBirth: Joi.date().timestamp(),
   nbMale: Joi.number().integer().min(0).max(125),
@@ -65,24 +81,30 @@ const updateStepsCharacterSchema = Joi.object({
   endurancef: Joi.boolean(),
   lovem: Joi.boolean(),
   endurancem: Joi.boolean(),
-  rotateId: Joi.number().integer().min(1).allow(null),
+  rotateId: Joi.number().integer().min(1).allow(null)
+    .error(new Error('L\'identifiant de rotation doit être un nombre entier positif ou null')),
 }).or(...alternativeSteps);
 
 const updateOrderCharacterSchema = Joi.object().keys({
   order: Joi.array().items(
     Joi.object({
-      characterId: Joi.number().integer().positive().required(),
+      characterId: Joi.number().integer().positive().required()
+        .error(new Error('L\'identifiant de personnage doit être un nombre entier positif')),
     }),
-  ).min(1).required(),
+  ).min(1).required()
+    .error(new Error('L\'ordre doit contenir au moins un élément')),
 });
 
 const updateModeCharacterSchema = Joi.object().keys({
   charactersMode: Joi.array().items(
     Joi.object({
-      characterId: Joi.number().integer().min(1).required(),
-      mode: Joi.string().valid('opened', 'closed').required(),
+      characterId: Joi.number().integer().min(1).required()
+        .error(new Error('L\'identifiant de personnage doit être un nombre entier positif')),
+      mode: Joi.string().valid('opened', 'closed').required()
+        .error(new Error('Le mode doit être "opened" ou "closed"')),
     }),
-  ).required(),
+  ).required()
+    .error(new Error('Les modes de personnage sont requis')),
 });
 
 module.exports = {
