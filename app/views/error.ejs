@@ -1,9 +1,12 @@
 <%- include('partials/header') %>
-<main class="main__index">
-  <h2><%= error.statusCode %> <%= error.name %></h2>
-  
-      <%= error.message %>
-
+<main class="main__error">
+  <h1><%= error.statusCode %> <%= error.name %></h1>
+  <br>
+  <br>
+  <div class="home__intro">
+    <%= error.message %>
+  </div>
+      
 </main>
 
 <%- include('partials/footer') %>

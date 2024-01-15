@@ -228,6 +228,10 @@ main{
   background-image: url('../images/servers.jpeg');
 }
 
+.main__error{
+  background-image: url('../images/errorbg2.png');
+}
+
 /*//////////*/
 /*  FOOTER  */
 /*//////////*/
@@ -2480,6 +2484,10 @@ input[type="checkbox"]:not(:checked) + label {
   .home__account-section button i,
   .home__character-section button i{
     font-size:1.5rem;
+  }
+
+  .main__error{
+    background-image: url('../images/errorbg3.png');
   }
 }
 
