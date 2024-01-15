@@ -1,5 +1,7 @@
 const Joi = require('joi');
 
+const exceptionEmail = 'example@example.example';
+
 const createUserSchema = Joi.object({
   lastname: Joi.string().max(30).required().trim()
     .pattern(/^[a-zA-ZÀ-ÿ'\s-]+$/)
@@ -43,6 +45,7 @@ const updateUserSchema = Joi.object({
 const connectUserSchema = Joi.object({
   email: Joi.string().email().max(50).required()
     .trim()
+    .valid(exceptionEmail)
     .error(new Error('Veuillez fournir une adresse e-mail valide')),
   password: Joi.string().required()
     .error(new Error('Le mot de passe est requis')),

@@ -35,13 +35,13 @@ router.get(
 
 router.post(
   '/signup',
-  /* validate(createUserSchema), */
+  validate(createUserSchema),
   controllerWrapper(authController.postSignup),
 );
 
 router.post(
   '/signin',
-  /* validate(connectUserSchema), */
+  validate(connectUserSchema),
   controllerWrapper(authController.postSignin),
 );
 

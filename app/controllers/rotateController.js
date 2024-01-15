@@ -13,11 +13,7 @@ const rotateController = {
     const userId = parseInt(request.session?.user?.id, 10);
 
     if (Number.isNaN(userId) || userId <= 0) {
-      const err = new ApiError(
-        'Vous devez être connecté pour créer une rotation.',
-        { httpStatus: 401 },
-      );
-      return next(err);
+      return response.redirect('/public');
     }
     const {
       name, color, classe,
