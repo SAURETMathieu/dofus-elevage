@@ -18,6 +18,9 @@ export default async function deleteUser(userId, isAdmin = '') {
     );
     if (isAdmin !== '/admin') {
       window.location.href = '/signup';
+    } else {
+      const deletedElement = document.querySelector(`#user-${userId}`);
+      deletedElement.remove();
     }
   } catch (error) {
     notifications.editAndShowFailNotification(
