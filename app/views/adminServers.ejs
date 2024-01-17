@@ -4,6 +4,7 @@
   <%- include('./partials/adminNavBar'); -%>
   
   <div class="main__container-list">
+    <%- include('./partials/searchContainer'); -%>
     <article class="main__article">
       <button id="addButton" class="article__circular-button">+</button>
       <form action="/admin/servers" method="POST" id="addServerForm" class="article__form hidden" enctype="multipart/form-data">
@@ -28,31 +29,22 @@
       </form>
     </article>
     <% locals.servers.forEach(server => { %>
-      <article class="main__article">
+      <article class="main__article" data-id="<%= server.id%>" data-type="admin-server">
         <div class="main__article-title"><h2><%= server.name %></h2></div>
         <img class="article__logo-server" src="/images/<%= server.img %>" alt="image du serveur">
         <a href="/admin/servers/update/<%= server.id %>"><input class="form__input" type="button" value="Modifier"></a>
-        <a href="/admin/servers/delete/<%= server.id %>"><input class="form__input" type="button" value="Supprimer"></a>
+        <input class="form__input" type="button" value="Supprimer" data-toggle="delete-modal">
       </article>
     <% }) %>
   </div>
 </main>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const addButton = document.getElementById('addButton');
-    const addServerForm = document.getElementById('addServerForm');
-    const cancelButton = document.getElementById('cancelAdd');
+<%- include('./partials/successNotif'); -%>
 
-    addButton.addEventListener('click', function() {
-      addServerForm.classList.toggle('hidden');
-      addButton.classList.toggle('hidden');
-    });
+<%- include('./partials/failNotif'); -%>
 
-    cancelButton.addEventListener('click', function() {
-      addServerForm.classList.toggle('hidden');
-      addButton.classList.toggle('hidden');
-    });
-  });
-</script>
+<%- include('./partials/deleteModal'); -%>
+
+<script type="module" src="/js/inits/initAdminServerPage.js"></script>
+
 <%- include('./partials/footer'); -%>

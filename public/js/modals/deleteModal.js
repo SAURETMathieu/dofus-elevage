@@ -1,6 +1,7 @@
 import { deleteAccount, deleteCharacter } from '../requests/delete/requestDelete.js';
 import deleteRotate from '../requests/delete/deleteRotate.js';
 import deleteUser from '../requests/delete/deleteUser.js';
+import deleteAdminServer from '../requests/delete/deleteAdminServer.js';
 
 const modalElem = document.getElementById('confirm-delete-modal');
 const openModalButtons = document.querySelectorAll('[data-toggle="delete-modal"]');
@@ -63,6 +64,9 @@ function confirmDeleteModal() {
     }
     if (type === 'user') {
       deleteUser(idToDelete);
+    }
+    if (type === 'admin-server') {
+      deleteAdminServer(idToDelete);
     }
   });
 }

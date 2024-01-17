@@ -5,18 +5,16 @@
   
   <div class="main__container-list">
 
+    
     <form class="form__search" action="/admin/users" method="GET">
-      <div class="form__search-container">
-        <input type="text" id="searchInput" name="search" placeholder="Entrez votre recherche ici" required>
-        <button type="submit">Rechercher</button>
-      </div>
+<%- include('./partials/searchContainer'); -%>
     </form>
 
     <table>
       <thead>
         <tr>
           <% locals.attributes.forEach(attribute => { %>
-            <% if (attribute !== "password") { %>
+            <% if (attribute !== "password" && attribute !== "mode" && attribute !== "status") { %>
               <th><%= attribute %></th>
             <% } %>
           <% }) %>
@@ -25,19 +23,19 @@
         </tr>
       </thead>
       <tbody>
-        <% for (let i = 0; i < locals.users.length; i++) { %>
-          <tr>
+        <% for (let i = 0; i < locals.rows.length; i++) { %>
+          <tr data-id="<%= locals.rows[i].id%>" data-type="<%= locals.type%>">
             <% locals.attributes.forEach(attribute => { %>
-              <% if (attribute !== "password") { %>
+              <% if (attribute !== "password" && attribute !== "mode" && attribute !== "status") { %>
                 <% if (attribute === "created_at" || attribute === "updated_at") { %>
-                <td class="table__td-date"><%= new Date(locals.users[i][attribute]).toLocaleString('fr') %></td>
+                <td class="table__td-date"><%= new Date(locals.rows[i][attribute]).toLocaleString('fr') %></td>
                 <% }else{ %>
-                  <td data-tooltip="<%= locals.users[i][attribute] %>"><%= locals.users[i][attribute] %></td>
+                  <td data-tooltip="<%= locals.rows[i][attribute] %>"><%= locals.rows[i][attribute] %></td>
                 <%}%>
               <% } %>
             <% }) %>
-            <td class="table__td-logo"><a href="/admin/users/update/<%= locals.users[i].id%>"><i class="fa-regular fa-pen-to-square" style="color: #000000;"></i></a></td>
-            <td class="table__td-logo"><a href="/admin/users/delete/<%= locals.users[i].id%>"><i class="fa-regular fa-trash-can" style="color: #000000;"></i></a></td>
+            <td class="table__td-logo"><a href="/admin/<%= locals.type%>s/update/<%= locals.rows[i].id%>"><i class="fa-regular fa-pen-to-square" style="color: #000000;"></i></a></td>
+            <td class="table__td-logo" data-toggle="delete-modal"><i class="fa-regular fa-trash-can" style="color: #000000;"></i></td>
           </tr>
         <% } %>
       </tbody>
@@ -67,4 +65,13 @@ cells.forEach((cell) => {
 
   </script>
 </main>
+
+<%- include('./partials/successNotif'); -%>
+
+<%- include('./partials/failNotif'); -%>
+
+<%- include('./partials/deleteModal'); -%>
+
+<script type="module" src="/js/inits/initAdminTablePage.js"></script>
+
 <%- include('./partials/footer'); -%>
