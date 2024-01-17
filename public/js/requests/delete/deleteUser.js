@@ -1,8 +1,8 @@
 import notifications from '../../notifications/notifications.js';
 
-export default async function deleteUser(userId) {
+export default async function deleteUser(userId, isAdmin = '') {
   try {
-    const response = await fetch(`/users/${userId}`, {
+    const response = await fetch(`${isAdmin}/users/${userId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -16,7 +16,9 @@ export default async function deleteUser(userId) {
     notifications.editAndShowSuccessNotification(
       'Votre compte a bien été supprimé',
     );
-    window.location.href = '/signup';
+    if (isAdmin !== '/admin') {
+      window.location.href = '/signup';
+    }
   } catch (error) {
     notifications.editAndShowFailNotification(
       `La suppression de votre compte a échoué : ${error.message}`,

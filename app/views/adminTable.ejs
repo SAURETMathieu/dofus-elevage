@@ -24,7 +24,7 @@
       </thead>
       <tbody>
         <% for (let i = 0; i < locals.rows.length; i++) { %>
-          <tr data-id="<%= locals.rows[i].id%>" data-type="<%= locals.type%>">
+          <tr data-id="<%= locals.rows[i].id%>" data-type="admin-<%= locals.type%>">
             <% locals.attributes.forEach(attribute => { %>
               <% if (attribute !== "password" && attribute !== "mode" && attribute !== "status") { %>
                 <% if (attribute === "created_at" || attribute === "updated_at") { %>

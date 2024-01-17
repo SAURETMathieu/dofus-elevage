@@ -1,8 +1,8 @@
 import notifications from '../../notifications/notifications.js';
 
-export async function deleteAccount(accountId) {
+export async function deleteAccount(accountId, isAdmin = '') {
   try {
-    const response = await fetch(`/accounts/${accountId}`, {
+    const response = await fetch(`${isAdmin}/accounts/${accountId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -27,9 +27,9 @@ export async function deleteAccount(accountId) {
   }
 }
 
-export async function deleteCharacter(characterId) {
+export async function deleteCharacter(characterId, isAdmin = '') {
   try {
-    const response = await fetch(`/characters/${characterId}`, {
+    const response = await fetch(`${isAdmin}/characters/${characterId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

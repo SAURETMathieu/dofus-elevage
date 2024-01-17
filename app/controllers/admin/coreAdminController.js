@@ -60,7 +60,7 @@ class CoreAdminController {
       );
       return next(err);
     }
-    const deleted = await this.model.delete(id);
+    const deleted = await elementToDelete.destroy();
     if (!deleted) {
       return next();
     }

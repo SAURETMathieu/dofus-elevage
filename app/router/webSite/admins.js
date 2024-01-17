@@ -25,7 +25,7 @@ router.get(
 router.delete(
   '/servers/:id',
   isAdmin,
-  controllerWrapper(serverAdminController.delete),
+  controllerWrapper(serverAdminController.delete.bind(serverAdminController)),
 );
 
 router.patch(
@@ -34,20 +34,56 @@ router.patch(
   controllerWrapper(serverAdminController.update),
 );
 
-// router.delete('/users/:id', isAdmin, adminController.deleteUser);
-// router.patch('/users/:id', isAdmin, adminController.deleteUser);
+router.delete(
+  '/rotates/:id',
+  isAdmin,
+  controllerWrapper(rotateAdminController.delete.bind(rotateAdminController)),
+);
+
+router.patch(
+  '/rotates/:id',
+  isAdmin,
+  controllerWrapper(rotateAdminController.update.bind(rotateAdminController)),
+);
+
+router.delete(
+  '/characters/:id',
+  isAdmin,
+  controllerWrapper(characterAdminController.delete.bind(characterAdminController)),
+);
+
+router.patch(
+  '/characters/:id',
+  isAdmin,
+  controllerWrapper(characterAdminController.update.bind(characterAdminController)),
+);
+
+router.delete(
+  '/accounts/:id',
+  isAdmin,
+  controllerWrapper(accountAdminController.delete.bind(accountAdminController)),
+);
+
+router.patch(
+  '/accounts/:id',
+  isAdmin,
+  controllerWrapper(accountAdminController.update.bind(accountAdminController)),
+);
+
+router.delete(
+  '/users/:id',
+  isAdmin,
+  controllerWrapper(userAdminController.delete.bind(userAdminController)),
+);
+
+router.patch(
+  '/users/:id',
+  isAdmin,
+  controllerWrapper(userAdminController.update.bind(userAdminController)),
+);
 
 // router.delete('/breeds/:id', isAdmin, adminController.deleteBreed);
 // router.patch('/breeds/:id', isAdmin, adminController.deleteBreed);
-
-// router.delete('/accounts/:id', isAdmin, adminController.deleteAccount);
-// router.patch('/accounts/:id', isAdmin, adminController.deleteAccount);
-
-// router.delete('/characters/:id', isAdmin, adminController.deleteCharacter);
-// router.patch('/characters/:id', isAdmin, adminController.deleteCharacter);
-
-// router.delete('/rotates/:id', isAdmin, adminController.deleteRotate);
-// router.patch('/rotates/:id', isAdmin, adminController.deleteRotate);
 
 router.post(
   '/servers',

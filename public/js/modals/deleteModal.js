@@ -68,6 +68,18 @@ function confirmDeleteModal() {
     if (type === 'admin-server') {
       deleteAdminServer(idToDelete);
     }
+    if (type === 'admin-account') {
+      deleteAccount(idToDelete, '/admin');
+    }
+    if (type === 'admin-character') {
+      deleteCharacter(idToDelete, '/admin');
+    }
+    if (type === 'admin-rotate') {
+      deleteRotate(idToDelete, '/admin');
+    }
+    if (type === 'admin-user') {
+      deleteUser(idToDelete, '/admin');
+    }
   });
 }
 

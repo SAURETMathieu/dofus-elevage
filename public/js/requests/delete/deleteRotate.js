@@ -1,8 +1,8 @@
 import notifications from '../../notifications/notifications.js';
 
-export default async function deleteRotate(rotateId) {
+export default async function deleteRotate(rotateId, isAdmin = '') {
   try {
-    const response = await fetch(`/rotates/${rotateId}`, {
+    const response = await fetch(`${isAdmin}/rotates/${rotateId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
