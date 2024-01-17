@@ -3,7 +3,6 @@ const { driver } = window.driver.js;
 export default function paddockTutorial(type) {
   let additionalSteps = [];
 
-  // Vérifiez si type n'est pas égal à 'public'
   if (type === 'public') {
     additionalSteps = [
       {
@@ -87,8 +86,10 @@ export default function paddockTutorial(type) {
           vous pourrez sélectionner un ou plusieurs personnages dans la liste 
           de vos comptes et personnages.<br><br>
           Chaque personnage dispose de boutons :<br>
-          - Vert avec un signe + s'ils ne font pas partie 
-          de la rotation sélectionnée.<br>
+          - Vert avec un signe + s'ils ne font partie 
+          d'aucune rotation.<br>
+          - Bleu avec un signe + s'ils ne font pas partie 
+          de la rotation sélectionnée mais font partie d'une autre rotation.<br>
           - Rouge s'ils appartiennent déjà à cette rotation.<br><br>
           Une fois la sélection terminée, 
           appuyez sur le bouton "Terminé" en bas de votre écran.`,

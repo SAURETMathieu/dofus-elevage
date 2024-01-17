@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "npx nodemon",
-    "resetDB": "psql -U dofus -d dofus -f data/dofus.sql"
+    "resetDB": "psql -d dofus -f data/dofus.sql",
+    "deploy-verify": "sqitch deploy && sqitch verify",
+    "revert": "sqitch revert -y"
   },
   "keywords": [],
   "author": "",

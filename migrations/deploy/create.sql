@@ -76,6 +76,9 @@ CREATE TABLE "rotate" (
     "updated_at" TIMESTAMPTZ
 );
 
+-- should refactor the redundancy in the 'character' and 'rotate' tables 
+-- but the cardinalities are (1,1)
+
 -- Table Character
 CREATE TABLE "character" (
     "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
