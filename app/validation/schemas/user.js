@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const exceptionEmail = 'example@example.example';
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 const createUserSchema = Joi.object({
   lastname: Joi.string().max(30).required().trim()
@@ -9,8 +9,9 @@ const createUserSchema = Joi.object({
   firstname: Joi.string().max(30).required().trim()
     .pattern(/^[a-zA-ZÀ-ÿ'\s-]+$/)
     .error(new Error('Le prénom est requis et ne doit contenir que des lettres, espaces, tirets ou apostrophes')),
-  email: Joi.string().email().max(50).required()
+  email: Joi.string().max(50).required()
     .trim()
+    .pattern(emailRegex)
     .error(new Error('Veuillez fournir une adresse e-mail valide')),
   pseudo: Joi.string().max(20).required().trim()
     .pattern(/^[a-zA-ZÀ-ÿ0-9]+$/)
@@ -29,8 +30,9 @@ const updateUserSchema = Joi.object({
   firstname: Joi.string().max(30).trim()
     .pattern(/^[a-zA-ZÀ-ÿ'\s-]+$/)
     .error(new Error('Le prénom ne doit contenir que des lettres, espaces, tirets ou apostrophes')),
-  email: Joi.string().email().max(50)
+  email: Joi.string().max(50)
     .trim()
+    .pattern(emailRegex)
     .error(new Error('Veuillez fournir une adresse e-mail valide')),
   pseudo: Joi.string().max(20).trim()
     .pattern(/^[a-zA-ZÀ-ÿ0-9]+$/)
@@ -43,9 +45,9 @@ const updateUserSchema = Joi.object({
 }).or('lastname', 'firstname', 'email', 'pseudo', 'password', 'passwordconfirm');
 
 const connectUserSchema = Joi.object({
-  email: Joi.string().email().max(50).required()
+  email: Joi.string().max(50).required()
     .trim()
-    .valid(exceptionEmail)
+    .pattern(emailRegex)
     .error(new Error('Veuillez fournir une adresse e-mail valide')),
   password: Joi.string().required()
     .error(new Error('Le mot de passe est requis')),

@@ -13,10 +13,9 @@ module.exports = async (err, request, response, next) => {
 
       const envoiReussi = await sendEmail(destinataire, sujet, contenu);
 
-      if (envoiReussi) {
-        return response.status(200).json('L\'e-mail a bien été envoyé.');
+      if (!envoiReussi) {
+        console.error('Erreur lors de l\'envoi de l\'e-mail.');
       }
-      return response.status(500).json('Erreur lors de l\'envoi de l\'e-mail.');
     }
 
     return response.status(err.httpStatus).json({ error: err.message });

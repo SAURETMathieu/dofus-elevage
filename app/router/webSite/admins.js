@@ -2,6 +2,8 @@ const express = require('express');
 
 const adminController = require('../../controllers/adminController.js');
 const { isAdmin } = require('../../middlewares/authorization.js');
+const { paramIdSchema } = require('../../validation/schemas/params.js');
+const validate = require('../../validation/index.js');
 
 const {
   userAdminController,
@@ -12,89 +14,114 @@ const {
   breedAdminController,
 } = require('../../controllers/admin/index.js');
 
+const {
+  updateUserSchema,
+} = require('../../validation/schemas/user.js');
+
 const controllerWrapper = require('../../helpers/controller.wrapper.js');
 
 const router = new express.Router();
 
+// get update pages for admins
+
 router.get(
   '/servers/update/:id',
   isAdmin,
+  validate(paramIdSchema, 'params'),
   controllerWrapper(serverAdminController.getUpdateServerPage),
 );
 
+router.get(
+  '/users/update/:id',
+  isAdmin,
+  validate(paramIdSchema, 'params'),
+  controllerWrapper(userAdminController.getByPk.bind(userAdminController)),
+);
+
+// delete for admins
+
 router.delete(
   '/servers/:id',
   isAdmin,
+  validate(paramIdSchema, 'params'),
   controllerWrapper(serverAdminController.delete.bind(serverAdminController)),
 );
 
-router.patch(
-  '/servers/:id',
-  isAdmin,
-  controllerWrapper(serverAdminController.update),
-);
-
 router.delete(
   '/rotates/:id',
   isAdmin,
+  validate(paramIdSchema, 'params'),
   controllerWrapper(rotateAdminController.delete.bind(rotateAdminController)),
 );
 
-router.patch(
-  '/rotates/:id',
-  isAdmin,
-  controllerWrapper(rotateAdminController.update.bind(rotateAdminController)),
-);
-
 router.delete(
   '/characters/:id',
   isAdmin,
+  validate(paramIdSchema, 'params'),
   controllerWrapper(characterAdminController.delete.bind(characterAdminController)),
 );
 
-router.patch(
-  '/characters/:id',
-  isAdmin,
-  controllerWrapper(characterAdminController.update.bind(characterAdminController)),
-);
-
 router.delete(
   '/accounts/:id',
   isAdmin,
+  validate(paramIdSchema, 'params'),
   controllerWrapper(accountAdminController.delete.bind(accountAdminController)),
 );
 
-router.patch(
-  '/accounts/:id',
-  isAdmin,
-  controllerWrapper(accountAdminController.update.bind(accountAdminController)),
-);
-
 router.delete(
   '/users/:id',
   isAdmin,
+  validate(paramIdSchema, 'params'),
   controllerWrapper(userAdminController.delete.bind(userAdminController)),
+);
+
+// patch for admins
+
+router.patch(
+  '/servers/:id',
+  isAdmin,
+  validate(paramIdSchema, 'params'),
+  controllerWrapper(serverAdminController.update),
 );
 
 router.patch(
   '/users/:id',
   isAdmin,
+  validate(paramIdSchema, 'params'),
+  validate(updateUserSchema),
   controllerWrapper(userAdminController.update.bind(userAdminController)),
 );
 
-// router.delete('/breeds/:id', isAdmin, adminController.deleteBreed);
-// router.patch('/breeds/:id', isAdmin, adminController.deleteBreed);
+router.patch(
+  '/rotates/:id',
+  isAdmin,
+  validate(paramIdSchema, 'params'),
+  controllerWrapper(rotateAdminController.update.bind(rotateAdminController)),
+);
+
+router.patch(
+  '/characters/:id',
+  isAdmin,
+  validate(paramIdSchema, 'params'),
+  controllerWrapper(characterAdminController.update.bind(characterAdminController)),
+);
+
+router.patch(
+  '/accounts/:id',
+  isAdmin,
+  validate(paramIdSchema, 'params'),
+  controllerWrapper(accountAdminController.update.bind(accountAdminController)),
+);
+
+// post for admins
 
 router.post(
   '/servers',
   isAdmin,
   controllerWrapper(serverAdminController.create),
 );
-// router.post('/users', isAdmin, adminController.addServer);
-// router.post('/breeds', isAdmin, adminController.addServer);
-// router.post('/accounts', isAdmin, adminController.addServer);
-// router.post('/characters', isAdmin, adminController.addServer);
-// router.post('/rotates', isAdmin, adminController.addServer);
+
+// get home page admin for each classes
 
 router.get(
   '/servers',
@@ -131,6 +158,8 @@ router.get(
   isAdmin,
   controllerWrapper(characterAdminController.getAll.bind(characterAdminController)),
 );
+
+// get home admin's page
 
 router.get('/', isAdmin, adminController.getAdminPage);
 

@@ -4,7 +4,7 @@ const CoreAdminController = require('./coreAdminController.js');
 const userAdminController = new CoreAdminController(
   User,
   'adminTable',
-  '/admin/users',
+  'profil',
   'user',
 );
 

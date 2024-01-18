@@ -2,19 +2,19 @@
 <main class="main__index">
   <h1>PROFIL</h1>
 
-  <div class="profil__container" data-id="<%= user.id%>">
+  <div class="profil__container" data-id="<%= locals.usersAdmin ? usersAdmin.id : user.id%>">
     <h2>Informations</h2>
     <div class="profil__header-role">
       <img
-        src="./images/<%= user.role%>.png"
+        src="/images/<%= locals.usersAdmin ? usersAdmin.role : user.role%>.png"
         alt="Image représentant le rôle de l'utilisateur sur le site"
       />
-      <h3>Role : <%= user.role%></h3>
+      <h3>Role : <%= locals.usersAdmin ? usersAdmin.role : user.role%></h3>
     </div>
 
     <div data-type="pseudo" class="profil__header-pseudo">
       <strong>Pseudo :</strong>
-      <span><%= user.pseudo%></span>
+      <span><%= locals.usersAdmin ? usersAdmin.pseudo : user.pseudo%></span>
       <button aria-label="modifier son pseudo" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
@@ -22,7 +22,7 @@
 
     <div data-type="lastname" class="profil__header-lastname">
       <strong>Nom :</strong>
-      <span><%= user.lastname%></span>
+      <span><%= locals.usersAdmin ? usersAdmin.lastname : user.lastname%></span>
       <button aria-label="modifier son nom" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
@@ -30,7 +30,7 @@
 
     <div data-type="firstname" class="profil__header-firstname">
       <strong>Prénom :</strong>
-      <span><%= user.firstname%></span>
+      <span><%= locals.usersAdmin ? usersAdmin.firstname : user.firstname%></span>
       <button aria-label="modifier son prénom" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
@@ -38,7 +38,7 @@
 
     <div data-type="email" class="profil__header-mail">
       <strong>Email :</strong>
-      <span><%= user.email%></span>
+      <span><%= locals.usersAdmin ? usersAdmin.email : user.email%></span>
       <button aria-label="modifier l'email" data-toggle="update-modal">
         <i class="fa-solid fa-pen" style="color: #005eff"></i>
       </button>
@@ -52,9 +52,9 @@
       </button>
     </div>
 
-    <div class="profil__header-delete" data-id="<%= user.id%>" data-type="user">
+    <div class="profil__header-delete" data-id="<%= locals.usersAdmin ? usersAdmin.id : user.id%>" data-type="<%= locals.usersAdmin ? 'admin-user' : 'user' %>">
       <strong>Supprimer le compte :</strong>
-      <button data-type="user" aria-label="supprimer son compte" data-toggle="delete-modal">
+      <button data-type="<%= locals.usersAdmin ? 'admin-user' : 'user' %>" aria-label="supprimer son compte" data-toggle="delete-modal">
         <i class="fa-solid fa-trash" style="color: #ff0000"></i>
       </button>
     </div>

@@ -1,10 +1,11 @@
+const bcrypt = require('bcrypt');
 const ApiError = require('../../errors/api.error.js');
 
 class CoreAdminController {
-  constructor(model, view, route, type) {
+  constructor(model, view, viewByPk, type) {
     this.model = model;
     this.view = view;
-    this.route = route;
+    this.viewByPk = viewByPk;
     this.type = type;
   }
 
@@ -25,7 +26,7 @@ class CoreAdminController {
     if (!row) {
       return next();
     }
-    return response.status(200).json(row);
+    return response.render(this.viewByPk, { usersAdmin: row });
   }
 
   async create({ body }, response) {
@@ -43,7 +44,20 @@ class CoreAdminController {
       );
       return next(err);
     }
-    const row = await this.model.update(id, body);
+    if (body.password && body.passwordconfirm) {
+      if (body.password !== body.passwordconfirm) {
+        const err = new ApiError(
+          'Les mots de passes ne sont pas identiques.',
+          { httpStatus: 422 },
+        );
+        return next(err);
+      }
+      body.password = await bcrypt.hash(body.password, 10);
+    }
+    const row = await elementToUpdate.update(body);
+    if (row.password) {
+      row.password = '';
+    }
     if (!row) {
       return next();
     }

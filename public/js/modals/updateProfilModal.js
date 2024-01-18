@@ -97,7 +97,10 @@ function submitUpdateProfil() {
     try {
       event.preventDefault();
       const userIdToUpdate = modal.dataset.id;
-      const user = await updateUser(userIdToUpdate, updatePassword);
+      const typeToUpdate = document.querySelector('.profil__header-delete').dataset.type;
+      const isAdmin = typeToUpdate === 'admin-user' ? '/admin' : '';
+
+      const user = await updateUser(userIdToUpdate, updatePassword, isAdmin);
       if (user) {
         document.querySelector('.profil__header-lastname span').textContent = user.lastname;
         document.querySelector('.profil__header-firstname span').textContent = user.firstname;
