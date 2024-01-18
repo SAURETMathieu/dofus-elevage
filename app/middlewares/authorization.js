@@ -1,4 +1,5 @@
 const authorizationMiddleware = {
+  // All checks for redirecting or authorizing user access to pages
   isConnected(request, response, next) {
     if (request.session?.user) {
       return next();
@@ -22,7 +23,7 @@ const authorizationMiddleware = {
   },
 
   isAdmin(request, response, next) {
-    // utilisateur non connecté
+    // User not connected
     if (!request.session?.user) {
       return response.render('error', {
         error: {
@@ -32,7 +33,7 @@ const authorizationMiddleware = {
         },
       });
     }
-    // utilisateur connecté mais pas admin
+    // User connected but not an admin
     if (request.session.user.role !== 'admin') {
       return response.render('error', {
         error: {

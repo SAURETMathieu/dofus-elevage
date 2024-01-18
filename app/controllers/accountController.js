@@ -15,6 +15,7 @@ const accountController = {
     let idToRequest = userId;
     const servers = await Server.findAll();
 
+    // Search and render example values if the visitor isn't connected.
     if (!userId) {
       const exampleUser = await User.findOne({
         attributes: ['id'],
@@ -34,6 +35,7 @@ const accountController = {
           },
         ],
       });
+      // accounts is an Account list, servers a Server list
       return response.render('accounts', { accounts: exempleAccounts, servers });
     }
 
@@ -52,7 +54,7 @@ const accountController = {
         },
       ],
     });
-
+    // accounts is an Account list, servers a Server list
     return response.render('accounts', { accounts, servers });
   },
 
@@ -136,6 +138,7 @@ const accountController = {
     });
 
     if (updatedAccount) {
+      // Destructure the updated account to reassign meaningful values to it.
       const { server_id, ...updatedData } = updatedAccount.toJSON();
       updatedData.server = serverExist;
       return response.json(updatedData);

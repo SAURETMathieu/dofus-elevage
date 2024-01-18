@@ -3,8 +3,6 @@ const express = require('express');
 const authController = require('../../controllers/authController.js');
 const { isConnected, canSignup, isConnectedAndRedirect } = require('../../middlewares/authorization.js');
 const { createUserSchema, connectUserSchema } = require('../../validation/schemas/user.js');
-const { paramIdSchema } = require('../../validation/schemas/params.js');
-
 const validate = require('../../validation/index.js');
 const controllerWrapper = require('../../helpers/controller.wrapper.js');
 

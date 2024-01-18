@@ -3,8 +3,6 @@
 /* eslint-disable camelcase */
 const {
   Account,
-  Server,
-  Rotate,
   User,
 } = require('../models/index.js');
 
@@ -14,6 +12,8 @@ const privateController = {
     const userId = parseInt(request.session?.user?.id, 10);
     let idToRequest = userId;
 
+    // Assign example values' IDs for the database request
+    // if the visitor isn't connected
     if (Number.isNaN(idToRequest)) {
       const exampleUser = await User.findOne({
         attributes: ['id'],
@@ -47,6 +47,7 @@ const privateController = {
       ],
     });
 
+    // Sort characters by order for each account
     accounts.forEach((account) => {
       account.characters = account.characters.sort((a, b) => a.order - b.order);
     });

@@ -2,6 +2,8 @@
 const path = require('path');
 const fs = require('fs');
 
+// Delete images when another image is uploaded to replace it
+// Prevents unnecessary image overload to save space
 function deleteImage(urlImage) {
   const absolutePath = path.resolve('./public/images/');
   if (fs.existsSync(absolutePath + urlImage)) {

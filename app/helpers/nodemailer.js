@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 const nodemailer = require('nodemailer');
 
+// Configuration of the email address used
 async function sendEmail(to, subject, text) {
   const transporter = nodemailer.createTransport({
     host: 'smtp-mail.outlook.com',

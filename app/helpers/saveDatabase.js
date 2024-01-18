@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
@@ -12,6 +13,9 @@ function getCurrentTimestamp() {
   const now = new Date();
   return now.toISOString().replace(/[-T:.]/g, '').slice(0, -5);
 }
+
+// Database backup every 12 hours, with a maximum of 7 days of history
+// automatic deletion of backups beyond 7 days
 
 function runBackup() {
   const backupFileName = `${backupFileNamePrefix}_${getCurrentTimestamp()}.sql`;

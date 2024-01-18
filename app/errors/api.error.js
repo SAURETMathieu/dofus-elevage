@@ -1,3 +1,4 @@
+// Centralize errors
 class ApiError extends Error {
   constructor(message, info) {
     super(message);

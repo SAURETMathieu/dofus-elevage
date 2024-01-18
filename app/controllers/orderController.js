@@ -2,6 +2,9 @@ const { QueryTypes } = require('sequelize');
 const sequelize = require('../database.js');
 
 const orderController = {
+
+  // No prepared requests, JOI checks and allows only positive > 0 integer values
+
   updateAccountOrder: async (request, response) => {
     const { order } = request.body;
 

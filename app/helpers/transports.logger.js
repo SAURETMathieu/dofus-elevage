@@ -1,4 +1,5 @@
 const winston = require('winston');
+// eslint-disable-next-line no-unused-vars
 const DailyRotateFile = require('winston-daily-rotate-file');
 
 const {
@@ -9,6 +10,7 @@ const consoleFormat = printf(({
   level, message, label, timestamp,
 }) => `${timestamp} [${label}] ${level}: ${message}`);
 
+// logs mode production
 const transportCombinedFile = new winston.transports.DailyRotateFile({
   level: 'http',
   filename: './logs/combined.log',
@@ -22,6 +24,7 @@ const transportCombinedFile = new winston.transports.DailyRotateFile({
   ),
 });
 
+// logs errors mode production
 const transportErrorFile = new winston.transports.DailyRotateFile({
   level: 'error',
   filename: './logs/error.log',
@@ -35,6 +38,7 @@ const transportErrorFile = new winston.transports.DailyRotateFile({
   ),
 });
 
+// logs mode dev
 const transportCombinedConsole = new winston.transports.Console({
   level: 'http',
   format: combine(

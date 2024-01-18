@@ -63,9 +63,13 @@ const authController = {
       );
       if (isValidPassword) {
         if (remember === 'on') {
+          // session for 60 days
           request.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 60;
         }
+        // Reassignment of the new values in the session.
         request.session.user = existingUser;
+        // Assign the password value to null for security purposes
+        // to avoid storing the encrypted password in the session
         request.session.user.password = null;
 
         return response.status(200).json({ message: 'Connexion réussie' });

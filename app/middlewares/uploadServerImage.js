@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const mime = require('mime-types');
 
+// Upload images and store them in the directory 'public/images/serversImages'
 function uploadImage(err, request, response) {
   if (err instanceof multer.MulterError) {
     return response.render('error', {

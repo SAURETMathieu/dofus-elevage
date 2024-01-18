@@ -3,14 +3,13 @@
 /* eslint-disable camelcase */
 const {
   Rotate,
-  Character,
 } = require('../models/index.js');
 
 const ApiError = require('../errors/api.error.js');
 
 const rotateController = {
 
-  addRotate: async (request, response, next) => {
+  addRotate: async (request, response) => {
     const userId = parseInt(request.session?.user?.id, 10);
 
     if (Number.isNaN(userId) || userId <= 0) {
@@ -40,6 +39,8 @@ const rotateController = {
       ],
     });
 
+    // Reset the value for each character
+    // that is in a rotate due to a foreign key constraint
     await Promise.all(rotate.charactersRotate.map(async (character) => {
       await character.update({ rotate_id: null });
     }));
@@ -113,11 +114,13 @@ const rotateController = {
       return next(err);
     }
 
-    const variablesToCheck = ['mature', 'feed', 'ride', 'agressive',
+    // Map fields in the request body to check the steps column names
+    // in the character table
+    const fieldsToCheck = ['mature', 'feed', 'ride', 'agressive',
       'serene', 'lovem', 'endurancem',
       'lovef', 'endurancef'];
 
-    variablesToCheck.forEach((variable) => {
+    fieldsToCheck.forEach((variable) => {
       if (Object.prototype.hasOwnProperty.call(request.body, variable)
          && request.body[variable] !== undefined
          && request.body[variable] !== null) {

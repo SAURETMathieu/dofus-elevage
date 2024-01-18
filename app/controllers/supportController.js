@@ -34,6 +34,8 @@ const supportController = {
       return next(err);
     }
 
+    // Format and send an email to our email address
+    // to receive an alert for a support message from a user
     const currentDate = new Date();
     const options = {
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric',

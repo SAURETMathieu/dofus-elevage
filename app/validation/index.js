@@ -1,5 +1,6 @@
 const ApiError = require('../errors/api.error.js');
 
+// Dynamize schema validations
 function validate(schema, source = 'body') {
   return (request, response, next) => {
     const { error } = schema.validate(request[source]);

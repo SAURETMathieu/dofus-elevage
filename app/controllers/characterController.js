@@ -1,10 +1,9 @@
-const dayjs = require('dayjs');
 const {
   Server, Account, Character, Breed, Rotate, User,
 } = require('../models/index.js');
 // eslint-disable-next-line import/extensions
-require('dayjs/locale/fr');
 const ApiError = require('../errors/api.error.js');
+const formatCharacter = require('../utils/formatCharacter.js');
 
 const characterController = {
   addCharacter: async (request, response, next) => {
@@ -47,7 +46,6 @@ const characterController = {
       );
       return next(err);
     }
-
     return response.redirect(`/accounts/${accountId}/characters`);
   },
 
@@ -70,19 +68,9 @@ const characterController = {
 
   updateCharacter: async (request, response, next) => {
     const {
-      name,
-      type,
-      nbrepro,
       accountId,
-      classe,
-      speMale,
-      speFemale,
       breedMale,
       breedFemale,
-      date,
-      dateBirth,
-      nbMale,
-      nbFemale,
     } = request.body;
 
     const selectedCharacter = await Character.findByPk(request.params.id);
@@ -128,40 +116,31 @@ const characterController = {
       updatedData.breed_female = breedFemale;
     }
 
-    if (name !== undefined && name !== null) {
-      updatedData.name = name;
-    }
-    if (type !== undefined && type !== null) {
-      updatedData.type = type;
-      if (type === 'private') {
-        updatedData.rotate_id = null;
-      }
-    }
-    if (nbrepro !== undefined && nbrepro !== null) {
-      updatedData.reproduction = nbrepro;
-    }
-    if (classe !== undefined && classe !== null) {
-      updatedData.class = classe;
-    }
-    if (speMale !== undefined && speMale !== null) {
-      updatedData.speMale = speMale;
-    }
-    if (speFemale !== undefined && speFemale !== null) {
-      updatedData.speFemale = speFemale;
-    }
-    if (date !== undefined && date !== null) {
-      updatedData.date = date;
-    }
-    if (dateBirth !== undefined && dateBirth !== null) {
-      updatedData.dateBirth = dateBirth;
-    }
-    if (nbMale !== undefined && nbMale !== null) {
-      updatedData.nbMale = nbMale;
-    }
-    if (nbFemale !== undefined && nbFemale !== null) {
-      updatedData.nbFemale = nbFemale;
-    }
+    // Map fields in the request body that differ from the column names
+    // in the character table
+    const fieldMappings = {
+      classe: 'class',
+      nbrepro: 'reproduction',
+    };
+    const fieldsToCheck = ['name', 'type', 'nbrepro', 'classe', 'speMale', 'speFemale', 'date', 'dateBirth', 'nbMale', 'nbFemale'];
 
+    // Check each column of the character's table to update
+    // only the columns with new values
+    fieldsToCheck.forEach((field) => {
+      const mappedField = fieldMappings[field] || field;
+      if (
+        Object.prototype.hasOwnProperty.call(request.body, field)
+        && request.body[field] !== undefined
+        && request.body[field] !== null
+      ) {
+        if (mappedField === 'type' && request.body[field] === 'private') {
+          // If the character's type is private,
+          // the character cannot be included in the rotation then null value
+          updatedData.rotate_id = null;
+        }
+        updatedData[mappedField] = request.body[field];
+      }
+    });
     const updatedCharacter = await selectedCharacter.update(
       updatedData,
     );
@@ -174,6 +153,7 @@ const characterController = {
       return next(err);
     }
 
+    // join values of Breeds to Characters for the render
     if (breedMaleExist) {
       updatedCharacter.breed_male = breedMaleExist;
     }
@@ -201,11 +181,13 @@ const characterController = {
       return next(err);
     }
 
-    const variablesToCheck = ['mature', 'feed', 'ride', 'agressive',
+    // Map fields in the request body to check the steps column names
+    // in the character table
+    const fieldsToCheck = ['mature', 'feed', 'ride', 'agressive',
       'serene', 'lovem', 'endurancem',
       'lovef', 'endurancef'];
 
-    variablesToCheck.forEach((variable) => {
+    fieldsToCheck.forEach((variable) => {
       if (Object.prototype.hasOwnProperty.call(request.body, variable)
          && request.body[variable] !== undefined
          && request.body[variable] !== null) {
@@ -276,6 +258,9 @@ const characterController = {
     let account;
     let serverName;
     let idToRequest = parseInt(request.session?.user?.id, 10);
+
+    // Assign example values' IDs for the database request
+    // if the visitor isn't connected
     if (Number.isNaN(idToRequest)) {
       const exampleUser = await User.findOne({
         attributes: ['id'],
@@ -306,6 +291,7 @@ const characterController = {
       },
     ];
 
+    // Add options to the request if the account ID is in the URL parameters
     if (accountId) {
       account = await Account.findOne({ where: { id: accountId } });
 
@@ -319,6 +305,7 @@ const characterController = {
       includeOptions[0].where.id = accountId;
     }
 
+    // Add options to the request if the server ID is in the URL query
     if (!Number.isNaN(serverId)) {
       includeOptions[0].include[1].where.id = serverId;
     }
@@ -350,69 +337,8 @@ const characterController = {
       }
     }
 
-    const charactersFormatted = characters.map((character) => {
-      // eslint-disable-next-line no-param-reassign
-      character.account.user.password = null;
-
-      let dayRepro = 'null';
-      let dateRepro;
-      let hoursRepro;
-      let dayBirth = 'null';
-      let dateBirth;
-      let hoursBirth;
-      let condition = 'Feconde';
-
-      const time = new Date(character.date).getTime();
-      const timestamp = new Date(character.dateBirth).getTime();
-
-      if (character.date) {
-        if (!dayjs(character.dateBirth).isBefore(dayjs(), 'minute')) {
-          condition = 'Fecondee';
-        }
-        const dayReproFormat = dayjs(character.date)
-          .locale('fr')
-          .format('dddd');
-        dayRepro = dayReproFormat.charAt(0).toUpperCase() + dayReproFormat.slice(1);
-
-        dateRepro = dayjs(character.date)
-          .locale('fr')
-          .format('DD/MM/YY');
-
-        hoursRepro = dayjs(character.date)
-          .locale('fr')
-          .format('HH[h]mm');
-
-        const dayBirthFormat = dayjs(character.dateBirth)
-          .locale('fr')
-          .format('dddd');
-        dayBirth = dayBirthFormat.charAt(0).toUpperCase() + dayBirthFormat.slice(1);
-
-        dateBirth = dayjs(character.dateBirth)
-          .locale('fr')
-          .format('DD/MM/YY');
-
-        hoursBirth = dayjs(character.dateBirth)
-          .locale('fr')
-          .format('HH[h]mm');
-      }
-
-      if (character.reproduction > 19) {
-        condition = 'Sterile';
-      }
-
-      return {
-        ...character.toJSON(),
-        dayRepro,
-        dateRepro,
-        hoursRepro,
-        dayBirth,
-        dateBirth,
-        hoursBirth,
-        condition,
-        timestamp,
-        time,
-      };
-    });
+    // Change the date format and condition for rendering
+    const charactersFormatted = characters.map(formatCharacter);
 
     return response.render('characters', {
       characters: charactersFormatted,

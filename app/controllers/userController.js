@@ -6,28 +6,11 @@ const { User } = require('../models/index.js');
 const ApiError = require('../errors/api.error.js');
 
 const userController = {
-  // getUsers: async (request, response) => {
-  //   const users = await User.findAll({
-  //     order: ['id'],
-  //   });
-  //   response.json(users);
-  // },
-
-  // getUser: async (request, response) => {
-  //   const user = await User.findByPk(request.params.id);
-  //   response.json(user);
-  // },
-
-  // postUser: async (request, response) => {
-  //   const user = await User.create(request.body);
-  //   response.json(user);
-  // },
 
   updateUser: async (request, response, next) => {
     const {
       firstname, lastname, email, pseudo, password, passwordconfirm,
     } = request.body;
-      // TODO finir
     const updatedData = {};
 
     const id = parseInt(request.params.id, 10);
@@ -103,6 +86,7 @@ const userController = {
       return next(err);
     }
 
+    // Reassign new values for the session and set the password session value to null
     updatedUser.password = null;
     request.session.user = updatedUser;
 

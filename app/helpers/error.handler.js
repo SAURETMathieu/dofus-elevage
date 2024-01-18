@@ -1,8 +1,11 @@
+/* eslint-disable no-console */
 const logger = require('./index.logger.js');
 const { sendEmail } = require('./nodemailer.js');
 
 // eslint-disable-next-line no-unused-vars
-module.exports = async (err, request, response, next) => {
+
+// Send an email to us to alert about errors and server crashes
+module.exports = async (err, request, response) => {
   try {
     if (err.httpStatus === 500) {
       logger.error('Error 500', err);

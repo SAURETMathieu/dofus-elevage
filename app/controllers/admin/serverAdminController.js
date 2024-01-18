@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 const path = require('path');
 const multer = require('multer');
-const { Op } = require('sequelize');
-const { User, Server } = require('../../models/index.js');
+const { Server } = require('../../models/index.js');
 const { deleteImage } = require('../../middlewares/deleteServerImage.js');
 const { uploadImage } = require('../../middlewares/uploadServerImage.js');
 const ApiError = require('../../errors/api.error.js');
 
+// define the storage dir and file name for new server
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, './public/images/serversImages');
@@ -30,6 +30,7 @@ const serverAdminController = {
   },
 
   create: async (request, response) => {
+    // create server and upload image
     upload.single('serverImage')(request, response, async (err) => {
       uploadImage(err, request, response);
       const imageUrl = `/serversImages/${request.file.filename}`;
@@ -74,6 +75,7 @@ const serverAdminController = {
       const server = await Server.findByPk(id);
       let imageUrl = '';
       if (request.file) {
+        // delete current image of server and upload the new image
         deleteImage(server.img);
         uploadImage(err, request, response);
         imageUrl = `/serversImages/${request.file.filename}`;
