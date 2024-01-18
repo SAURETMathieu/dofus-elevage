@@ -71,7 +71,6 @@ function createAddButtonsToCharacters(event) {
       div.style.background = 'red';
     } else {
       div.textContent = '+';
-      console.log(rotateIdOfCharacter);
       div.style.background = Number.isNaN(rotateIdOfCharacter) ? 'green' : 'blue';
     }
 

@@ -3,6 +3,7 @@
 /* eslint-disable camelcase */
 const {
   Rotate,
+  Character,
 } = require('../models/index.js');
 
 const ApiError = require('../errors/api.error.js');
@@ -31,7 +32,18 @@ const rotateController = {
 
   deleteRotate: async (request, response, next) => {
     const { id } = request.params;
-    const rotate = await Rotate.findByPk(id);
+    const rotate = await Rotate.findByPk(id, {
+      include: [
+        {
+          association: 'charactersRotate',
+        },
+      ],
+    });
+
+    await Promise.all(rotate.charactersRotate.map(async (character) => {
+      await character.update({ rotate_id: null });
+    }));
+
     if (!rotate) {
       const err = new ApiError(
         'La rotation n\'existe pas.',

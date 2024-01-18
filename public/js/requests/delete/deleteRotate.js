@@ -15,6 +15,11 @@ export default async function deleteRotate(rotateId, isAdmin = '') {
     }
     const deletedElement = document.querySelector(`#rotate-${rotateId}`);
     if (deletedElement) {
+      const charactersInDeletedRotate = document
+        .querySelectorAll(`.article__character[data-rotate="${rotateId}"]`);
+      charactersInDeletedRotate.forEach((characterElement) => {
+        characterElement.dataset.rotate = null;
+      });
       deletedElement.remove();
       notifications.editAndShowSuccessNotification(
         'La rotation a bien été supprimé',
