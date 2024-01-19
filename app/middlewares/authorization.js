@@ -25,7 +25,7 @@ const authorizationMiddleware = {
   isAdmin(request, response, next) {
     // User not connected
     if (!request.session?.user) {
-      return response.render('error', {
+      return response.render('error2', {
         error: {
           statusCode: 401,
           name: 'Unauthorized',
@@ -35,7 +35,7 @@ const authorizationMiddleware = {
     }
     // User connected but not an admin
     if (request.session.user.role !== 'admin') {
-      return response.render('error', {
+      return response.render('error2', {
         error: {
           statusCode: 403,
           name: 'Forbidden',

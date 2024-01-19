@@ -232,6 +232,10 @@ main{
   background-image: url('../images/errorbg2.png');
 }
 
+.main__error-forbidden{
+  background-image: url('../images/403page.png');
+}
+
 /*//////////*/
 /*  FOOTER  */
 /*//////////*/

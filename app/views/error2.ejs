@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+<main class="main__error-forbidden">
+  <h1><%= error.statusCode %> <%= error.name %></h1>
+  <br>
+  <br>
+  <div class="home__intro">
+    <%= error.message %>
+  </div>
+      
+</main>
+
+<%- include('partials/footer') %>
