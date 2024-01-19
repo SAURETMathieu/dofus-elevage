@@ -6,7 +6,7 @@
   <div class="main__container-list">
     <%- include('./partials/searchContainer'); -%>
     <article class="main__article">
-      <button id="addButton" class="article__circular-button">+</button>
+      <button id="addButton" class="article__circular-button" aria-label="ajouter un serveur">+</button>
       <form action="/admin/servers" method="POST" id="addServerForm" class="article__form hidden" enctype="multipart/form-data">
         <label for="serverName">Nom du serveur</label>
         <input type="text" id="serverName" name="serverName" required>

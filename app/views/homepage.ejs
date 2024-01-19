@@ -28,22 +28,22 @@
   <% if (!locals.user) { %>
     <div id="cookieBanner" class="cookie-banner">
       <div class="close-banner">
-        <button class="close-button">
+        <button class="close-button" aria-label="fermer le cookie">
           <i class="fas fa-times"></i>
         </button>
       </div>
       <h2>Bienvenue</h2>
       <p>Veuillez vous connecter pour accéder au contenu.</p>
       <a href="/signin">
-        <button id="getSigninPage">Connexion</button>
+        <button id="getSigninPage" aria-label="aller a la page de connexion">Connexion</button>
       </a>
       <a href="/signup">
-        <button id="getSignupPage">S'inscrire</button>
+        <button id="getSignupPage" aria-label="aller a la page d'inscription">S'inscrire</button>
       </a>
       <p>Les données hors connexion sont fictives.</p>
       <p>Chaque page possède un tutoriel.</p>
-      <button id="showTutorial">Tutoriel</button>
-      <button id="closeBanner">Fermer</button>
+      <button id="showTutorial" aria-label="jouer le tutoriel">Tutoriel</button>
+      <button id="closeBanner" aria-label="fermer le cookie">Fermer</button>
     </div>
     <script defer type="module" src="/js/inits/initBanner.js"></script>
   <% } %>
