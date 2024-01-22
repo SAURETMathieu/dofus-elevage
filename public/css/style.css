@@ -2226,6 +2226,7 @@ input[type="checkbox"]:not(:checked) + label {
  background:rgba(0, 0, 0, 0.95);
  width:100%;
  height:100%;
+ z-index:999999;
 }
 
 .loading-container{
