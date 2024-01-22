@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "npx nodemon",
+    "start": "node index && npm run deploy-verify",
     "resetDB": "psql -d dofus -f data/dofus.sql",
     "deploy-verify": "sqitch deploy && sqitch verify",
     "revert": "sqitch revert -y"
