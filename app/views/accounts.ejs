@@ -1,5 +1,6 @@
 <%- include('./partials/header'); -%>
 <main class="main__accounts">
+  <%- include('./partials/loading') %>
   <h1 class="h1-user-page">Mes comptes</h1>
   
   <div class="main__container-list">
@@ -51,8 +52,6 @@
   <%- include('./partials/updateAccountModal'); -%>
 
   <%- include('./partials/deleteModal'); -%>
-
-  <%- include('./partials/loading') %>
 </main>
 
 <script type="module" src="/js/inits/initAccountPage.js"></script>

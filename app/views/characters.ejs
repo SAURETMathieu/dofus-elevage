@@ -1,5 +1,6 @@
 <%- include('./partials/header'); -%>
 <main class="main__index">
+  <%- include('./partials/loading') %>
   <h1>
     Tous les personnages
     <% if(serverName){%>
@@ -60,8 +61,6 @@
   <%- include('./partials/updateCharacterModal'); -%>
 
   <%- include('./partials/deleteModal'); -%>
-
-  <%- include('./partials/loading'); -%>
 
 </main>
 
