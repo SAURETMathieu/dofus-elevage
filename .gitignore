@@ -157,4 +157,4 @@ dist
 .pnp.*
 
 #sqitch
-sqitch.conf
+#sqitch.conf
