@@ -22,7 +22,7 @@ buttons.hidePartOfCharacter();
 
 // utils
 utils.initBackgroundCharacters();
-utils.displayTime('Enclos Privée');
+utils.displayTime('Enclos Privé');
 utils.initClosedCharacters();
 utils.initClosedAccounts();
 
