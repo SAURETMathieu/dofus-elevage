@@ -10,7 +10,7 @@
     "dev": "npx nodemon",
     "start": "node index && npm run deploy-verify",
     "resetDB": "psql -d dofus -f data/dofus.sql",
-    "deploy-verify": "sqitch deploy && sqitch verify",
+    "deploy-verify": "sqitch deploy production && sqitch verify production",
     "revert": "sqitch revert -y"
   },
   "keywords": [],
