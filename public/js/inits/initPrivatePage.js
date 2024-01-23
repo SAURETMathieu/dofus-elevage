@@ -19,6 +19,7 @@ buttons.initResetStepsButtons();
 buttons.initValidStepsButtons();
 buttons.hideCharactersOnAccount();
 buttons.hidePartOfCharacter();
+buttons.checkboxInit();
 
 // utils
 utils.initBackgroundCharacters();
