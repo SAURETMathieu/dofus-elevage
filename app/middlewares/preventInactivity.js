@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 function requestServer() {
-  const url = 'https://www.votresite.com';
+  const url = 'https://odd-dofus.up.railway.app/';
   
   fetch(url)
       .then(response => {

@@ -107,5 +107,4 @@ CREATE TABLE "character" (
     "updated_at" TIMESTAMPTZ
 );
 
-
 COMMIT;
