@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "npx nodemon",
-    "start": "sudo apt-get install postgresql-client && node index && npm run deploy-verify",
+    "start": "node index && npm run deploy-verify",
     "resetDB": "psql -d dofus -f data/dofus.sql",
     "deploy-verify": "sqitch deploy production && sqitch verify production",
     "revert": "sqitch revert -y"
