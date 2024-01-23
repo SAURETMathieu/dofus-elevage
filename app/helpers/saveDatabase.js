@@ -20,7 +20,7 @@ function getCurrentTimestamp() {
 function runBackup() {
   const backupFileName = `${backupFileNamePrefix}_${getCurrentTimestamp()}.sql`;
 
-  const dumpCommand = `pg_dump -h ${sequelize.config.host}${sequelize.config.username ? ` -U ${sequelize.config.username}` : ''} -d ${sequelize.config.database} -F c -b -v -f ${path.join(backupPath, backupFileName)}`;
+  const dumpCommand = `PGPASSWORD=${process.env.PGPASSWORD} pg_dump -h ${sequelize.config.host}${sequelize.config.username ? ` -U ${sequelize.config.username}` : ''} -d ${sequelize.config.database} -F c -b -v -f ${path.join(backupPath, backupFileName)}`;
 
   exec(dumpCommand, (error, stdout, stderr) => {
     if (error) {
