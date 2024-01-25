@@ -209,7 +209,7 @@ main{
 
 /* TODO gérer les images de fond*/
 .main__index{
-  background-image: url('../images/bg.jpg');
+  background-image: url('../images/bg3.png');
 }
 
 .main__connexion{

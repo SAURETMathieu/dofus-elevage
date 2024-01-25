@@ -3,11 +3,11 @@ export default function checkboxInit() {
   checkbox.addEventListener('change', (event) => {
     const charactersToHide = document.querySelectorAll('.closed');
     charactersToHide.forEach((characterToHide) => {
-        if (event.target.checked) {
-          characterToHide.style.display = '';
-        } else {
-          characterToHide.style.display = 'none';
-        }
+      if (event.target.checked) {
+        characterToHide.style.display = '';
+      } else {
+        characterToHide.style.display = 'none';
+      }
     });
   });
 }
