@@ -9,7 +9,7 @@ const ApiError = require('../../errors/api.error.js');
 // define the storage dir and file name for new server
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, './public/images/serversImages');
+    cb(null, './public/images');
   },
   filename(req, file, cb) {
     cb(
@@ -33,7 +33,7 @@ const serverAdminController = {
     // create server and upload image
     upload.single('serverImage')(request, response, async (err) => {
       uploadImage(err, request, response);
-      const imageUrl = `/serversImages/${request.file.filename}`;
+      const imageUrl = `/${request.file.filename}`;
       const { serverName, game } = request.body;
       await Server.create({
         name: serverName,
@@ -78,7 +78,7 @@ const serverAdminController = {
         // delete current image of server and upload the new image
         deleteImage(server.img);
         uploadImage(err, request, response);
-        imageUrl = `/serversImages/${request.file.filename}`;
+        imageUrl = `/${request.file.filename}`;
       } else {
         imageUrl = server.img;
       }
