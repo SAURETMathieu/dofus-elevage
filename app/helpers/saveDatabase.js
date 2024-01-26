@@ -71,7 +71,7 @@ function initBackup() {
 }
 
 module.exports = {
-  initBackup
+  initBackup,
 };
 
 // example for restoring db

@@ -5,8 +5,12 @@ const { sendEmail } = require('./nodemailer.js');
 // eslint-disable-next-line no-unused-vars
 
 // Send an email to us to alert about errors and server crashes
-module.exports = async (err, request, response) => {
+module.exports = async (err, request, response, next) => {
   try {
+    if (!err) {
+      next();
+    }
+
     if (err.httpStatus === 500) {
       logger.error('Error 500', err);
       const destinataire = process.env.MAIL;

@@ -11,7 +11,6 @@ const supportRouter = require('./support.js');
 
 const router = new express.Router();
 
-router.use('/', authsRouter);
 router.use('/characters', charatersRouter);
 router.use('/accounts', accountsRouter);
 router.use('/admin', adminsRouter);
@@ -20,5 +19,6 @@ router.use('/public', publicRouter);
 router.use('/rotates', rotatesRouter);
 router.use('/users', usersRouter);
 router.use('/support', supportRouter);
+router.use('/', authsRouter);
 
 module.exports = router;

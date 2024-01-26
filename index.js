@@ -2,11 +2,10 @@
 require('dotenv').config();
 const express = require('express');
 const router = require('./app/router');
-const errorHandler = require('./app/helpers/error.handler.js');
 const httpLogger = require('./app/middlewares/httpLogger.js');
 const sessionMiddleware = require('./app/middlewares/sessions.js');
 const { initBackup } = require('./app/helpers/saveDatabase.js');
-const requestServer  = require('./app/middlewares/preventInactivity.js');
+const requestServer = require('./app/middlewares/preventInactivity.js');
 
 const PORT = process.env.PORT || 4000;
 
@@ -32,8 +31,6 @@ app.use((request, response, next) => {
 });
 
 app.use(router);
-
-app.use(errorHandler);
 
 if (process.env.NODE_ENV === 'production') {
   initBackup();
