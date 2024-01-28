@@ -5,41 +5,42 @@
   
   <div class="main__container-list">
 
-    
-    <form class="form__search" action="/admin/users" method="GET">
-<%- include('./partials/searchContainer'); -%>
-    </form>
+    <div class="table-container">
+      <form class="form__search" action="/admin/users" method="GET">
+        <%- include('./partials/searchContainer'); -%>
+      </form>
 
-    <table>
-      <thead>
-        <tr>
-          <% locals.attributes.forEach(attribute => { %>
-            <% if (attribute !== "password" && attribute !== "mode" && attribute !== "status") { %>
-              <th><%= attribute %></th>
-            <% } %>
-          <% }) %>
-          <th>Update</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for (let i = 0; i < locals.rows.length; i++) { %>
-          <tr data-id="<%= locals.rows[i].id%>" data-type="admin-<%= locals.type%>" id="<%= locals.type%>-<%= locals.rows[i].id%>">
+      <table>
+        <thead>
+          <tr>
             <% locals.attributes.forEach(attribute => { %>
               <% if (attribute !== "password" && attribute !== "mode" && attribute !== "status") { %>
-                <% if (attribute === "created_at" || attribute === "updated_at") { %>
-                <td class="table__td-date"><%= new Date(locals.rows[i][attribute]).toLocaleString('fr') %></td>
-                <% }else{ %>
-                  <td data-tooltip="<%= locals.rows[i][attribute] %>"><%= locals.rows[i][attribute] %></td>
-                <%}%>
+                <th><%= attribute %></th>
               <% } %>
             <% }) %>
-            <td class="table__td-logo"><a href="/admin/<%= locals.type%>s/update/<%= locals.rows[i].id%>"><i class="fa-regular fa-pen-to-square" style="color: #000000;"></i></a></td>
-            <td class="table__td-logo" data-toggle="delete-modal"><i class="fa-regular fa-trash-can" style="color: #000000;"></i></td>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
-        <% } %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% for (let i = 0; i < locals.rows.length; i++) { %>
+            <tr data-id="<%= locals.rows[i].id%>" data-type="admin-<%= locals.type%>" id="<%= locals.type%>-<%= locals.rows[i].id%>">
+              <% locals.attributes.forEach(attribute => { %>
+                <% if (attribute !== "password" && attribute !== "mode" && attribute !== "status") { %>
+                  <% if (attribute === "created_at" || attribute === "updated_at") { %>
+                  <td class="table__td-date"><%= new Date(locals.rows[i][attribute]).toLocaleString('fr') %></td>
+                  <% }else{ %>
+                    <td data-tooltip="<%= locals.rows[i][attribute] %>"><%= locals.rows[i][attribute] %></td>
+                  <%}%>
+                <% } %>
+              <% }) %>
+              <td class="table__td-logo"><a href="/admin/<%= locals.type%>s/update/<%= locals.rows[i].id%>"><i class="fa-regular fa-pen-to-square" style="color: #000000;"></i></a></td>
+              <td class="table__td-logo" data-toggle="delete-modal"><i class="fa-regular fa-trash-can" style="color: #000000;"></i></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
     <div class="tooltip" id="tooltip"></div>
   </div>
   <script>
