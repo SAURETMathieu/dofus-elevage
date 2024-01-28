@@ -1,8 +1,10 @@
 const durations = [53, 45, 25, 9, 3];
 let index = 0;
 let timer;
+let checkingCounter;
 let first = true;
 let audio;
+let timestamp;
 
 export default function displayTime(text) {
   const chronoElement = document.querySelector('.chrono');
@@ -26,14 +28,45 @@ export default function displayTime(text) {
     }
   }
 
+  function checkCounter() {
+    if (timestamp) {
+      const elapsedTime = Date.now() - timestamp;
+      const totalTime = durations[index] * 60 * 1000;
+      const remainingTime = totalTime - elapsedTime;
+      const remainingMinutes = Math.floor(remainingTime / (60 * 1000));
+      const remainingSeconds = Math.round((remainingTime % (60 * 1000)) / 1000);
+
+      const adjustedMinutes = remainingSeconds === 60 ? remainingMinutes + 1 : remainingMinutes;
+      const adjustedSeconds = remainingSeconds === 60 ? 0 : remainingSeconds;
+
+      const chronoTime = chronoElement.textContent.slice(-5);
+
+      const [minutes, seconds] = chronoTime.split(':').map((part) => {
+        const parsedPart = parseInt(part, 10);
+        return Number.isNaN(parsedPart) ? parseInt(part[1], 10) : parsedPart;
+      });
+
+      console.log(duration);
+
+      if (adjustedMinutes !== minutes || adjustedSeconds !== seconds) {
+        duration = durations[index] * 60 - Math.round(elapsedTime / 1000);
+        console.log('tezst', duration);
+        chronoElement.innerHTML = `${text}<br>${adjustedMinutes}:${adjustedSeconds < 10 ? '0' : ''}${adjustedSeconds}`;
+      }
+    }
+  }
+
   chronoElement.addEventListener('click', () => {
+    timestamp = Date.now();
     if (!first) {
       index = (index + 1) % durations.length;
     }
     first = false;
     clearInterval(timer);
+    clearInterval(checkingCounter);
     duration = durations[index] * 60;
     updateCounter();
     timer = setInterval(updateCounter, 1000);
+    checkingCounter = setInterval(checkCounter, 1000);
   });
 }
