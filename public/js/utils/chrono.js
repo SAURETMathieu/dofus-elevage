@@ -18,6 +18,7 @@ export default function displayTime(text) {
   function updateCounter() {
     if (duration < 0) {
       clearInterval(timer);
+      clearInterval(checkingCounter);
       chronoElement.innerHTML = `${text}<br>Terminé!`;
       playSound();
     } else {
