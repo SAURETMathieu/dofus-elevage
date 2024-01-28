@@ -46,11 +46,8 @@ export default function displayTime(text) {
         return Number.isNaN(parsedPart) ? parseInt(part[1], 10) : parsedPart;
       });
 
-      console.log(duration);
-
       if (adjustedMinutes !== minutes || adjustedSeconds !== seconds) {
         duration = durations[index] * 60 - Math.round(elapsedTime / 1000);
-        console.log('tezst', duration);
         chronoElement.innerHTML = `${text}<br>${adjustedMinutes}:${adjustedSeconds < 10 ? '0' : ''}${adjustedSeconds}`;
       }
     }
